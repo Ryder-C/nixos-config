@@ -40,6 +40,8 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser.url = "github:fufexan/zen-browser-flake";
+
+    nixvim.url = "path:./nixvim";
   };
 
   outputs = { nixpkgs, self, ...} @ inputs:
