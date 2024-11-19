@@ -77,7 +77,6 @@ in {
     inputs.alejandra.defaultPackage.${system}
 
     plex-desktop
-    kodi-wayland
-    jellyfin-media-player
+    zathura # PDF Viewer
   ];
 }

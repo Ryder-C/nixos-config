@@ -40,7 +40,7 @@
       tree = "eza --icons --tree --group-directories-first";
 
       # Nixos
-      cdnix = "cd ~/nixos-config && nvim ~/nixos-config";
+      cdnix = "cd ~/nixos-config && hx ~/nixos-config";
       ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
       # nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#${host}";

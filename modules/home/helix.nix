@@ -3,13 +3,13 @@
   inputs,
   ...
 }: {
-  # LSPs
-  home.packages = with pkgs; [
-    nil
-  ];
-
   programs.helix = {
     enable = true;
+    defaultEditor = true;
+    extraPackages = with pkgs; [
+      nil
+      tinymist
+    ];
     settings = {
       theme = "catppuccin_mocha";
       editor.cursor-shape = {
@@ -18,16 +18,31 @@
         select = "underline";
       };
     };
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter = {
-          command = "alejandra";
-          args = ["-q"];
+
+    languages = {
+      language-server.tinymist = {
+        command = "tinymist";
+        config = {
+          exportPdf = "onType";
+          outputPath = "$root/out/$name";
         };
-      }
-    ];
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter = {
+            command = "alejandra";
+            args = ["-q"];
+          };
+        }
+        {
+          name = "typst";
+          language-servers = ["tinymist"];
+        }
+      ];
+    };
+
     themes = {
       catppuccin_mocha =
         {
