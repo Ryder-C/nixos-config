@@ -39,6 +39,7 @@
         {
           name = "typst";
           language-servers = ["tinymist"];
+          soft-wrap.enable = true;
         }
       ];
     };
