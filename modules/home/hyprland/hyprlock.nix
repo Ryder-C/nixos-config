@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = [ pkgs.hyprlock ];
+{pkgs, ...}: {
+  home.packages = [pkgs.hyprlock];
   xdg.configFile."hypr/hyprlock.conf".text = ''
     $red = rgb(f38ba8)
     $yellow = rgb(f9e2af)
@@ -35,7 +34,7 @@
     # TIME
     label {
       monitor =
-      text = cmd[update:30000] echo "<b><big> $(date +"%R") </big></b>"
+      text = cmd[update:30000] echo "<b><big> $(date +"%r") </big></b>"
       color = $text
       font_size = 110
       font_family = $font
@@ -47,9 +46,9 @@
       valign = top
     }
 
-    # DATE 
+    # DATE
     label {
-      monitor = 
+      monitor =
       text = cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"
       color = $text
       font_size = 18
@@ -62,7 +61,7 @@
     # USER AVATAR
 
     image {
-      monitor = 
+      monitor =
       path = ~/Pictures/pp/pp.png
       size = 125
       border_color = $accent

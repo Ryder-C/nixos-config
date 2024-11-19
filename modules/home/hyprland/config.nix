@@ -1,8 +1,6 @@
-{ ... }: 
-{
+{...}: {
   wayland.windowManager.hyprland = {
     settings = {
-      
       # autostart
       exec-once = [
         "systemctl --user import-environment &"
@@ -21,7 +19,7 @@
 
       input = {
         kb_layout = "us,fr";
-        kb_options ="grp:alt_caps_toggle"; 
+        kb_options = "grp:alt_caps_toggle";
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
@@ -152,8 +150,11 @@
         "$mainMod SHIFT, W, exec, vm-start"
 
         # screenshot
-        "$mainMod, Print, exec, grimblast --notify --cursor --freeze save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
-        ",Print, exec, grimblast --notify --cursor --freeze copy area"
+        # "$mainMod, Print, exec, grimblast --notify --cursor --freeze save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        # ",Print, exec, grimblast --notify --cursor --freeze copy area"
+        "$mainMod SHIFT, P, exec, hyprshot --raw -m region - | swappy -f -"
+        "$mainMod CTRL, P, exec, hyprshot --raw -m window - | swappy -f -"
+        "$mainMod ALT, P, exec, hyprshot --raw -m output - | swappy -f -"
 
         # switch focus
         "$mainMod, left, movefocus, l"
@@ -234,9 +235,9 @@
         "size 1200 725,imv"
         "float,mpv"
         "center,mpv"
-	"float,blueman-manager"
-	"center,blueman-manager"
-	"size 700 450,blueman-manager"
+        "float,blueman-manager"
+        "center,blueman-manager"
+        "size 700 450,blueman-manager"
         "tile,Aseprite"
         "size 1200 725,mpv"
         "float,title:^(float_kitty)$"
@@ -293,7 +294,6 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
       ];
-
     };
 
     extraConfig = "

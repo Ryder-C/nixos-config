@@ -1,19 +1,22 @@
-{ inputs, pkgs, ...}: 
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     # swww
     swaybg
-    inputs.hypr-contrib.packages.${pkgs.system}.grimblast
+    # inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     hyprpicker
-    grim
-    slurp
+    hyprshot
+    swappy
     wl-clip-persist
     wf-recorder
     glib
     wayland
     direnv
   ];
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
