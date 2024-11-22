@@ -44,6 +44,12 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser.url = "github:fufexan/zen-browser-flake";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

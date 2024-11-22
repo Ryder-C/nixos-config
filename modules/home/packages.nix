@@ -76,6 +76,10 @@ in {
     xxd
     inputs.alejandra.defaultPackage.${system}
 
+    # Rust
+    cargo
+    rustc
+
     plex-desktop
     zathura # PDF Viewer
   ];

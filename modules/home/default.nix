@@ -10,7 +10,7 @@
     ++ [(import ./bat.nix)] # better cat command
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./ssh.nix)]
-    # ++ [(import ./cava.nix)]                      # audio visualizer
+    # ++ [(import ./cava.nix)] # audio visualizer
     ++ [(import ./discord.nix)] # discord with catppuccin theme
     ++ [(import ./browser.nix)] # firefox based browser
     ++ [(import ./fuzzel.nix)] # launcher
@@ -21,7 +21,8 @@
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./swaync/swaync.nix)] # notification deamon
     ++ [(import ./micro.nix)] # nano replacement
-    ++ [(import ./nvim.nix)] # neovim editor
+    # ++ [(import ./nvim.nix)] # neovim editor
+    ++ [(import ./neovim)]
     ++ [(import ./helix.nix)]
     ++ [(import ./packages.nix)] # other packages
     ++ [(import ./retroarch.nix)]

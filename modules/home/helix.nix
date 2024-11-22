@@ -5,10 +5,17 @@
 }: {
   programs.helix = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
     extraPackages = with pkgs; [
+      # LSPs
       nil
       tinymist
+      rust-analyzer-unwrapped
+
+      # Formatters
+
+      # Debuggers
+      lldb_19
     ];
     settings = {
       theme = "catppuccin_mocha";
