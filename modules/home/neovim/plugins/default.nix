@@ -39,6 +39,10 @@
       };
 
       sleuth.enable = true;
+      noice.enable = true;
+      neocord.enable = true;
+      which-key.enable = true;
+      leap.enable = true;
 
       nvim-autopairs.enable = true;
 
