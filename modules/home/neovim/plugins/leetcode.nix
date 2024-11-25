@@ -10,7 +10,7 @@
   [code]
   editor = 'nvim'
   lang = 'rust'
-  comment_problem_desc = true
+  comment_problem_desc = false
   comment_leading = "//"
   test = true
 
