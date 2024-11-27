@@ -20,11 +20,15 @@
 
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = true; # Breaks gamescope when true
       args = [
         "--rt"
         "--expose-wayland"
       ];
+    };
+    gamemode = {
+      enable = true;
+      enableRenice = true;
     };
   };
 }
