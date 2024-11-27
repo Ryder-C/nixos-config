@@ -302,7 +302,8 @@
 
     extraConfig = "
       monitor=DP-2, 1920x1080@240, 0x0, 1
-      monitor=Unkown-2, 3840x2160@60, 1920x0, 1
+      monitor=Unknown-2, 3840x2160@60, 1920x0, 1
+      monitor=Unknown-1, disable
 
       xwayland {
         force_zero_scaling = true

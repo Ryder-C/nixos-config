@@ -12,6 +12,7 @@
     ++ [(import ./ssh.nix)]
     # ++ [(import ./cava.nix)] # audio visualizer
     ++ [(import ./discord.nix)] # discord with catppuccin theme
+    # ++ [(import ./podman.nix)]
     ++ [(import ./browser.nix)] # firefox based browser
     ++ [(import ./fuzzel.nix)] # launcher
     ++ [(import ./gaming.nix)] # packages related to gaming

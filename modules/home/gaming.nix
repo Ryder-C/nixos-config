@@ -14,6 +14,7 @@
       # wineDllOverrides = prev.wineDllOverrides ++ [ "dxgi=n" ];
       tricks = ["arial" "vcrun2019" "win10" "sound=alsa"];
     }))
+    mangohud
 
     ## Minecraft
     prismlauncher

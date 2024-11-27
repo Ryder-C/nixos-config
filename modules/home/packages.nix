@@ -21,6 +21,7 @@ in {
     gifsicle # gif utility
     gimp
     gtrash # rm replacement, put deleted files in system trash
+    websocat
     hexdump
     jdk17 # java
     lazygit
@@ -76,6 +77,7 @@ in {
     xxd
     inputs.alejandra.defaultPackage.${system}
 
+    typst
     # Rust
     cargo
     rustc

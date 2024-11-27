@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./barbar.nix
     ./comment.nix
@@ -20,6 +19,7 @@
   programs.nixvim = {
     extraPackages = with pkgs.vimPlugins; [
       plenary-nvim
+      typst-preview-nvim
     ];
 
     colorschemes.catppuccin = {
