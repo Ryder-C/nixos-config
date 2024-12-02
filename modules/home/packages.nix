@@ -81,6 +81,7 @@ in {
     # Rust
     cargo
     rustc
+    rustfmt
 
     plex-desktop
     zathura # PDF Viewer
