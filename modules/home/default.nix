@@ -26,7 +26,7 @@
     ++ [(import ./neovim)]
     ++ [(import ./helix.nix)]
     ++ [(import ./packages.nix)] # other packages
-    ++ [(import ./retroarch.nix)]
+    # ++ [(import ./retroarch.nix)]
     ++ [(import ./scripts/scripts.nix)] # personal scripts
     ++ [(import ./spicetify.nix)] # spotify client
     ++ [(import ./starship.nix)] # shell prompt
