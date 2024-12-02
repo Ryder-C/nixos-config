@@ -14,6 +14,7 @@
     ./treesitter.nix
     ./vimtex.nix # inria
     ./leetcode.nix
+    ./mini.nix
   ];
 
   programs.nixvim = {

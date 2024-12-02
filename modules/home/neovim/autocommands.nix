@@ -1,5 +1,11 @@
 {
   programs.nixvim.autoCmd = [
+    # # Open NeoTree when entering
+    # {
+    #   event = "BufEnter";
+    #   command = "Neotree";
+    # }
+
     # Vertically center document when entering insert mode
     {
       event = "InsertEnter";
@@ -20,6 +26,7 @@
         "tex" # inria
         "latex" # inria
         "markdown"
+        "typ"
       ];
       command = "setlocal spell spelllang=en";
     }
