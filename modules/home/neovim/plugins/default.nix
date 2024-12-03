@@ -15,6 +15,7 @@
     ./vimtex.nix # inria
     ./leetcode.nix
     ./mini.nix
+    ./conform.nix
   ];
 
   programs.nixvim = {
@@ -52,7 +53,7 @@
         userDefaultOptions.names = false;
       };
 
-      oil.enable = true;
+      oil.enable = false; # Replaced with mini.files
 
       trim = {
         enable = true;

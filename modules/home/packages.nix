@@ -80,6 +80,7 @@ in {
     typst
     # Rust
     cargo
+    clippy
     rustc
     rustfmt
 
