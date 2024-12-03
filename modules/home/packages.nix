@@ -52,6 +52,8 @@ in {
 
     # Python
     python3
+    python312Packages.setuptools
+    python312Packages.virtualenv
 
     bleachbit # cache cleaner
     cmatrix
