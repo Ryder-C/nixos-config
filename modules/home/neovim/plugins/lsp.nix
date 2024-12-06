@@ -31,7 +31,13 @@
         servers = {
           clangd.enable = true;
           texlab.enable = true;
-          tinymist.enable = true;
+          tinymist = {
+            enable = true;
+            settings = {
+              exportPdf = "onType";
+              outputPath = "$root/out/$name";
+            };
+          };
           nixd.enable = true;
           rust_analyzer = {
             enable = true;
