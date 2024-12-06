@@ -88,6 +88,6 @@ in {
 
     plex-desktop
     zathura # PDF Viewer
-    leetcode-cli
+    leetgo
   ];
 }
