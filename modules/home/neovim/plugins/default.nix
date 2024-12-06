@@ -58,7 +58,8 @@
       trim = {
         enable = true;
         settings = {
-          highlight = true;
+          highlight = false;
+          trim_on_write = true;
           ft_blocklist = [
             "checkhealth"
             "floaterm"
