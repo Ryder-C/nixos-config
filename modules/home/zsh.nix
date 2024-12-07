@@ -4,7 +4,8 @@
   pkgs,
   host,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -12,7 +13,10 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "fzf"];
+      plugins = [
+        "git"
+        "fzf"
+      ];
     };
     initExtraFirst = ''
       DISABLE_MAGIC_FUNCTIONS=true
@@ -35,16 +39,16 @@
       pdf = "tdf";
       open = "xdg-open";
 
-      l = "eza --icons  -a --group-directories-first -1"; #EZA_ICON_SPACING=2
+      l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
       ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
       tree = "eza --icons --tree --group-directories-first";
 
       # Nixos
-      cdnix = "cd ~/nixos-config && hx ~/nixos-config";
+      cdnix = "cd ~/nixos-config && nvim ~/nixos-config";
       ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
       # nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#${host}";
-      nix-switch = "nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
+      nix-switch = "nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\" --update-input nixvim";
       # nix-switchu = "sudo nixos-rebuild switch --upgrade --flake ~/nixos-config#${host}";
       nix-switchu = "nh os switch --hostname ${host} --update \"$HOME/nixos-config?submodules=1\"";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";

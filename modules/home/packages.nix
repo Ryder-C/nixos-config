@@ -78,6 +78,7 @@ in {
     xdg-utils
     xxd
     inputs.alejandra.defaultPackage.${system}
+    inputs.nixvim.packages.${system}.default
 
     typst
     # Rust
