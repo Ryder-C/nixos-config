@@ -65,6 +65,7 @@
             "floaterm"
             "lspinfo"
             "neo-tree"
+            "minifiles"
             "TelescopePrompt"
           ];
         };

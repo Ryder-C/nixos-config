@@ -3,8 +3,8 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>mf";
-        action = ":lua MiniFiles.open()";
+        key = "<leader>fm";
+        action = ":lua MiniFiles.open()<CR>";
         options.silent = true;
       }
     ];
