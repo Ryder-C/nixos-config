@@ -44,14 +44,11 @@
 
       # Nixos
       cdnix = "cd ~/nixos-config && nvim ~/nixos-config";
-      ns = "nix-shell --run zsh";
       nix-shell = "nix-shell --run zsh";
-      # nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#${host}";
-      nix-switch = "nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\" -- --update-input nixvim";
-      # nix-switchu = "sudo nixos-rebuild switch --upgrade --flake ~/nixos-config#${host}";
-      nix-switchu = "nh os switch --hostname ${host} --update \"$HOME/nixos-config?submodules=1\"";
+      ns = "nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\" -- --update-input nixvim";
+      nst = "nh os test --hostname ${host} \"$HOME/nixos-config?submodules=1\" -- --update-input nixvim";
+      nsu = "nh os switch --hostname ${host} --update \"$HOME/nixos-config?submodules=1\"";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
-      # nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
       nix-clean = "nh clean all";
 
       # Git
