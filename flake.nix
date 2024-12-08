@@ -50,7 +50,7 @@
 
     zen-browser.url = "github:fufexan/zen-browser-flake";
 
-    nixvim.url = "path:./nixvim";
+    nixvim.url = "github:Ryder-C/nixvim";
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #
