@@ -47,8 +47,8 @@
       # Nixos
       cdnix = "cd ~/nixos-config && nvim ~/nixos-config";
       nix-shell = "nix-shell --run zsh";
-      ns = "nix flake update nixvim && nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
-      nst = "nix flake update nixvim && nh os test --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
+      ns = "nix flake update nixvim --flake $HOME/nixos-config && nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
+      nst = "nix flake update nixvim --flake $HOME/nixos-config && nh os test --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
       nsu = "nh os switch --hostname ${host} --update \"$HOME/nixos-config?submodules=1\"";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
       nix-clean = "nh clean all";
