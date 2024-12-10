@@ -14,7 +14,9 @@
       enable = true;
       plugins = [
         "git"
+        "gh"
         "fzf"
+        "rust"
       ];
     };
     initExtraFirst = ''
@@ -45,14 +47,13 @@
       # Nixos
       cdnix = "cd ~/nixos-config && nvim ~/nixos-config";
       nix-shell = "nix-shell --run zsh";
-      ns = "nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\" -- --update-input nixvim";
-      nst = "nh os test --hostname ${host} \"$HOME/nixos-config?submodules=1\" -- --update-input nixvim";
+      ns = "nix flake update nixvim && nh os switch --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
+      nst = "nix flake update nixvim && nh os test --hostname ${host} \"$HOME/nixos-config?submodules=1\"";
       nsu = "nh os switch --hostname ${host} --update \"$HOME/nixos-config?submodules=1\"";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
       nix-clean = "nh clean all";
 
-      # Git
-      ga = "git add";
+      # Git ga = "git add";
       gaa = "git add --all";
       gs = "git status";
       gb = "git branch";
