@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    nix-search-cli
   ];
 
   time.timeZone = "America/Los_Angeles";
