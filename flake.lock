@@ -1231,11 +1231,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1733865830,
-        "narHash": "sha256-8kElvx43BPEkFCb4TC5iLe9ysjb23exWc+GH1UiQ4Us=",
+        "lastModified": 1733880935,
+        "narHash": "sha256-w1oY90FqDasTQ5bQE1qrAOTG/toTJE775aTZHpB4MYk=",
         "owner": "Ryder-C",
         "repo": "nixvim",
-        "rev": "6d7272e320e8960ad6b0c3ed47ed45a3270cce4b",
+        "rev": "c400c898cd35c7da3226401adf14fcda6d8576f2",
         "type": "github"
       },
       "original": {
