@@ -3,22 +3,7 @@
   config,
   inputs,
   ...
-}: let
-  myLutrisPkg = let
-    hackedPkgs = pkgs.extend (final: prev: {
-      buildFHSEnv = args:
-        prev.buildFHSEnv (args
-          // {
-            extraBwrapArgs =
-              (args.extraBwrapArgs or [])
-              ++ [
-                "--cap-add ALL"
-              ];
-          });
-    });
-  in
-    hackedPkgs.lutris;
-in {
+}: {
   home.packages = with pkgs; [
     ## Utils
     # gamemode
@@ -56,11 +41,10 @@ in {
     # dolphin-emu
 
     ## Lutris
-    myLutrisPkg
     # If you had any overrides for Lutris, you can adjust them accordingly
-    # (myLutrisPkg.override {
-    #   extraLibraries = pkgs: [
-    #   ];
-    # })
+    (lutris.override {
+      extraLibraries = pkgs: [
+      ];
+    })
   ];
 }
