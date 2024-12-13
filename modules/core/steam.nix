@@ -36,7 +36,7 @@
 
     gamescope = {
       enable = true;
-      capSysNice = true; # Breaks gamescope when true
+      capSysNice = false; # Breaks gamescope when true
       args = [
         "--rt"
         # "--expose-wayland"
