@@ -36,6 +36,7 @@ in {
     tdf # cli pdf viewer
     todo # cli todo list
     toipe # typing test in the terminal
+    bandwhich
     valgrind # c memory analyzer
     yazi # terminal file manager
     yt-dlp-light
