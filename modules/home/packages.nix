@@ -9,6 +9,7 @@ in {
     _2048
 
     audacity
+    asciiquarium-transparent
     bitwise # cli tool for bit / hex manipulation
     cbonsai # terminal screensaver
     evince # gnome pdf viewer
@@ -80,6 +81,9 @@ in {
     xxd
     inputs.alejandra.defaultPackage.${system}
     inputs.nixvim.packages.${system}.default
+
+    # 3D printing
+    orca-slicer
 
     typst
     # Rust
