@@ -83,7 +83,7 @@ in {
     inputs.nixvim.packages.${system}.default
 
     # 3D printing
-    orca-slicer
+    # orca-slicer
 
     typst
     # Rust
