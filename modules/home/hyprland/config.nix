@@ -307,8 +307,8 @@
       monitor=Unknown-1, disable
 
       workspace=1, monitor:DP-2
-      workspace=2, monitor:HDMI-A-1
-      workspace=3, monitor:Unknown-2
+      # workspace=2, monitor:HDMI-A-1
+      workspace=2, monitor:Unknown-2
 
       xwayland {
         force_zero_scaling = true
