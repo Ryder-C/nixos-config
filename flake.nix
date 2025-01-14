@@ -54,13 +54,13 @@
     };
 
     nixvim.url = "github:Ryder-C/nixvim";
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
