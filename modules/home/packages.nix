@@ -82,6 +82,8 @@ in {
     inputs.alejandra.defaultPackage.${system}
     inputs.nixvim.packages.${system}.default
 
+    zed-editor # code editor
+
     # 3D printing
     # orca-slicer
 

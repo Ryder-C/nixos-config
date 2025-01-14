@@ -1235,11 +1235,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1733880935,
-        "narHash": "sha256-w1oY90FqDasTQ5bQE1qrAOTG/toTJE775aTZHpB4MYk=",
+        "lastModified": 1736817861,
+        "narHash": "sha256-A503W34sQ7iFCI4oA1iXMEUpRyHXzeDU5G+nX188CMQ=",
         "owner": "Ryder-C",
         "repo": "nixvim",
-        "rev": "c400c898cd35c7da3226401adf14fcda6d8576f2",
+        "rev": "c9bb2485e0bc7a21337e1393e12ab905cc56152c",
         "type": "github"
       },
       "original": {
