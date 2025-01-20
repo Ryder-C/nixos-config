@@ -83,6 +83,7 @@ in {
     inputs.nixvim.packages.${system}.default
 
     zed-editor # code editor
+    pkg-config-unwrapped
 
     # 3D printing
     # orca-slicer
