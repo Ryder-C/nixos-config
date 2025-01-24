@@ -94,6 +94,8 @@ in {
     clippy
     rustc
     rustfmt
+    dioxus-cli
+    lld
 
     plex-desktop
     zathura # PDF Viewer
