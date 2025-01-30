@@ -42,6 +42,9 @@ in {
     yazi # terminal file manager
     yt-dlp-light
     zenity
+    tor-browser
+    monero-gui
+    kleopatra
     # winetricks
     # wineWowPackages.waylandFull
     # wine
@@ -85,8 +88,10 @@ in {
     zed-editor # code editor
     pkg-config-unwrapped
 
+    kicad
+
     # 3D printing
-    # orca-slicer
+    orca-slicer
 
     typst
     # Rust

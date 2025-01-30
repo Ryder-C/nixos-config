@@ -12,4 +12,7 @@
     # )
     inputs.zen-browser.packages.${pkgs.system}.default
   ];
+  home.sessionVariables = {
+    BROWSER = "${inputs.zen-browser.packages.${pkgs.system}.default}";
+  };
 }
