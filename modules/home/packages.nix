@@ -96,6 +96,7 @@ in {
     typst
     # Rust
     cargo
+    cargo-expand
     clippy
     rustc
     rustfmt
