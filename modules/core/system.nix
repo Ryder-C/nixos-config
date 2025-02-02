@@ -29,6 +29,7 @@
     wget
     git
     nix-search-cli
+    openrgb-with-all-plugins
   ];
 
   time.timeZone = "America/Los_Angeles";
