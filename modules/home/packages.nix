@@ -89,6 +89,7 @@ in {
     pkg-config-unwrapped
 
     kicad
+    blender
 
     # 3D printing
     orca-slicer
