@@ -10,7 +10,6 @@
     [(import ./bootloader.nix)]
     ++ [(import ./hardware.nix)]
     ++ [(import ./nvidia.nix)]
-    ++ inputs.agenix.nixosModules.default
     ++ [(import ./xserver.nix)]
     ++ [(import ./network.nix)]
     ++ [(import ./bluetooth.nix)]
