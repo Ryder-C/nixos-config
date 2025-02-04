@@ -1,4 +1,8 @@
-{...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -7,6 +11,12 @@
     flatpak.enable = true;
 
     hardware.openrgb.enable = true;
+
+    # inputs.nix-pia-vpn.pia-vpn = {
+    #   enable = true;
+    #   certificateFile = "../../ca.rsa.2048.crt";
+    #   # environmentFile = config.age.secrets.pia.path;
+    # };
   };
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed

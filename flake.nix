@@ -28,6 +28,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-pia-vpn = {
+      url = "github:rcambrj/nix-pia-vpn";
+      follows = "nixpkgs";
+    };
+
     catppuccin-bat = {
       url = "github:catppuccin/bat";
       flake = false;

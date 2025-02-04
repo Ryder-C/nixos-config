@@ -22,5 +22,6 @@
     ++ [(import ./steam.nix)]
     ++ [(import ./wayland.nix)]
     ++ [(import ./virtualization.nix)]
+    ++ [(import ./age.nix)]
     ++ [(import ./aagl.nix)];
 }

@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }: {
   # imports = [ inputs.nix-gaming.nixosModules.default ];
@@ -30,6 +31,7 @@
     git
     nix-search-cli
     openrgb-with-all-plugins
+    inputs.agenix.packages.${system}.default
   ];
 
   time.timeZone = "America/Los_Angeles";
