@@ -35,7 +35,7 @@
 
     nix-pia-vpn = {
       url = "github:rcambrj/nix-pia-vpn";
-      follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin-bat = {

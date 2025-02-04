@@ -12,10 +12,10 @@
 
     hardware.openrgb.enable = true;
 
-    # inputs.nix-pia-vpn.pia-vpn = {
+    # pia-vpn = {
     #   enable = true;
-    #   certificateFile = "../../ca.rsa.2048.crt";
-    #   # environmentFile = config.age.secrets.pia.path;
+    #   certificateFile = ../../ca.rsa.2048.crt;
+    #   environmentFile = config.age.secrets.pia.path;
     # };
   };
   services.logind.extraConfig = ''
