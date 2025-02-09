@@ -59,6 +59,7 @@ in {
     python3
     python312Packages.setuptools
     python312Packages.virtualenv
+    python312Packages.gmpy2
 
     bleachbit # cache cleaner
     cmatrix
@@ -87,9 +88,11 @@ in {
 
     zed-editor # code editor
     pkg-config-unwrapped
+    google-chrome
 
     kicad
     blender
+    transmission_4-qt
 
     # 3D printing
     orca-slicer

@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   inputs,
   ...
 }: {
@@ -12,11 +13,25 @@
 
     hardware.openrgb.enable = true;
 
-    # pia-vpn = {
-    #   enable = true;
-    #   certificateFile = ../../ca.rsa.2048.crt;
-    #   environmentFile = config.age.secrets.pia.path;
-    # };
+    pia-vpn = {
+      enable = true;
+      certificateFile = ../../ca.rsa.4096.crt;
+      region = "ca_vancouver";
+      environmentFile = config.age.secrets.pia.path;
+
+      portForward = {
+        enable = true;
+        script = ''
+          export $(cat transmission-rpc.env | xargs)
+          ${pkgs.transmission_4-qt}/bin/transmission-remote --authenv --port $port || true
+        '';
+      };
+    };
+
+    transmission = {
+      enable = true;
+      settings.rpc-bind-address = "0.0.0.0";
+    };
   };
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
