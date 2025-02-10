@@ -5,6 +5,8 @@
       extraPackages = with pkgs; [
       ];
     };
+
+    keyboard.qmk.enable = true;
   };
   hardware.enableRedistributableFirmware = true;
 }
