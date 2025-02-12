@@ -93,6 +93,7 @@ in {
     kicad
     blender
     transmission_4-qt
+    libsForQt5.kleopatra
 
     # 3D printing
     orca-slicer
