@@ -5,8 +5,8 @@
   ...
 }: {
   imports =
-    # [(import ./aseprite/aseprite.nix)] # pixel art editor
-    [(import ./audacious/audacious.nix)] # music player
+    [(import ./aseprite/aseprite.nix)] # pixel art editor
+    ++ [(import ./audacious/audacious.nix)] # music player
     ++ [(import ./bat.nix)] # better cat command
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./ssh.nix)]
@@ -23,14 +23,14 @@
     ++ [(import ./wezterm.nix)]
     ++ [(import ./swaync/swaync.nix)] # notification deamon
     ++ [(import ./micro.nix)] # nano replacement
-    # ++ [(import ./helix.nix)]
+    ++ [(import ./helix.nix)]
     ++ [(import ./packages.nix)] # other packages
     # ++ [(import ./retroarch.nix)]
     ++ [(import ./scripts/scripts.nix)] # personal scripts
     ++ [(import ./spicetify.nix)] # spotify client
     ++ [(import ./starship.nix)] # shell prompt
     ++ [(import ./swaylock.nix)] # lock screen
-    # ++ [(import ./vscodium.nix)] # vscode forck
+    ++ [(import ./vscodium.nix)] # vscode forck
     ++ [(import ./waybar)] # status bar
     ++ [(import ./zsh.nix)]; # shell
 }
