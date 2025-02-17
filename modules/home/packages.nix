@@ -90,7 +90,7 @@ in {
     pkg-config-unwrapped
     google-chrome
 
-    kicad
+    # kicad
     blender
     transmission_4-qt
     libsForQt5.kleopatra

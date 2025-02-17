@@ -302,7 +302,7 @@
 
     extraConfig = "
       monitor=DP-2, 1920x1080@240, 0x0, 1
-      monitor=Unknown-2, 3840x2160@60, 1920x0, 1 # 0x-2160, 1
+      monitor=Unknown-2, 3840x2160@60, 1920x0, 1, bitdepth, 10 # 0x-2160, 1
       # monitor=HDMI-A-1, 1920x1080@60, 1920x0, 1
       monitor=Unknown-1, disable
 
