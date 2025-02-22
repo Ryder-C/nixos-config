@@ -10,6 +10,7 @@
     [(import ./bat.nix)] # better cat command
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./ssh.nix)]
+    ++ [(import ./services.nix)]
     ++ [(import ./cava.nix)] # audio visualizer
     ++ [(import ./discord.nix)] # discord with catppuccin theme
     # ++ [(import ./podman.nix)]
