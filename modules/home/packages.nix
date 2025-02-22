@@ -92,7 +92,6 @@ in {
 
     # kicad
     blender
-    zoom-us
     transmission_4-qt
     libsForQt5.kleopatra
 
