@@ -1,8 +1,8 @@
 {...}: {
   imports =
-    [(import ./aseprite/aseprite.nix)] # pixel art editor
-    ++ [(import ./audacious/audacious.nix)] # music player
-    ++ [(import ./bat.nix)] # better cat command
+    # [(import ./aseprite/aseprite.nix)] # pixel art editor
+    # ++ [(import ./audacious/audacious.nix)] # music player
+    [(import ./bat.nix)] # better cat command
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./ssh.nix)]
     ++ [(import ./cava.nix)] # audio visualizer
@@ -25,7 +25,7 @@
     ++ [(import ./spicetify.nix)] # spotify client
     ++ [(import ./starship.nix)] # shell prompt
     ++ [(import ./swaylock.nix)] # lock screen
-    ++ [(import ./vscodium.nix)] # vscode forck
+    # ++ [(import ./vscodium.nix)] # vscode forck
     ++ [(import ./waybar)] # status bar
     ++ [(import ./zsh.nix)]; # shell
 }
