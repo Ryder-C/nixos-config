@@ -90,7 +90,7 @@ in {
     pkg-config-unwrapped
     google-chrome
 
-    # kicad
+    kicad
     blender
     zoom-us
     transmission_4-qt
