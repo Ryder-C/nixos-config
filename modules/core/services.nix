@@ -4,16 +4,6 @@
   inputs,
   ...
 }: {
-  systemd.user.services = {
-    start_zmk_battery_monitor = {
-      enable = true;
-      description = "Start ZMK battery monitor";
-      script = ''
-        ${pkgs.zmkBATx}/bin/zmkbatx
-      '';
-      wantedBy = ["default.target"];
-    };
-  };
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;

@@ -111,7 +111,5 @@ in {
     plex-desktop
     zathura # PDF Viewer
     leetgo
-
-    zmkBATx # battery monitor for corne keyboard
   ];
 }
