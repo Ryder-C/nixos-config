@@ -9,7 +9,6 @@
   imports =
     [(import ./bootloader.nix)]
     ++ [(import ./hardware.nix)]
-    ++ [(import ./hardware-acceleration.nix)]
     ++ [(import ./nvidia.nix)]
     ++ [(import ./xserver.nix)]
     ++ [(import ./network.nix)]
