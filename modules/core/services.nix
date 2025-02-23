@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{username, ...}: {
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -30,7 +25,15 @@
 
     transmission = {
       enable = true;
-      settings.rpc-bind-address = "0.0.0.0";
+      user = "${username}";
+      group = "users";
+
+      settings = {
+        home = "/home/${username}/torrents";
+        download-dir = "/home/${username}/torrents/complete";
+        incomplete-dir = "/home/${username}/torrents/incomplete";
+        watch-dir = "/home/${username}/torrents/watch";
+      };
     };
   };
   services.logind.extraConfig = ''
