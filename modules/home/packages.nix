@@ -109,6 +109,7 @@ in {
     lld
 
     plex-desktop
+    libvlc
     zathura # PDF Viewer
     leetgo
   ];
