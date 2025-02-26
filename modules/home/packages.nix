@@ -44,7 +44,7 @@ in {
     zenity
     tor-browser
     monero-gui
-    kleopatra
+    kdePackages.kleopatra
     # winetricks
     # wineWowPackages.waylandFull
     # wine
@@ -93,7 +93,6 @@ in {
     # kicad
     blender
     transmission_4-qt
-    libsForQt5.kleopatra
 
     # 3D printing
     orca-slicer
