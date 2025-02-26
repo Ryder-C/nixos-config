@@ -90,6 +90,7 @@ in {
     pkg-config-unwrapped
     google-chrome
 
+    bottles
     # kicad
     blender
     transmission_4-qt
