@@ -87,12 +87,15 @@ in {
     inputs.nixvim.packages.${system}.default
 
     zed-editor # code editor
+    tinymist
+
     pkg-config-unwrapped
     google-chrome
 
     bottles
     # kicad
     blender
+    obs-studio
     transmission_4-qt
 
     # 3D printing
