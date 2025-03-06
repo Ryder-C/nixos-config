@@ -115,5 +115,6 @@ in {
     libvlc
     zathura # PDF Viewer
     leetgo
+    gdu # disk usage
   ];
 }
