@@ -1,4 +1,8 @@
-{config, ...}: {
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    wttrbar
+  ];
+
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -13,6 +17,7 @@
     ];
     modules-center = [
       "clock"
+      "custom/weather"
     ];
     modules-right = [
       "tray"
@@ -32,6 +37,13 @@
       tooltip = "true";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       format-alt = " {:%d/%m}";
+    };
+    "custom/weather" = {
+      format = "{}°";
+      tooltip = true;
+      interval = 3600;
+      exec = "wttrbar --nerd --ampm --fahrenheit --mph";
+      return-type = "json";
     };
     "hyprland/workspaces" = {
       active-only = false;
