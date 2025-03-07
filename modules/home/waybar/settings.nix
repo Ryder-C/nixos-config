@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -73,11 +73,14 @@
       interval = 60;
     };
     network = {
-      format-wifi = "  {signalStrength}%";
-      format-ethernet = "󰀂 ";
-      tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
+      format-wifi = "{icon} {bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
+      format-ethernet = "󰀂 {bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
+      tooltip-format-wifi = "{icon} {ipaddr} ({signalStrength}%)";
+      tooltip-format = "{ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
       format-disconnected = "󰖪 ";
+      interval = 2;
+      format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
     };
     tray = {
       icon-size = 20;
@@ -86,8 +89,15 @@
     pulseaudio = {
       format = "{icon} {volume}%";
       format-muted = "  {volume}%";
+      # format-bluetooth = "{icon} {volume}% 󰂯";
       format-icons = {
-        default = [" "];
+        headphone = "󰋋";
+        hands-free = "󱡒";
+        headset = "󰋎";
+        phone = "";
+        portable = "";
+        car = "";
+        default = ["" "" ""];
       };
       scroll-step = 5;
       on-click = "pamixer -t";
