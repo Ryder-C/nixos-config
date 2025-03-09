@@ -85,7 +85,7 @@
       interval = 60;
     };
     network = {
-      format-wifi = "{icon} {bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
+      format-wifi = "{bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
       format-ethernet = "󰀂 {bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
       tooltip-format-wifi = "{icon} {ipaddr} ({signalStrength}%)";
       tooltip-format = "{ifname} via {gwaddr}";
@@ -109,7 +109,7 @@
         phone = "";
         portable = "";
         car = "";
-        default = ["" "" ""];
+        default = [" " " " " "];
       };
       scroll-step = 5;
       on-click = "pamixer -t";
