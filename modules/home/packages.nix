@@ -102,14 +102,6 @@ in {
     orca-slicer
 
     typst
-    # Rust
-    cargo
-    cargo-expand
-    clippy
-    rustc
-    rustfmt
-    dioxus-cli
-    lld
 
     plex-desktop
     libvlc

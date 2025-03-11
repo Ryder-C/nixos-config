@@ -1,27 +1,25 @@
-{
-  inputs,
-  nixpkgs,
-  self,
-  username,
-  host,
-  ...
-}: {
-  imports =
-    [(import ./bootloader.nix)]
-    ++ [(import ./hardware.nix)]
-    ++ [(import ./nvidia.nix)]
-    ++ [(import ./xserver.nix)]
-    ++ [(import ./network.nix)]
-    ++ [(import ./bluetooth.nix)]
-    ++ [(import ./pipewire.nix)]
-    ++ [(import ./program.nix)]
-    ++ [(import ./security.nix)]
-    ++ [(import ./services.nix)]
-    ++ [(import ./system.nix)]
-    ++ [(import ./user.nix)]
-    ++ [(import ./steam.nix)]
-    ++ [(import ./wayland.nix)]
-    ++ [(import ./virtualization.nix)]
-    ++ [(import ./age.nix)]
-    ++ [(import ./aagl.nix)];
+{inputs, ...}: {
+  imports = [
+    inputs.agenix.nixosModules.default
+    inputs.nix-pia-vpn.nixosModules.default
+    # inputs.rednix.container
+
+    ./bootloader.nix
+    ./hardware.nix
+    ./nvidia.nix
+    ./xserver.nix
+    ./network.nix
+    ./bluetooth.nix
+    ./pipewire.nix
+    ./program.nix
+    ./security.nix
+    ./services.nix
+    ./system.nix
+    ./user.nix
+    ./steam.nix
+    ./wayland.nix
+    ./virtualization.nix
+    ./age.nix
+    ./aagl.nix
+  ];
 }

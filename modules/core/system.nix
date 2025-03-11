@@ -1,9 +1,6 @@
 {
-  self,
   pkgs,
-  lib,
   inputs,
-  config,
   ...
 }: {
   # imports = [ inputs.nix-gaming.nixosModules.default ];
@@ -20,11 +17,11 @@
       options = "--delete-older-than 7d";
     };
   };
-  nixpkgs = {
-    overlays = [
-      inputs.nur.overlays.default
-    ];
-  };
+
+  nixpkgs.overlays = [
+    inputs.rust-overlay.overlays.default
+    inputs.nur.overlays.default
+  ];
 
   environment.systemPackages = with pkgs; [
     wget
@@ -32,6 +29,7 @@
     nix-search-cli
     openrgb-with-all-plugins
     via
+    rust-bin.stable.latest.default
     inputs.agenix.packages.${system}.default
   ];
 

@@ -16,11 +16,13 @@
       inputs.nix-gaming.follows = "nix-gaming";
     };
 
-    # hyprland = {
-    #   type = "git";
-    #   url = "https://github.com/hyprwm/Hyprland";
-    #   submodules = true;
-    # };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rednix.url = "github:redcode-labs/rednix";
+
     hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
