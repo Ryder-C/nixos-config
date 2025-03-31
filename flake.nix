@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nur.url = "github:nix-community/NUR";
 
     hypr-contrib.url = "github:hyprwm/contrib";
@@ -77,16 +78,16 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-stable,
     self,
     ...
   } @ inputs: let
     username = "ryder";
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
+    stablePkgs = import nixpkgs-stable {
       inherit system;
       config.allowUnfree = true;
     };
-    lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
@@ -94,7 +95,7 @@
         modules = [(import ./hosts/desktop)];
         specialArgs = {
           host = "desktop";
-          inherit self inputs username;
+          inherit self inputs username stablePkgs;
         };
       };
       laptop = nixpkgs.lib.nixosSystem {
@@ -102,7 +103,7 @@
         modules = [(import ./hosts/laptop)];
         specialArgs = {
           host = "laptop";
-          inherit self inputs username;
+          inherit self inputs username stablePkgs;
         };
       };
       vm = nixpkgs.lib.nixosSystem {
@@ -110,7 +111,7 @@
         modules = [(import ./hosts/vm)];
         specialArgs = {
           host = "vm";
-          inherit self inputs username;
+          inherit self inputs username stablePkgs;
         };
       };
     };

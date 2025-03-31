@@ -233,38 +233,73 @@
       ];
 
       # windowrule
-      windowrule = [
-        "float,imv"
-        "center,imv"
-        "size 1200 725,imv"
-        "float,mpv"
-        "center,mpv"
-        "float,blueman-manager"
-        "center,blueman-manager"
-        "size 700 450,blueman-manager"
-        "tile,Aseprite"
-        "size 1200 725,mpv"
-        "float,title:^(float_wezterm)$"
-        "center,title:^(float_wezterm)$"
-        "size 950 600,title:^(float_wezterm)$"
-        "float,audacious"
-        # "workspace 8 silent, audacious"
-        # "pin,wofi"
-        # "float,wofi"
-        # "noborder,wofi"
-        "tile, neovide"
-        "idleinhibit focus,mpv"
-        "float,udiskie"
-        "float,title:^(Transmission)$"
-        "float,title:^(Volume Control)$"
-        "float,title:^(Firefox — Sharing Indicator)$"
-        "move 0 0,title:^(Firefox — Sharing Indicator)$"
-        "size 700 450,title:^(Volume Control)$"
-        "move 40 55%,title:^(Volume Control)$"
-      ];
+      # windowrule = [
+      #   "float,imv"
+      #   "center,imv"
+      #   "size 1200 725,imv"
+      #   "float,mpv"
+      #   "center,mpv"
+      #   "float,blueman-manager"
+      #   "center,blueman-manager"
+      #   "size 700 450,blueman-manager"
+      #   "tile,Aseprite"
+      #   "size 1200 725,mpv"
+      #   "float,title:^(float_wezterm)$"
+      #   "center,title:^(float_wezterm)$"
+      #   "size 950 600,title:^(float_wezterm)$"
+      #   "float,audacious"
+      #   # "workspace 8 silent, audacious"
+      #   # "pin,wofi"
+      #   # "float,wofi"
+      #   # "noborder,wofi"
+      #   "tile, neovide"
+      #   "idleinhibit focus,mpv"
+      #   "float,udiskie"
+      #   "float,title:^(Transmission)$"
+      #   "float,title:^(Volume Control)$"
+      #   "float,title:^(Firefox — Sharing Indicator)$"
+      #   "move 0 0,title:^(Firefox — Sharing Indicator)$"
+      #   "size 700 450,title:^(Volume Control)$"
+      #   "move 40 55%,title:^(Volume Control)$"
+      # ];
 
       # windowrulev2
       windowrulev2 = [
+        "float, class:^(imv)$"
+        "center, class:^(imv)$"
+        "size 1200 725, class:^(imv)$"
+
+        "float, class:^(mpv)$"
+        "center, class:^(mpv)$"
+        "size 1200 725, class:^(mpv)$"
+
+        "float, class:^(blueman-manager)$"
+        "center, class:^(blueman-manager)$"
+        "size 700 450, class:^(blueman-manager)$"
+
+        "tile, class:^(Aseprite)$"
+
+        "float, title:^(float_wezterm)$"
+        "center, title:^(float_wezterm)$"
+        "size 950 600, title:^(float_wezterm)$"
+
+        "float, class:^(audacious)$"
+
+        "tile, class:^(neovide)$"
+
+        "idleinhibit focus, class:^(mpv)$"
+
+        "float, class:^(udiskie)$"
+
+        "float, title:^(Transmission)$"
+
+        "float, title:^(Volume Control)$"
+        "size 700 450, title:^(Volume Control)$"
+        "move 40 55%, title:^(Volume Control)$"
+
+        "float, title:^(Firefox — Sharing Indicator)$"
+        "move 0 0, title:^(Firefox — Sharing Indicator)$"
+
         "float, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
         "pin, title:^(Picture-in-Picture)$"

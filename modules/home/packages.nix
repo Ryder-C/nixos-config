@@ -103,7 +103,6 @@ in {
 
     typst
 
-    plex-desktop
     libvlc
     zathura # PDF Viewer
     leetgo
