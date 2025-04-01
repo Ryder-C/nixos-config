@@ -1,5 +1,6 @@
 {
   pkgs,
+  stablePkgs,
   inputs,
   username,
   host,
@@ -9,7 +10,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs username host;};
+    extraSpecialArgs = {inherit inputs username host stablePkgs;};
     users.${username} = {
       imports =
         if (host == "desktop")

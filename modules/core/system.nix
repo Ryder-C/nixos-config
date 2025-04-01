@@ -1,6 +1,5 @@
 {
   pkgs,
-  stablePkgs,
   inputs,
   ...
 }: {
@@ -32,7 +31,6 @@
     via
     rust-bin.stable.latest.default
     inputs.agenix.packages.${system}.default
-    stablePkgs.plex-desktop
   ];
 
   services.udev.packages = [pkgs.via];

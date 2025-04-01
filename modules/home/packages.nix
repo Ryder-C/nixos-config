@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  stablePkgs,
   ...
 }: let
   _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
@@ -107,5 +108,6 @@ in {
     zathura # PDF Viewer
     leetgo
     gdu # disk usage
+    plex-desktop
   ];
 }

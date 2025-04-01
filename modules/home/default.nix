@@ -1,5 +1,6 @@
 {
   inputs,
+  stablePackages,
   username,
   host,
   ...
