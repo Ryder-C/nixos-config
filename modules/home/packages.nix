@@ -108,6 +108,6 @@ in {
     zathura # PDF Viewer
     leetgo
     gdu # disk usage
-    plex-desktop
+    stablePkgs.plex-desktop
   ];
 }
