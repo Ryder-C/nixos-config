@@ -104,6 +104,7 @@ in {
     orca-slicer
 
     typst
+    typstyle
 
     libvlc
     zathura # PDF Viewer
