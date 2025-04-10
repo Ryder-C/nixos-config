@@ -92,6 +92,7 @@ in {
 
     pkg-config-unwrapped
     google-chrome
+    zoom-us
 
     bottles
     # kicad
