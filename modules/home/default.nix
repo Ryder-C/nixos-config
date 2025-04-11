@@ -32,7 +32,7 @@
     ++ [(import ./spicetify.nix)] # spotify client
     ++ [(import ./starship.nix)] # shell prompt
     ++ [(import ./swaylock.nix)] # lock screen
-    # ++ [(import ./vscodium.nix)] # vscode forck
+    # ++ [(import ./vscodium.nix)] # vscode fork
     ++ [(import ./waybar)] # status bar
     ++ [(import ./zsh.nix)]; # shell
 }
