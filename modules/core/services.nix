@@ -35,6 +35,13 @@
         watch-dir = "/home/${username}/torrents/watch";
       };
     };
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
+
+    open-webui.enable = true;
   };
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
