@@ -132,7 +132,7 @@
         "$mainMod, F1, exec, show-keybinds"
 
         # keybindings
-        "$mainMod, Return, exec, wezterm"
+        "$mainMod, Return, exec, ghostty"
         "ALT, Return, exec, wezterm --title float_wezterm"
         "$mainMod SHIFT, Return, exec, wezterm --start-as=fullscreen -o 'font_size=16'"
         "$mainMod, B, exec, zen"

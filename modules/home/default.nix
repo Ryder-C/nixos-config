@@ -53,7 +53,7 @@
     ./gtk.nix # gtk theme
     ./hyprland # window manager
     # ./kitty.nix # terminal
-    ./wezterm.nix
+    # ./wezterm.nix
     ./ghostty.nix
     ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
