@@ -17,7 +17,9 @@
     ./hyprland # window manager
     # ./kitty.nix # terminal
     # ./wezterm.nix
-    ./ghostty.nix
+    ./alacritty.nix
+    # ./ghostty.nix
+    ./tmux.nix
     ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
     ./helix.nix

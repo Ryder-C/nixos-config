@@ -132,9 +132,9 @@
         "$mainMod, F1, exec, show-keybinds"
 
         # keybindings
-        "$mainMod, Return, exec, ghostty"
-        "ALT, Return, exec, wezterm --title float_wezterm"
-        "$mainMod SHIFT, Return, exec, wezterm --start-as=fullscreen -o 'font_size=16'"
+        "$mainMod, Return, exec, alacritty"
+        "ALT, Return, exec, alacritty --title float_alacritty"
+        "$mainMod SHIFT, Return, exec, alacritty --start-as=fullscreen -o 'font_size=16'"
         "$mainMod, B, exec, zen"
         "$mainMod, Q, killactive,"
         "$mainMod, F, fullscreen, 0"
@@ -232,37 +232,6 @@
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      # windowrule
-      # windowrule = [
-      #   "float,imv"
-      #   "center,imv"
-      #   "size 1200 725,imv"
-      #   "float,mpv"
-      #   "center,mpv"
-      #   "float,blueman-manager"
-      #   "center,blueman-manager"
-      #   "size 700 450,blueman-manager"
-      #   "tile,Aseprite"
-      #   "size 1200 725,mpv"
-      #   "float,title:^(float_wezterm)$"
-      #   "center,title:^(float_wezterm)$"
-      #   "size 950 600,title:^(float_wezterm)$"
-      #   "float,audacious"
-      #   # "workspace 8 silent, audacious"
-      #   # "pin,wofi"
-      #   # "float,wofi"
-      #   # "noborder,wofi"
-      #   "tile, neovide"
-      #   "idleinhibit focus,mpv"
-      #   "float,udiskie"
-      #   "float,title:^(Transmission)$"
-      #   "float,title:^(Volume Control)$"
-      #   "float,title:^(Firefox — Sharing Indicator)$"
-      #   "move 0 0,title:^(Firefox — Sharing Indicator)$"
-      #   "size 700 450,title:^(Volume Control)$"
-      #   "move 40 55%,title:^(Volume Control)$"
-      # ];
-
       # windowrulev2
       windowrulev2 = [
         "float, class:^(imv)$"
@@ -279,9 +248,9 @@
 
         "tile, class:^(Aseprite)$"
 
-        "float, title:^(float_wezterm)$"
-        "center, title:^(float_wezterm)$"
-        "size 950 600, title:^(float_wezterm)$"
+        "float, title:^(float_alacritty)$"
+        "center, title:^(float_alacritty)$"
+        "size 950 600, title:^(float_alacritty)$"
 
         "float, class:^(audacious)$"
 
