@@ -6,7 +6,9 @@
       theme = "catppuccin-mocha";
       font-family = "JetBrainsMono Nerd Font";
 
+      confirm-close-surface = false;
       background-opacity = 0.8;
+      window-padding-x = 4;
     };
 
     themes = {
