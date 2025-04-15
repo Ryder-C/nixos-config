@@ -2,7 +2,13 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    nameservers = ["1.1.1.1"];
+    nameservers = [
+      # "1.1.1.1"
+
+      # --- Configure NixOS to use the local crab-hole instance ---
+      "127.0.0.1" # Use local IPv4 address first
+      "::1" # Use local IPv6 address as fallback
+    ];
     firewall = {
       enable = true;
       allowedTCPPorts = [22 80 443 59010 59011];
