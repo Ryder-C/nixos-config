@@ -19,9 +19,11 @@
           set -g @catppuccin_flavor "mocha"
           set -g @catppuccin_window_status_style "rounded"
 
-          # overwrite window name to be the window name if set
-          set -g @catppuccin_window_current_text "#{window_name}"
-          set -g @catppuccin_window_default_text "#{window_name}"
+          set -g automatic-rename off
+          set -g allow-rename off
+
+          set -g @catppuccin_window_current_text " #{?#{!=:#{pane_current_command},zsh},#{pane_current_command},#{b:pane_current_path}}"
+          set -g @catppuccin_window_text " #{?#{!=:#{pane_current_command},zsh},#{pane_current_command},#{b:pane_current_path}}"
         '';
       }
     ];
@@ -64,9 +66,6 @@
 
       bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
-
-      set -g automatic-rename on
-      set -g automatic-rename-format " #{?#{==:#{pane_current_command},zsh},#{b:pane_current_path},#{pane_current_command}}"
     '';
   };
 }
