@@ -9,6 +9,7 @@
       plugins = [
         "git"
         "gh"
+        "git-auto-fetch"
         "fzf"
         "rust"
         "tmux"
