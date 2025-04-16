@@ -68,6 +68,9 @@
 
       bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
+      set -g automatic-rename on
+      set -g automatic-rename-format " #{?#{==:#{pane_current_command},zsh},#{b:pane_current_path},#{pane_current_command}}"
     '';
   };
 }

@@ -76,6 +76,13 @@
       psv = "source .venv/bin/activate";
     };
     initContent = ''
+      precmd() {
+        if [ -n "$TMUX" ]; then
+          tmux select-pane -T "$(basename "$PWD")"
+        fi
+      }
+
+
       function sesh-sessions() {
         {
           exec </dev/tty
