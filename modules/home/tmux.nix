@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
 
@@ -13,7 +9,7 @@
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
-          set -g @continuum-restore 'on'
+          set -g @continuum-restore on
         '';
       }
       {
