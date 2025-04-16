@@ -66,6 +66,22 @@
 
       bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
       set -g detach-on-destroy off  # don't exit from tmux when closing a session
+
+      # switch panes using Alt - vim keys
+      bind -n M-h select-pane -L
+      bind -n M-j select-pane -D
+      bind -n M-k select-pane -U
+      bind -n M-l select-pane -R
+
+      # switch windows left and right
+      bind -n M-n next-window
+      bind -n M-p previous-window
+
+      # split panes using | and -
+      bind | split-window -h
+      bind - split-window -v
+      unbind '"'
+      unbind %
     '';
   };
 }
