@@ -3,7 +3,11 @@
   config,
   ...
 }: {
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig = {
+    enable = true;
+
+    defaultFonts.monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+  };
   home.packages = [
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.noto

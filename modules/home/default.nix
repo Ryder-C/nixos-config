@@ -22,7 +22,8 @@
     ./tmux.nix
     ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
-    ./helix.nix
+    # ./helix.nix
+    ./nvim.nix # neovim
     ./packages.nix # other packages
     # ./retroarch.nix
     ./scripts/scripts.nix # personal scripts

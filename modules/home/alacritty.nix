@@ -15,7 +15,7 @@
       };
 
       font.normal = {
-        family = "JetBrainsMono Nerd Font";
+        family = "monospace";
         style = "Regular";
       };
     };

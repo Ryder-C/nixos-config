@@ -3,42 +3,11 @@
   inputs,
   ...
 }: {
-  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  home.packages = with pkgs; [
+    inputs.nixvim.packages.${system}.default
+  ];
 
-  programs.nixvim = {
-    enable = true;
-
-    colorschemes.catppuccin = {
-      enable = true;
-      settings.flavour = "mocha";
-    };
-
-    performance = {
-      combinePlugins = {
-        enable = true;
-        standalonePlugins = [
-          "hmts.nvim"
-          "neorg"
-          "nvim-treesitter"
-        ];
-      };
-      byteCompileLua.enable = true;
-    };
-
-    viAlias = true;
-    vimAlias = true;
-
-    luaLoader.enable = true;
+  home.sessionVariables = {
+    EDITOR = "nvim";
   };
-
-  # programs.neovim = {
-  #   enable = true;
-  #   vimAlias = true;
-  # };
-
-  # home.file.".config/nvim".source = ../../nvim;
-  # xdg.configFile."nvim" = {
-  #   recursive = true;
-  #   source = ../../nvim;
-  # };
 }

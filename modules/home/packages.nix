@@ -13,12 +13,12 @@ in {
     asciiquarium-transparent
     bitwise # cli tool for bit / hex manipulation
     cbonsai # terminal screensaver
-    evince # gnome pdf viewer
     eza # ls replacement
     entr # perform action when file change
     fd # find replacement
     file # Show file information
     fzf # fuzzy finder
+    sesh # terminal session manager
     gtt # google translate TUI
     gifsicle # gif utility
     gimp
@@ -86,12 +86,10 @@ in {
     xdg-utils
     xxd
     inputs.alejandra.defaultPackage.${system}
-    inputs.nixvim.packages.${system}.default
 
     zed-editor # code editor
     tinymist
 
-    pkg-config-unwrapped
     google-chrome
     zoom-us
 
