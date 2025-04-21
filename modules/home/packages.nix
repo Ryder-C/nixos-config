@@ -94,6 +94,8 @@ in {
     zoom-us
 
     bottles
+    vscode
+    code-cursor
     # kicad
     blender
     obs-studio

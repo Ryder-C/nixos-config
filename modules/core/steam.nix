@@ -76,13 +76,25 @@
       capSysNice = false; # Breaks gamescope when true
       args = [
         "--rt"
-        # "--expose-wayland"
+        "--xwayland-count 2"
+        "--expose-wayland"
         "--adaptive-sync"
+        "--prefer-vk-device" # lspci -nn | grep VGA
+        "10de:1e81" # Dedicated
       ];
     };
     gamemode = {
       enable = true;
       enableRenice = true;
     };
+  };
+  services.ananicy = {
+    enable = true;
+    extraRules = [
+      {
+        "name" = "gamescope";
+        "nice" = -20;
+      }
+    ];
   };
 }

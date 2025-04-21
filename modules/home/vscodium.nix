@@ -13,6 +13,8 @@
       ms-vscode.cpptools
       # OCaml
       ocamllabs.ocaml-platform
+      # Rust
+      rust-lang.rust-analyzer
 
       # Color theme
       catppuccin.catppuccin-vsc
