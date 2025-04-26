@@ -36,11 +36,11 @@
       };
     };
 
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
-    open-webui.enable = true;
+    # ollama = {
+    #   enable = true;
+    #   acceleration = "cuda";
+    # };
+    # open-webui.enable = true;
 
     crab-hole = {
       enable = true;
