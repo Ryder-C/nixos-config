@@ -17,9 +17,8 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = false;
 
-  # allow local remote access to make it easier to toy around with the system
   services.openssh = {
-    enable = true;
+    enable = false;
     ports = [22];
     settings = {
       PasswordAuthentication = true;

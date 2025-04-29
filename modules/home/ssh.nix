@@ -10,7 +10,7 @@ with lib; {
         user = "evan";
       };
       "cutlass" = {
-        hostname = "2601:647:4800:ed90:1a66:daff:fe9c:ef14";
+        hostname = "cutlass.adinack.dev";
         identityFile = "~/.ssh/id_ed25519";
         identitiesOnly = true;
         user = "ryder";
