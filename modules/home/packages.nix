@@ -47,7 +47,7 @@ in {
     monero-gui
     kdePackages.kleopatra
     # winetricks
-    # wineWowPackages.waylandFull
+    wineWowPackages.waylandFull
     # wine
     # (wine.override { wineBuild = "wine64"; })
     # wine64

@@ -6,7 +6,7 @@
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
-    height = 5;
+    height = 30;
     margin-top = 0;
     margin-bottom = 0;
     margin-left = 0;
@@ -14,6 +14,7 @@
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
+      "cava"
     ];
     modules-center = [
       "clock"
@@ -153,6 +154,16 @@
       on-click = "swaync-client -t -sw";
       on-click-right = "swaync-client -d -sw";
       escape = true;
+    };
+    cava = {
+      method = "pipewire";
+      source = "auto";
+      bars = 10;
+      bar_delimiter = 0;
+      framerate = 60;
+      sensitivity = 60;
+      autosens = 0;
+      format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
     };
   };
 }

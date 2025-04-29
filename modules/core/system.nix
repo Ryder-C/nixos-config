@@ -19,7 +19,7 @@
   };
 
   nixpkgs.overlays = [
-    # inputs.rust-overlay.overlays.default
+    inputs.rust-overlay.overlays.default
     inputs.nur.overlays.default
   ];
 
@@ -28,7 +28,8 @@
     git
     nix-search-cli
     openrgb-with-all-plugins
-    via
+    rust-bin.stable.latest.default
+
     inputs.agenix.packages.${system}.default
   ];
 

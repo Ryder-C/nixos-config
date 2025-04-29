@@ -248,6 +248,7 @@
 
         "tile, class:^(Aseprite)$"
 
+        "workspace 2, class:^(vesktop)$"
         "float, title:^(float_alacritty)$"
         "center, title:^(float_alacritty)$"
         "size 950 600, title:^(float_alacritty)$"
