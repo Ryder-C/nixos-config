@@ -20,6 +20,7 @@
     ./alacritty.nix
     # ./ghostty.nix
     ./tmux.nix
+    ./fastfetch.nix
     ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
     # ./helix.nix
