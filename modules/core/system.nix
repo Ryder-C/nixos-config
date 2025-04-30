@@ -27,6 +27,7 @@
     wget
     git
     nix-search-cli
+    wireguard-tools
     openrgb-with-all-plugins
     rust-bin.stable.latest.default
 

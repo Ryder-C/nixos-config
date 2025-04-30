@@ -1,6 +1,7 @@
 {
   username,
   config,
+  pkgs,
   ...
 }: {
   services = {
@@ -15,36 +16,34 @@
     pia-vpn = {
       enable = false;
       certificateFile = ../../ca.rsa.4096.crt;
-      region = "us_california";
+      region = "ca_vancouver";
       environmentFile = config.age.secrets.pia.path;
 
-      # portForward = {
-      #   enable = true;
-      #   script = ''
-      #     export $(cat transmission-rpc.env | xargs)
-      #     ${pkgs.transmission_4-qt}/bin/transmission-remote --authenv --port $port || true
-      #   '';
-      # };
-    };
-
-    transmission = {
-      enable = true;
-      user = "${username}";
-      group = "users";
-
-      settings = {
-        home = "/home/${username}/torrents";
-        download-dir = "/home/${username}/torrents/complete";
-        incomplete-dir = "/home/${username}/torrents/incomplete";
-        watch-dir = "/home/${username}/torrents/watch";
+      portForward = {
+        enable = true;
+        script = ''
+          export $(cat ${config.age.secrets.transmission-rpc.path} | xargs)
+          ${pkgs.transmission_4}/bin/transmission-remote --authenv --port $port || true
+        '';
       };
     };
 
-    # ollama = {
-    #   enable = true;
-    #   acceleration = "cuda";
-    # };
-    # open-webui.enable = true;
+    transmission = {
+      enable = false;
+      # credentialsFile = config.age.secrets.transmission-rpc.path;
+      user = "${username}";
+      group = "users";
+
+      # settings = {
+      #   home = "/home/${username}/torrents";
+      # };
+    };
+
+    ollama = {
+      enable = false;
+      acceleration = "cuda";
+    };
+    open-webui.enable = false;
 
     crab-hole = {
       enable = true;

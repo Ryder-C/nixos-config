@@ -29,7 +29,7 @@
   };
 
   fileSystems."/storage" = {
-    device = "/dev/disk/by-uuid/206616006615D77E";
+    device = "/dev/disk/by-uuid/5424862811DDFCB8";
     fsType = "ntfs";
   };
 
