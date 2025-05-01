@@ -14,7 +14,9 @@
         "waybar &"
         "swaync &"
         "wl-paste --watch cliphist store &"
-        "hyprlock"
+        "hyprlock &"
+
+        "[workspace 2 silent] vesktop"
       ];
 
       input = {
@@ -161,10 +163,10 @@
         "$mainMod ALT, P, exec, hyprshot --raw -m output - | swappy -f -"
 
         # switch focus
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
+        "$mainMod, n, movefocus, l"
+        "$mainMod, o, movefocus, r"
+        "$mainMod, e, movefocus, u"
+        "$mainMod, i, movefocus, d"
 
         # switch workspace
         "$mainMod, 1, workspace, 1"
@@ -192,18 +194,18 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, h, movewindow, l"
-        "$mainMod SHIFT, l, movewindow, r"
-        "$mainMod SHIFT, k, movewindow, u"
-        "$mainMod SHIFT, j, movewindow, d"
-        "$mainMod CTRL, h, resizeactive, -80 0"
-        "$mainMod CTRL, l, resizeactive, 80 0"
-        "$mainMod CTRL, k, resizeactive, 0 -80"
-        "$mainMod CTRL, j, resizeactive, 0 80"
-        "$mainMod ALT, h, moveactive,  -80 0"
-        "$mainMod ALT, l, moveactive, 80 0"
-        "$mainMod ALT, k, moveactive, 0 -80"
-        "$mainMod ALT, j, moveactive, 0 80"
+        "$mainMod SHIFT, n, movewindow, l"
+        "$mainMod SHIFT, o, movewindow, r"
+        "$mainMod SHIFT, e, movewindow, u"
+        "$mainMod SHIFT, i, movewindow, d"
+        "$mainMod CTRL, n, resizeactive, -80 0"
+        "$mainMod CTRL, o, resizeactive, 80 0"
+        "$mainMod CTRL, e, resizeactive, 0 -80"
+        "$mainMod CTRL, i, resizeactive, 0 80"
+        "$mainMod ALT, n, moveactive,  -80 0"
+        "$mainMod ALT, o, moveactive, 80 0"
+        "$mainMod ALT, e, moveactive, 0 -80"
+        "$mainMod ALT, i, moveactive, 0 80"
 
         # media and volume controls
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"
@@ -248,7 +250,6 @@
 
         "tile, class:^(Aseprite)$"
 
-        "workspace 2, class:^(vesktop)$"
         "float, title:^(float_alacritty)$"
         "center, title:^(float_alacritty)$"
         "size 950 600, title:^(float_alacritty)$"
@@ -311,7 +312,7 @@
       # monitor=HDMI-A-1, 1920x1080@60, 1920x0, 1
       monitor=Unknown-1, disable
 
-      workspace=1, monitor:DP-2
+      workspace=1, monitor:DP-1
       # workspace=2, monitor:HDMI-A-1
       workspace=2, monitor:Unknown-2
 
