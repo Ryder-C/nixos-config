@@ -1,10 +1,19 @@
 {
   inputs,
   pkgs,
+  lib,
   stablePkgs,
   ...
 }: let
   _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
+
+  zink-env = [
+    "__GLX_VENDOR_LIBRARY_NAME=mesa"
+    "__EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json"
+    "MESA_LOADER_DRIVER_OVERRIDE=zink"
+    "GALLIUM_DRIVER=zink"
+    "WEBKIT_DISABLE_DMABUF_RENDERER=1"
+  ];
 in {
   home.packages = with pkgs; [
     _2048
@@ -102,7 +111,11 @@ in {
     transmission_4
 
     # 3D printing
-    orca-slicer
+    # orca-slicer
+    (pkgs.writeShellScriptBin "orca-slicer-wayland" ''
+      ${builtins.concatStringsSep "\n" (map (e: "export ${e}") zink-env)}
+      exec ${pkgs.orca-slicer}/bin/orca-slicer "$@"
+    '')
 
     typst
     typstyle
@@ -111,6 +124,14 @@ in {
     zathura # PDF Viewer
     leetgo
     gdu # disk usage
-    stablePkgs.plex-desktop
+    # stablePkgs.plex-desktop
+    plex-desktop
   ];
+
+  # xdg.desktopEntries."orca-slicer" = {
+  #   name = "OrcaSlicer";
+  #   exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %F";
+  #   icon = "orca-slicer";
+  #   categories = ["Utility"];
+  # };
 }

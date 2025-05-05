@@ -1,4 +1,8 @@
-{host, ...}: {
+{
+  host,
+  lib,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -15,14 +19,6 @@
         "tmux"
       ];
     };
-    initExtraFirst = ''
-      DISABLE_MAGIC_FUNCTIONS=true
-      export "MICRO_TRUECOLOR=1"
-      export PATH=$PATH:$HOME/.cargo/bin
-
-      ZSH_TMUX_AUTONAME_SESSION=true
-      ZSH_TMUX_UNICODE=true
-    '';
     shellAliases = {
       # record = "wf-recorder --audio=alsa_output.pci-0000_08_00.6.analog-stereo.monitor -f $HOME/Videos/$(date +'%Y%m%d%H%M%S_1.mp4')";
 
@@ -76,33 +72,41 @@
       piv = "python -m venv .venv";
       psv = "source .venv/bin/activate";
     };
-    initContent = ''
-      precmd() {
-        if [ -n "$TMUX" ]; then
-          tmux select-pane -T "$(basename "$PWD")"
-        fi
-      }
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        DISABLE_MAGIC_FUNCTIONS=true
+        export "MICRO_TRUECOLOR=1"
+        export PATH=$PATH:$HOME/.cargo/bin
 
-
-      function sesh-sessions() {
-        {
-          exec </dev/tty
-          exec <&1
-          local session
-          session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
-          zle reset-prompt > /dev/null 2>&1 || true
-          [[ -z "$session" ]] && return
-          sesh connect $session
+        ZSH_TMUX_AUTONAME_SESSION=true
+        ZSH_TMUX_UNICODE=true
+      '')
+      ''
+        precmd() {
+          if [ -n "$TMUX" ]; then
+            tmux select-pane -T "$(basename "$PWD")"
+          fi
         }
-      }
 
-      zle     -N             sesh-sessions
-      bindkey -M emacs '\es' sesh-sessions
-      bindkey -M vicmd '\es' sesh-sessions
-      bindkey -M viins '\es' sesh-sessions
 
-      fastfetch
-    '';
+        function sesh-sessions() {
+          {
+            exec </dev/tty
+            exec <&1
+            local session
+            session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+            zle reset-prompt > /dev/null 2>&1 || true
+            [[ -z "$session" ]] && return
+            sesh connect $session
+          }
+        }
+
+        zle     -N             sesh-sessions
+        bindkey -M emacs '\es' sesh-sessions
+        bindkey -M vicmd '\es' sesh-sessions
+        bindkey -M viins '\es' sesh-sessions
+      ''
+    ];
   };
 
   programs.zoxide = {

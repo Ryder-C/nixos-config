@@ -16,7 +16,7 @@
         "wl-paste --watch cliphist store &"
         "hyprlock &"
 
-        "[workspace 2 silent] vesktop"
+        # "[workspace 2 silent] vesktop"
       ];
 
       input = {
@@ -149,7 +149,7 @@
         "$mainMod SHIFT, Escape, exec, shutdown-script"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
-        "$mainMod, E, exec, nautilus"
+        "$mainMod, U, exec, nautilus"
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
         "$mainMod, C ,exec, hyprpicker -a"
         "$mainMod, W,exec, wallpaper-picker"
