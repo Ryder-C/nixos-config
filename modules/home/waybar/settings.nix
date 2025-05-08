@@ -14,7 +14,6 @@
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
-      "cava"
     ];
     modules-center = [
       "clock"
@@ -86,13 +85,11 @@
       interval = 60;
     };
     network = {
-      format-wifi = "{bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
-      format-ethernet = "󰀂 {bandwidthDownBytes:>2}  {bandwidthUpBytes:>2} ";
-      tooltip-format-wifi = "{icon} {ipaddr} ({signalStrength}%)";
-      tooltip-format = "{ifname} via {gwaddr}";
+      format-wifi = "{icon} {signalStrength}%";
+      format-ethernet = "󰀂 ";
+      tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
       format-disconnected = "󰖪 ";
-      interval = 2;
       format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
     };
     tray = {
@@ -101,7 +98,7 @@
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "  {volume}%";
+      format-muted = " {volume}%";
       # format-bluetooth = "{icon} {volume}% 󰂯";
       format-icons = {
         headphone = "󰋋";
@@ -114,6 +111,7 @@
       };
       scroll-step = 5;
       on-click = "pamixer -t";
+      tooltip-format = "{time}";
     };
     battery = {
       format = "{icon} {capacity}%";
@@ -133,11 +131,11 @@
       format = "";
       on-click = "fuzzel";
       on-click-right = "wallpaper-picker";
-      tooltip = "false";
+      tooltip = false;
     };
     "custom/notification" = {
       tooltip = false;
-      format = "{icon} ";
+      format = "{icon}";
       format-icons = {
         notification = "<span foreground='red'><sup></sup></span>   ";
         none = "   ";
@@ -154,16 +152,6 @@
       on-click = "swaync-client -t -sw";
       on-click-right = "swaync-client -d -sw";
       escape = true;
-    };
-    cava = {
-      method = "pipewire";
-      source = "auto";
-      bars = 10;
-      bar_delimiter = 0;
-      framerate = 60;
-      sensitivity = 60;
-      autosens = 0;
-      format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
     };
   };
 }

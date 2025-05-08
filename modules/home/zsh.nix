@@ -106,7 +106,7 @@
         bindkey -M vicmd '\es' sesh-sessions
         bindkey -M viins '\es' sesh-sessions
 
-        fastfetch
+        maxfetch
       ''
     ];
   };

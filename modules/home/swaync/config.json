@@ -64,11 +64,15 @@
         "actions": [
           {
             "label": "󰹑  Whole screen",
-            "command": "grimblast --notify --cursor --freeze copy output"
+            "command": "hyprshot --raw -m output - | swappy -f -"
           },
           {
-            "label": "󰩭  Window / Region",
-            "command": "grimblast --notify --cursor --freeze copy area"
+            "label": "  Window",
+            "command": "hyprshot --raw -m window - | swappy -f -"
+          },
+          {
+            "label": "󰩭  Region",
+            "command": "hyprshot --raw -m region - | swappy -f -"
           }
         ]
       },
