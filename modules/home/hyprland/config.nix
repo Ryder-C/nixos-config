@@ -163,10 +163,10 @@
         "$mainMod ALT, P, exec, hyprshot --raw -m output - | swappy -f -"
 
         # switch focus
-        "$mainMod, n, movefocus, l"
-        "$mainMod, o, movefocus, r"
-        "$mainMod, e, movefocus, u"
-        "$mainMod, i, movefocus, d"
+        "$mainMod, m, movefocus, l"
+        "$mainMod, i, movefocus, r"
+        "$mainMod, n, movefocus, u"
+        "$mainMod, e, movefocus, d"
 
         # switch workspace
         "$mainMod, 1, workspace, 1"
@@ -194,18 +194,18 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, n, movewindow, l"
-        "$mainMod SHIFT, o, movewindow, r"
-        "$mainMod SHIFT, e, movewindow, u"
-        "$mainMod SHIFT, i, movewindow, d"
-        "$mainMod CTRL, n, resizeactive, -80 0"
-        "$mainMod CTRL, o, resizeactive, 80 0"
-        "$mainMod CTRL, e, resizeactive, 0 -80"
-        "$mainMod CTRL, i, resizeactive, 0 80"
-        "$mainMod ALT, n, moveactive,  -80 0"
-        "$mainMod ALT, o, moveactive, 80 0"
-        "$mainMod ALT, e, moveactive, 0 -80"
-        "$mainMod ALT, i, moveactive, 0 80"
+        "$mainMod SHIFT, m, movewindow, l"
+        "$mainMod SHIFT, i, movewindow, r"
+        "$mainMod SHIFT, n, movewindow, u"
+        "$mainMod SHIFT, e, movewindow, d"
+        "$mainMod CTRL, m, resizeactive, -80 0"
+        "$mainMod CTRL, i, resizeactive, 80 0"
+        "$mainMod CTRL, n, resizeactive, 0 -80"
+        "$mainMod CTRL, e, resizeactive, 0 80"
+        "$mainMod ALT, m, moveactive,  -80 0"
+        "$mainMod ALT, i, moveactive, 80 0"
+        "$mainMod ALT, n, moveactive, 0 -80"
+        "$mainMod ALT, e, moveactive, 0 80"
 
         # media and volume controls
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"

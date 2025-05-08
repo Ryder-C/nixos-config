@@ -14,6 +14,7 @@
     ./program.nix
     ./security.nix
     ./services.nix
+    # ./looking-glass-client.nix
     ./system.nix
     ./user.nix
     ./steam.nix
