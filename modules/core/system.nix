@@ -29,6 +29,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    ntfs3g
     wget
     git
     nix-search-cli

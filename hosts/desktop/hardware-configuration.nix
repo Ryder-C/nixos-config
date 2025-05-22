@@ -34,9 +34,9 @@
     };
 
     "/storage" = {
-      device = "/dev/disk/by-uuid/5424862811DDFCB8";
-      fsType = "ntfs";
-      options = ["rw"];
+      device = "/dev/disk/by-uuid/244A425F4F881983";
+      fsType = "ntfs-3g";
+      options = ["rw" "big_writes"];
     };
   };
 

@@ -5,6 +5,7 @@
 
     settings = {
       theme = "catppuccin-mocha";
+      session_serialization = false;
     };
   };
 }
