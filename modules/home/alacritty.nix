@@ -14,6 +14,8 @@
         };
       };
 
+      terminal.shell = "nu";
+
       font.normal = {
         family = "monospace";
         style = "Regular";

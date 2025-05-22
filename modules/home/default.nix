@@ -19,7 +19,8 @@
     # ./wezterm.nix
     ./alacritty.nix
     # ./ghostty.nix
-    ./tmux.nix
+    # ./tmux.nix
+    ./zellij.nix
     # ./fastfetch.nix
     ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
@@ -33,6 +34,7 @@
     ./swaylock.nix # lock screen
     # ./vscodium.nix # vscode fork
     ./waybar # status bar
-    ./zsh.nix # shell
+    # ./zsh.nix # shell
+    ./nushell.nix
   ];
 }

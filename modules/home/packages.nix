@@ -50,6 +50,7 @@ in {
     bandwhich
     valgrind # c memory analyzer
     yazi # terminal file manager
+    dua # graphical disk analyzer
     yt-dlp-light
     zenity
     tor-browser
