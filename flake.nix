@@ -61,6 +61,10 @@
       url = "github:catppuccin/alacritty";
       flake = false;
     };
+    catppuccin-nushell = {
+      url = "github:catppuccin/nushell";
+      flake = false;
+    };
 
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";

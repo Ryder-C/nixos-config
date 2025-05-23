@@ -162,6 +162,22 @@
         "type": "github"
       }
     },
+    "catppuccin-nushell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746377680,
+        "narHash": "sha256-tQ3Br6PaLBUNIXY56nDjPkthzvgEsNzOp2gHDkZVQo0=",
+        "owner": "catppuccin",
+        "repo": "nushell",
+        "rev": "05987d258cb765a881ee1f2f2b65276c8b379658",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nushell",
+        "type": "github"
+      }
+    },
     "catppuccin-starship": {
       "flake": false,
       "locked": {
@@ -1469,6 +1485,7 @@
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-cava": "catppuccin-cava",
         "catppuccin-helix": "catppuccin-helix",
+        "catppuccin-nushell": "catppuccin-nushell",
         "catppuccin-starship": "catppuccin-starship",
         "home-manager": "home-manager_2",
         "hypr-contrib": "hypr-contrib",
