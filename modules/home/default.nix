@@ -1,5 +1,7 @@
-{...}: {
+{inputs, ...}: {
   imports = [
+    inputs.catppuccin.homeModules.catppuccin
+
     # ./aseprite/aseprite.nix # pixel art editor
     # ./audacious/audacious.nix # music player
     ./bat.nix # better cat command
@@ -37,4 +39,10 @@
     # ./zsh.nix # shell
     ./nushell.nix
   ];
+
+  catppuccin = {
+    enable = true;
+    accent = "mauve";
+    flavor = "mocha";
+  };
 }

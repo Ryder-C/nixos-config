@@ -3,8 +3,6 @@
     enable = true;
 
     settings = {
-      general.import = ["${inputs.catppuccin-alacritty}/catppuccin-mocha.toml"];
-
       window = {
         opacity = 0.8;
 

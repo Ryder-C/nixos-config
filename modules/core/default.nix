@@ -1,9 +1,5 @@
 {inputs, ...}: {
   imports = [
-    inputs.agenix.nixosModules.default
-    inputs.nix-pia-vpn.nixosModules.default
-    # inputs.rednix.container
-
     ./bootloader.nix
     ./hardware.nix
     ./nvidia.nix

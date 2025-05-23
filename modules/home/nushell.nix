@@ -7,36 +7,35 @@
     nushell = {
       enable = true;
 
-      extraConfig =
-        ''
-          $env.config.buffer_editor = "nvim"
-          $env.config.show_banner = false
+      extraConfig = ''
+        $env.config.buffer_editor = "nvim"
+        $env.config.show_banner = false
 
-          def cdnix [] {
-            cd ~/nixos-config;
-            nvim ~/nixos-config;
-          }
+        def cdnix [] {
+          cd ~/nixos-config;
+          nvim ~/nixos-config;
+        }
 
-          def ns [] {
-            nix flake update nixvim --flake ($env.HOME | path join nixos-config);
-            nh os switch --hostname ${host} ($env.HOME | path join nixos-config?submodules=1);
-          }
+        def ns [] {
+          nix flake update nixvim --flake ($env.HOME | path join nixos-config);
+          nh os switch --hostname ${host} ($env.HOME | path join nixos-config?submodules=1);
+        }
 
-          def nst [] {
-            nix flake update nixvim --flake ($env.HOME | path join nixos-config);
-            nh os switch --hostname desktop ($env.HOME | path join nixos-config?submodules=1);
-          }
+        def nst [] {
+          nix flake update nixvim --flake ($env.HOME | path join nixos-config);
+          nh os switch --hostname desktop ($env.HOME | path join nixos-config?submodules=1);
+        }
 
-          def nsu [] {
-            nh os switch --hostname ${host} --update ($env.HOME | path join nixos-config?submodules=1);
-          }
+        def nsu [] {
+          nh os switch --hostname ${host} --update ($env.HOME | path join nixos-config?submodules=1);
+          nix-store --optimise;
+        }
 
-          def gcma [message] {
-            git add --all;
-            git commit -m $message;
-          }
-        ''
-        + builtins.readFile "${inputs.catppuccin-nushell}/themes/catppuccin_mocha.nu";
+        def gcma [message] {
+          git add --all;
+          git commit -m $message;
+        }
+      '';
 
       shellAliases = {
         c = "clear";

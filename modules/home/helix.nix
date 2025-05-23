@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.helix = {
     enable = true;
     # defaultEditor = true;
@@ -18,7 +14,6 @@
       lldb_19
     ];
     settings = {
-      theme = "catppuccin_mocha";
       editor.cursor-shape = {
         normal = "block";
         insert = "bar";
@@ -49,14 +44,6 @@
           soft-wrap.enable = true;
         }
       ];
-    };
-
-    themes = {
-      catppuccin_mocha =
-        {
-          "inherits" = "catppuccin_mocha";
-        }
-        // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-helix}/themes/default/catppuccin_mocha.toml");
     };
   };
 }

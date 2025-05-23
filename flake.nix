@@ -41,30 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-    catppuccin-cava = {
-      url = "github:catppuccin/cava";
-      flake = false;
-    };
-    catppuccin-starship = {
-      url = "github:catppuccin/starship";
-      flake = false;
-    };
-    catppuccin-helix = {
-      url = "github:catppuccin/helix";
-      flake = false;
-    };
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-    catppuccin-nushell = {
-      url = "github:catppuccin/nushell";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
 
     spicetify-nix.url = "github:gerg-l/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";

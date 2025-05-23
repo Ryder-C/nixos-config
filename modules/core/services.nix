@@ -2,8 +2,11 @@
   username,
   config,
   pkgs,
+  inputs,
   ...
 }: {
+  imports = [inputs.nix-pia-vpn.nixosModules.default];
+
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
