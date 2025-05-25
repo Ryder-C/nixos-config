@@ -8,9 +8,10 @@
     ./btop.nix # resouces monitor
     ./ssh.nix
     ./services.nix
+    ./podman.nix # podman container manager
     ./cava.nix # audio visualizer
     ./discord.nix # discord with catppuccin theme
-    # ./podman.nix
+    ./development.nix
     ./browser.nix # firefox based browser
     ./fuzzel.nix # launcher
     ./gaming.nix # packages related to gaming

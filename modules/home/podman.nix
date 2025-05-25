@@ -1,15 +1,9 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
-  home.packages = [pkgs.podman];
-
+{username, ...}: {
   services.podman = {
     enable = true;
 
     containers = {
-      plex-rpc = {
+      "plex-rpc" = {
         image = "ghcr.io/phin05/discord-rich-presence-plex:latest";
         autoStart = true;
         environment = {

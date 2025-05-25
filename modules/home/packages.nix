@@ -27,7 +27,7 @@ in {
     fd # find replacement
     file # Show file information
     fzf # fuzzy finder
-    sesh # terminal session manager
+    # sesh # terminal session manager
     gtt # google translate TUI
     gifsicle # gif utility
     gimp
