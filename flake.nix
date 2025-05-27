@@ -25,6 +25,10 @@
     rednix.url = "github:redcode-labs/rednix";
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpanel = {
+      url = "github:jas-singhfsu/hyprpanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

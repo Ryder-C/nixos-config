@@ -25,8 +25,8 @@
       portForward = {
         enable = true;
         script = ''
-          export $(cat ${config.age.secrets.transmission-rpc.path} | xargs)
-          ${pkgs.transmission_4}/bin/transmission-remote --authenv --port $port || true
+          # export $(cat ${config.age.secrets.transmission-rpc.path} | xargs)
+          ${pkgs.transmission_4}/bin/transmission-remote --port $port || true
         '';
       };
     };
