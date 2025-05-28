@@ -19,17 +19,17 @@
         "bar.layouts" = {
           "0" = {
             left = ["dashboard" "workspaces" "media"];
-            middle = ["clock" "weather"];
+            middle = ["clock"];
             right = ["volume" "network" "bluetooth" "systray" "notifications"];
           };
           "1" = {
             left = ["dashboard" "workspaces" "media"];
-            middle = ["clock" "weather"];
+            middle = ["clock"];
             right = ["volume" "notifications"];
           };
           "2" = {
             left = ["dashboard" "workspaces" "media"];
-            middle = ["clock" "weather"];
+            middle = ["clock"];
             right = ["volume" "notifications"];
           };
         };
