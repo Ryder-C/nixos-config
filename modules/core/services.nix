@@ -33,9 +33,13 @@ in {
       "d ${profileBase} 0755 root root - -"
     ];
     services."home-manager-${username}".after = ["pia-vpn.service"];
-    network.networks."wg0" = {
-      matchConfig.Name = "wg0";
-      linkConfig.RequiredForOnline = "no";
+    network = {
+      # networks."wg0" = {
+      #   matchConfig.Name = "wg0";
+      #   linkConfig.RequiredForOnline = "no";
+      # };
+      # wait-online.ignoredInterfaces = ["wg0"];
+      wait-online.anyInterface = true;
     };
   };
 
@@ -49,7 +53,7 @@ in {
     hardware.openrgb.enable = true;
 
     pia-vpn = {
-      enable = true;
+      enable = false;
       certificateFile = ../../ca.rsa.4096.crt;
       region = "ca_vancouver";
       environmentFile = config.age.secrets.pia.path;

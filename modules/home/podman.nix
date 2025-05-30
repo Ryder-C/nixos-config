@@ -1,6 +1,6 @@
 {username, ...}: {
   services.podman = {
-    enable = true;
+    enable = false;
 
     containers = {
       "plex-rpc" = {
@@ -9,6 +9,7 @@
         environment = {
           DRPP_UID = "1000";
           DRPP_GID = "100";
+          DRPP_PLEX_SERVER_NAME_INPUT = "server";
         };
         volumes = [
           "/run/user/1000:/run/app"
