@@ -25,7 +25,7 @@
     # ./tmux.nix
     ./zellij.nix
     # ./fastfetch.nix
-    # ./swaync/swaync.nix # notification deamon
+    ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
     # ./helix.nix
     ./nvim.nix # neovim
