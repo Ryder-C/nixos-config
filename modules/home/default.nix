@@ -36,7 +36,7 @@
     ./starship.nix # shell prompt
     ./swaylock.nix # lock screen
     # ./vscodium.nix # vscode fork
-    # ./waybar # status bar
+    ./waybar # status bar
     # ./zsh.nix # shell
     ./nushell.nix
   ];

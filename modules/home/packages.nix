@@ -109,7 +109,6 @@ in {
     # kicad
     blender
     obs-studio
-    transmission_4
 
     # 3D printing
     # orca-slicer

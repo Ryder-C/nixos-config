@@ -319,6 +319,8 @@
       xwayland {
         force_zero_scaling = true
       }
+
+      debug:full_cm_proto = true
     ";
   };
 }

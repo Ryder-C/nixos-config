@@ -44,6 +44,11 @@
     # If you had any overrides for Lutris, you can adjust them accordingly
     (lutris.override {
       extraLibraries = pkgs: [
+        gst_all_1.gstreamer
+        gst_all_1.gst-plugins-good
+        gst_all_1.gst-libav
+        gst_all_1.gst-plugins-rs
+        gst_all_1.gst-plugins-base
       ];
     })
   ];

@@ -4,8 +4,9 @@
     flipperzero.enable = true;
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [
-      ];
+      enable32Bit = true;
+      # extraPackages = with pkgs; [
+      # ];
     };
 
     keyboard.qmk.enable = true;

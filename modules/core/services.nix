@@ -4,8 +4,40 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  qbtConfig = pkgs.writeText "qb-config" ''
+    [BitTorrent]
+    Session\DefaultSavePath=/home/${username}/Downloads
+    Session\Interface=wg0
+    Session\InterfaceName=wg0
+
+    [Core]
+    AutoDeleteAddedTorrentFile=IfAdded
+
+    [LegalNotice]
+    Accepted=true
+
+    [Preferences]
+    General\Locale=en
+    WebUI\LocalHostAuth=false
+    WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
+
+  '';
+  profileBase = "/var/lib/qbittorrent";
+  profName = "vpn";
+in {
   imports = [inputs.nix-pia-vpn.nixosModules.default];
+
+  systemd = {
+    tmpfiles.rules = [
+      "d ${profileBase} 0755 root root - -"
+    ];
+    services."home-manager-${username}".after = ["pia-vpn.service"];
+    network.networks."wg0" = {
+      matchConfig.Name = "wg0";
+      linkConfig.RequiredForOnline = "no";
+    };
+  };
 
   services = {
     gvfs.enable = true;
@@ -17,7 +49,7 @@
     hardware.openrgb.enable = true;
 
     pia-vpn = {
-      enable = false;
+      enable = true;
       certificateFile = ../../ca.rsa.4096.crt;
       region = "ca_vancouver";
       environmentFile = config.age.secrets.pia.path;
@@ -25,22 +57,23 @@
       portForward = {
         enable = true;
         script = ''
-          # export $(cat ${config.age.secrets.transmission-rpc.path} | xargs)
-          ${pkgs.transmission_4}/bin/transmission-remote --port $port || true
+          mkdir -p ${profileBase}/qBittorrent_${profName}
+          cp ${qbtConfig} ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
+          ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
         '';
       };
     };
 
-    transmission = {
-      enable = false;
-      # credentialsFile = config.age.secrets.transmission-rpc.path;
-      user = "${username}";
-      group = "users";
-
-      # settings = {
-      #   home = "/home/${username}/torrents";
-      # };
-    };
+    # transmission = {
+    #   enable = false;
+    #   # credentialsFile = config.age.secrets.transmission-rpc.path;
+    #   user = "${username}";
+    #   group = "users";
+    #
+    #   # settings = {
+    #   #   home = "/home/${username}/torrents";
+    #   # };
+    # };
 
     ollama = {
       enable = false;
