@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   qbtConfig = pkgs.writeText "qb-config" ''
@@ -32,12 +33,15 @@ in {
     tmpfiles.rules = [
       "d ${profileBase} 0755 root root - -"
     ];
-    services."home-manager-${username}".after = ["pia-vpn.service"];
+    services = {
+      "home-manager-${username}".after = ["pia-vpn.service"];
+      systemd-networkd-wait-online.enable = lib.mkForce false;
+    };
     network = {
-      # networks."wg0" = {
-      #   matchConfig.Name = "wg0";
-      #   linkConfig.RequiredForOnline = "no";
-      # };
+      networks."wg0" = {
+        matchConfig.Name = "wg0";
+        linkConfig.RequiredForOnline = false;
+      };
       # wait-online.ignoredInterfaces = ["wg0"];
       wait-online.anyInterface = true;
     };
@@ -53,7 +57,7 @@ in {
     hardware.openrgb.enable = true;
 
     pia-vpn = {
-      enable = false;
+      enable = true;
       certificateFile = ../../ca.rsa.4096.crt;
       region = "ca_vancouver";
       environmentFile = config.age.secrets.pia.path;
@@ -63,7 +67,7 @@ in {
         script = ''
           mkdir -p ${profileBase}/qBittorrent_${profName}
           cp ${qbtConfig} ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
-          ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
+          ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
         '';
       };
     };

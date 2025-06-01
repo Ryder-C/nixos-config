@@ -43,6 +43,7 @@
     nix-search-cli
     wireguard-tools
     openrgb-with-all-plugins
+    icu
     rust-bin.stable.latest.default
 
     inputs.agenix.packages.${system}.default
