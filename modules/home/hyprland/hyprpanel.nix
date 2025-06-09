@@ -19,12 +19,12 @@
           "1" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
-            right = ["volume" "notifications"];
+            right = ["volume" "bluetooth" "notifications"];
           };
           "2" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
-            right = ["volume" "notifications"];
+            right = ["volume" "bluetooth" "notifications"];
           };
         };
       };

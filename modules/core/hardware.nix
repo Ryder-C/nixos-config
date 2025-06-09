@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   # options.hardware.flipperzero.enable = true;
   hardware = {
+    enableAllFirmware = true;
     flipperzero.enable = true;
     graphics = {
       enable = true;

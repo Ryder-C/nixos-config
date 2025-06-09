@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   inputs,
   ...
 }: {
@@ -15,7 +14,7 @@
     #   tricks = ["arial" "vcrun2019" "win10" "sound=alsa"];
     # }))
     # inputs.nix-citizen.packages.${system}.star-citizen
-    # inputs.nix-citizen.packages.${system}.lug-helper
+    inputs.nix-citizen.packages.${system}.lug-helper
     mangohud
 
     ## Minecraft

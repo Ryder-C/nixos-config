@@ -11,7 +11,7 @@
       dedicatedServer.openFirewall = false;
 
       gamescopeSession = {
-        enable = true;
+        enable = false;
         env = {
           WLR_RENDERER = "vulkan";
           DXVK_HDR = "1";
@@ -76,9 +76,9 @@
       capSysNice = false; # Breaks gamescope when true
       args = [
         "--rt"
-        "--xwayland-count 2"
+        #   # "--xwayland-count 2"
         "--expose-wayland"
-        "--adaptive-sync"
+        #   # "--adaptive-sync"
         "--prefer-vk-device" # lspci -nn | grep VGA
         "10de:1e81" # Dedicated
       ];
