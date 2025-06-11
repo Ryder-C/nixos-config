@@ -14,17 +14,17 @@
           "0" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
-            right = ["volume" "network" "bluetooth" "systray" "notifications"];
+            right = ["volume" "network" "bluetooth" "cputemp" "systray" "notifications"];
           };
           "1" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
-            right = ["volume" "bluetooth" "notifications"];
+            right = ["volume" "network" "bluetooth" "cputemp" "notifications"];
           };
           "2" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
-            right = ["volume" "bluetooth" "notifications"];
+            right = ["volume" "network" "bluetooth" "cputemp" "notifications"];
           };
         };
       };
@@ -35,6 +35,7 @@
           show_icons = false;
           monitorSpecific = false;
         };
+        customModules.cpuTemp.sensor = "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input";
       };
 
       menus = {
