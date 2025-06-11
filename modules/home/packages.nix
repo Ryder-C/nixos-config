@@ -107,7 +107,7 @@ in {
     vscode
     code-cursor
     # kicad
-    blender
+    (blender.override {cudaSupport = true;})
     obs-studio
 
     # 3D printing

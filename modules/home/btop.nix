@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.btop = {
     enable = true;
+    package = pkgs.btop-cuda;
 
     settings = {
       theme_background = false;
@@ -8,5 +9,5 @@
     };
   };
 
-  home.packages = with pkgs; [nvtopPackages.intel];
+  home.packages = with pkgs; [nvtopPackages.nvidia];
 }
