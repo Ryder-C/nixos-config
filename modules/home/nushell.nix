@@ -1,8 +1,4 @@
-{
-  inputs,
-  host,
-  ...
-}: {
+{host, ...}: {
   programs = {
     nushell = {
       enable = true;
@@ -13,7 +9,7 @@
 
         def cdnix [] {
           cd ~/nixos-config;
-          nvim ~/nixos-config;
+          nvim;
         }
 
         def ns [] {

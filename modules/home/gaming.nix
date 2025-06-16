@@ -48,6 +48,8 @@
         gst_all_1.gst-libav
         gst_all_1.gst-plugins-rs
         gst_all_1.gst-plugins-base
+        libslirp
+        libarchive
       ];
     })
   ];

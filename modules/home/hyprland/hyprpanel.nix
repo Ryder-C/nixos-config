@@ -11,12 +11,12 @@
     settings = {
       layout = {
         "bar.layouts" = {
-          "0" = {
+          "1" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
             right = ["volume" "network" "bluetooth" "cputemp" "systray" "notifications"];
           };
-          "1" = {
+          "0" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
             right = ["volume" "network" "bluetooth" "cputemp" "notifications"];

@@ -33,10 +33,15 @@
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    "/storage" = {
+    "/storage1" = {
       device = "/dev/disk/by-uuid/244A425F4F881983";
       fsType = "ntfs-3g";
       options = ["rw" "big_writes"];
+    };
+
+    "/storage2" = {
+      device = "/dev/disk/by-uuid/206616006615D77E";
+      fsType = "ntfs";
     };
   };
 

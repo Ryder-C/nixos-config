@@ -124,8 +124,8 @@ in {
     zathura # PDF Viewer
     leetgo
     gdu # disk usage
-    # stablePkgs.plex-desktop
-    plex-desktop
+    stablePkgs.plex-desktop
+    # plex-desktop
   ];
 
   # xdg.desktopEntries."orca-slicer" = {
