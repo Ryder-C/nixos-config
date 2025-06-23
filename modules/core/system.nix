@@ -40,6 +40,7 @@
     ntfs3g
     wget
     git
+    gparted # partition manager
     nix-search-cli
     wireguard-tools
     openrgb-with-all-plugins

@@ -75,7 +75,6 @@ in {
     bleachbit # cache cleaner
     cmatrix
     ncspot
-    gparted # partition manager
     ffmpeg
     imv # image viewer
     killall
