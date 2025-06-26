@@ -1,16 +1,12 @@
-{inputs, ...}: {
-  imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
-
+{
   programs.hyprpanel = {
     enable = true;
 
     systemd.enable = true;
-    hyprland.enable = true;
-    overwrite.enable = true;
 
     settings = {
-      layout = {
-        "bar.layouts" = {
+      bar = {
+        layouts = {
           "1" = {
             left = ["dashboard" "workspaces" "media"];
             middle = ["clock"];
@@ -27,9 +23,7 @@
             right = ["volume" "network" "bluetooth" "cputemp" "notifications"];
           };
         };
-      };
 
-      bar = {
         launcher.autoDetectIcon = true;
         workspaces = {
           show_icons = false;
