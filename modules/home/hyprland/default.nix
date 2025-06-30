@@ -8,5 +8,4 @@
     ./hyprpanel.nix
     ./variables.nix
   ];
-  services.hypridle.enable = true;
 }
