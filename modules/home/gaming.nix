@@ -1,5 +1,6 @@
 {
   pkgs,
+  stablePkgs,
   inputs,
   ...
 }: {
@@ -18,7 +19,7 @@
     mangohud
 
     ## Minecraft
-    prismlauncher
+    stablePkgs.prismlauncher
 
     ## Cli games
     _2048-in-terminal

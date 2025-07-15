@@ -30,7 +30,7 @@ in {
     # sesh # terminal session manager
     gtt # google translate TUI
     gifsicle # gif utility
-    gimp
+    # gimp
     gtrash # rm replacement, put deleted files in system trash
     websocat
     hexdump
@@ -41,7 +41,6 @@ in {
     nitch # systhem fetch util
     nix-prefetch-github
     pipes # terminal screensaver
-    prismlauncher # minecraft launcher
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
     tdf # cli pdf viewer
@@ -106,7 +105,7 @@ in {
     vscode
     code-cursor
     # kicad
-    (blender.override {cudaSupport = true;})
+    (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
 
     # 3D printing
