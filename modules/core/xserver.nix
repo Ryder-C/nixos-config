@@ -5,12 +5,12 @@
 }: {
   services = {
     xserver = {
-      enable = true;
+      enable = false;
       xkb.layout = "us,fr";
     };
 
     displayManager.autoLogin = {
-      enable = true;
+      enable = false;
       user = "${username}";
     };
     libinput = {

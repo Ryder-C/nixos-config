@@ -1,6 +1,15 @@
 {
+  pkgs,
+  inputs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    python313Packages.gpustat
+  ];
+
   programs.hyprpanel = {
     enable = true;
+    package = inputs.hyprpanel.packages.${pkgs.system}.hyprpanel;
 
     systemd.enable = true;
 

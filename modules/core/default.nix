@@ -18,5 +18,6 @@
     ./virtualization.nix
     ./age.nix
     ./aagl.nix
+    ./greetd.nix
   ];
 }
