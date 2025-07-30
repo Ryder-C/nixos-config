@@ -41,6 +41,7 @@
     wget
     git
     gparted # partition manager
+    inetutils
     nix-search-cli
     wireguard-tools
     openrgb-with-all-plugins
