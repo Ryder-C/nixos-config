@@ -6,9 +6,13 @@
   lib,
   ...
 }: let
+  chownScript = pkgs.writeShellScript "qbt-chown" ''
+    #!${pkgs.runtimeShell}
+    ${pkgs.coreutils}/bin/chown -R ${username}:users "$1"
+  '';
   qbtConfig = pkgs.writeText "qb-config" ''
     [BitTorrent]
-    Session\DefaultSavePath=/home/${username}/Downloads
+    Session\DefaultSavePath=/home/${username}/Torrents
     Session\Interface=wg0
     Session\InterfaceName=wg0
 
@@ -22,7 +26,8 @@
     General\Locale=en
     WebUI\LocalHostAuth=false
     WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
-
+    Downloads\OnFinish\Enabled=true
+    Downloads\OnFinish\Program=${chownScript} "%F"
   '';
   profileBase = "/var/lib/qbittorrent";
   profName = "vpn";
