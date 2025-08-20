@@ -31,10 +31,16 @@
     };
   };
 
-  nixpkgs.overlays = [
-    inputs.rust-overlay.overlays.default
-    inputs.nur.overlays.default
-  ];
+  nixpkgs = {
+    overlays = [
+      inputs.rust-overlay.overlays.default
+      inputs.nur.overlays.default
+    ];
+
+    config.permittedInsecurePackages = [
+      "libsoup-2.74.3"
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
     ntfs3g

@@ -61,6 +61,11 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin-stylus-json = {
+      url = "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json";
+      flake = false;
+    };
   };
 
   outputs = {

@@ -12,13 +12,13 @@
   ];
 
   catppuccin = {
-    gtk = {
-      enable = true;
-      icon = {
-        enable = true;
-        accent = "lavender";
-      };
-    };
+    # gtk = {
+    #   enable = true;
+    #   icon = {
+    #     enable = true;
+    #     accent = "lavender";
+    #   };
+    # };
     cursors = {
       enable = true;
       accent = "dark";
@@ -26,6 +26,10 @@
   };
   gtk = {
     enable = true;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 11;

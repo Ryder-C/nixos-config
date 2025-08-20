@@ -46,4 +46,7 @@
     accent = "mauve";
     flavor = "mocha";
   };
+
+  # Symlink the Catppuccin Stylus JSON (flake input, non-flake URL pinned in lockfile) into the home directory
+  home.file."catppuccin_styles.json".source = inputs.catppuccin-stylus-json;
 }
