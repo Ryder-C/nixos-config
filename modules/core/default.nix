@@ -19,5 +19,6 @@
     ./age.nix
     ./aagl.nix
     ./greetd.nix
+    ./monado.nix
   ];
 }

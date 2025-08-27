@@ -1,8 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
       # autostart
       exec-once = [
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &"
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"

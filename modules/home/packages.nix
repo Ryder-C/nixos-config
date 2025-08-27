@@ -123,6 +123,7 @@ in {
     leetgo
     gdu # disk usage
     stablePkgs.plex-desktop
+    sunshine
     # plex-desktop
   ];
 
