@@ -40,15 +40,35 @@ in {
     ];
     services = {
       "home-manager-${username}".after = ["pia-vpn.service"];
-      systemd-networkd-wait-online.enable = lib.mkForce false;
-    };
-    network = {
-      networks."wg0" = {
-        matchConfig.Name = "wg0";
-        linkConfig.RequiredForOnline = false;
+      pia-vpn = {
+        # Ensure PIA waits for the network to be ready
+        wants = [
+          "network-online.target"
+          "NetworkManager-wait-online.service"
+          "systemd-resolved.service"
+        ];
+        after = [
+          "network-online.target"
+          "NetworkManager-wait-online.service"
+          "systemd-resolved.service"
+        ];
+        # Extra guard: wait for connectivity and working DNS for target host
+        serviceConfig = {
+          ExecStartPre = pkgs.writeShellScript "pia-wait-dns" ''
+            #!${pkgs.runtimeShell}
+            # Probe DNS resolution for the PIA serverlist; try up to 15s
+            for i in $(seq 1 15); do
+              ${pkgs.systemd}/bin/resolvectl query serverlist.piaservers.net >/dev/null 2>&1 && exit 0
+              ${pkgs.coreutils}/bin/sleep 1
+            done
+            exit 0
+          '';
+          Restart = "on-failure";
+          RestartSec = "5s";
+          StartLimitBurst = 10;
+        };
       };
-      # wait-online.ignoredInterfaces = ["wg0"];
-      wait-online.anyInterface = true;
+      systemd-networkd-wait-online.enable = lib.mkForce false;
     };
   };
 
@@ -106,62 +126,6 @@ in {
     };
     open-webui.enable = false;
 
-    crab-hole = {
-      enable = true;
-      settings = {
-        blocklist = {
-          include_subdomains = true;
-          lists = [
-            "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn/hosts"
-            "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
-          ];
-        };
-
-        downstream = [
-          {
-            protocol = "udp"; # Standard DNS protocol
-            listen = "127.0.0.1"; # Listen on IPv4 localhost
-            port = 53;
-          }
-          {
-            protocol = "udp";
-            listen = "::1"; # Listen on IPv6 localhost
-            port = 53;
-          }
-          # # TCP is also used for DNS sometimes, especially for larger replies
-          # {
-          #   protocol = "tcp";
-          #   listen = "127.0.0.1";
-          #   port = 53;
-          # }
-          # {
-          #   protocol = "tcp";
-          #   listen = "::1";
-          #   port = 53;
-          # }
-        ];
-
-        upstream = {
-          name_servers = [
-            {
-              socket_addr = "1.1.1.1:853";
-              protocol = "tls";
-              tls_dns_name = "1dot1dot1dot1.cloudflare-dns.com";
-              trust_nx_responses = false; # Recommended for privacy
-            }
-            {
-              socket_addr = "[2606:4700:4700::1111]:853";
-              protocol = "tls";
-              tls_dns_name = "1dot1dot1dot1.cloudflare-dns.com";
-              trust_nx_responses = false;
-            }
-          ];
-          # Optional: Enable DNSSEC validation if your upstream supports it well.
-          # Note the potential issue mentioned in the manual with hickory-dns
-          # and non-DNSSEC domains if validation is strict.
-          # options = {validate = true;};
-        };
-      };
-    };
+    # crab-hole removed per user request
   };
 }
