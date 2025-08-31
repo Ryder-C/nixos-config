@@ -4,6 +4,8 @@
       enable = true;
 
       extraConfig = ''
+        $env.EDITOR = "nvim"
+        $env.VISUAL = "nvim"
         $env.config.buffer_editor = "nvim"
         $env.config.show_banner = false
 
@@ -91,5 +93,6 @@
       enableNushellIntegration = true;
     };
     zellij.settings.default_shell = "nu";
+    yazi.enableNushellIntegration = true;
   };
 }

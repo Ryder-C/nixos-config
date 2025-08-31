@@ -39,6 +39,7 @@
     # ./waybar # status bar
     # ./zsh.nix # shell
     ./nushell.nix
+    ./yazi.nix
   ];
 
   catppuccin = {
@@ -49,4 +50,10 @@
 
   # Symlink the Catppuccin Stylus JSON (flake input, non-flake URL pinned in lockfile) into the home directory
   home.file."catppuccin_styles.json".source = inputs.catppuccin-stylus-json;
+
+  # Ensure terminal applications use Neovim by default
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 }
