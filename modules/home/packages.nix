@@ -95,6 +95,7 @@ in {
     inputs.alejandra.defaultPackage.${system}
 
     zed-editor # code editor
+    codex
     tinymist
 
     google-chrome

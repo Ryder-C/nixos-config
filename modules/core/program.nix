@@ -11,7 +11,9 @@
     # pinentryFlavor = "";
   };
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [];
+  programs.nix-ld.libraries = with pkgs; [
+    icu
+  ];
 
   # nix helper
   programs.nh = {

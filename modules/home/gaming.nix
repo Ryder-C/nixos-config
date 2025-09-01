@@ -51,7 +51,13 @@
         gst_all_1.gst-plugins-base
         libslirp
         libarchive
+        vulkan-loader
+        vulkan-tools
+        icu
       ];
     })
   ];
+  home.sessionVariables = {
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.json";
+  };
 }

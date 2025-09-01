@@ -54,6 +54,10 @@
     icu
     rust-bin.stable.latest.default
 
+    # AppImage and FHS-like runtime for proprietary binaries/games
+    appimage-run
+    steam-run
+
     inputs.agenix.packages.${system}.default
   ];
 
