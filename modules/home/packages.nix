@@ -20,6 +20,7 @@ in {
 
     audacity
     asciiquarium-transparent
+    baobab # GNOME Disk Usage Analyzer
     bitwise # cli tool for bit / hex manipulation
     cbonsai # terminal screensaver
     eza # ls replacement
