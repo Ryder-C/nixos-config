@@ -48,6 +48,7 @@ in {
     todo # cli todo list
     toipe # typing test in the terminal
     bandwhich
+    unrar
     valgrind # c memory analyzer
     dua # graphical disk analyzer
     yt-dlp-light
