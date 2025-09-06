@@ -68,10 +68,14 @@
   nixpkgs.config.allowUnfree = true;
   services.logind = {
     # Keep system running when lid closes if needed; Hyprland/DPMS will manage displays
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
-    settings.Login.IdleAction = "ignore";
+    settings = {
+      Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchDocked = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+        IdleAction = "ignore";
+      };
+    };
   };
   system.stateVersion = "24.05";
 }

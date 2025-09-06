@@ -2,6 +2,7 @@
 with lib; {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
       "plex-server" = {
         hostname = "64.98.193.48";

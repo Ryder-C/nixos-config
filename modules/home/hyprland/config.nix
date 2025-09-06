@@ -38,11 +38,11 @@
       general = {
         "$mainMod" = "SUPER";
         layout = "dwindle";
-        gaps_in = 0;
-        gaps_out = 0;
+        gaps_in = 2;
+        gaps_out = 4;
         border_size = 2;
         "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
-        "col.inactive_border" = "0x00000000";
+        "col.inactive_border" = "rgb(45475a)";
         # border_part_of_window = false;
         no_border_on_floating = false;
       };
@@ -74,7 +74,7 @@
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 10;
         # active_opacity = 0.90;
         # inactive_opacity = 0.90;
         # fullscreen_opacity = 1.0;
