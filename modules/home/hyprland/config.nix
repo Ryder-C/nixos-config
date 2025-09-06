@@ -166,8 +166,8 @@
         # switch focus
         "$mainMod, m, movefocus, l"
         "$mainMod, i, movefocus, r"
-        "$mainMod, n, movefocus, u"
-        "$mainMod, e, movefocus, d"
+        "$mainMod, e, movefocus, u"
+        "$mainMod, n, movefocus, d"
 
         # switch workspace
         "$mainMod, 1, workspace, 1"
@@ -197,8 +197,8 @@
         # window control
         "$mainMod SHIFT, m, movewindow, l"
         "$mainMod SHIFT, i, movewindow, r"
-        "$mainMod SHIFT, n, movewindow, u"
-        "$mainMod SHIFT, e, movewindow, d"
+        "$mainMod SHIFT, e, movewindow, u"
+        "$mainMod SHIFT, n, movewindow, d"
         "$mainMod CTRL, m, resizeactive, -80 0"
         "$mainMod CTRL, i, resizeactive, 80 0"
         "$mainMod CTRL, n, resizeactive, 0 -80"
