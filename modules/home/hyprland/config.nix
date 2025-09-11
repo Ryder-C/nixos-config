@@ -144,6 +144,7 @@
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, togglefloating,"
         "$mainMod, D, exec, fuzzel"
+        "$mainMod, G, exec, fuzzel-steam-games"
         "$mainMod SHIFT, D, exec, vesktop"
         "$mainMod SHIFT, S, exec, spotify"
         "$mainMod, Escape, exec, swaylock"

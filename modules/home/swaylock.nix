@@ -1,16 +1,11 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
       clock = true;
-      datestr = "";
+      timestr = "%I:%M %p";
+      datestr = "%m/%d/%Y";
       screenshots = true;
 
       indicator = true;

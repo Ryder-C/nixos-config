@@ -7,6 +7,27 @@
 }: let
   _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
 
+  # Python environment for the script
+  pythonEnv = pkgs.python3.withPackages (ps: [ps.xdg ps.pyyaml ps.vdf]);
+
+  # Wrap thnikk's fuzzel-game.py as an executable using the pythonEnv
+  fuzzel-steam-games = pkgs.stdenvNoCC.mkDerivation {
+    pname = "fuzzel-steam-games";
+    version = "unstable-2025-01-01";
+    src = inputs.fuzzel-scripts;
+    dontUnpack = true;
+    installPhase = ''
+      mkdir -p $out/bin $out/share/fuzzel-steam-games
+      cp ${inputs.fuzzel-scripts}/fuzzel-game.py $out/share/fuzzel-steam-games/fuzzel-game.py
+      chmod +x $out/share/fuzzel-steam-games/fuzzel-game.py
+      cat > $out/bin/fuzzel-steam-games <<EOF
+      #!/usr/bin/env sh
+      exec ${pythonEnv}/bin/python "$out/share/fuzzel-steam-games/fuzzel-game.py" "$@"
+      EOF
+      chmod +x $out/bin/fuzzel-steam-games
+    '';
+  };
+
   zink-env = [
     "__GLX_VENDOR_LIBRARY_NAME=mesa"
     "__EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json"
@@ -16,6 +37,7 @@
   ];
 in {
   home.packages = with pkgs; [
+    fuzzel-steam-games
     _2048
 
     audacity
@@ -128,6 +150,13 @@ in {
     sunshine
     # plex-desktop
   ];
+
+  xdg.desktopEntries."steam-games" = {
+    name = "Steam Games";
+    exec = "fuzzel-steam-games";
+    icon = "steam";
+    categories = ["Game"];
+  };
 
   # xdg.desktopEntries."orca-slicer" = {
   #   name = "OrcaSlicer";

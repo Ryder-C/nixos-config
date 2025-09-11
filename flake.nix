@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR";
 
     hypr-contrib.url = "github:hyprwm/contrib";
@@ -69,6 +69,11 @@
 
     catppuccin-stylus-json = {
       url = "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json";
+      flake = false;
+    };
+
+    fuzzel-scripts = {
+      url = "github:thnikk/fuzzel-scripts";
       flake = false;
     };
   };
