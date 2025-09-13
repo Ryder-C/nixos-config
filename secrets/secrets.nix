@@ -3,5 +3,4 @@ let
   users = [ryder];
 in {
   "pia.age".publicKeys = users;
-  "transmission-rpc.age".publicKeys = users;
 }

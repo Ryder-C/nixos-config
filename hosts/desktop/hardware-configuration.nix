@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -14,7 +13,7 @@
 
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+      availableKernelModules = ["xhci_pci" "nvme" "ahci" "usb_storage" "usbhid" "sd_mod"];
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "nvidia_uvm" "nvidia_modeset"];
@@ -23,23 +22,23 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/947308da-45cc-4372-8efd-59c1fb2455ca";
+      device = "/dev/disk/by-uuid/342acf0a-8119-4137-a025-61fefd72c716";
       fsType = "ext4";
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/62B1-8FF9";
+      device = "/dev/disk/by-uuid/C480-5453";
       fsType = "vfat";
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    "/storage1" = {
+    "/storage4tb" = {
       device = "/dev/disk/by-uuid/244A425F4F881983";
       fsType = "ntfs-3g";
       options = ["rw" "big_writes"];
     };
 
-    "/storage2" = {
+    "/storage1tb" = {
       device = "/dev/disk/by-uuid/206616006615D77E";
       fsType = "ntfs";
     };
@@ -52,8 +51,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp17s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
