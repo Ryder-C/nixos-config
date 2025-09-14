@@ -3,4 +3,5 @@ let
   users = [ryder];
 in {
   "pia.age".publicKeys = users;
+  "steam_key.age".publicKeys = users;
 }

@@ -3,23 +3,26 @@
   lib,
   ...
 }: {
-  programs.dconf.enable = true;
-  programs.zsh.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    # pinentryFlavor = "";
-  };
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    icu
-  ];
+  programs = {
+    dconf.enable = true;
+    fish.enable = true;
+    zsh.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # pinentryFlavor = "";
+    };
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      icu
+    ];
 
-  # nix helper
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/ryder/nixos-config";
+    # nix helper
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/ryder/nixos-config";
+    };
   };
 }

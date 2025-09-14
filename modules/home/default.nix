@@ -37,9 +37,11 @@
     ./swaylock.nix # lock screen
     # ./vscodium.nix # vscode fork
     # ./waybar # status bar
-    # ./zsh.nix # shell
-    ./nushell.nix
     ./yazi.nix
+
+    # ./zsh.nix # shell
+    # ./nushell.nix
+    ./fish.nix
   ];
 
   catppuccin = {

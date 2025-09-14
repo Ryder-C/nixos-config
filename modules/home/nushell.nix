@@ -94,5 +94,6 @@
     };
     zellij.settings.default_shell = "nu";
     yazi.enableNushellIntegration = true;
+    starship.enableNushellIntegration = true;
   };
 }

@@ -1,8 +1,12 @@
 {
+  inputs,
   pkgs,
+  config,
   lib,
   ...
 }: {
+  imports = [inputs.ryderpkgs.nixosModules.steam-presence];
+
   programs = {
     steam = {
       enable = true;
@@ -53,6 +57,14 @@
       extraCompatPackages = [
         pkgs.proton-ge-bin
       ];
+
+      presence = {
+        enable = true;
+        package = inputs.ryderpkgs.packages.${pkgs.system}.steam-presence;
+
+        steamApiKeyFile = config.age.secrets.steam_key.path;
+        userIds = ["76561198311078521"];
+      };
     };
 
     steam.package = pkgs.steam.override {

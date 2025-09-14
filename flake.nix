@@ -2,6 +2,10 @@
   description = "Ryder's nixos configuration";
 
   inputs = {
+    ryderpkgs = {
+      url = "github:Ryder-C/ryderpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR";

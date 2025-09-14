@@ -6,10 +6,6 @@
   programs.starship = {
     enable = true;
 
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-
     settings = {
       # right_format = "$cmd_duration";
 

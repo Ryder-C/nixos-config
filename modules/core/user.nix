@@ -30,7 +30,7 @@
     isNormalUser = true;
     description = "${username}";
     extraGroups = ["networkmanager" "wheel" "dailout"];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
   nix.settings.allowed-users = ["${username}"];
 

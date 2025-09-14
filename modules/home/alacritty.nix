@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
 
@@ -11,8 +15,6 @@
           y = 5;
         };
       };
-
-      terminal.shell = "nu";
 
       font.normal = {
         family = "monospace";
