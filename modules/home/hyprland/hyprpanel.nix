@@ -16,20 +16,15 @@
     settings = {
       bar = {
         layouts = {
-          "1" = {
-            left = ["dashboard" "workspaces" "media"];
+          "DP-5" = {
+            left = ["dashboard" "workspaces" "media" "volume"];
             middle = ["clock"];
-            right = ["volume" "network" "bluetooth" "cputemp" "systray" "notifications"];
+            right = ["network" "bluetooth" "cputemp" "systray" "hypridle" "notifications"];
           };
-          "0" = {
-            left = ["dashboard" "workspaces" "media"];
+          "*" = {
+            left = ["dashboard" "workspaces" "media" "volume"];
             middle = ["clock"];
-            right = ["volume" "network" "bluetooth" "cputemp" "notifications"];
-          };
-          "2" = {
-            left = ["dashboard" "workspaces" "media"];
-            middle = ["clock"];
-            right = ["volume" "network" "bluetooth" "cputemp" "notifications"];
+            right = ["network" "bluetooth" "cputemp" "notifications"];
           };
         };
 
