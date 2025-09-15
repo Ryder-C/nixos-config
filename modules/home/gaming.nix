@@ -42,22 +42,23 @@
 
     ## Lutris
     # If you had any overrides for Lutris, you can adjust them accordingly
-    (lutris.override {
-      extraLibraries = pkgs: [
-        gst_all_1.gstreamer
-        gst_all_1.gst-plugins-good
-        gst_all_1.gst-libav
-        gst_all_1.gst-plugins-rs
-        gst_all_1.gst-plugins-base
-        libslirp
-        libarchive
-        vulkan-loader
-        vulkan-tools
-        icu
-      ];
-    })
+    # (lutris.override {
+    #   extraLibraries = _pkgs: [
+    #     gst_all_1.gstreamer
+    #     gst_all_1.gst-plugins-good
+    #     gst_all_1.gst-libav
+    #     gst_all_1.gst-plugins-rs
+    #     gst_all_1.gst-plugins-base
+    #     libslirp
+    #     libarchive
+    #     vulkan-loader
+    #     vulkan-tools
+    #     icu
+    #   ];
+    # })
+    lutris
   ];
   home.sessionVariables = {
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.json";
+    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.json";
   };
 }

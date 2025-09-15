@@ -9,7 +9,6 @@
   # Change this to match your system's CPU.
   platform = "intel";
   # Change this to specify the IOMMU ids you wrote down earlier.
-  vfioIds = ["10de:1e81" "10de:10f8"];
 in {
   # Configure kernel options to make sure IOMMU & KVM support is on.
   boot = {

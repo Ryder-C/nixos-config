@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  username,
-  ...
-}: {
+{pkgs, ...}: {
   # Enable the Monado service and register it as the default OpenXR runtime
   services.monado = {
     enable = true;

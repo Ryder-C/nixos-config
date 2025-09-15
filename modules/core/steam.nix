@@ -2,10 +2,17 @@
   inputs,
   pkgs,
   config,
-  lib,
   ...
 }: {
   imports = [inputs.ryderpkgs.nixosModules.steam-presence];
+
+  environment.sessionVariables = {
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia"; # optional; helps VA-API, harmless otherwise
+    WLR_NO_HARDWARE_CURSORS = "1"; # keep this; cured your flicker
+    __GL_VRR_ALLOWED = "0"; # keep VRR off in gamescope
+  };
 
   programs = {
     steam = {
@@ -18,20 +25,21 @@
         enable = false;
         env = {
           WLR_RENDERER = "vulkan";
-          DXVK_HDR = "1";
-          ENABLE_GAMESCOPE_WSI = "1";
           WINE_FULLSCREEN_FSR = "1";
           # Games allegedly prefer X11
-          SDL_VIDEODRIVER = "x11";
+          # SDL_VIDEODRIVER = "x11";
+
+          WLR_NO_HARDWARE_CURSORS = "1"; # NVIDIA cursor/flicker workaround
+          __GL_VRR_ALLOWED = "0"; # belt-and-suspenders: disable driver-side VRR
         };
         args = [
-          "--xwayland-count 2"
+          "--xwayland-count 1"
           "--expose-wayland"
 
           "-e" # Enable steam integration
           "--steam"
 
-          "--adaptive-sync"
+          # "--adaptive-sync"
           # "--hdr-enabled"
           # "--hdr-itm-enable"
 
@@ -87,8 +95,8 @@
       enable = true;
       capSysNice = false; # Breaks gamescope when true
       args = [
-        "--rt"
-        #   # "--xwayland-count 2"
+        # "--rt"
+        "--xwayland-count 1"
         "--expose-wayland"
         #   # "--adaptive-sync"
         "--prefer-vk-device" # lspci -nn | grep VGA
@@ -100,13 +108,13 @@
       enableRenice = true;
     };
   };
-  services.ananicy = {
-    enable = true;
-    extraRules = [
-      {
-        "name" = "gamescope";
-        "nice" = -20;
-      }
-    ];
-  };
+  # services.ananicy = {
+  #   enable = true;
+  #   extraRules = [
+  #     {
+  #       "name" = "gamescope";
+  #       "nice" = -20;
+  #     }
+  #   ];
+  # };
 }

@@ -87,11 +87,11 @@
       plugins = with pkgs.fishPlugins; [
         {
           name = "z";
-          src = z.src;
+          inherit (z) src;
         }
         {
           name = "fzf";
-          src = fzf.src;
+          inherit (fzf) src;
         }
       ];
     };

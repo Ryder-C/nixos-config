@@ -1,7 +1,9 @@
-{...}: {
-  security.rtkit.enable = true;
-  security.sudo.enable = true;
-  security.polkit.enable = true;
+_: {
+  security = {
+    rtkit.enable = true;
+    sudo.enable = true;
+    polkit.enable = true;
+  };
   # security.pam.services.swaylock = { };
   security.pam.services.hyprlock = {};
 }

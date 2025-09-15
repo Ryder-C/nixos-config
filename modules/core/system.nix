@@ -54,6 +54,9 @@
     icu
     rust-bin.stable.latest.default
 
+    mesa-demos
+    vulkan-tools
+
     # AppImage and FHS-like runtime for proprietary binaries/games
     appimage-run
     steam-run
