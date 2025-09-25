@@ -2,8 +2,12 @@
   description = "Ryder's nixos configuration";
 
   inputs = {
-    ryderpkgs = {
-      url = "github:Ryder-C/ryderpkgs";
+    # ryderpkgs = {
+    #   url = "github:Ryder-C/ryderpkgs";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    steam-presence = {
+      url = "github:Ryder-C/steam-presence?ref=add-nix-support";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

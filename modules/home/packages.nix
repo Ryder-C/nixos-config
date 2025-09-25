@@ -102,7 +102,7 @@ in {
     google-chrome
     zoom-us
 
-    bottles
+    (bottles.override {removeWarningPopup = true;})
     vscode
     code-cursor
     # kicad

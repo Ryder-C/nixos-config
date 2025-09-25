@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  imports = [inputs.ryderpkgs.nixosModules.steam-presence];
+  imports = [inputs.steam-presence.nixosModules.steam-presence];
 
   environment.sessionVariables = {
     GBM_BACKEND = "nvidia-drm";
@@ -68,7 +68,7 @@
 
       presence = {
         enable = true;
-        package = inputs.ryderpkgs.packages.${pkgs.system}.steam-presence;
+        # package = inputs.ryderpkgs.packages.${pkgs.system}.steam-presence;
 
         steamApiKeyFile = config.age.secrets.steam_key.path;
         userIds = ["76561198311078521"];
@@ -93,9 +93,9 @@
 
     gamescope = {
       enable = true;
-      capSysNice = false; # Breaks gamescope when true
+      capSysNice = true; # Breaks gamescope when true
       args = [
-        # "--rt"
+        "--rt"
         "--xwayland-count 1"
         "--expose-wayland"
         #   # "--adaptive-sync"

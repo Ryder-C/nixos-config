@@ -41,6 +41,7 @@ in {
     services = {
       "home-manager-${username}".after = ["pia-vpn.service"];
       pia-vpn = {
+        enable = true;
         # Ensure PIA waits for the network to be ready
         wants = [
           "network-online.target"
@@ -63,9 +64,9 @@ in {
             done
             exit 0
           '';
-          Restart = "on-failure";
-          RestartSec = "5s";
-          StartLimitBurst = 10;
+          # Restart = "on-failure";
+          # RestartSec = "5s";
+          # StartLimitBurst = 10;
         };
       };
       systemd-networkd-wait-online.enable = lib.mkForce false;
