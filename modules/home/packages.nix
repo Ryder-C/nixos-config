@@ -97,6 +97,7 @@ in {
 
     zed-editor # code editor
     codex
+    cursor-cli
     tinymist
 
     google-chrome

@@ -164,6 +164,9 @@
         "$mainMod CTRL, P, exec, hyprshot --raw -m window - | swappy -f -"
         "$mainMod ALT, P, exec, hyprshot --raw -m output - | swappy -f -"
 
+        # replay
+        "SHIFT, F8, exec, pkill -SIGUSR1 -f gpu-screen-recorder"
+
         # switch focus
         "$mainMod, m, movefocus, l"
         "$mainMod, i, movefocus, r"

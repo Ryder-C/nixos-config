@@ -10,6 +10,7 @@
     ./program.nix
     ./security.nix
     ./services.nix
+    ./screen-recorder.nix
     # ./looking-glass-client.nix
     ./system.nix
     ./user.nix
