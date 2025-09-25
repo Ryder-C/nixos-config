@@ -28,7 +28,7 @@
           -r 60 \
           -c mp4 \
           -o %h/Videos \
-          -bm cbr -q 15000 \
+          -bm cbr -q 8000 \
       '';
       Restart = "on-failure";
     };

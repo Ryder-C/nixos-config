@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  replay-script = pkgs.writeShellScript "replay-notify" ''
+    #!/usr/bin/env bash
+    pkill -SIGUSR1 -f gpu-screen-recorder && notify-send -u low "Replay saved" "$(date +%H:%M:%S)"
+  '';
+in {
   wayland.windowManager.hyprland = {
     settings = {
       # autostart
@@ -165,7 +170,7 @@
         "$mainMod ALT, P, exec, hyprshot --raw -m output - | swappy -f -"
 
         # replay
-        "SHIFT, F8, exec, pkill -SIGUSR1 -f gpu-screen-recorder"
+        "SHIFT, F8, exec, ${replay-script}"
 
         # switch focus
         "$mainMod, m, movefocus, l"
