@@ -29,6 +29,7 @@
           -c mp4 \
           -o %h/Videos \
           -bm cbr -q 8000 \
+          -a "default_output|default_input"
       '';
       Restart = "on-failure";
     };
