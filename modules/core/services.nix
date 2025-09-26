@@ -39,7 +39,6 @@ in {
       "d ${profileBase} 0755 root root - -"
     ];
     services = {
-      "home-manager-${username}".after = ["pia-vpn.service"];
       pia-vpn = {
         enable = true;
         # Ensure PIA waits for the network to be ready
