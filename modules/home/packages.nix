@@ -14,46 +14,52 @@
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
 in {
+  imports = [inputs.nix-flatpak.homeManagerModules.nix-flatpak];
+
+  services.flatpak.packages = [
+    "tv.plex.PlexDesktop"
+  ];
+
   home.packages = with pkgs; [
     _2048
 
-    audacity
     asciiquarium-transparent
+    audacity
+    bandwhich
     baobab # GNOME Disk Usage Analyzer
     bitwise # cli tool for bit / hex manipulation
     cbonsai # terminal screensaver
-    eza # ls replacement
+    dua # graphical disk analyzer
     entr # perform action when file change
+    eza # ls replacement
     fd # find replacement
     file # Show file information
     fzf # fuzzy finder
-    # sesh # terminal session manager
-    gtt # google translate TUI
     gifsicle # gif utility
-    # gimp
     gtrash # rm replacement, put deleted files in system trash
-    websocat
+    gtt # google translate TUI
     hexdump
     jdk17 # java
     lazygit
     libreoffice
+    monero-gui
     nautilus # file manager
     nitch # systhem fetch util
     nix-prefetch-github
+    obsidian
     pipes # terminal screensaver
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
     tdf # cli pdf viewer
     todo # cli todo list
     toipe # typing test in the terminal
-    bandwhich
+    tor-browser
     unrar
     valgrind # c memory analyzer
-    dua # graphical disk analyzer
+    websocat
     yt-dlp-light
     zenity
-    tor-browser
-    monero-gui
+
     kdePackages.kleopatra
     # winetricks
     wineWowPackages.waylandFull
@@ -124,9 +130,7 @@ in {
     zathura # PDF Viewer
     leetgo
     gdu # disk usage
-    # stablePkgs.plex-desktop
     sunshine
-    plex-desktop
   ];
 
   # xdg.desktopEntries."orca-slicer" = {

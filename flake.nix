@@ -14,6 +14,8 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpanel = {
