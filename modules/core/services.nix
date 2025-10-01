@@ -73,6 +73,36 @@ in {
   };
 
   services = {
+    samba = {
+      enable = true;
+      openFirewall = true;
+
+      shares.media = {
+        path = "/storage4tb/Torrents";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "force user" = "ryder";
+        "create mask" = "0664";
+        "directory mask" = "0775";
+        "valid users" = "ryder";
+      };
+
+      settings = {
+        global = {
+          workgroup = "WORKGROUP";
+          "server string" = "Ryder SMB";
+          "server min protocol" = "SMB2";
+          "server max protocol" = "SMB3";
+          "load printers" = false;
+          "disable spoolss" = true;
+          "vfs objects" = "catia fruit streams_xattr";
+          "fruit:metadata" = "stream";
+          "fruit:resource" = "file";
+        };
+      };
+    };
+
     avahi = {
       enable = true;
       nssmdns4 = true;
