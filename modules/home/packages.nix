@@ -42,6 +42,7 @@ in {
     jdk17 # java
     lazygit
     libreoffice
+    lorien
     monero-gui
     nautilus # file manager
     nitch # systhem fetch util
