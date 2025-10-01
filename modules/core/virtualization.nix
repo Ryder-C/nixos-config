@@ -29,6 +29,8 @@
     podman-tui
   ];
 
+  programs.virt-manager.enable = true;
+
   # Manage the virtualisation services
   virtualisation = {
     containers.enable = true;
