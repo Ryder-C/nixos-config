@@ -31,10 +31,15 @@ in {
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad = {
-          natural_scroll = true;
-        };
+        # touchpad = {
+        #   natural_scroll = true;
+        # };
       };
+
+      # device = {
+      #   name = "wacom-intuos-pt-s-2-pen";
+      #   output = "DP-5";
+      # };
 
       cursor = {
         no_hardware_cursors = true;
