@@ -7,7 +7,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     steam-presence = {
-      url = "github:Ryder-C/steam-presence?ref=add-nix-support";
+      url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

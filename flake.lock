@@ -1693,16 +1693,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1757981014,
-        "narHash": "sha256-32pODUqSVlTGT6ZdoMtem8znZqZfleY8Apj67M6882w=",
-        "owner": "Ryder-C",
+        "lastModified": 1759393272,
+        "narHash": "sha256-qDPYfiP8t/2nmV+zde1h0vSFUklonEI278Ra4aFCXyo=",
+        "owner": "JustTemmie",
         "repo": "steam-presence",
-        "rev": "914f6079b78dfc698510683ce611966c7088f421",
+        "rev": "c7ec7df13ca879ca4fd04f2c129b5480f2ea6a62",
         "type": "github"
       },
       "original": {
-        "owner": "Ryder-C",
-        "ref": "add-nix-support",
+        "owner": "JustTemmie",
         "repo": "steam-presence",
         "type": "github"
       }
