@@ -33,9 +33,8 @@
     };
 
     "/storage4tb" = {
-      device = "/dev/disk/by-uuid/244A425F4F881983";
-      fsType = "ntfs-3g";
-      options = ["rw" "big_writes"];
+      device = "/dev/disk/by-uuid/251e9b79-2700-4795-adbb-2a4f9fb22d15";
+      fsType = "ext4";
     };
 
     "/storage1tb" = {

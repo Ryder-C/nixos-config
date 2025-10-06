@@ -82,6 +82,7 @@ in {
     cmatrix
     ncspot
     ffmpeg
+    stablePkgs.jellyfin-media-player
     imv # image viewer
     killall
     libnotify

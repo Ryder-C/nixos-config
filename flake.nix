@@ -14,6 +14,9 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR";
 
+    # nixarr.url = "github:rasmus-kirk/nixarr";
+    nixarr.url = "github:Ryder-C/nixarr"; # use my fork with multi instance
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     hypr-contrib.url = "github:hyprwm/contrib";
