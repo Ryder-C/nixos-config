@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   stablePkgs,
   ...
@@ -90,7 +91,7 @@ in {
     mpv # video player
     ncdu # disk space
     openssl
-    pamixer # pulseaudio command line mixer
+    stablePkgs.pamixer # pulseaudio command line mixer
     pavucontrol # pulseaudio volume controle (GUI)
     playerctl # controller for media players
     wl-clipboard # clipboard utils for wayland (wl-copy, wl-paste)
@@ -119,11 +120,11 @@ in {
     obs-studio
 
     # 3D printing
-    # orca-slicer
-    (pkgs.writeShellScriptBin "orca-slicer-wayland" ''
-      ${builtins.concatStringsSep "\n" (map (e: "export ${e}") zink-env)}
-      exec ${pkgs.orca-slicer}/bin/orca-slicer "$@"
-    '')
+    orca-slicer
+    # (pkgs.writeShellScriptBin "orca-slicer-wayland" ''
+    #   ${builtins.concatStringsSep "\n" (map (e: "export ${e}") zink-env)}
+    #   exec ${pkgs.orca-slicer}/bin/orca-slicer "$@"
+    # '')
 
     typst
     typstyle
@@ -135,10 +136,23 @@ in {
     sunshine
   ];
 
-  # xdg.desktopEntries."orca-slicer" = {
-  #   name = "OrcaSlicer";
-  #   exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %F";
-  #   icon = "orca-slicer";
-  #   categories = ["Utility"];
-  # };
+  xdg.desktopEntries."OrcaSlicer" = {
+    name = "OrcaSlicer";
+    exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
+    icon = "OrcaSlicer";
+    categories = ["Graphics" "3DGraphics" "Engineering"];
+    mimeType = [
+      "model/stl"
+      "model/3mf"
+      "application/vnd.ms-3mfdocument"
+      "application/prs.wavefront-obj"
+      "application/x-amf"
+      "x-scheme-handler/orcaslicer"
+    ];
+    terminal = false;
+    type = "Application";
+    settings = {
+      StartupWMClass = "orca-slicer";
+    };
+  };
 }

@@ -323,14 +323,14 @@ in {
 
     extraConfig = "
       monitor=DP-5, 1920x1080@240, 0x0, 1
-      monitor=DP-4, 3840x2160@60, -3840x-540, 1, bitdepth, 10
+      # monitor=DP-4, 3840x2160@60, -3840x-540, 1, bitdepth, 10
       monitor=HDMI-A-2, 1920x1080@144, 1920x0, 1
 
       monitor=Unknown-1, disable
 
       workspace=1, monitor:DP-5
       workspace=2, monitor:HDMI-A-2
-      workspace=3, monitor:DP-4
+      # workspace=3, monitor:DP-4
 
       xwayland {
         force_zero_scaling = true
