@@ -15,11 +15,11 @@
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
 in {
-  imports = [inputs.nix-flatpak.homeManagerModules.nix-flatpak];
-
-  services.flatpak.packages = [
-    "tv.plex.PlexDesktop"
-  ];
+  # imports = [inputs.nix-flatpak.homeManagerModules.nix-flatpak];
+  #
+  # services.flatpak.packages = [
+  #   "tv.plex.PlexDesktop"
+  # ];
 
   home.packages = with pkgs; [
     _2048
@@ -89,7 +89,7 @@ in {
     libnotify
     man-pages # extra man pages
     mpv # video player
-    ncdu # disk space
+    gdu # disk space
     openssl
     stablePkgs.pamixer # pulseaudio command line mixer
     pavucontrol # pulseaudio volume controle (GUI)
@@ -111,6 +111,7 @@ in {
 
     google-chrome
     zoom-us
+    plex-desktop
 
     (bottles.override {removeWarningPopup = true;})
     vscode
@@ -132,7 +133,6 @@ in {
     libvlc
     zathura # PDF Viewer
     leetgo
-    gdu # disk usage
     sunshine
   ];
 
