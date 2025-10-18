@@ -15,7 +15,7 @@
         # Lock after 10 minutes of inactivity
         {
           timeout = 600;
-          "on-timeout" = "pidof hyprlock || hyprlock";
+          "on-timeout" = "pidof swaylock || swaylock";
         }
 
         # Turn off monitors (DPMS) after 15 minutes
