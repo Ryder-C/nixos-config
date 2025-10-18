@@ -90,7 +90,6 @@ in {
     gnome.gnome-keyring.enable = true;
     dbus.enable = true;
     fstrim.enable = true;
-    flatpak.enable = true;
     seatd.enable = true;
 
     hardware.openrgb.enable = true;

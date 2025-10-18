@@ -15,11 +15,7 @@
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
 in {
-  # imports = [inputs.nix-flatpak.homeManagerModules.nix-flatpak];
-  #
-  # services.flatpak.packages = [
-  #   "tv.plex.PlexDesktop"
-  # ];
+  imports = [inputs.flatpaks.homeModules.default];
 
   home.packages = with pkgs; [
     _2048
@@ -135,6 +131,16 @@ in {
     leetgo
     sunshine
   ];
+
+  services.flatpak = {
+    enable = true;
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    };
+    packages = [
+      "flathub:app/org.vinegarhq.Sober//stable"
+    ];
+  };
 
   xdg.desktopEntries."OrcaSlicer" = {
     name = "OrcaSlicer";
