@@ -62,7 +62,7 @@
         nix-shell = "nix-shell --run fish";
         nix-clean = "nh clean all";
         ns = "nh os switch --hostname ${host} $HOME/nixos-config?submodules=1";
-        nst = "nh os switch --hostname desktop $HOME/nixos-config?submodules=1";
+        nst = "nh os test --hostname ${host} $HOME/nixos-config?submodules=1";
 
         # Git
         ga = "git add";

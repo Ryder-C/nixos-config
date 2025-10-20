@@ -3,6 +3,7 @@
   lib,
   pkgs,
   stablePkgs,
+  config,
   ...
 }: let
   _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
@@ -32,6 +33,7 @@ in {
     fd # find replacement
     file # Show file information
     fzf # fuzzy finder
+    flatpak
     gifsicle # gif utility
     gtrash # rm replacement, put deleted files in system trash
     gtt # google translate TUI
@@ -79,7 +81,6 @@ in {
     cmatrix
     ncspot
     ffmpeg
-    stablePkgs.jellyfin-media-player
     imv # image viewer
     killall
     libnotify
@@ -98,7 +99,7 @@ in {
     wget
     xdg-utils
     xxd
-    inputs.alejandra.defaultPackage.${system}
+    inputs.alejandra.defaultPackage.${pkgs.system}
 
     zed-editor # code editor
     codex
@@ -107,7 +108,6 @@ in {
 
     google-chrome
     zoom-us
-    plex-desktop
 
     (bottles.override {removeWarningPopup = true;})
     vscode
@@ -138,27 +138,43 @@ in {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     };
     packages = [
-      "flathub:app/org.vinegarhq.Sober//stable"
+      "flathub:app/org.vinegarhq.Sober/x86_64/stable"
+      "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
     ];
+    overrides."tv.plex.PlexDesktop".environment = {
+      QT_STYLE_OVERRIDE = "Fusion";
+      QT_QUICK_CONTROLS_STYLE = "Fusion";
+    };
   };
 
-  xdg.desktopEntries."OrcaSlicer" = {
-    name = "OrcaSlicer";
-    exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
-    icon = "OrcaSlicer";
-    categories = ["Graphics" "3DGraphics" "Engineering"];
-    mimeType = [
-      "model/stl"
-      "model/3mf"
-      "application/vnd.ms-3mfdocument"
-      "application/prs.wavefront-obj"
-      "application/x-amf"
-      "x-scheme-handler/orcaslicer"
-    ];
-    terminal = false;
-    type = "Application";
-    settings = {
-      StartupWMClass = "orca-slicer";
+  xdg = {
+    dataFile = {
+      "applications/flatpak" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";
+      };
+      "icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg";
+      };
+    };
+
+    desktopEntries."OrcaSlicer" = {
+      name = "OrcaSlicer";
+      exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
+      icon = "OrcaSlicer";
+      categories = ["Graphics" "3DGraphics" "Engineering"];
+      mimeType = [
+        "model/stl"
+        "model/3mf"
+        "application/vnd.ms-3mfdocument"
+        "application/prs.wavefront-obj"
+        "application/x-amf"
+        "x-scheme-handler/orcaslicer"
+      ];
+      terminal = false;
+      type = "Application";
+      settings = {
+        StartupWMClass = "orca-slicer";
+      };
     };
   };
 }

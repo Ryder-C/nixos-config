@@ -17,7 +17,7 @@
     # nixarr.url = "github:rasmus-kirk/nixarr";
     nixarr.url = "github:Ryder-C/nixarr"; # use my fork with multi instance
 
-    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
 
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
