@@ -29,7 +29,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = ["networkmanager" "wheel" "dailout" "input" "uinput" "seat"];
+    extraGroups = ["networkmanager" "wheel" "dailout" "input" "uinput" "seat" "docker"];
     shell = pkgs.fish;
   };
   nix.settings.allowed-users = ["${username}"];

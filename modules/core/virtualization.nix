@@ -34,8 +34,13 @@
   # Manage the virtualisation services
   virtualisation = {
     containers.enable = true;
-    podman = {
+    docker = {
       enable = true;
+      autoPrune.enable = true;
+    };
+    oci-containers.backend = "docker";
+    podman = {
+      enable = false;
       autoPrune.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
