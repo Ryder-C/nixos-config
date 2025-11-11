@@ -53,7 +53,13 @@
     wireguard-tools
     openrgb-with-all-plugins
     icu
-    rust-bin.stable.latest.default
+    nodejs
+    (rust-bin.stable.latest.default.override
+      {
+        extensions = ["rust-src" "rustfmt" "clippy"];
+        targets = ["x86_64-unknown-linux-gnu"];
+      })
+    rust-analyzer
 
     mesa-demos
     vulkan-tools

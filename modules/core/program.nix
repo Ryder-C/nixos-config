@@ -10,7 +10,40 @@
     };
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
-      icu
+      gtk3
+      glib
+      gdk-pixbuf
+      pango
+      harfbuzz
+      atk
+      cairo
+      libepoxy
+      mpv
+      keybinder3
+      gsettings-desktop-schemas
+      zlib
+      alsa-lib
+      fontconfig
+      freetype
+      libxkbcommon
+      libdrm
+      libxcb
+      wayland
+      xorg.libX11
+      xorg.libXext
+      xorg.libXrender
+      xorg.libXfixes
+      xorg.libXinerama
+      xorg.libXi
+      xorg.libXrandr
+      xorg.libXScrnSaver
+      xorg.libXtst
+      xorg.xcbutil
+      xorg.xcbutilimage
+      xorg.xcbutilrenderutil
+      xorg.xcbutilwm
+      xorg.xcbutilkeysyms
+      libva
     ];
 
     # nix helper

@@ -27,12 +27,22 @@
     adwaita-icon-theme
     podman
     podman-tui
+
+    waydroid
+    android-tools
+    iptables
   ];
 
-  programs.virt-manager.enable = true;
+  networking.networkmanager.unmanaged = ["interface-name:waydroid*"];
+
+  programs = {
+    virt-manager.enable = true;
+    adb.enable = true;
+  };
 
   # Manage the virtualisation services
   virtualisation = {
+    waydroid.enable = true;
     containers.enable = true;
     docker = {
       enable = true;
@@ -52,5 +62,8 @@
     };
     spiceUSBRedirection.enable = true;
   };
-  services.spice-vdagentd.enable = true;
+  services = {
+    udev.packages = [pkgs.android-udev-rules];
+    spice-vdagentd.enable = true;
+  };
 }
