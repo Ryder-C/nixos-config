@@ -22,7 +22,7 @@
     spice
     spice-gtk
     spice-protocol
-    win-virtio
+    virtio-win
     win-spice
     adwaita-icon-theme
     podman
@@ -63,7 +63,6 @@
     spiceUSBRedirection.enable = true;
   };
   services = {
-    udev.packages = [pkgs.android-udev-rules];
     spice-vdagentd.enable = true;
   };
 }

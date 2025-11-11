@@ -104,7 +104,6 @@ in {
 
     zed-editor # code editor
     codex
-    cursor-cli
     tinymist
 
     google-chrome
@@ -112,7 +111,6 @@ in {
 
     (bottles.override {removeWarningPopup = true;})
     vscode
-    code-cursor
     # kicad
     (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio

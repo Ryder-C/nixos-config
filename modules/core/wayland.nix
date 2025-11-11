@@ -27,7 +27,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    kdePackages.xwaylandvideobridge
     xwayland
   ];
 }
