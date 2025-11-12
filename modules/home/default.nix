@@ -25,7 +25,7 @@
     # ./tmux.nix
     ./zellij.nix
     # ./fastfetch.nix
-    # ./swaync/swaync.nix # notification deamon
+    ./swaync/swaync.nix # notification deamon
     ./micro.nix # nano replacement
     ./helix.nix
     ./nvim.nix # neovim
@@ -36,7 +36,7 @@
     ./starship.nix # shell prompt
     ./swaylock.nix # lock screen
     # ./vscodium.nix # vscode fork
-    # ./waybar # status bar
+    ./waybar # status bar
     ./yazi.nix
 
     # ./zsh.nix # shell
@@ -48,6 +48,8 @@
     enable = true;
     accent = "mauve";
     flavor = "mocha";
+
+    waybar.enable = false;
   };
 
   # Symlink the Catppuccin Stylus JSON (flake input, non-flake URL pinned in lockfile) into the home directory

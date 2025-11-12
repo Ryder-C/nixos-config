@@ -1106,6 +1106,22 @@
         "type": "github"
       }
     },
+    "mechabar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762772612,
+        "narHash": "sha256-yLI75/R6OPR6ApVvFXgGMMMB9lzpdIq6+dox+RD05OI=",
+        "owner": "sejjy",
+        "repo": "mechabar",
+        "rev": "2809e87841a14a2b96e495183637309e723866c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sejjy",
+        "repo": "mechabar",
+        "type": "github"
+      }
+    },
     "nix-citizen": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -1638,6 +1654,7 @@
         "hyprland": "hyprland",
         "hyprpanel": "hyprpanel",
         "hyprpicker": "hyprpicker",
+        "mechabar": "mechabar",
         "nix-citizen": "nix-citizen",
         "nix-gaming": "nix-gaming",
         "nix-pia-vpn": "nix-pia-vpn",

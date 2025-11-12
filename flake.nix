@@ -25,6 +25,10 @@
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mechabar = {
+      url = "github:sejjy/mechabar";
+      flake = false;
+    };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
