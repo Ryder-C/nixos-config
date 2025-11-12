@@ -70,6 +70,17 @@ cat <<'EOF' > "$out/bluetooth.jsonc"
 }
 EOF
 
+cat <<'EOF' > "$out/clock.jsonc"
+{
+  "clock#time": {
+    "format": "{:%I:%M %p}",
+    "min-length": 8,
+    "max-length": 8,
+    "tooltip-format": "Standard Time: {:%I:%M %p}"
+  }
+}
+EOF
+
 cat <<'EOF' > "$out/temperature.jsonc"
 {
   "temperature": {
@@ -164,8 +175,8 @@ in {
         @import "styles/modules-left.css";
         @import "styles/modules-right.css";
         @import "styles/states.css";
-        @import "styles/typeface.css";
-        @import "styles/waybar.css";
+        @import "styles/fonts.css";
+        @import "styles/global.css";
         @import "theme.css";
         @import "styles/custom.css";
       '';
