@@ -9,98 +9,98 @@
   inherit (lib) hasSuffix;
   cfgDir = "${config.xdg.configHome}/waybar";
   customModules = pkgs.runCommandLocal "mechabar-modules-custom-${inputs.mechabar.rev or "src"}" {} ''
-mkdir -p "$out"
-cp -r ${inputs.mechabar}/modules/. "$out"/
-chmod -R u+w "$out"
+    mkdir -p "$out"
+    cp -r ${inputs.mechabar}/modules/. "$out"/
+    chmod -R u+w "$out"
 
-cat <<'EOF' > "$out/custom/system_update.jsonc"
-{
-  "custom/system_update": {
-    "exec": "~/.config/waybar/scripts/system-update.sh module",
-    "return-type": "json",
-    "interval": 3600,
-    "format": "{}",
-    "min-length": 2,
-    "max-length": 2,
-    "on-click": "~/.config/waybar/scripts/system-update.sh"
-  }
-}
-EOF
+    cat <<'EOF' > "$out/custom/system_update.jsonc"
+    {
+      "custom/system_update": {
+        "exec": "~/.config/waybar/scripts/system-update.sh module",
+        "return-type": "json",
+        "interval": 3600,
+        "format": "{}",
+        "min-length": 2,
+        "max-length": 2,
+        "on-click": "~/.config/waybar/scripts/system-update.sh"
+      }
+    }
+    EOF
 
-cat <<'EOF' > "$out/custom/distro.jsonc"
-{
-  "custom/distro": {
-    "format": "",
-    "tooltip": false
-  }
-}
-EOF
+    cat <<'EOF' > "$out/custom/distro.jsonc"
+    {
+      "custom/distro": {
+        "format": "",
+        "tooltip": false
+      }
+    }
+    EOF
 
-cat <<'EOF' > "$out/custom/power_menu.jsonc"
-{
-  "custom/power_menu": {
-    "format": "󰤄",
-    "on-click": "hyprctl dispatch exec 'wlogout'",
-    "tooltip-format": "Power Menu"
-  }
-}
-EOF
+    cat <<'EOF' > "$out/custom/power_menu.jsonc"
+    {
+      "custom/power_menu": {
+        "format": "󰤄",
+        "on-click": "hyprctl dispatch exec 'wlogout'",
+        "tooltip-format": "Power Menu"
+      }
+    }
+    EOF
 
-cat <<'EOF' > "$out/bluetooth.jsonc"
-{
-  "bluetooth": {
-    "format": "󰂯",
-    "format-disabled": "󰂲",
-    "format-off": "󰂲",
-    "format-on": "󰂰",
-    "format-connected": "󰂱",
-    "min-length": 2,
-    "max-length": 2,
-    "on-click": "hyprctl dispatch exec '[float] blueman-manager'",
-    "on-click-right": "bluetoothctl power off && notify-send 'Bluetooth Off' -i 'network-bluetooth-inactive' -r 1925",
-    "tooltip-format": "Device Addr: {device_address}",
-    "tooltip-format-disabled": "Bluetooth Disabled",
-    "tooltip-format-off": "Bluetooth Off",
-    "tooltip-format-on": "Bluetooth Disconnected",
-    "tooltip-format-connected": "Device: {device_alias}",
-    "tooltip-format-enumerate-connected": "Device: {device_alias}",
-    "tooltip-format-connected-battery": "Device: {device_alias}\\nBattery: {device_battery_percentage}%",
-    "tooltip-format-enumerate-connected-battery": "Device: {device_alias}\\nBattery: {device_battery_percentage}%"
-  }
-}
-EOF
+    cat <<'EOF' > "$out/bluetooth.jsonc"
+    {
+      "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-off": "󰂲",
+        "format-on": "󰂰",
+        "format-connected": "󰂱",
+        "min-length": 2,
+        "max-length": 2,
+        "on-click": "hyprctl dispatch exec '[float] blueman-manager'",
+        "on-click-right": "bluetoothctl power off && notify-send 'Bluetooth Off' -i 'network-bluetooth-inactive' -r 1925",
+        "tooltip-format": "Device Addr: {device_address}",
+        "tooltip-format-disabled": "Bluetooth Disabled",
+        "tooltip-format-off": "Bluetooth Off",
+        "tooltip-format-on": "Bluetooth Disconnected",
+        "tooltip-format-connected": "Device: {device_alias}",
+        "tooltip-format-enumerate-connected": "Device: {device_alias}",
+        "tooltip-format-connected-battery": "Device: {device_alias}\nBattery: {device_battery_percentage}%",
+        "tooltip-format-enumerate-connected-battery": "Device: {device_alias}\nBattery: {device_battery_percentage}%"
+      }
+    }
+    EOF
 
-cat <<'EOF' > "$out/clock.jsonc"
-{
-  "clock#time": {
-    "format": "{:%I:%M %p}",
-    "min-length": 8,
-    "max-length": 8,
-    "tooltip-format": "Standard Time: {:%I:%M %p}"
-  }
-}
-EOF
+    cat <<'EOF' > "$out/clock.jsonc"
+    {
+      "clock#time": {
+        "format": "{:%I:%M %p}",
+        "min-length": 8,
+        "max-length": 8,
+        "tooltip-format": "Standard Time: {:%I:%M %p}"
+      }
+    }
+    EOF
 
-cat <<'EOF' > "$out/temperature.jsonc"
-{
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-    "critical-threshold": 90,
-    "interval": 10,
-    "format-critical": "󰀦 {temperatureC}°C",
-    "format": "{icon} {temperatureC}°C",
-    "format-icons": [
-      "󱃃",
-      "󰔏",
-      "󱃂"
-    ],
-    "min-length": 8,
-    "max-length": 8,
-    "tooltip-format": "Temp in Fahrenheit: {temperatureF}°F"
-  }
-}
-EOF
-'';
+    cat <<'EOF' > "$out/temperature.jsonc"
+    {
+      "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 90,
+        "interval": 10,
+        "format-critical": "󰀦 {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": [
+          "󱃃",
+          "󰔏",
+          "󱃂"
+        ],
+        "min-length": 8,
+        "max-length": 8,
+        "tooltip-format": "Temp in Fahrenheit: {temperatureF}°F"
+      }
+    }
+    EOF
+  '';
   modulesDir = customModules;
 
   jsoncFiles = dir: let

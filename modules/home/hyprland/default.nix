@@ -6,7 +6,7 @@
     ./config.nix
     ./hyprlock.nix
     ./hypridle.nix
-    # ./hyprpanel.nix
+    ./hyprpanel.nix
     ./variables.nix
   ];
 }

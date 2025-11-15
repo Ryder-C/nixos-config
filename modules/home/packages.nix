@@ -40,6 +40,7 @@ in {
     hexdump
     jellyfin
     jdk17 # java
+    jq
     lazygit
     libreoffice
     lorien
