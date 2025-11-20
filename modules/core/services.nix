@@ -31,8 +31,14 @@
   '';
   profileBase = "/var/lib/qbittorrent";
   profName = "vpn";
+  piaCertPath = "/etc/pia/ca.rsa.4096.crt";
 in {
   imports = [inputs.nix-pia-vpn.nixosModules.default];
+
+  environment.etc."pia/ca.rsa.4096.crt" = {
+    source = ../../ca.rsa.4096.crt;
+    mode = "0444";
+  };
 
   systemd = {
     tmpfiles.rules = [
@@ -96,7 +102,7 @@ in {
 
     pia-vpn = {
       enable = true;
-      certificateFile = ../../ca.rsa.4096.crt;
+      certificateFile = piaCertPath;
       region = "ca_vancouver";
       environmentFile = config.age.secrets.pia.path;
 
