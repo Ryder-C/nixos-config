@@ -38,7 +38,7 @@ in {
     gtrash # rm replacement, put deleted files in system trash
     gtt # google translate TUI
     hexdump
-    jellyfin
+    jellyfin-media-player
     jdk17 # java
     jq
     lazygit

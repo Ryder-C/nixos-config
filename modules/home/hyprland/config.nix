@@ -53,7 +53,7 @@ in {
         "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
         "col.inactive_border" = "rgb(45475a)";
         # border_part_of_window = false;
-        no_border_on_floating = false;
+        # no_border_on_floating = false;
       };
 
       misc = {
@@ -248,75 +248,87 @@ in {
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      # windowrulev2
-      windowrulev2 = [
-        "float, class:^(imv)$"
-        "center, class:^(imv)$"
-        "size 1200 725, class:^(imv)$"
+      # windowrule (formerly windowrulev2)
+      windowrule = [
+        "float 1, match:class ^(imv)$"
+        "center 1, match:class ^(imv)$"
+        "size 1200 725, match:class ^(imv)$"
 
-        "float, class:^(mpv)$"
-        "center, class:^(mpv)$"
-        "size 1200 725, class:^(mpv)$"
+        "float 1, match:class ^(mpv)$"
+        "center 1, match:class ^(mpv)$"
+        "size 1200 725, match:class ^(mpv)$"
 
-        "float, class:^(blueman-manager)$"
-        "center, class:^(blueman-manager)$"
-        "size 700 450, class:^(blueman-manager)$"
+        "float 1, match:class ^(blueman-manager)$"
+        "center 1, match:class ^(blueman-manager)$"
+        "size 700 450, match:class ^(blueman-manager)$"
 
-        "tile, class:^(Aseprite)$"
+        "tile 1, match:class ^(Aseprite)$"
 
-        "float, title:^(float_alacritty)$"
-        "center, title:^(float_alacritty)$"
-        "size 950 600, title:^(float_alacritty)$"
+        "float 1, match:title ^(float_alacritty)$"
+        "center 1, match:title ^(float_alacritty)$"
+        "size 950 600, match:title ^(float_alacritty)$"
 
-        "float, class:^(audacious)$"
+        "float 1, match:class ^(audacious)$"
 
-        "tile, class:^(neovide)$"
+        "tile 1, match:class ^(neovide)$"
 
-        "idleinhibit focus, class:^(mpv)$"
+        # FIXED: idleinhibit -> idle_inhibit
+        "idle_inhibit focus, match:class ^(mpv)$"
+        "idle_inhibit focus, match:class ^(com.github.iwalton3.jellyfin-media-player)$"
+        "idle_inhibit focus, match:class ^(Plex)$"
 
-        "float, class:^(udiskie)$"
+        "float 1, match:class ^(udiskie)$"
 
-        "float, title:^(Transmission)$"
+        "float 1, match:title ^(Transmission)$"
 
-        "float, title:^(Volume Control)$"
-        "size 700 450, title:^(Volume Control)$"
-        "move 40 55%, title:^(Volume Control)$"
+        "float 1, match:title ^(Volume Control)$"
+        "size 700 450, match:title ^(Volume Control)$"
+        "move 40 55%, match:title ^(Volume Control)$"
 
-        "float, title:^(Firefox — Sharing Indicator)$"
-        "move 0 0, title:^(Firefox — Sharing Indicator)$"
+        "float 1, match:title ^(Firefox — Sharing Indicator)$"
+        "move 0 0, match:title ^(Firefox — Sharing Indicator)$"
 
-        "float, title:^(Picture-in-Picture)$"
-        "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
-        "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
-        "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        "opacity 1.0 override 1.0 override, class:(Aseprite)"
-        "opacity 1.0 override 1.0 override, class:(Unity)"
-        "idleinhibit focus, class:^(mpv)$"
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "float,class:^(zenity)$"
-        "center,class:^(zenity)$"
-        "size 850 500,class:^(zenity)$"
-        "float,class:^(pavucontrol)$"
-        "float,class:^(SoundWireServer)$"
-        "float,class:^(.sameboy-wrapped)$"
-        "float,class:^(file_progress)$"
-        "float,class:^(confirm)$"
-        "float,class:^(dialog)$"
-        "float,class:^(download)$"
-        "float,class:^(notification)$"
-        "float,class:^(error)$"
-        "float,class:^(confirmreset)$"
-        "float,title:^(Open File)$"
-        "float,title:^(branchdialog)$"
-        "float,title:^(Confirm to replace files)$"
-        "float,title:^(File Operation Progress)$"
+        "float 1, match:title ^(Picture-in-Picture)$"
+        "opacity 1.0 override 1.0 override, match:title ^(Picture-in-Picture)$"
+        "pin 1, match:title ^(Picture-in-Picture)$"
 
-        "opacity 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-        "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        "noblur,class:^(xwaylandvideobridge)$"
+        "opacity 1.0 override 1.0 override, match:title ^(.*imv.*)$"
+        "opacity 1.0 override 1.0 override, match:title ^(.*mpv.*)$"
+        "opacity 1.0 override 1.0 override, match:class (Aseprite)"
+        "opacity 1.0 override 1.0 override, match:class (Unity)"
+
+        # FIXED: idleinhibit -> idle_inhibit
+        "idle_inhibit focus, match:class ^(mpv)$"
+        "idle_inhibit fullscreen, match:class ^(firefox)$"
+
+        "float 1, match:class ^(zenity)$"
+        "center 1, match:class ^(zenity)$"
+        "size 850 500, match:class ^(zenity)$"
+
+        "float 1, match:class ^(pavucontrol)$"
+        "float 1, match:class ^(SoundWireServer)$"
+        "float 1, match:class ^(.sameboy-wrapped)$"
+        "float 1, match:class ^(file_progress)$"
+        "float 1, match:class ^(confirm)$"
+        "float 1, match:class ^(dialog)$"
+        "float 1, match:class ^(download)$"
+        "float 1, match:class ^(notification)$"
+        "float 1, match:class ^(error)$"
+        "float 1, match:class ^(confirmreset)$"
+        "float 1, match:title ^(Open File)$"
+        "float 1, match:title ^(branchdialog)$"
+        "float 1, match:title ^(Confirm to replace files)$"
+        "float 1, match:title ^(File Operation Progress)$"
+
+        "opacity 0.0 override, match:class ^(xwaylandvideobridge)$"
+
+        # FIXED: noanim -> no_anim
+        "no_anim 1, match:class ^(xwaylandvideobridge)$"
+        # FIXED: noinitialfocus -> no_initial_focus
+        "no_initial_focus 1, match:class ^(xwaylandvideobridge)$"
+        "max_size 1 1, match:class ^(xwaylandvideobridge)$"
+        # FIXED: noblur -> no_blur
+        "no_blur 1, match:class ^(xwaylandvideobridge)$"
       ];
     };
 
