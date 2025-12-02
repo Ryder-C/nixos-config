@@ -37,14 +37,14 @@
     gamescope = {
       enable = true;
       capSysNice = false; # Breaks gamescope when true
-      args = [
-        "--rt"
-        "--xwayland-count 1"
-        "--expose-wayland"
-        #   # "--adaptive-sync"
-        "--prefer-vk-device" # lspci -nn | grep VGA
-        "10de:1e81" # Dedicated
-      ];
+      # args = [
+      #   "--rt"
+      #   "--xwayland-count 1"
+      #   "--expose-wayland"
+      #   #   # "--adaptive-sync"
+      #   "--prefer-vk-device" # lspci -nn | grep VGA
+      #   "10de:1e81" # Dedicated
+      # ];
     };
     gamemode = {
       enable = true;

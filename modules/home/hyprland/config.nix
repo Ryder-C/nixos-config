@@ -19,7 +19,7 @@ in {
         "poweralertd &"
         # "swaync &"
         "wl-paste --watch cliphist store &"
-        "hyprlock &"
+        "hyprlock"
 
         "[workspace 2 silent] vesktop"
       ];
