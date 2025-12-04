@@ -46,6 +46,7 @@ in {
     lorien
     monero-gui
     nautilus # file manager
+    nil
     nitch # systhem fetch util
     nix-prefetch-github
     obsidian
