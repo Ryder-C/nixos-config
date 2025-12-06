@@ -51,6 +51,7 @@ in {
     nix-prefetch-github
     obsidian
     pipes # terminal screensaver
+    plex-desktop
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
     tdf # cli pdf viewer
@@ -140,12 +141,12 @@ in {
     };
     packages = [
       "flathub:app/org.vinegarhq.Sober/x86_64/stable"
-      "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
+      # "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
     ];
-    overrides."tv.plex.PlexDesktop".environment = {
-      QT_STYLE_OVERRIDE = "Fusion";
-      QT_QUICK_CONTROLS_STYLE = "Fusion";
-    };
+    # overrides."tv.plex.PlexDesktop".environment = {
+    #   QT_STYLE_OVERRIDE = "Fusion";
+    #   QT_QUICK_CONTROLS_STYLE = "Fusion";
+    # };
   };
 
   xdg = {

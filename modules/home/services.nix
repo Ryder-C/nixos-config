@@ -1,5 +1,5 @@
 {
   services.plex-mpv-shim = {
-    enable = false;
+    enable = true;
   };
 }

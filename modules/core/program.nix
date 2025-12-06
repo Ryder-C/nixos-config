@@ -1,8 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.nix-citizen.nixosModules.default];
   programs = {
     dconf.enable = true;
     fish.enable = true;
     zsh.enable = true;
+    rsi-launcher = {
+      enable = true;
+      disableEAC = true;
+    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

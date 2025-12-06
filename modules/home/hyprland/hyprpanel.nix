@@ -10,9 +10,11 @@
     systemd.enable = true;
 
     settings = {
+      scalingPriority = "hyprland";
+
       bar = {
         layouts = {
-          "DP-5" = {
+          "DP-4" = {
             left = ["dashboard" "workspaces" "media" "volume"];
             middle = ["clock"];
             right = ["network" "bluetooth" "cputemp" "systray" "hypridle" "notifications"];
