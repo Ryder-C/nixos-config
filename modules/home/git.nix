@@ -2,10 +2,11 @@
   programs.git = {
     enable = true;
 
-    userName = "Ryder-C";
-    userEmail = "rydercasazza@gmail.com";
-
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Ryder-C";
+        email = "rydercasazza@gmail.com";
+      };
       init.defaultBranch = "main";
       credential.helper = "store";
     };

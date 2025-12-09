@@ -9,6 +9,9 @@
     pkgs.nerd-fonts.noto
     pkgs.twemoji-color-font
     pkgs.noto-fonts-color-emoji
+    pkgs.dracula-theme
+    pkgs.dracula-icon-theme
+    pkgs.adwaita-icon-theme
   ];
 
   catppuccin = {
@@ -24,12 +27,17 @@
       accent = "dark";
     };
   };
+
   gtk = {
     enable = true;
     theme = {
       name = "Dracula";
       package = pkgs.dracula-theme;
     };
+    # iconTheme = {
+    #   name = "Dracula";
+    #   package = pkgs.dracula-icon-theme;
+    # };
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 11;

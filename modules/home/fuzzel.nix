@@ -8,7 +8,7 @@ _: {
         fields = "name,generic,comment,categories,filename,keywords";
         terminal = "alacritty";
         prompt = "' ➜  '";
-        icon-theme = "Papirus-Dark";
+        icon-theme = "Dracula";
         layer = "top";
         lines = 10;
         width = 35;

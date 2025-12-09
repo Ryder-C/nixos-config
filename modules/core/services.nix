@@ -93,6 +93,7 @@ in {
       };
     };
     gvfs.enable = true;
+    tumbler.enable = true;
     gnome.gnome-keyring.enable = true;
     dbus.enable = true;
     fstrim.enable = true;
@@ -129,7 +130,8 @@ in {
 
     ollama = {
       enable = false;
-      acceleration = "cuda";
+
+      package = pkgs.ollama-cuda;
     };
     open-webui.enable = false;
 

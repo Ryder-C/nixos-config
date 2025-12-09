@@ -13,7 +13,7 @@
     ./discord.nix # discord with catppuccin theme
     ./development.nix
     ./browser.nix # firefox based browser
-    ./fuzzel.nix # launcher
+    # ./fuzzel.nix # launcher
     ./gaming.nix # packages related to gaming
     ./git.nix # version control
     ./gtk.nix # gtk theme

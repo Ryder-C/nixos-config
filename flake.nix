@@ -19,6 +19,10 @@
 
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprpanel = {
@@ -29,6 +33,19 @@
       url = "github:sejjy/mechabar";
       flake = false;
     };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # hyprtasking = {
+    #   url = "github:raybbian/hyprtasking";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    # hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
@@ -47,8 +64,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
       url = "github:nix-community/home-manager";

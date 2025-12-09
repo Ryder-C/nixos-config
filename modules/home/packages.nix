@@ -7,6 +7,7 @@
   ...
 }: let
   _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
+  toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
 
   zink-env = [
     "__GLX_VENDOR_LIBRARY_NAME=mesa"
@@ -25,6 +26,7 @@ in {
     audacity
     bandwhich
     baobab # GNOME Disk Usage Analyzer
+    brightnessctl
     bitwise # cli tool for bit / hex manipulation
     cbonsai # terminal screensaver
     dua # graphical disk analyzer
@@ -45,19 +47,19 @@ in {
     libreoffice
     lorien
     monero-gui
-    nautilus # file manager
     nil
     nitch # systhem fetch util
     nix-prefetch-github
     obsidian
     pipes # terminal screensaver
-    plex-desktop
+    # plex-desktop
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
     tdf # cli pdf viewer
     todo # cli todo list
     toipe # typing test in the terminal
     tor-browser
+    toggle-hdr
     unrar
     valgrind # c memory analyzer
     websocat
@@ -134,19 +136,21 @@ in {
     sunshine
   ];
 
-  services.flatpak = {
-    enable = true;
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+  services = {
+    flatpak = {
+      enable = true;
+      remotes = {
+        "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      };
+      packages = [
+        "flathub:app/org.vinegarhq.Sober/x86_64/stable"
+        "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
+      ];
+      overrides."tv.plex.PlexDesktop".environment = {
+        QT_STYLE_OVERRIDE = "Fusion";
+        QT_QUICK_CONTROLS_STYLE = "Fusion";
+      };
     };
-    packages = [
-      "flathub:app/org.vinegarhq.Sober/x86_64/stable"
-      # "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
-    ];
-    # overrides."tv.plex.PlexDesktop".environment = {
-    #   QT_STYLE_OVERRIDE = "Fusion";
-    #   QT_QUICK_CONTROLS_STYLE = "Fusion";
-    # };
   };
 
   xdg = {

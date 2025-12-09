@@ -5,6 +5,7 @@
 }: {
   imports = [inputs.nix-citizen.nixosModules.default];
   programs = {
+    thunar.enable = true;
     dconf.enable = true;
     fish.enable = true;
     zsh.enable = true;

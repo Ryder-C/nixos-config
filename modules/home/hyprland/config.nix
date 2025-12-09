@@ -83,7 +83,7 @@ in {
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 20;
         # active_opacity = 0.90;
         # inactive_opacity = 0.90;
         # fullscreen_opacity = 1.0;
@@ -140,6 +140,10 @@ in {
       };
 
       bind = [
+        # hyprspace
+        # "$mainMod, Tab, exec, overview:toggle"
+        # ", escape, hyprtasking:if_active, hyprtasking:toggle cursor"
+
         # show keybinds list
         "$mainMod, F1, exec, show-keybinds"
 
@@ -149,22 +153,24 @@ in {
         "$mainMod SHIFT, Return, exec, alacritty --start-as=fullscreen -o 'font_size=16'"
         "$mainMod, B, exec, zen"
         "$mainMod, Q, killactive,"
+        # "$mainMod, Q, hyprtasking:killhovered"
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, togglefloating,"
-        "$mainMod, D, exec, fuzzel"
-        "$mainMod, G, exec, fuzzel-steam-games"
+        # "$mainMod, D, exec, fuzzel"
+        "$mainMod, D, global, caelestia:launcher"
         "$mainMod SHIFT, D, exec, vesktop"
         "$mainMod SHIFT, S, exec, spotify"
         "$mainMod, Escape, exec, swaylock"
         "$mainMod SHIFT, Escape, exec, shutdown-script"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
-        "$mainMod, U, exec, nautilus"
+        "$mainMod, U, exec, thunar"
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
         "$mainMod, C ,exec, hyprpicker -a"
         "$mainMod, W,exec, wallpaper-picker"
         "$mainMod SHIFT, W, exec, vm-start"
+        "$mainMod SHIFT, H, exec, toggle-hdr"
 
         # screenshot
         # "$mainMod, Print, exec, grimblast --notify --cursor --freeze save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
@@ -333,11 +339,11 @@ in {
     };
 
     extraConfig = "
-      monitor=DP-4, 3840x2160@240, 0x0, 1.5, bitdepth, 10
-      monitor=DP-5, 1920x1080@240, auto-right, 1
+      workspace=1, monitor:DP-5
+      workspace=2, monitor:DP-4
 
-      workspace=1, monitor:DP-4
-      workspace=2, monitor:DP-5
+      monitor=DP-5, 3840x2160@240, 0x0, 1.5, bitdepth, 10
+      monitor=DP-4, 1920x1080@240, auto-right, 1
 
       xwayland {
         force_zero_scaling = true
@@ -347,7 +353,9 @@ in {
         xx_color_management_v4 = true
       }
       render {
+        direct_scanout = 1
         cm_fs_passthrough = 1
+        cm_auto_hdr = 0
       }
     ";
   };

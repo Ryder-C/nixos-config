@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     # swww
     swaybg
@@ -21,5 +25,7 @@
     };
     # enableNvidiaPatches = false;
     systemd.enable = true;
+
+    # plugins = [inputs.hyprspace.packages.${pkgs.system}.Hyprspace];
   };
 }
