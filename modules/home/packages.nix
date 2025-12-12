@@ -106,6 +106,7 @@ in {
     xdg-utils
     xxd
     inputs.alejandra.defaultPackage.${pkgs.system}
+    inputs.vesc-tool.packages.${pkgs.system}.default
 
     zed-editor # code editor
     codex
@@ -117,7 +118,7 @@ in {
     (bottles.override {removeWarningPopup = true;})
     vscode
     # kicad
-    (stablePkgs.blender.override {cudaSupport = true;})
+    # (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
 
     # 3D printing
@@ -147,8 +148,7 @@ in {
         "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
       ];
       overrides."tv.plex.PlexDesktop".environment = {
-        QT_STYLE_OVERRIDE = "Fusion";
-        QT_QUICK_CONTROLS_STYLE = "Fusion";
+        QT_STYLE_OVERRIDE = "";
       };
     };
   };

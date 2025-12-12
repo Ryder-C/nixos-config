@@ -1,5 +1,20 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [inputs.caelestia-shell.homeManagerModules.default];
+
+  home.packages = with pkgs; [
+    material-icons
+    material-symbols
+    material-design-icons
+
+    adwaita-icon-theme
+    hicolor-icon-theme
+    # papirus-icon-theme
+    kdePackages.qtsvg
+  ];
 
   programs.caelestia = {
     enable = true;
@@ -9,6 +24,30 @@
       environment = [];
     };
     settings = {
+      general = {
+        apps.terminal = ["alacritty"];
+
+        idle = {
+          lockBeforeSleep = true;
+          inhibitWhenAudio = true;
+          timeouts = [
+            {
+              timeout = 180;
+              idleAction = "lock";
+            }
+            {
+              timeout = 300;
+              idleAction = "dpms off";
+              returnAction = "dpms on";
+            }
+            # {
+            #   timeout = 600;
+            #   idleAction = ["systemctl" "suspend-then-hibernate"];
+            # }
+          ];
+        };
+      };
+
       bar = {
         tray.compact = true;
         status = {

@@ -47,6 +47,8 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
 
+    vesc-tool.url = "github:vedderb/vesc_tool";
+
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     nix-yazi-plugins = {

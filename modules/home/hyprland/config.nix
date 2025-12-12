@@ -256,6 +256,9 @@ in {
 
       # windowrule (formerly windowrulev2)
       windowrule = [
+        "float 1, match:class ^(Waydroid)$"
+        "center 1, match:class ^(Waydroid)$"
+
         "float 1, match:class ^(imv)$"
         "center 1, match:class ^(imv)$"
         "size 1200 725, match:class ^(imv)$"

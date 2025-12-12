@@ -28,12 +28,9 @@
     podman
     podman-tui
 
-    waydroid
     android-tools
     iptables
   ];
-
-  networking.networkmanager.unmanaged = ["interface-name:waydroid*"];
 
   programs = {
     virt-manager.enable = true;
@@ -42,7 +39,10 @@
 
   # Manage the virtualisation services
   virtualisation = {
-    waydroid.enable = true;
+    waydroid = {
+      enable = true;
+      package = pkgs.waydroid-nftables;
+    };
     containers.enable = true;
     docker = {
       enable = true;

@@ -10,7 +10,7 @@
     fish.enable = true;
     zsh.enable = true;
     rsi-launcher = {
-      enable = true;
+      enable = false;
       disableEAC = true;
     };
     gnupg.agent = {
