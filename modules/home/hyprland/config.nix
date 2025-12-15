@@ -281,10 +281,7 @@ in {
 
         "tile 1, match:class ^(neovide)$"
 
-        # FIXED: idleinhibit -> idle_inhibit
-        "idle_inhibit focus, match:class ^(mpv)$"
-        "idle_inhibit focus, match:class ^(com.github.iwalton3.jellyfin-media-player)$"
-        "idle_inhibit focus, match:class ^(Plex)$"
+        "idle_inhibit fullscreen, match:class *"
 
         "float 1, match:class ^(udiskie)$"
 
@@ -346,7 +343,7 @@ in {
       workspace=2, monitor:DP-4
 
       monitor=DP-5, 3840x2160@240, 0x0, 1.5, bitdepth, 10
-      monitor=DP-4, 1920x1080@240, auto-right, 1
+      monitor=DP-4, 3840x2160@60, -1440x-560, 1.5, transform, 1
 
       xwayland {
         force_zero_scaling = true
