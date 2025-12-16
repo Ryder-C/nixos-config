@@ -83,7 +83,7 @@ in {
       };
 
       decoration = {
-        rounding = 20;
+        rounding = 10;
         # active_opacity = 0.90;
         # inactive_opacity = 0.90;
         # fullscreen_opacity = 1.0;
@@ -140,6 +140,15 @@ in {
       };
 
       bind = [
+        # Noctalia
+        "$mainMod, D, exec, noctalia-shell ipc call launcher toggle"
+        "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
+        "$mainMod, Escape, exec, noctalia-shell ipc call sessionMenu lockAndSuspend"
+        "$mainMod SHIFT, Escape, exec, noctalia-shell ipc call sessionMenu toggle"
+        "$mainMod, W, exec, noctalia-shell ipc call wallpaper toggle"
+        "$mainMod, V, exec, noctalia-shell ipc call launcher clipboard"
+        "$mainMod, comma, exec, noctalia-shell ipc call settings toggle"
+
         # hyprspace
         # "$mainMod, Tab, exec, overview:toggle"
         # ", escape, hyprtasking:if_active, hyprtasking:toggle cursor"
@@ -158,17 +167,15 @@ in {
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, togglefloating,"
         # "$mainMod, D, exec, fuzzel"
-        "$mainMod, D, global, caelestia:launcher"
+        # "$mainMod, D, global, caelestia:launcher"
         "$mainMod SHIFT, D, exec, vesktop"
         "$mainMod SHIFT, S, exec, spotify"
-        "$mainMod, Escape, exec, swaylock"
-        "$mainMod SHIFT, Escape, exec, shutdown-script"
+        # "$mainMod, Escape, exec, swaylock"
+        # "$mainMod SHIFT, Escape, exec, shutdown-script"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
         "$mainMod, U, exec, thunar"
-        "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
         "$mainMod, C ,exec, hyprpicker -a"
-        "$mainMod, W,exec, wallpaper-picker"
         "$mainMod SHIFT, W, exec, vm-start"
         "$mainMod SHIFT, H, exec, toggle-hdr"
 
@@ -245,7 +252,7 @@ in {
         "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
 
         # clipboard manager
-        "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+        # "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
       ];
 
       # mouse binding

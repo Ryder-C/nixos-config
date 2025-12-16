@@ -5,10 +5,10 @@
     ./hyprland.nix
     ./config.nix
     ./hyprlock.nix
-    # ./hypridle.nix
+    ./hypridle.nix
     # ./hyprpanel.nix
     # ./hyprtasking.nix
-    ./caelestia.nix
+    # ./caelestia.nix
     ./variables.nix
   ];
 }

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   fonts.fontconfig = {
     enable = true;
 
@@ -35,8 +39,8 @@
       package = pkgs.dracula-theme;
     };
     # iconTheme = {
-    #   name = "Dracula";
-    #   package = pkgs.dracula-icon-theme;
+    #   name = lib.mkForce "Papirus-Dark";
+    #   package = lib.mkForce pkgs.papirus-icon-theme;
     # };
     font = {
       name = "JetBrainsMono Nerd Font";

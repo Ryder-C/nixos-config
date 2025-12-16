@@ -4,20 +4,17 @@
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
-        # ignore_dbus_inhibit = false;
-        lock_cmd = "pidof swaylock || swaylock";
+        lock_cmd = "noctalia-shell ipc call lockScreen lock";
         before_sleep_cmd = "loginctl lock-session";
-        # ignore_systemd_inhibit = false;
-        # only_inactive_monitors = false;
       };
 
       listener = [
         # Dim screen after 2.5 min
-        {
-          timeout = 150;
-          "on-timeout" = "brightnessctl -s set 10";
-          "on-resume" = "brightnessctl -r";
-        }
+        # {
+        #   timeout = 150;
+        #   "on-timeout" = "brightnessctl -s set 10";
+        #   "on-resume" = "brightnessctl -r";
+        # }
 
         # Lock screen after 5 min
         {

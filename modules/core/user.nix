@@ -39,7 +39,11 @@
     "vm.max_map_count" = 16777216;
     "fs.file-max" = 524288;
   };
-
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono # Highly Recommended: General UI icons often rely on this
+    noto-fonts
+    noto-fonts-color-emoji # For emoji support in the launcher
+  ];
   # See RAM, ZRAM & Swap
   swapDevices = [
     {
