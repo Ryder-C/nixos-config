@@ -26,6 +26,6 @@
     # enableNvidiaPatches = false;
     systemd.enable = true;
 
-    # plugins = [inputs.hyprspace.packages.${pkgs.system}.Hyprspace];
+    plugins = [inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo];
   };
 }

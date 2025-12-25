@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MONITOR="DP-4"
+MONITOR="DP-5"
 NOTIF_ID=9910
 STATE_FILE="/tmp/hypr-hdr-active"
 

@@ -39,6 +39,12 @@ in {
     gifsicle # gif utility
     gtrash # rm replacement, put deleted files in system trash
     gtt # google translate TUI
+    (heroic.override {
+      extraPkgs = pkgs: [
+        pkgs.gamescope
+        pkgs.gamemode
+      ];
+    })
     hexdump
     jellyfin-media-player
     jdk17 # java

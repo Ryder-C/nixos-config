@@ -1,11 +1,13 @@
 {pkgs, ...}: {
-  boot.loader.systemd-boot = {
-    enable = true;
-    # configurationLimit = 10;
+  boot = {
+    loader.systemd-boot = {
+      enable = true;
+      # configurationLimit = 10;
+    };
+    initrd.systemd.network.wait-online.enable = false;
+    loader.efi.canTouchEfiVariables = true;
+    supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = ["nvidia-drm.modeset=1" "nvidia-drm.fbdev=1"];
   };
-  boot.initrd.systemd.network.wait-online.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 }

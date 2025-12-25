@@ -150,8 +150,7 @@ in {
         "$mainMod, comma, exec, noctalia-shell ipc call settings toggle"
 
         # hyprspace
-        # "$mainMod, Tab, exec, overview:toggle"
-        # ", escape, hyprtasking:if_active, hyprtasking:toggle cursor"
+        "$mainMod, Tab, exec, hyprexpo:expo, toggle"
 
         # show keybinds list
         "$mainMod, F1, exec, show-keybinds"
@@ -354,7 +353,11 @@ in {
 
       xwayland {
         force_zero_scaling = true
+        create_abstract_socket = true
       }
+
+      env = GDK_SCALE,1.5
+      env = XCURSOR_SIZE,22
 
       experimental {
         xx_color_management_v4 = true

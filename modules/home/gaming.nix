@@ -16,6 +16,7 @@
 
     ## Minecraft
     stablePkgs.prismlauncher
+    glfw
 
     ## Cli games
     _2048-in-terminal
