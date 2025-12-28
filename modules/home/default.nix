@@ -1,5 +1,7 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
+    inputs.niri.homeModules.niri
     inputs.catppuccin.homeModules.catppuccin
 
     # ./aseprite/aseprite.nix # pixel art editor
@@ -14,10 +16,12 @@
     ./development.nix
     ./browser.nix # firefox based browser
     # ./fuzzel.nix # launcher
+    # ./fuzzel.nix
     ./gaming.nix # packages related to gaming
     ./git.nix # version control
     ./gtk.nix # gtk theme
-    ./hyprland # window manager
+    # ./hyprland # window manager
+    ./niri
     # ./kitty.nix # terminal
     # ./wezterm.nix
     ./alacritty.nix
