@@ -150,7 +150,7 @@ in {
         "$mainMod, comma, exec, noctalia-shell ipc call settings toggle"
 
         # hyprspace
-        "$mainMod, Tab, exec, hyprexpo:expo, toggle"
+        # "$mainMod, Tab, hyprexpo:expo, toggle"
 
         # show keybinds list
         "$mainMod, F1, exec, show-keybinds"
@@ -159,7 +159,7 @@ in {
         "$mainMod, Return, exec, alacritty"
         "ALT, Return, exec, alacritty --title float_alacritty"
         "$mainMod SHIFT, Return, exec, alacritty --start-as=fullscreen -o 'font_size=16'"
-        "$mainMod, B, exec, zen"
+        "$mainMod, B, exec, brave"
         "$mainMod, Q, killactive,"
         # "$mainMod, Q, hyprtasking:killhovered"
         "$mainMod, F, fullscreen, 0"
@@ -265,6 +265,10 @@ in {
         "float 1, match:class ^(Waydroid)$"
         "center 1, match:class ^(Waydroid)$"
 
+        "float 1, match:class ^(waydroid.com.supercell.clashroyale)$"
+        "center 1, match:class ^(waydroid.com.supercell.clashroyale)$"
+        "size 720 1280, match:class ^(waydroid.com.supercell.clashroyale)$"
+
         "float 1, match:class ^(imv)$"
         "center 1, match:class ^(imv)$"
         "size 1200 725, match:class ^(imv)$"
@@ -341,6 +345,16 @@ in {
         "max_size 1 1, match:class ^(xwaylandvideobridge)$"
         # FIXED: noblur -> no_blur
         "no_blur 1, match:class ^(xwaylandvideobridge)$"
+
+        "float 1, match:class ^(vrmonitor)$"
+        "center 1, match:class ^(vrmonitor)$"
+        "size 800 600, match:class ^(vrmonitor)$"
+
+        "float 1, match:title ^(VR View)$"
+        "size 960 540, match:title ^(VR View)$"
+
+        "float 1, match:title ^(SteamVR)$"
+        "idle_inhibit always, match:class ^(vrmonitor)$"
       ];
     };
 

@@ -16,7 +16,8 @@
 
     ## Minecraft
     stablePkgs.prismlauncher
-    glfw
+    glfw3-minecraft
+    libxkbcommon
 
     ## Cli games
     _2048-in-terminal

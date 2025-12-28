@@ -3,6 +3,7 @@
   hardware = {
     enableAllFirmware = true;
     flipperzero.enable = true;
+    steam-hardware.enable = true;
     opentabletdriver.enable = true;
     uinput.enable = true;
     graphics = {

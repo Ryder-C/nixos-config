@@ -126,6 +126,7 @@ in {
     # kicad
     # (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
+    antigravity
 
     # 3D printing
     orca-slicer

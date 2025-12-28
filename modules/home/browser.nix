@@ -10,8 +10,11 @@
     #   else inputs.zen-browser.packages."${system}".specific
     # )
     inputs.zen-browser.packages.${pkgs.system}.default
+    brave
+    google-chrome
   ];
   home.sessionVariables = {
-    BROWSER = "${inputs.zen-browser.packages.${pkgs.system}.default}";
+    # BROWSER = "${inputs.zen-browser.packages.${pkgs.system}.default}";
+    BROWSER = "${pkgs.brave}/bin/brave";
   };
 }

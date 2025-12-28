@@ -21,7 +21,7 @@
     ./aagl.nix
     ./greetd.nix
     # ./nixarr.nix
-    # ./monado.nix
+    ./monado.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
