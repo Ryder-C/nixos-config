@@ -162,9 +162,9 @@ in {
 
   xdg = {
     dataFile = {
-      "applications/flatpak" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";
-      };
+      # "applications/flatpak" = {
+      #   source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";
+      # };
       "icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg";
       };

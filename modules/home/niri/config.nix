@@ -39,6 +39,7 @@
 
   programs.niri.settings = {
     prefer-no-csd = true;
+    hotkey-overlay.skip-at-startup = true;
 
     input = {
       keyboard = {
@@ -56,7 +57,7 @@
     };
 
     outputs = {
-      "DP-5" = {
+      "DP-6" = {
         mode = {
           width = 3840;
           height = 2160;
@@ -69,7 +70,7 @@
           y = 0;
         };
       };
-      "DP-4" = {
+      "DP-5" = {
         mode = {
           width = 3840;
           height = 2160;
@@ -221,6 +222,8 @@
       "Mod+Shift+Left".action.move-window-to-monitor-left = { };
       "Mod+Shift+Right".action.move-window-to-monitor-right = { };
 
+      "Mod+C".action.center-column = { };
+
       # Workspaces
       "Mod+1".action.focus-workspace = 1;
       "Mod+2".action.focus-workspace = 2;
@@ -241,6 +244,8 @@
       "Mod+Shift+7".action.move-column-to-workspace = 7;
       "Mod+Shift+8".action.move-column-to-workspace = 8;
       "Mod+Shift+9".action.move-column-to-workspace = 9;
+
+      "Mod+O".action.toggle-overview = { };
 
       # Multimedia
       "XF86AudioRaiseVolume".action.spawn = [
@@ -283,6 +288,9 @@
       "Mod+Shift+F".action.fullscreen-window = { };
       "Mod+Space".action.switch-preset-column-width = { };
       "Mod+Shift+Space".action.toggle-window-floating = { };
+
+      "Mod+BracketLeft".action.consume-window-into-column = { };
+      "Mod+BracketRight".action.expel-window-from-column = { };
 
       "Mod+Shift+Q".action.quit = {
         skip-confirmation = true;
