@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   services.mako = {
     enable = true;
     extraConfig = ''

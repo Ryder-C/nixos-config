@@ -1,13 +1,15 @@
 {
   pkgs,
-  stablePkgs,
   inputs,
   ...
 }: {
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://nix-gaming.cachix.org"
         "https://cuda-maintainers.cachix.org"
@@ -53,11 +55,14 @@
     openrgb-with-all-plugins
     icu
     nodejs
-    (rust-bin.stable.latest.default.override
-      {
-        extensions = ["rust-src" "rustfmt" "clippy"];
-        targets = ["x86_64-unknown-linux-gnu"];
-      })
+    (rust-bin.stable.latest.default.override {
+      extensions = [
+        "rust-src"
+        "rustfmt"
+        "clippy"
+      ];
+      targets = ["x86_64-unknown-linux-gnu"];
+    })
     rust-analyzer
 
     mesa-demos
@@ -76,9 +81,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true;
   services.logind = {
-    powerKey = "poweroff";
     settings = {
       Login = {
+        HandlePowerKey = "poweroff";
         HandleLidSwitch = "ignore";
         HandleLidSwitchDocked = "ignore";
         HandleLidSwitchExternalPower = "ignore";

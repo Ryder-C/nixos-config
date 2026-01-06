@@ -58,10 +58,6 @@
 
     vesc-tool.url = "github:vedderb/vesc_tool";
 
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
-
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     nix-yazi-plugins = {
@@ -105,6 +101,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim.url = "github:Ryder-C/nixvim";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
@@ -123,6 +124,11 @@
       url = "github:thnikk/fuzzel-scripts";
       flake = false;
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -138,8 +144,21 @@
       config.allowUnfree = true;
     };
   in {
+    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+      src = ./.;
+      hooks = {
+        deadnix.enable = true;
+        statix.enable = true;
+        alejandra.enable = true;
+      };
+    };
+
+    devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+      inherit (self.checks.${system}.pre-commit-check) shellHook;
+      buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+    };
+
     nixosConfigurations = {
-      nixos = self.nixosConfigurations.desktop;
       desktop = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [(import ./hosts/desktop)];
