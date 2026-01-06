@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   home.packages = with pkgs; [
     grim
     slurp
@@ -91,9 +90,9 @@
       gaps = 4;
       center-focused-column = "never";
       preset-column-widths = [
-        { proportion = 0.33333; }
-        { proportion = 0.5; }
-        { proportion = 0.66667; }
+        {proportion = 0.33333;}
+        {proportion = 0.5;}
+        {proportion = 0.66667;}
       ];
       default-column-width = {
         proportion = 0.5;
@@ -117,36 +116,36 @@
           "import-environment"
         ];
       }
-      { command = [ "vesktop" ]; }
+      {command = ["vesktop"];}
     ];
 
     binds = {
-      "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-      "Mod+Return".action.spawn = [ "alacritty" ];
-      "Mod+B".action.spawn = [ "brave" ];
-      "Mod+D".action.spawn = [ "vesktop" ];
+      "Mod+Shift+Slash".action.show-hotkey-overlay = {};
+      "Mod+Return".action.spawn = ["alacritty"];
+      "Mod+B".action.spawn = ["brave"];
+      "Mod+D".action.spawn = ["vesktop"];
 
-      "Mod+Q".action.close-window = { };
+      "Mod+Q".action.close-window = {};
 
       # Colemak Focus
-      "Mod+m".action.focus-column-left = { };
-      "Mod+n".action.focus-window-down = { };
-      "Mod+e".action.focus-window-up = { };
-      "Mod+i".action.focus-column-right = { };
+      "Mod+m".action.focus-column-left = {};
+      "Mod+n".action.focus-window-down = {};
+      "Mod+e".action.focus-window-up = {};
+      "Mod+i".action.focus-column-right = {};
 
       # Colemak Move
-      "Mod+Shift+m".action.move-column-left = { };
-      "Mod+Shift+n".action.move-window-down = { };
-      "Mod+Shift+e".action.move-window-up = { };
-      "Mod+Shift+i".action.move-column-right = { };
+      "Mod+Shift+m".action.move-column-left = {};
+      "Mod+Shift+n".action.move-window-down = {};
+      "Mod+Shift+e".action.move-window-up = {};
+      "Mod+Shift+i".action.move-column-right = {};
 
       # Monitor Focus
-      "Mod+Left".action.focus-monitor-left = { };
-      "Mod+Right".action.focus-monitor-right = { };
-      "Mod+Shift+Left".action.move-window-to-monitor-left = { };
-      "Mod+Shift+Right".action.move-window-to-monitor-right = { };
+      "Mod+Left".action.focus-monitor-left = {};
+      "Mod+Right".action.focus-monitor-right = {};
+      "Mod+Shift+Left".action.move-window-to-monitor-left = {};
+      "Mod+Shift+Right".action.move-window-to-monitor-right = {};
 
-      "Mod+C".action.center-column = { };
+      "Mod+C".action.center-column = {};
 
       # Workspaces
       "Mod+1".action.focus-workspace = 1;
@@ -169,7 +168,7 @@
       "Mod+Shift+8".action.move-column-to-workspace = 8;
       "Mod+Shift+9".action.move-column-to-workspace = 9;
 
-      "Mod+O".action.toggle-overview = { };
+      "Mod+O".action.toggle-overview = {};
 
       # Multimedia
       # "XF86AudioRaiseVolume".action.spawn = [
@@ -208,13 +207,13 @@
       # "Mod+Ctrl+P".action.screenshot-window = { };
       # "Mod+Alt+P".action.screenshot = { };
 
-      "Mod+F".action.maximize-column = { };
-      "Mod+Shift+F".action.fullscreen-window = { };
+      "Mod+F".action.maximize-column = {};
+      "Mod+Shift+F".action.fullscreen-window = {};
       # "Mod+Space".action.switch-preset-column-width = { };
-      "Mod+Shift+Space".action.toggle-window-floating = { };
+      "Mod+Shift+Space".action.toggle-window-floating = {};
 
-      "Mod+BracketLeft".action.consume-window-into-column = { };
-      "Mod+BracketRight".action.expel-window-from-column = { };
+      "Mod+BracketLeft".action.consume-window-into-column = {};
+      "Mod+BracketRight".action.expel-window-from-column = {};
 
       "Mod+Shift+Q".action.quit = {
         skip-confirmation = true;

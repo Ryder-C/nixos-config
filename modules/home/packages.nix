@@ -5,10 +5,9 @@
   stablePkgs,
   config,
   ...
-}:
-let
+}: let
   # _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
-  toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix { };
+  toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
 
   zink-env = [
     "__GLX_VENDOR_LIBRARY_NAME=mesa"
@@ -17,9 +16,8 @@ let
     "GALLIUM_DRIVER=zink"
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
-in
-{
-  imports = [ inputs.flatpaks.homeModules.default ];
+in {
+  imports = [inputs.flatpaks.homeModules.default];
 
   home.packages = with pkgs; [
     # _2048
@@ -123,7 +121,7 @@ in
     google-chrome
     zoom-us
 
-    (bottles.override { removeWarningPopup = true; })
+    (bottles.override {removeWarningPopup = true;})
     vscode
     # kicad
     # (stablePkgs.blender.override {cudaSupport = true;})

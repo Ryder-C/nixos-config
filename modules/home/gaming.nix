@@ -3,8 +3,7 @@
   stablePkgs,
   inputs,
   ...
-}:
-{
+}: {
   home.packages = with pkgs; [
     ## Utils
     # gamemode

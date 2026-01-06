@@ -1,5 +1,4 @@
-{ inputs, ... }:
-{
+{inputs, ...}: {
   imports = [
     inputs.niri.homeModules.niri
     inputs.catppuccin.homeModules.catppuccin

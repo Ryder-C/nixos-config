@@ -2,9 +2,8 @@
   inputs,
   username,
   ...
-}:
-{
-  imports = [ inputs.noctalia.homeModules.default ];
+}: {
+  imports = [inputs.noctalia.homeModules.default];
 
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;

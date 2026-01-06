@@ -1,11 +1,5 @@
-{
-  inputs,
-  pkgs,
-  stablePkgs,
-  ...
-}:
-{
-  imports = [ inputs.nixcord.homeModules.nixcord ];
+{inputs, ...}: {
+  imports = [inputs.nixcord.homeModules.nixcord];
 
   programs.nixcord = {
     enable = true;

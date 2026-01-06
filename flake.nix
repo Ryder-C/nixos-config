@@ -125,63 +125,60 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      nixpkgs-stable,
-      self,
-      ...
-    }@inputs:
-    let
-      username = "ryder";
-      system = "x86_64-linux";
-      stablePkgs = import nixpkgs-stable {
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    self,
+    ...
+  } @ inputs: let
+    username = "ryder";
+    system = "x86_64-linux";
+    stablePkgs = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in {
+    nixosConfigurations = {
+      nixos = self.nixosConfigurations.desktop;
+      desktop = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
+        modules = [(import ./hosts/desktop)];
+        specialArgs = {
+          host = "desktop";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
+        };
       };
-    in
-    {
-      nixosConfigurations = {
-        nixos = self.nixosConfigurations.desktop;
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/desktop) ];
-          specialArgs = {
-            host = "desktop";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
+      laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [(import ./hosts/laptop)];
+        specialArgs = {
+          host = "laptop";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
         };
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/laptop) ];
-          specialArgs = {
-            host = "laptop";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/vm) ];
-          specialArgs = {
-            host = "vm";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
+      };
+      vm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [(import ./hosts/vm)];
+        specialArgs = {
+          host = "vm";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
         };
       };
     };
+  };
 }
