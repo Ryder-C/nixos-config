@@ -45,16 +45,17 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-monitor = {
+      url = "github:antonjah/nix-monitor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri.url = "github:sodiboo/niri-flake";
-    # hyprtasking = {
-    #   url = "github:raybbian/hyprtasking";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    # hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #
-    #   inputs.hyprland.follows = "hyprland";
-    # };
 
     vesc-tool.url = "github:vedderb/vesc_tool";
 
@@ -121,62 +122,59 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      nixpkgs-stable,
-      self,
-      ...
-    }@inputs:
-    let
-      username = "ryder";
-      system = "x86_64-linux";
-      stablePkgs = import nixpkgs-stable {
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    self,
+    ...
+  } @ inputs: let
+    username = "ryder";
+    system = "x86_64-linux";
+    stablePkgs = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+  in {
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
+        modules = [(import ./hosts/desktop)];
+        specialArgs = {
+          host = "desktop";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
+        };
       };
-    in
-    {
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/desktop) ];
-          specialArgs = {
-            host = "desktop";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
+      laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [(import ./hosts/laptop)];
+        specialArgs = {
+          host = "laptop";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
         };
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/laptop) ];
-          specialArgs = {
-            host = "laptop";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ (import ./hosts/vm) ];
-          specialArgs = {
-            host = "vm";
-            inherit
-              self
-              inputs
-              username
-              stablePkgs
-              ;
-          };
+      };
+      vm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [(import ./hosts/vm)];
+        specialArgs = {
+          host = "vm";
+          inherit
+            self
+            inputs
+            username
+            stablePkgs
+            ;
         };
       };
     };
+  };
 }

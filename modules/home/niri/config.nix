@@ -2,12 +2,11 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   home.packages = with pkgs; [
     grim
     slurp
-    satty
+    swappy
     # hyprlock # Can work with Niri as it depends on ext-session-lock
     xwayland-satellite # Niri doesn't support XWayland automatically without this sometimes, or built-in? Niri recently added XWayland support, but let's check config.
   ];
@@ -78,12 +77,12 @@
         };
         scale = 1.5;
         position = {
-          x = -1440;
-          y = -560;
+          x = 2560;
+          y = 0;
         };
-        transform = {
-          rotation = 90;
-        };
+        # transform = {
+        #   rotation = 90;
+        # };
       };
     };
 
@@ -91,9 +90,9 @@
       gaps = 4;
       center-focused-column = "never";
       preset-column-widths = [
-        { proportion = 0.33333; }
-        { proportion = 0.5; }
-        { proportion = 0.66667; }
+        {proportion = 0.33333;}
+        {proportion = 0.5;}
+        {proportion = 0.66667;}
       ];
       default-column-width = {
         proportion = 0.5;
@@ -110,8 +109,6 @@
     };
 
     spawn-at-startup = [
-      { command = [ "vesktop" ]; }
-      { command = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ]; }
       {
         command = [
           "systemctl"
@@ -119,110 +116,36 @@
           "import-environment"
         ];
       }
-      {
-        command = [
-          "dbus-update-activation-environment"
-          "--systemd"
-          "WAYLAND_DISPLAY"
-          "XDG_CURRENT_DESKTOP"
-        ];
-      }
-      { command = [ "nm-applet" ]; }
-      {
-        command = [
-          "wl-paste"
-          "--watch"
-          "cliphist"
-          "store"
-        ];
-      }
-      # {
-      #   command = [
-      #     "sh"
-      #     "-c"
-      #     "swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f | shuf -n1)"
-      #   ];
-      # }
-      # { command = ["hyprlock"]; } # Optional, can enable later
+      {command = ["vesktop"];}
     ];
 
     binds = {
-      "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-      "Mod+Return".action.spawn = [ "alacritty" ];
-      "Mod+B".action.spawn = [ "brave" ];
+      "Mod+Shift+Slash".action.show-hotkey-overlay = {};
+      "Mod+Return".action.spawn = ["alacritty"];
+      "Mod+B".action.spawn = ["brave"];
+      "Mod+D".action.spawn = ["vesktop"];
 
-      # Noctalia
-      "Mod+D".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "launcher"
-        "toggle"
-      ];
-      "Mod+L".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "lockScreen"
-        "lock"
-      ];
-      "Mod+Escape".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "sessionMenu"
-        "lockAndSuspend"
-      ];
-      "Mod+Shift+Escape".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "sessionMenu"
-        "toggle"
-      ];
-      "Mod+W".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "wallpaper"
-        "toggle"
-      ];
-      "Mod+V".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "launcher"
-        "clipboard"
-      ];
-      "Mod+Comma".action.spawn = [
-        "noctalia-shell"
-        "ipc"
-        "call"
-        "settings"
-        "toggle"
-      ];
-
-      "Mod+Q".action.close-window = { };
+      "Mod+Q".action.close-window = {};
 
       # Colemak Focus
-      "Mod+m".action.focus-column-left = { };
-      "Mod+n".action.focus-window-down = { };
-      "Mod+e".action.focus-window-up = { };
-      "Mod+i".action.focus-column-right = { };
+      "Mod+m".action.focus-column-left = {};
+      "Mod+n".action.focus-window-down = {};
+      "Mod+e".action.focus-window-up = {};
+      "Mod+i".action.focus-column-right = {};
 
       # Colemak Move
-      "Mod+Shift+m".action.move-column-left = { };
-      "Mod+Shift+n".action.move-window-down = { };
-      "Mod+Shift+e".action.move-window-up = { };
-      "Mod+Shift+i".action.move-column-right = { };
+      "Mod+Shift+m".action.move-column-left = {};
+      "Mod+Shift+n".action.move-window-down = {};
+      "Mod+Shift+e".action.move-window-up = {};
+      "Mod+Shift+i".action.move-column-right = {};
 
       # Monitor Focus
-      "Mod+Left".action.focus-monitor-left = { };
-      "Mod+Right".action.focus-monitor-right = { };
-      "Mod+Shift+Left".action.move-window-to-monitor-left = { };
-      "Mod+Shift+Right".action.move-window-to-monitor-right = { };
+      "Mod+Left".action.focus-monitor-left = {};
+      "Mod+Right".action.focus-monitor-right = {};
+      "Mod+Shift+Left".action.move-window-to-monitor-left = {};
+      "Mod+Shift+Right".action.move-window-to-monitor-right = {};
 
-      "Mod+C".action.center-column = { };
+      "Mod+C".action.center-column = {};
 
       # Workspaces
       "Mod+1".action.focus-workspace = 1;
@@ -245,52 +168,52 @@
       "Mod+Shift+8".action.move-column-to-workspace = 8;
       "Mod+Shift+9".action.move-column-to-workspace = 9;
 
-      "Mod+O".action.toggle-overview = { };
+      "Mod+O".action.toggle-overview = {};
 
       # Multimedia
-      "XF86AudioRaiseVolume".action.spawn = [
-        "pamixer"
-        "-i"
-        "2"
-      ];
-      "XF86AudioLowerVolume".action.spawn = [
-        "pamixer"
-        "-d"
-        "2"
-      ];
-      "XF86AudioMute".action.spawn = [
-        "pamixer"
-        "-t"
-      ];
-      "XF86AudioPlay".action.spawn = [
-        "playerctl"
-        "play-pause"
-      ];
-      "XF86AudioNext".action.spawn = [
-        "playerctl"
-        "next"
-      ];
-      "XF86AudioPrev".action.spawn = [
-        "playerctl"
-        "previous"
-      ];
+      # "XF86AudioRaiseVolume".action.spawn = [
+      #   "pamixer"
+      #   "-i"
+      #   "2"
+      # ];
+      # "XF86AudioLowerVolume".action.spawn = [
+      #   "pamixer"
+      #   "-d"
+      #   "2"
+      # ];
+      # "XF86AudioMute".action.spawn = [
+      #   "pamixer"
+      #   "-t"
+      # ];
+      # "XF86AudioPlay".action.spawn = [
+      #   "playerctl"
+      #   "play-pause"
+      # ];
+      # "XF86AudioNext".action.spawn = [
+      #   "playerctl"
+      #   "next"
+      # ];
+      # "XF86AudioPrev".action.spawn = [
+      #   "playerctl"
+      #   "previous"
+      # ];
 
       # Screenshots
-      "Mod+Shift+P".action.spawn = [
-        "sh"
-        "-c"
-        "grim -g \"$(slurp)\" - | satty --filename -"
-      ];
-      "Mod+Ctrl+P".action.screenshot-window = { };
-      "Mod+Alt+P".action.screenshot = { };
+      # "Mod+Shift+P".action.spawn = [
+      #   "sh"
+      #   "-c"
+      #   "grim -g \"$(slurp)\" - | satty --filename -"
+      # ];
+      # "Mod+Ctrl+P".action.screenshot-window = { };
+      # "Mod+Alt+P".action.screenshot = { };
 
-      "Mod+F".action.maximize-column = { };
-      "Mod+Shift+F".action.fullscreen-window = { };
-      "Mod+Space".action.switch-preset-column-width = { };
-      "Mod+Shift+Space".action.toggle-window-floating = { };
+      "Mod+F".action.maximize-column = {};
+      "Mod+Shift+F".action.fullscreen-window = {};
+      # "Mod+Space".action.switch-preset-column-width = { };
+      "Mod+Shift+Space".action.toggle-window-floating = {};
 
-      "Mod+BracketLeft".action.consume-window-into-column = { };
-      "Mod+BracketRight".action.expel-window-from-column = { };
+      "Mod+BracketLeft".action.consume-window-into-column = {};
+      "Mod+BracketRight".action.expel-window-from-column = {};
 
       "Mod+Shift+Q".action.quit = {
         skip-confirmation = true;

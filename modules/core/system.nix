@@ -76,7 +76,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   nixpkgs.config.allowUnfree = true;
   services.logind = {
-    # Keep system running when lid closes if needed; Hyprland/DPMS will manage displays
+    powerKey = "poweroff";
     settings = {
       Login = {
         HandleLidSwitch = "ignore";

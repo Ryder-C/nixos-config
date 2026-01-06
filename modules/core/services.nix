@@ -40,6 +40,7 @@ in {
     mode = "0444";
   };
 
+  systemd.user.services.niri-flake-polkit.enable = false;
   systemd = {
     tmpfiles.rules = [
       "d ${profileBase} 0755 root root - -"

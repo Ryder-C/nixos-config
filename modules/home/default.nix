@@ -41,7 +41,8 @@
     ./swaylock.nix # lock screen
     # ./vscodium.nix # vscode fork
     # ./waybar # status bar
-    ./noctalia.nix
+    # ./noctalia.nix
+    ./dank.nix
     ./yazi.nix
 
     # ./zsh.nix # shell
