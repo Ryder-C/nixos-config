@@ -3,7 +3,8 @@
   stablePkgs,
   inputs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     ## Utils
     # gamemode
@@ -20,7 +21,7 @@
     libxkbcommon
 
     ## Cli games
-    _2048-in-terminal
+    # _2048-in-terminal
     vitetris
     nethack
 

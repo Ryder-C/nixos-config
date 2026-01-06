@@ -5,9 +5,10 @@
   stablePkgs,
   config,
   ...
-}: let
-  _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
-  toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
+}:
+let
+  # _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
+  toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix { };
 
   zink-env = [
     "__GLX_VENDOR_LIBRARY_NAME=mesa"
@@ -16,11 +17,12 @@
     "GALLIUM_DRIVER=zink"
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
-in {
-  imports = [inputs.flatpaks.homeModules.default];
+in
+{
+  imports = [ inputs.flatpaks.homeModules.default ];
 
   home.packages = with pkgs; [
-    _2048
+    # _2048
 
     asciiquarium-transparent
     audacity
@@ -121,7 +123,7 @@ in {
     google-chrome
     zoom-us
 
-    (bottles.override {removeWarningPopup = true;})
+    (bottles.override { removeWarningPopup = true; })
     vscode
     # kicad
     # (stablePkgs.blender.override {cudaSupport = true;})
@@ -174,7 +176,11 @@ in {
       name = "OrcaSlicer";
       exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
       icon = "OrcaSlicer";
-      categories = ["Graphics" "3DGraphics" "Engineering"];
+      categories = [
+        "Graphics"
+        "3DGraphics"
+        "Engineering"
+      ];
       mimeType = [
         "model/stl"
         "model/3mf"

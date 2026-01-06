@@ -1,9 +1,11 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   replay-script = pkgs.writeShellScript "replay-notify" ''
     #!/usr/bin/env bash
     pkill -SIGUSR1 -f gpu-screen-recorder && notify-send -u low "Replay saved" "$(date +%H:%M:%S)"
   '';
-in {
+in
+{
   wayland.windowManager.hyprland = {
     settings = {
       # autostart

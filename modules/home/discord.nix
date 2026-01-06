@@ -1,22 +1,27 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # discord
-    # (discord.override {
-    #  withVencord = true;
-    # })
-    vesktop
-  ];
-  xdg.configFile."vesktop/themes/custom.css".text = ''
-    /**
-    * @name Catppuccin Mocha
-    * @author winston#0001
-    * @authorId 505490445468696576
-    * @version 0.2.0
-    * @description 🎮 Soothing pastel theme for Discord
-    * @website https://github.com/catppuccin/discord
-    * @invite r6Mdz5dpFc
-    * **/
+{
+  inputs,
+  pkgs,
+  stablePkgs,
+  ...
+}:
+{
+  imports = [ inputs.nixcord.homeModules.nixcord ];
 
-    @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
-  '';
+  programs.nixcord = {
+    enable = true;
+    equibop.enable = true;
+    # vesktop.enable = true;
+    # vesktop.package = stablePkgs.vesktop;
+    config = {
+      themeLinks = [
+        "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+      ];
+      plugins = {
+        gameActivityToggle.enable = true;
+        silentTyping.enable = true;
+        typingIndicator.enable = true;
+        shikiCodeblocks.enable = true;
+      };
+    };
+  };
 }
