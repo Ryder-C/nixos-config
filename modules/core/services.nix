@@ -101,7 +101,11 @@ in {
     flatpak.enable = true;
     seatd.enable = true;
 
-    hardware.openrgb.enable = true;
+    hardware.openrgb = {
+      enable = true;
+      motherboard = "amd";
+      startupProfile = "main.orp";
+    };
 
     pia-vpn = {
       enable = true;

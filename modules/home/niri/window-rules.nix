@@ -19,8 +19,8 @@
         };
       }
       {
-        matches = [{app-id = "^vesktop$";}];
-        open-on-output = "DP-4";
+        matches = [{app-id = "^equibop$";}];
+        open-on-output = "DP-5";
         open-maximized = true;
       }
       {

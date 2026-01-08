@@ -116,7 +116,7 @@
           "import-environment"
         ];
       }
-      {command = ["vesktop"];}
+      {command = ["equibop"];}
     ];
 
     binds = {
@@ -219,10 +219,10 @@
         skip-confirmation = true;
       };
 
-      "XF86PowerOff".action.spawn = [
-        "systemctl"
-        "poweroff"
-      ];
+      # "XF86PowerOff".action.spawn = [
+      #   "systemctl"
+      #   "poweroff"
+      # ];
     };
   };
 }
