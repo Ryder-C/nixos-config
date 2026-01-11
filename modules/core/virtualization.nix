@@ -34,7 +34,6 @@
 
   programs = {
     virt-manager.enable = true;
-    adb.enable = true;
   };
 
   # Manage the virtualisation services

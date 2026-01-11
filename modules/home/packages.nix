@@ -114,8 +114,7 @@ in {
     inputs.alejandra.defaultPackage.${pkgs.system}
     inputs.vesc-tool.packages.${pkgs.system}.default
 
-    zed-editor # code editor
-    codex
+    # stablePkgs.zed-editor # code editor
     tinymist
 
     google-chrome
