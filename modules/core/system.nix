@@ -49,6 +49,7 @@
     wget
     git
     gparted # partition manager
+    bcachefs-tools
     inetutils
     nix-search-cli
     wireguard-tools

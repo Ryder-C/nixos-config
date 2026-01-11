@@ -16,8 +16,8 @@ in {
 
   nixarr = {
     enable = true;
-    mediaDir = "/storage4tb/media";
-    stateDir = "/storage4tb/.state";
+    mediaDir = "/storage/media";
+    stateDir = "/storage/.state";
 
     jellyfin.enable = true;
 

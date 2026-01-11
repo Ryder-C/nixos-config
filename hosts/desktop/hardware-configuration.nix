@@ -32,14 +32,10 @@
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    "/storage4tb" = {
-      device = "/dev/disk/by-uuid/251e9b79-2700-4795-adbb-2a4f9fb22d15";
-      fsType = "ext4";
-    };
-
-    "/storage1tb" = {
-      device = "/dev/disk/by-uuid/206616006615D77E";
-      fsType = "ntfs";
+    "/storage" = {
+      device = "/dev/disk/by-uuid/7ab44d81-1059-45ff-bdd5-2cf0583dae7e";
+      fsType = "bcachefs";
+      options = ["compression=zstd" "noatime" "nofail" "background_compression=zstd"];
     };
   };
 
