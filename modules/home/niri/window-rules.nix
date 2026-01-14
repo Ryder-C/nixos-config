@@ -49,6 +49,10 @@
         ];
         open-floating = true;
       }
+      {
+        matches = [{app-id = "^.blueman-manager-wrapped$";}];
+        open-floating = true;
+      }
     ];
   };
 }
