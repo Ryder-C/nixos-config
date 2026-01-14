@@ -31,6 +31,24 @@
         matches = [{app-id = "^antigravity$";}];
         open-maximized = true;
       }
+      {
+        matches = [
+          {
+            app-id = "^thunar$";
+            title = "^File Operation Progress$";
+          }
+        ];
+        open-floating = true;
+      }
+      {
+        matches = [
+          {
+            app-id = "^thunar$";
+            title = "^Rename";
+          }
+        ];
+        open-floating = true;
+      }
     ];
   };
 }

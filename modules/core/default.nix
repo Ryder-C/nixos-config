@@ -20,7 +20,7 @@
     ./age.nix
     ./aagl.nix
     ./greetd.nix
-    # ./nixarr.nix
+    ./nixarr.nix
     ./monado.nix
   ];
 

@@ -41,6 +41,12 @@ in {
         "anime".enable = true;
       };
     };
+
+    readarr-audiobook = {
+      enable = false;
+      openFirewall = allowOutsideAccess;
+    };
+
     recyclarr = {
       enable = false;
       configuration = {

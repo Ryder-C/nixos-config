@@ -2,10 +2,6 @@
   description = "Ryder's nixos configuration";
 
   inputs = {
-    # ryderpkgs = {
-    #   url = "github:Ryder-C/ryderpkgs";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -128,6 +124,11 @@
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hytale-flatpak = {
+      url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
+      flake = false;
     };
   };
 

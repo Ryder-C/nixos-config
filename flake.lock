@@ -1297,6 +1297,18 @@
         "type": "github"
       }
     },
+    "hytale-flatpak": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-yfzyX5VcmD7Z6+oXdih0kW9GqyxmCY/YKjTUT9nOfMY=",
+        "type": "file",
+        "url": "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak"
+      }
+    },
     "libpng": {
       "flake": false,
       "locked": {
@@ -2097,6 +2109,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprpanel": "hyprpanel",
         "hyprpicker": "hyprpicker",
+        "hytale-flatpak": "hytale-flatpak",
         "mechabar": "mechabar",
         "niri": "niri",
         "nix-citizen": "nix-citizen",

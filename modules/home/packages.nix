@@ -16,6 +16,10 @@
     "GALLIUM_DRIVER=zink"
     "WEBKIT_DISABLE_DMABUF_RENDERER=1"
   ];
+
+  hytale-flatpak = pkgs.runCommand "hytale-launcher.flatpak" {} ''
+    ln -s ${inputs.hytale-flatpak} $out
+  '';
 in {
   imports = [inputs.flatpaks.homeModules.default];
 
@@ -152,9 +156,10 @@ in {
       packages = [
         "flathub:app/org.vinegarhq.Sober/x86_64/stable"
         "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
+        ":${hytale-flatpak}"
       ];
       overrides."tv.plex.PlexDesktop".environment = {
-        QT_STYLE_OVERRIDE = "";
+        QT_QPA_PLATFORM = "xcb";
       };
     };
   };
