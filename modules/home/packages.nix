@@ -145,6 +145,8 @@ in {
     zathura # PDF Viewer
     leetgo
     sunshine
+
+    nur.repos.mio.plezy
   ];
 
   services = {
