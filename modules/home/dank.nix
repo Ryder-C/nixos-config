@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
-    inputs.dms.homeModules.dankMaterialShell.default
-    inputs.dms.homeModules.dankMaterialShell.niri
+    inputs.dms.homeModules.dank-material-shell
+    inputs.dms.homeModules.niri
     inputs.nix-monitor.homeManagerModules.default
   ];
 
@@ -18,7 +18,7 @@
     dankMaterialShell = {
       enable = true;
       enableVPN = false;
-      enableDynamicTheming = false;
+      enableDynamicTheming = true;
 
       systemd = {
         enable = true;
