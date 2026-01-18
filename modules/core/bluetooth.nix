@@ -6,5 +6,5 @@
   };
 
   # bluetooth manager
-  services.blueman.enable = false;
+  services.blueman.enable = true;
 }

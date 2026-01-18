@@ -43,12 +43,6 @@ in {
     gifsicle # gif utility
     gtrash # rm replacement, put deleted files in system trash
     gtt # google translate TUI
-    (heroic.override {
-      extraPkgs = pkgs: [
-        pkgs.gamescope
-        pkgs.gamemode
-      ];
-    })
     hexdump
     jellyfin-media-player
     jdk17 # java
@@ -156,11 +150,16 @@ in {
         "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       };
       packages = [
+        "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
+        "flathub:app/com.heroicgameslauncher.hgl/x86_64/stable"
         "flathub:app/org.vinegarhq.Sober/x86_64/stable"
         "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
         ":${hytale-flatpak}"
+
+        "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
+        "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
       ];
-      overrides."tv.plex.PlexDesktop".environment = {
+      overrides."tv.plex.PlexDesktop".Environment = {
         QT_QPA_PLATFORM = "xcb";
       };
     };
