@@ -9,7 +9,7 @@
     #   then inputs.zen-browser.packages."${system}".generic
     #   else inputs.zen-browser.packages."${system}".specific
     # )
-    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     google-chrome
   ];

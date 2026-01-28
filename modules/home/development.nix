@@ -4,8 +4,6 @@
   inputs,
   ...
 }: {
-  nixpkgs.overlays = [inputs.claude-code.overlays.default];
-
   home.packages = with pkgs; [
     devenv
     vscode
@@ -17,7 +15,7 @@
 
     typst
     typstyle
-    inputs.alejandra.defaultPackage.${pkgs.system}
+    inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
   ];
 
   programs = {

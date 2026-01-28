@@ -37,6 +37,7 @@
     overlays = [
       inputs.rust-overlay.overlays.default
       inputs.nur.overlays.default
+      inputs.claude-code.overlays.default
     ];
 
     config.permittedInsecurePackages = [
@@ -74,7 +75,7 @@
     appimage-run
     steam-run
 
-    inputs.agenix.packages.${system}.default
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   catppuccin = {

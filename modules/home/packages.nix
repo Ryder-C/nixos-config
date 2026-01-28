@@ -110,8 +110,8 @@ in {
     wget
     xdg-utils
     xxd
-    inputs.vesc-tool.packages.${pkgs.system}.default
-    inputs.rypkgs.packages.${pkgs.system}.blink
+    inputs.vesc-tool.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.rypkgs.packages.${pkgs.stdenv.hostPlatform.system}.blink
 
     tinymist
 
@@ -166,6 +166,7 @@ in {
     };
 
     dataFile = {
+      "applications/mimeapps.list".force = true;
       # "applications/flatpak" = {
       #   source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";
       # };
