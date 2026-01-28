@@ -56,6 +56,7 @@ in {
     nix-prefetch-github
     obsidian
     pipes # terminal screensaver
+    # polychromatic # frontend for openrazer
     # plex-desktop
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
@@ -89,7 +90,7 @@ in {
 
     bleachbit # cache cleaner
     cmatrix
-    ncspot
+    spotify-player
     ffmpeg
     imv # image viewer
     killall
@@ -109,21 +110,15 @@ in {
     wget
     xdg-utils
     xxd
-    inputs.alejandra.defaultPackage.${pkgs.system}
     inputs.vesc-tool.packages.${pkgs.system}.default
+    inputs.rypkgs.packages.${pkgs.system}.blink
 
-    # stablePkgs.zed-editor # code editor
     tinymist
 
     google-chrome
     zoom-us
 
     (bottles.override {removeWarningPopup = true;})
-    vscode
-    # kicad
-    # (stablePkgs.blender.override {cudaSupport = true;})
-    obs-studio
-    antigravity
 
     # 3D printing
     orca-slicer
@@ -131,9 +126,6 @@ in {
     #   ${builtins.concatStringsSep "\n" (map (e: "export ${e}") zink-env)}
     #   exec ${pkgs.orca-slicer}/bin/orca-slicer "$@"
     # '')
-
-    typst
-    typstyle
 
     libvlc
     zathura # PDF Viewer
@@ -166,6 +158,13 @@ in {
   };
 
   xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = ["thunar.desktop"];
+      };
+    };
+
     dataFile = {
       # "applications/flatpak" = {
       #   source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";

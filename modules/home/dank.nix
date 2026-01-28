@@ -15,7 +15,7 @@
   };
 
   programs = {
-    dankMaterialShell = {
+    dank-material-shell = {
       enable = true;
       enableVPN = false;
       enableDynamicTheming = true;

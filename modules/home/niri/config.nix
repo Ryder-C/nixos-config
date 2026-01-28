@@ -116,7 +116,7 @@
           "import-environment"
         ];
       }
-      {command = ["equibop"];}
+      {command = ["vesktop"];}
     ];
 
     binds = {

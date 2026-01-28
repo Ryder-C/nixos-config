@@ -3,6 +3,8 @@
   inputs,
   ...
 }: {
+  imports = [inputs.catppuccin.nixosModules.catppuccin];
+
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -16,14 +18,12 @@
         "https://cache.nixos.org/"
         "https://nix-community.cachix.org"
         "https://hyprland.cachix.org"
-        "https://catppuccin.cachix.org"
       ];
       trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
       ];
     };
     gc = {
@@ -48,6 +48,7 @@
     ntfs3g
     wget
     git
+    # openrazer-daemon
     gparted # partition manager
     bcachefs-tools
     inetutils
@@ -75,6 +76,16 @@
 
     inputs.agenix.packages.${system}.default
   ];
+
+  catppuccin = {
+    enable = true;
+    cache.enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+
+    tty.enable = false;
+    limine.enable = false;
+  };
 
   services.udev.packages = [pkgs.via];
 

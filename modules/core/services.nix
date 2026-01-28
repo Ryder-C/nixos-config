@@ -44,6 +44,7 @@ in {
   systemd = {
     tmpfiles.rules = [
       "d ${profileBase} 0755 root root - -"
+      "d /storage/models 0755 ollama ollama -"
     ];
     services = {
       pia-vpn = {
@@ -100,6 +101,7 @@ in {
     fstrim.enable = true;
     flatpak.enable = true;
     seatd.enable = true;
+    input-remapper.enable = true;
 
     hardware.openrgb = {
       enable = true;
@@ -123,24 +125,21 @@ in {
       };
     };
 
-    # transmission = {
-    #   enable = false;
-    #   # credentialsFile = config.age.secrets.transmission-rpc.path;
-    #   user = "${username}";
-    #   group = "users";
-    #
-    #   # settings = {
-    #   #   home = "/home/${username}/torrents";
-    #   # };
-    # };
-
     ollama = {
-      enable = false;
-
+      enable = true;
       package = pkgs.ollama-cuda;
-    };
-    open-webui.enable = false;
+      user = "ollama";
 
-    # crab-hole removed per user request
+      models = "/storage/models";
+    };
+    open-webui = {
+      enable = true;
+      port = 8081;
+
+      environment = {
+        OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
+        WEBUI_AUTH = "False";
+      };
+    };
   };
 }

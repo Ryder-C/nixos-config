@@ -6,8 +6,9 @@
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    rypkgs.url = "github:Ryder-C/rypkgs";
     nur.url = "github:nix-community/NUR";
 
     # nixarr.url = "github:rasmus-kirk/nixarr";
@@ -130,6 +131,8 @@
       url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
       flake = false;
     };
+
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = {

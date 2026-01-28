@@ -1,9 +1,28 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  stablePkgs,
+  inputs,
+  ...
+}: {
+  nixpkgs.overlays = [inputs.claude-code.overlays.default];
+
   home.packages = with pkgs; [
     devenv
+    vscode
+    # kicad
+    (stablePkgs.blender.override {cudaSupport = true;})
+    obs-studio
+    antigravity
+    claude-code
+
+    typst
+    typstyle
+    inputs.alejandra.defaultPackage.${pkgs.system}
   ];
 
-  programs.direnv.enable = true;
+  programs = {
+    direnv.enable = true;
+  };
 
   # Automatically load direnv when entering a directory
   # programs.nushell.extraConfig = ''

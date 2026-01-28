@@ -15,6 +15,7 @@
 
     ## Minecraft
     stablePkgs.prismlauncher
+    waywall
     glfw3-minecraft
     libxkbcommon
 

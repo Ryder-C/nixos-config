@@ -51,8 +51,11 @@
 
   catppuccin = {
     enable = true;
+    cache.enable = true;
     accent = "mauve";
     flavor = "mocha";
+
+    cursors.enable = true;
   };
 
   # Symlink the Catppuccin Stylus JSON (flake input, non-flake URL pinned in lockfile) into the home directory

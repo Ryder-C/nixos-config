@@ -53,6 +53,18 @@
         matches = [{app-id = "^.blueman-manager-wrapped$";}];
         open-floating = true;
       }
+      {
+        matches = [{app-id = "^[Ww]aydroid";}];
+        open-floating = true;
+      }
+      {
+        matches = [{app-id = "^org.gnome.Nautilus$";}];
+        open-floating = true;
+      }
+      {
+        matches = [{app-id = "^ninjabrainbot";}];
+        open-floating = true;
+      }
     ];
   };
 }
