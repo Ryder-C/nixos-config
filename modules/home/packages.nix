@@ -66,6 +66,7 @@ in {
     tor-browser
     toggle-hdr
     unrar
+    unityhub
     valgrind # c memory analyzer
     websocat
     yt-dlp-light

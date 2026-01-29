@@ -37,6 +37,7 @@
     overlays = [
       inputs.rust-overlay.overlays.default
       inputs.nur.overlays.default
+      inputs.rypkgs.overlays.default
       inputs.claude-code.overlays.default
     ];
 

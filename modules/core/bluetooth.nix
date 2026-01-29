@@ -1,4 +1,6 @@
-{
+{inputs, ...}: {
+  imports = [inputs.rypkgs.nixosModules.bluevein];
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -7,4 +9,6 @@
 
   # bluetooth manager
   services.blueman.enable = true;
+
+  services.bluevein.enable = true;
 }

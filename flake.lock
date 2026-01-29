@@ -2263,11 +2263,11 @@
         "nixpkgs": "nixpkgs_14"
       },
       "locked": {
-        "lastModified": 1769423403,
-        "narHash": "sha256-5xa7cPqsdBLrJACCsPXk57Np/iYVtHXwncxtKNy7j5c=",
+        "lastModified": 1769724651,
+        "narHash": "sha256-IW+kVwz/of17XbIeZ3sn5anhfsq2LwJqUu6b/K1+ZVY=",
         "owner": "Ryder-C",
         "repo": "rypkgs",
-        "rev": "532d7d9e00e973066ab884589ba26d0e476f740f",
+        "rev": "f9e5e74d8e3bddf4fc5d501721b3bfc9c8f7a4d4",
         "type": "github"
       },
       "original": {
