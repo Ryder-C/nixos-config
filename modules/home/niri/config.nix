@@ -142,8 +142,8 @@
       # Monitor Focus
       "Mod+Left".action.focus-monitor-left = {};
       "Mod+Right".action.focus-monitor-right = {};
-      "Mod+Shift+Left".action.move-window-to-monitor-left = {};
-      "Mod+Shift+Right".action.move-window-to-monitor-right = {};
+      "Mod+Shift+Left".action.spawn = ["sh" "-c" "niri msg action move-window-to-monitor-left && niri msg action move-column-to-first"];
+      "Mod+Shift+Right".action.spawn = ["sh" "-c" "niri msg action move-window-to-monitor-right && niri msg action move-column-to-first"];
 
       "Mod+C".action.center-column = {};
 
