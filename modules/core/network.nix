@@ -6,8 +6,8 @@
     # nameservers = ["1.1.1.1" "1.0.0.1"]; # optional
     firewall = {
       enable = true;
-      allowedTCPPorts = [22 80 443 3000 32400 47984 47989 48010 59010 59011];
-      allowedUDPPorts = [32410 32412 32413 32414 47998 47999 48000 59010 59011];
+      allowedTCPPorts = [22 80 443 3000 32400 59010 59011];
+      allowedUDPPorts = [32410 32412 32413 32414 59010 59011];
       # allowedUDPPortRanges = [
       # { from = 4000; to = 4007; }
       # { from = 8000; to = 8010; }

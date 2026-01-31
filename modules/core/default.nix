@@ -22,6 +22,7 @@
     ./greetd.nix
     # ./nixarr.nix
     ./monado.nix
+    ./sunshine.nix
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

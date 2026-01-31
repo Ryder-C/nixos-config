@@ -131,7 +131,6 @@ in {
     libvlc
     zathura # PDF Viewer
     leetgo
-    sunshine
 
     nur.repos.mio.plezy
   ];
