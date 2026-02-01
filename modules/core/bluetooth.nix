@@ -7,8 +7,15 @@
     settings.General.Experimental = true;
   };
 
-  # bluetooth manager
-  services.blueman.enable = true;
+  services = {
+    # disable ghost MediaTek bluetooth adapter (0e8d:0616)
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTR{idVendor}=="0e8d", ATTR{idProduct}=="0616", ATTR{authorized}="0"
+    '';
 
-  services.bluevein.enable = true;
+    # bluetooth manager
+    blueman.enable = true;
+
+    bluevein.enable = true;
+  };
 }
