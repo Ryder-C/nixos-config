@@ -34,6 +34,10 @@
       url = "github:sejjy/mechabar";
       flake = false;
     };
+    librepods = {
+      url = "github:kavishdevar/librepods/linux/rust";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";

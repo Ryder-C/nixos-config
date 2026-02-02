@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -9,6 +10,7 @@
     swappy
     # hyprlock # Can work with Niri as it depends on ext-session-lock
     xwayland-satellite # Niri doesn't support XWayland automatically without this sometimes, or built-in? Niri recently added XWayland support, but let's check config.
+    inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.niri.package = lib.mkForce pkgs.niri;
@@ -117,6 +119,7 @@
         ];
       }
       {command = ["vesktop"];}
+      {command = ["sh" "-c" "sleep 3 && ${inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/librepods --start-minimized"];}
     ];
 
     binds = {

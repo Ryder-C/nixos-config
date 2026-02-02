@@ -8,6 +8,7 @@
     thunar.enable = true;
     dconf.enable = true;
     fish.enable = true;
+    firejail.enable = true;
     zsh.enable = true;
     rsi-launcher = {
       enable = false;
