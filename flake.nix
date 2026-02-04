@@ -16,37 +16,10 @@
 
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hypr-contrib.url = "github:hyprwm/contrib";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mechabar = {
-      url = "github:sejjy/mechabar";
-      flake = false;
-    };
     librepods = {
       url = "github:kavishdevar/librepods/linux/rust";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,8 +82,6 @@
 
     nixvim.url = "github:Ryder-C/nixvim";
 
-    wezterm.url = "github:wez/wezterm?dir=nix";
-
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -118,11 +89,6 @@
 
     catppuccin-stylus-json = {
       url = "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json";
-      flake = false;
-    };
-
-    fuzzel-scripts = {
-      url = "github:thnikk/fuzzel-scripts";
       flake = false;
     };
 

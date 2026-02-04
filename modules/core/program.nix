@@ -9,15 +9,9 @@
     dconf.enable = true;
     fish.enable = true;
     firejail.enable = true;
-    zsh.enable = true;
-    rsi-launcher = {
-      enable = false;
-      disableEAC = true;
-    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      # pinentryFlavor = "";
     };
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [

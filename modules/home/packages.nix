@@ -6,7 +6,6 @@
   config,
   ...
 }: let
-  # _2048 = pkgs.callPackage ../../pkgs/2048/default.nix {};
   toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
 
   zink-env = [
@@ -24,8 +23,6 @@ in {
   imports = [inputs.flatpaks.homeModules.default];
 
   home.packages = with pkgs; [
-    # _2048
-
     asciiquarium-transparent
     audacity
     bandwhich
@@ -56,8 +53,6 @@ in {
     nix-prefetch-github
     obsidian
     pipes # terminal screensaver
-    # polychromatic # frontend for openrazer
-    # plex-desktop
     ripgrep # grep replacement
     soundwireserver # pass audio to android phone
     tdf # cli pdf viewer
@@ -73,11 +68,7 @@ in {
     zenity
 
     kdePackages.kleopatra
-    # winetricks
     wineWowPackages.waylandFull
-    # wine
-    # (wine.override { wineBuild = "wine64"; })
-    # wine64
 
     # C / C++
     gcc
@@ -123,10 +114,6 @@ in {
 
     # 3D printing
     orca-slicer
-    # (pkgs.writeShellScriptBin "orca-slicer-wayland" ''
-    #   ${builtins.concatStringsSep "\n" (map (e: "export ${e}") zink-env)}
-    #   exec ${pkgs.orca-slicer}/bin/orca-slicer "$@"
-    # '')
 
     libvlc
     zathura # PDF Viewer

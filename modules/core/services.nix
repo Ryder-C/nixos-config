@@ -71,9 +71,9 @@ in {
             done
             exit 0
           '';
-          # Restart = "on-failure";
-          # RestartSec = "5s";
-          # StartLimitBurst = 10;
+          Restart = "on-failure";
+          RestartSec = "5s";
+          StartLimitBurst = 10;
         };
       };
       systemd-networkd-wait-online.enable = lib.mkForce false;

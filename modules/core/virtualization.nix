@@ -5,15 +5,12 @@
 }: {
   # Add user to libvirtd group
   users.users.${username} = {
-    extraGroups = ["libvirtd" "podman"];
+    extraGroups = ["libvirtd"];
     linger = true;
   };
-  systemd = {
-    user.extraConfig = ''
-      DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${pkgs.lib.makeBinPath [pkgs.bash pkgs.shadow]}"
-    '';
-    generators.podman = "${pkgs.podman}/libexec/podman/systemd-generator";
-  };
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${pkgs.lib.makeBinPath [pkgs.bash pkgs.shadow]}"
+  '';
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [
@@ -25,8 +22,6 @@
     virtio-win
     win-spice
     adwaita-icon-theme
-    podman
-    podman-tui
 
     android-tools
     iptables
@@ -48,11 +43,6 @@
       autoPrune.enable = true;
     };
     oci-containers.backend = "docker";
-    podman = {
-      enable = false;
-      autoPrune.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
     libvirtd = {
       enable = true;
       qemu = {

@@ -7,11 +7,26 @@
   home.packages = with pkgs; [
     devenv
     vscode
-    # kicad
     (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
     antigravity
     claude-code
+
+    # Languages & toolchains
+    nodejs
+    (rust-bin.stable.latest.default.override {
+      extensions = [
+        "rust-src"
+        "rustfmt"
+        "clippy"
+      ];
+      targets = ["x86_64-unknown-linux-gnu"];
+    })
+    rust-analyzer
+
+    # GPU debugging
+    mesa-demos
+    vulkan-tools
 
     typst
     typstyle
@@ -21,18 +36,4 @@
   programs = {
     direnv.enable = true;
   };
-
-  # Automatically load direnv when entering a directory
-  # programs.nushell.extraConfig = ''
-  #   $env.config.hooks.env_change.PWD = (
-  #     $env.config.hooks.env_change.PWD | append ({ ||
-  #       if (which direnv | is-empty) {
-  #         return
-  #       }
-  #
-  #       direnv export json | from json | default {} | load-env
-  #       $env.PATH = $env.PATH | split row (char env_sep)
-  #     })
-  #   )
-  # '';
 }

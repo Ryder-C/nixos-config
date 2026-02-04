@@ -1,28 +1,16 @@
 {
   pkgs,
+  lib,
   inputs,
   username,
+  host,
   ...
 }: {
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     # initial_session = {
-  #     #   command = "niri-session";
-  #     #   user = "${username}";
-  #     # };
-  #     default_session = {
-  #       command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-  #       user = "greeter";
-  #     };
-  #   };
-  # };
-  # systemd.services.greetd.wantedBy = [ "graphical-session.target" ];
   services.displayManager.dms-greeter = {
     enable = true;
     compositor = {
       name = "niri";
-      customConfig = ''
+      customConfig = lib.optionalString (host == "desktop") ''
         output "DP-5" {
             scale 1.500000
             position x=2560 y=0

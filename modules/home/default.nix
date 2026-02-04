@@ -3,49 +3,29 @@
     inputs.niri.homeModules.niri
     inputs.catppuccin.homeModules.catppuccin
 
-    # ./aseprite/aseprite.nix # pixel art editor
-    # ./audacious/audacious.nix # music player
-    ./bat.nix # better cat command
-    ./btop.nix # resouces monitor
+    ./bat.nix
+    ./btop.nix
     ./ssh.nix
     ./services.nix
-    ./podman.nix # podman container manager
-    ./cava.nix # audio visualizer
-    ./discord.nix # discord with catppuccin theme
+    ./cava.nix
+    ./discord.nix
     ./development.nix
-    ./browser.nix # firefox based browser
-    # ./fuzzel.nix # launcher
-    # ./fuzzel.nix
-    ./gaming.nix # packages related to gaming
-    ./git.nix # version control
-    ./gtk.nix # gtk theme
-    # ./hyprland # window manager
+    ./browser.nix
+    ./gaming.nix
+    ./git.nix
+    ./gtk.nix
     ./niri
-    # ./kitty.nix # terminal
-    # ./wezterm.nix
     ./alacritty.nix
-    # ./ghostty.nix
-    # ./tmux.nix
     ./zellij.nix
-    # ./fastfetch.nix
-    # ./swaync/swaync.nix # notification deamon
-    ./micro.nix # nano replacement
+    ./micro.nix
     ./helix.nix
-    ./nvim.nix # neovim
-    ./packages.nix # other packages
-    # ./retroarch.nix
-    ./scripts/scripts.nix # personal scripts
-    ./spicetify.nix # spotify client
-    ./starship.nix # shell prompt
-    ./swaylock.nix # lock screen
-    # ./vscodium.nix # vscode fork
-    # ./waybar # status bar
-    # ./noctalia.nix
+    ./nvim.nix
+    ./packages.nix
+    ./scripts/scripts.nix
+    ./spicetify.nix
+    ./starship.nix
     ./dank.nix
     ./yazi.nix
-
-    # ./zsh.nix # shell
-    # ./nushell.nix
     ./fish.nix
   ];
 
