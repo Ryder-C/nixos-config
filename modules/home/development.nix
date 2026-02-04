@@ -10,7 +10,6 @@
     (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
     antigravity
-    claude-code
 
     # Languages & toolchains
     nodejs
@@ -34,6 +33,11 @@
   ];
 
   programs = {
+    claude-code = {
+      enable = true;
+      package = pkgs.claude-code;
+    };
+    opencode.enable = true;
     direnv.enable = true;
   };
 }
