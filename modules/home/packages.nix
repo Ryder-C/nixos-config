@@ -99,7 +99,6 @@ in {
     poweralertd
     qalculate-gtk # calculator
     unzip
-    wget
     xdg-utils
     xxd
     inputs.vesc-tool.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -107,7 +106,6 @@ in {
 
     tinymist
 
-    google-chrome
     zoom-us
 
     (bottles.override {removeWarningPopup = true;})
@@ -154,9 +152,6 @@ in {
 
     dataFile = {
       "applications/mimeapps.list".force = true;
-      # "applications/flatpak" = {
-      #   source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/applications";
-      # };
       "icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg";
       };

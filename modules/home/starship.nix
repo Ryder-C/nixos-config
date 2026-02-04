@@ -3,8 +3,6 @@
     enable = true;
 
     settings = {
-      # right_format = "$cmd_duration";
-
       directory = {
         format = "[ ](bold #89b4fa)[ $path ]($style)";
         style = "bold #b4befe";
@@ -13,7 +11,6 @@
       character = {
         success_symbol = "[ ](bold #89b4fa)[ ➜](bold green)";
         error_symbol = "[ ](bold #89b4fa)[ ➜](bold red)";
-        # error_symbol = "[ ](bold #89dceb)[ ✗](bold red)";
       };
 
       cmd_duration = {

@@ -11,8 +11,7 @@
     rypkgs.url = "github:Ryder-C/rypkgs";
     nur.url = "github:nix-community/NUR";
 
-    # nixarr.url = "github:rasmus-kirk/nixarr";
-    nixarr.url = "github:Ryder-C/nixarr"; # use my fork with multi instance
+    nixarr.url = "github:Ryder-C/nixarr";
 
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
 

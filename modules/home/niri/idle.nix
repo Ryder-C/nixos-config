@@ -4,7 +4,7 @@
     settings = {
       general = {
         after_sleep_cmd = "niri msg action power-on-monitors";
-        lock_cmd = "noctalia-shell ipc call lockScreen lock";
+        lock_cmd = "dms ipc lock lock";
         before_sleep_cmd = "loginctl lock-session";
       };
 

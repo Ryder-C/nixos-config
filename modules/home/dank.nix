@@ -46,11 +46,6 @@
         "-c"
         "ls -d /nix/var/nix/profiles/system-*-link | wc -l"
       ];
-      # generationsCommand = [
-      #   "sh"
-      #   "-c"
-      #   "ls /nix/var/nix/profiles/system-*-link | sort -V | tail -n 1 | grep -o '[0-9]\+' | tail -n 1"
-      # ];
     };
 
     niri.settings.binds = with config.lib.niri.actions; let

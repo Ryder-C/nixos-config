@@ -18,8 +18,6 @@
     steam = {
       enable = true;
 
-      # remotePlay.openFirewall = true;
-
       protontricks.enable = true;
 
       extraCompatPackages = [
@@ -36,15 +34,7 @@
 
     gamescope = {
       enable = true;
-      capSysNice = false; # Breaks gamescope when true
-      # args = [
-      #   "--rt"
-      #   "--xwayland-count 1"
-      #   "--expose-wayland"
-      #   #   # "--adaptive-sync"
-      #   "--prefer-vk-device" # lspci -nn | grep VGA
-      #   "10de:1e81" # Dedicated
-      # ];
+      capSysNice = false;
     };
     gamemode = {
       enable = true;

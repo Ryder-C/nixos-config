@@ -8,8 +8,7 @@
     grim
     slurp
     swappy
-    # hyprlock # Can work with Niri as it depends on ext-session-lock
-    xwayland-satellite # Niri doesn't support XWayland automatically without this sometimes, or built-in? Niri recently added XWayland support, but let's check config.
+    xwayland-satellite
     inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
@@ -19,23 +18,18 @@
     NIXOS_OZONE_WL = "1";
     __GL_GSYNC_ALLOWED = "1";
     __GL_VRR_ALLOWED = "1";
-    # _JAVA_AWT_WM_NONEREPARENTING = "1"; # Maybe needed
-    # SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"; # Handled by service
     DISABLE_QT5_COMPAT = "0";
     GDK_BACKEND = "wayland";
     ANKI_WAYLAND = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland";
-    # QT_QPA_PLATFORMTHEME = "qt5ct"; # Optional
-    # QT_STYLE_OVERRIDE = "kvantum"; # Optional
     MOZ_ENABLE_WAYLAND = "1";
 
     # NVIDIA specifics
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # WLR_NO_HARDWARE_CURSORS = "1"; # Not strictly needed for Niri usually, but safe for some proprietary apps logic? Niri handles cursors differently. Omitting unless requested.
   };
 
   programs.niri.settings = {
@@ -82,9 +76,6 @@
           x = 2560;
           y = 0;
         };
-        # transform = {
-        #   rotation = 90;
-        # };
       };
     };
 
@@ -172,46 +163,8 @@
 
       "Mod+O".action.toggle-overview = {};
 
-      # Multimedia
-      # "XF86AudioRaiseVolume".action.spawn = [
-      #   "pamixer"
-      #   "-i"
-      #   "2"
-      # ];
-      # "XF86AudioLowerVolume".action.spawn = [
-      #   "pamixer"
-      #   "-d"
-      #   "2"
-      # ];
-      # "XF86AudioMute".action.spawn = [
-      #   "pamixer"
-      #   "-t"
-      # ];
-      # "XF86AudioPlay".action.spawn = [
-      #   "playerctl"
-      #   "play-pause"
-      # ];
-      # "XF86AudioNext".action.spawn = [
-      #   "playerctl"
-      #   "next"
-      # ];
-      # "XF86AudioPrev".action.spawn = [
-      #   "playerctl"
-      #   "previous"
-      # ];
-
-      # Screenshots
-      # "Mod+Shift+P".action.spawn = [
-      #   "sh"
-      #   "-c"
-      #   "grim -g \"$(slurp)\" - | satty --filename -"
-      # ];
-      # "Mod+Ctrl+P".action.screenshot-window = { };
-      # "Mod+Alt+P".action.screenshot = { };
-
       "Mod+F".action.maximize-column = {};
       "Mod+Shift+F".action.fullscreen-window = {};
-      # "Mod+Space".action.switch-preset-column-width = { };
       "Mod+Shift+Space".action.toggle-window-floating = {};
 
       "Mod+BracketLeft".action.consume-window-into-column = {};
@@ -220,11 +173,6 @@
       "Mod+Shift+Q".action.quit = {
         skip-confirmation = true;
       };
-
-      # "XF86PowerOff".action.spawn = [
-      #   "systemctl"
-      #   "poweroff"
-      # ];
     };
   };
 

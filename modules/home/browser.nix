@@ -4,17 +4,11 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # (
-    #   if (host == "laptop")
-    #   then inputs.zen-browser.packages."${system}".generic
-    #   else inputs.zen-browser.packages."${system}".specific
-    # )
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     google-chrome
   ];
   home.sessionVariables = {
-    # BROWSER = "${inputs.zen-browser.packages.${pkgs.system}.default}";
     BROWSER = "${pkgs.brave}/bin/brave";
   };
 }

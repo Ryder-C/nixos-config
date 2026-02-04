@@ -15,13 +15,6 @@
   ];
 
   catppuccin = {
-    # gtk = {
-    #   enable = true;
-    #   icon = {
-    #     enable = true;
-    #     accent = "lavender";
-    #   };
-    # };
     cursors = {
       enable = true;
       accent = "dark";
@@ -34,10 +27,6 @@
       name = "Dracula";
       package = pkgs.dracula-theme;
     };
-    # iconTheme = {
-    #   name = lib.mkForce "Papirus-Dark";
-    #   package = lib.mkForce pkgs.papirus-icon-theme;
-    # };
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 11;

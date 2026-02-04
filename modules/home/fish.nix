@@ -85,10 +85,6 @@
       };
 
       plugins = with pkgs.fishPlugins; [
-        # {
-        #   name = "z";
-        #   inherit (z) src;
-        # }
         {
           name = "fzf";
           inherit (fzf) src;

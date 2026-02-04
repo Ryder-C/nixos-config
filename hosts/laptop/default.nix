@@ -1,13 +1,11 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./../../modules/core
-    inputs.agenix.nixosModules.default
   ];
 
   environment.systemPackages = with pkgs; [
@@ -18,8 +16,6 @@
   ];
 
   services = {
-    # thermald.enable = true;
-    # cpupower-gui.enable = true;
     power-profiles-daemon.enable = true;
 
     upower = {
@@ -29,20 +25,6 @@
       percentageAction = 3;
       criticalPowerAction = "PowerOff";
     };
-
-    # auto-cpufreq = {
-    #   enable = true;
-    #   settings = {
-    #     battery = {
-    #       governor = "performance";
-    #       turbo = "auto";
-    #     };
-    #     charger = {
-    #       governor = "performance";
-    #       turbo = "auto";
-    #     };
-    #   };
-    # };
   };
 
   powerManagement.cpuFreqGovernor = "performance";

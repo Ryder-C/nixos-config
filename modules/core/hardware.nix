@@ -1,11 +1,9 @@
 {pkgs, ...}: {
-  # options.hardware.flipperzero.enable = true;
   hardware = {
     enableAllFirmware = true;
     flipperzero.enable = true;
     steam-hardware.enable = true;
     opentabletdriver.enable = true;
-    # openrazer.enable = true;
     uinput.enable = true;
     graphics = {
       enable = true;

@@ -17,7 +17,6 @@
         gameActivityToggle.enable = true;
         silentTyping.enable = true;
         typingIndicator.enable = true;
-        # homeTyping.enable = true;
         shikiCodeblocks.enable = true;
       };
     };
