@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   programs.niri.enable = true;
+  programs.gpu-screen-recorder.enable = true;
 
   services.libinput.enable = true;
 

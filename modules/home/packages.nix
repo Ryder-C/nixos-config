@@ -84,6 +84,7 @@ in {
     cmatrix
     spotify-player
     ffmpeg
+    gpu-screen-recorder-gtk
     imv # image viewer
     killall
     libnotify

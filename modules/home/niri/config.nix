@@ -173,6 +173,25 @@
       "Mod+Shift+Q".action.quit = {
         skip-confirmation = true;
       };
+
+      # GPU Screen Recorder - Save Replay
+      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder"];
+    };
+  };
+
+  systemd.user.services.gpu-screen-recorder = {
+    Unit = {
+      Description = "GPU Screen Recorder - Replay Buffer";
+      After = ["graphical-session.target"];
+      PartOf = ["graphical-session.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-6 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
     };
   };
 
