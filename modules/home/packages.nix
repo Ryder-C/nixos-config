@@ -117,8 +117,6 @@ in {
     libvlc
     zathura # PDF Viewer
     leetgo
-
-    nur.repos.mio.plezy
   ];
 
   services = {

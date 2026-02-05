@@ -7,6 +7,7 @@
 
   nix = {
     settings = {
+      eval-cache = true;
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"
