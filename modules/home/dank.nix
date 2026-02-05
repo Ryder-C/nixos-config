@@ -121,8 +121,8 @@
         hotkey-overlay.title = "Toggle Clipboard Manager";
       };
       "Mod+U" = {
-        action = dms-ipc "processlist" "toggle";
-        hotkey-overlay.title = "Toggle Process List";
+        action = spawn "thunar";
+        hotkey-overlay.title = "Open File Manager";
       };
     };
   };

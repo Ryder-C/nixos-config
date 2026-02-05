@@ -175,7 +175,7 @@
       };
 
       # GPU Screen Recorder - Save Replay
-      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder"];
+      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
     };
   };
 

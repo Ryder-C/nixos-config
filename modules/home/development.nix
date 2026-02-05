@@ -37,6 +37,7 @@
       enable = true;
       package = pkgs.claude-code;
     };
+    gemini-cli.enable = true;
     opencode.enable = true;
     direnv.enable = true;
   };
