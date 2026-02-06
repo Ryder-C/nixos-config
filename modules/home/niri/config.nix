@@ -176,6 +176,11 @@
 
       # GPU Screen Recorder - Save Replay
       "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
+
+      # Media Keys
+      "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
+      "XF86AudioNext".action.spawn = ["playerctl" "next"];
+      "XF86AudioPrev".action.spawn = ["playerctl" "previous"];
     };
   };
 

@@ -9,7 +9,6 @@
     vscode
     (stablePkgs.blender.override {cudaSupport = true;})
     obs-studio
-    antigravity
 
     # Languages & toolchains
     nodejs

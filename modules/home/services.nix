@@ -4,5 +4,6 @@
       enable = true;
       allowImages = true;
     };
+    playerctld.enable = true;
   };
 }
