@@ -1,0 +1,12 @@
+{
+    "id": "gpuScreenRecorder",
+    "name": "GPU Screen Recorder",
+    "description": "Toggle GPU Screen Recorder replay buffer",
+    "version": "1.0.0",
+    "author": "Ryder",
+    "type": "widget",
+    "capabilities": ["control-center", "bar"],
+    "component": "./GpuScreenRecorderWidget.qml",
+    "icon": "videocam",
+    "permissions": ["process"]
+}

@@ -20,8 +20,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
+      url = "github:AvengeMedia/DankMaterialShell/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dank-calculator = {
+      url = "github:rochacbruno/DankCalculator";
+      flake = false;
     };
     nix-monitor = {
       url = "github:antonjah/nix-monitor";

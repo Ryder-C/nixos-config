@@ -29,6 +29,15 @@
         enableKeybinds = false;
         enableSpawn = false;
       };
+
+      plugins = {
+        dankCalculator = {
+          src = inputs.dank-calculator;
+        };
+        gpuScreenRecorder = {
+          src = ./dms-plugins/gpu-screen-recorder;
+        };
+      };
     };
 
     nix-monitor = {

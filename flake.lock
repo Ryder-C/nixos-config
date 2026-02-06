@@ -147,6 +147,22 @@
         "type": "github"
       }
     },
+    "dank-calculator": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769637986,
+        "narHash": "sha256-3f5PkLmMWIgOxJHs+D1hcURU/TF0m7iQoYkmxMHg5WM=",
+        "owner": "rochacbruno",
+        "repo": "DankCalculator",
+        "rev": "2f08bd47d8cb0caec7496aebc70b0b65c52e943b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rochacbruno",
+        "repo": "DankCalculator",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -177,16 +193,16 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1768575133,
-        "narHash": "sha256-P//moH3z9r4PXirTzXVsccQINsK5AIlF9RWOBwK3vLc=",
+        "lastModified": 1770337132,
+        "narHash": "sha256-bCBMGTjoda1+gDKvRNCaOlxP4DntkmmlWS912UDY//8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "a7cdb39b0b89b9af86160ad4e847a7d14ea44512",
+        "rev": "81d5235b9f46a8ce01a52713086309e6af5b2098",
         "type": "github"
       },
       "original": {
         "owner": "AvengeMedia",
-        "ref": "stable",
+        "ref": "master",
         "repo": "DankMaterialShell",
         "type": "github"
       }
@@ -1420,6 +1436,7 @@
         "catppuccin": "catppuccin",
         "catppuccin-stylus-json": "catppuccin-stylus-json",
         "claude-code": "claude-code",
+        "dank-calculator": "dank-calculator",
         "dms": "dms",
         "flatpaks": "flatpaks",
         "home-manager": "home-manager_2",
