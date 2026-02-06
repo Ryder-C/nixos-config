@@ -20,5 +20,6 @@
     ./nixarr.nix
     ./monado.nix
     ./sunshine.nix
+    ./memory.nix
   ];
 }

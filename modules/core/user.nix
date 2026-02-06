@@ -16,6 +16,8 @@
       imports =
         if (host == "desktop")
         then [./../home/default.desktop.nix]
+        else if (host == "vm")
+        then [./../home/default.vm.nix]
         else [./../home];
       home = {
         username = "${username}";
@@ -33,26 +35,4 @@
     shell = pkgs.fish;
   };
   nix.settings.allowed-users = ["${username}"];
-
-  # See https://github.com/starcitizen-lug/knowledge-base/wiki/Manual-Installation#prerequisites
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 16777216;
-    "fs.file-max" = 524288;
-  };
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono # Highly Recommended: General UI icons often rely on this
-    noto-fonts
-    noto-fonts-color-emoji # For emoji support in the launcher
-  ];
-  # See RAM, ZRAM & Swap
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 8 * 1024; # 8 GB Swap
-    }
-  ];
-  zramSwap = {
-    enable = true;
-    memoryMax = 32 * 1024 * 1024 * 1024; # 32 GB ZRAM
-  };
 }
