@@ -25,6 +25,8 @@
 
     android-tools
     iptables
+
+    nur.repos.ataraxiasjel.waydroid-script
   ];
 
   programs = {
