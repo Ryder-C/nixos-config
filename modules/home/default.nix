@@ -2,6 +2,7 @@
   imports = [
     inputs.niri.homeModules.niri
     inputs.catppuccin.homeModules.catppuccin
+    inputs.nix-index-database.hmModules.nix-index
 
     ./bat.nix
     ./btop.nix
@@ -46,4 +47,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  # nix-index with comma - run any command without installing
+  programs.nix-index-database.comma.enable = true;
 }
