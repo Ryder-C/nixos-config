@@ -21,5 +21,6 @@
     ./monado.nix
     ./sunshine.nix
     ./memory.nix
+    ./star-citizen.nix
   ];
 }

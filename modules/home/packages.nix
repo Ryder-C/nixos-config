@@ -135,8 +135,21 @@ in {
         "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
         "flathub:runtime/org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
       ];
-      overrides."tv.plex.PlexDesktop".Environment = {
-        QT_QPA_PLATFORM = "xcb";
+      overrides = {
+        "com.heroicgameslauncher.hgl".Context = {
+          filesystems = ["host"];
+        };
+        "io.github.mactan_sc.RSILauncher" = {
+          Context = {
+            filesystems = ["~/Games/rsi-launcher"];
+          };
+          Environment = {
+            WINEPREFIX = "${config.home.homeDirectory}/Games/rsi-launcher";
+          };
+        };
+        "tv.plex.PlexDesktop".Environment = {
+          QT_QPA_PLATFORM = "xcb";
+        };
       };
     };
   };

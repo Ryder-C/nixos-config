@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  imports = [inputs.nix-citizen.nixosModules.default];
+{pkgs, ...}: {
   programs = {
     thunar.enable = true;
     dconf.enable = true;
