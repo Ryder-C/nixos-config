@@ -11,12 +11,12 @@
     compositor = {
       name = "niri";
       customConfig = lib.optionalString (host == "desktop") ''
-        output "DP-5" {
+        output "DP-2" {
             scale 1.500000
             position x=2560 y=0
             mode "3840x2160@59.997000"
         }
-        output "DP-6" {
+        output "DP-3" {
             scale 1.500000
             transform "normal"
             position x=0 y=0

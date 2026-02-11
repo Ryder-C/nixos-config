@@ -34,7 +34,7 @@
 
     gamescope = {
       enable = true;
-      capSysNice = false;
+      capSysNice = true;
     };
     gamemode = {
       enable = true;

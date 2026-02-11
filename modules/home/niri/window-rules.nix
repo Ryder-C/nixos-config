@@ -20,7 +20,7 @@
       }
       {
         matches = [{app-id = "^equibop$";}];
-        open-on-output = "DP-5";
+        open-on-output = "DP-2";
         open-maximized = true;
       }
       {

@@ -52,7 +52,7 @@
     };
 
     outputs = {
-      "DP-6" = {
+      "DP-3" = {
         mode = {
           width = 3840;
           height = 2160;
@@ -65,7 +65,7 @@
           y = 0;
         };
       };
-      "DP-5" = {
+      "DP-2" = {
         mode = {
           width = 3840;
           height = 2160;
@@ -191,7 +191,7 @@
       PartOf = ["graphical-session.target"];
     };
     Service = {
-      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-6 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
+      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-3 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
       Restart = "on-failure";
       RestartSec = 5;
     };

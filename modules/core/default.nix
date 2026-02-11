@@ -18,7 +18,6 @@
     ./aagl.nix
     ./greetd.nix
     ./nixarr.nix
-    ./monado.nix
     ./sunshine.nix
     ./memory.nix
     ./star-citizen.nix
