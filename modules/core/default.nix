@@ -17,6 +17,7 @@
     ./age.nix
     ./aagl.nix
     ./greetd.nix
+    ./plasma.nix
     ./nixarr.nix
     ./sunshine.nix
     ./memory.nix

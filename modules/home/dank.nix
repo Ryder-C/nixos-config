@@ -14,6 +14,9 @@
     DMS_SCREENSHOT_EDITOR = "swappy";
   };
 
+  # Only start DMS when running under niri, not Plasma
+  systemd.user.services.dms.Unit.ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+
   programs = {
     dank-material-shell = {
       enable = true;

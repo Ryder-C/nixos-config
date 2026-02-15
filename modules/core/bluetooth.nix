@@ -14,7 +14,7 @@
     '';
 
     # bluetooth manager
-    blueman.enable = true;
+    # blueman.enable = true;
 
     bluevein.enable = true;
   };

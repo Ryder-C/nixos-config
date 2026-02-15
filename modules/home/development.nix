@@ -32,6 +32,7 @@
   ];
 
   programs = {
+    zed-editor.enable = true;
     claude-code = {
       enable = true;
       package = pkgs.claude-code;
