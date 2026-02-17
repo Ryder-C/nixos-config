@@ -37,7 +37,17 @@
       enable = true;
       package = pkgs.claude-code;
     };
-    gemini-cli.enable = true;
+    gemini-cli = {
+      enable = true;
+      settings = {
+        general = {
+          preferredEditor = "nvim";
+          previewFeatures = true;
+        };
+
+        experimental.plan = true;
+      };
+    };
     opencode.enable = true;
     direnv.enable = true;
   };
