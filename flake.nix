@@ -105,6 +105,11 @@
       flake = false;
     };
 
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     claude-code.url = "github:sadjow/claude-code-nix";
 
     nix-index-database = {

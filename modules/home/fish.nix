@@ -82,6 +82,17 @@
         gchb = "git checkout -b";
         gcoe = "git config user.email";
         gcon = "git config user.name";
+
+        # jj
+        jjc = "jj commit";
+        jjl = "jj log";
+        jjn = "jj new";
+        jjgf = "jj git fetch";
+        jjgp = "jj git push";
+        jjbt = "jj bookmark track";
+        jjbm = "jj bookmark move";
+        jjbs = "jj bookmark set";
+        jjsq = "jj squash";
       };
 
       plugins = with pkgs.fishPlugins; [

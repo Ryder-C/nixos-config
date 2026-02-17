@@ -19,7 +19,6 @@
         };
       };
     };
-    jjui.enable = true;
 
     git = {
       enable = true;
@@ -57,5 +56,5 @@
     };
   };
 
-  home.packages = [pkgs.gh pkgs.git-lfs];
+  home.packages = with pkgs; [gh git-lfs difftastic];
 }
