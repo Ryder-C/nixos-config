@@ -85,6 +85,8 @@
 
         # jj
         jjc = "jj commit";
+        jjd = "jj diff";
+        jjds = "jj desc";
         jjl = "jj log";
         jjn = "jj new";
         jjgf = "jj git fetch";

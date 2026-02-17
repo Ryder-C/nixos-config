@@ -9,6 +9,7 @@
 
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
     plugins = with pkgs.yaziPlugins; {inherit yatline-catppuccin rich-preview;};
     settings = {
       opener = {

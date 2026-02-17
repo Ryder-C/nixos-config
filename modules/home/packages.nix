@@ -68,7 +68,7 @@ in {
     zenity
 
     kdePackages.kleopatra
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
 
     # C / C++
     gcc

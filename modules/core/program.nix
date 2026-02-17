@@ -29,20 +29,20 @@
       libdrm
       libxcb
       wayland
-      xorg.libX11
-      xorg.libXext
-      xorg.libXrender
-      xorg.libXfixes
-      xorg.libXinerama
-      xorg.libXi
-      xorg.libXrandr
-      xorg.libXScrnSaver
-      xorg.libXtst
-      xorg.xcbutil
-      xorg.xcbutilimage
-      xorg.xcbutilrenderutil
-      xorg.xcbutilwm
-      xorg.xcbutilkeysyms
+      libx11
+      libxext
+      libxrender
+      libxfixes
+      libxinerama
+      libxi
+      libxrandr
+      libxscrnsaver
+      libxtst
+      libxcb-util
+      libxcb-image
+      libxcb-render-util
+      libxcb-wm
+      libxcb-keysyms
       libva
     ];
 
