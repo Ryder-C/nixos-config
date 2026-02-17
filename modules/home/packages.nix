@@ -64,6 +64,7 @@ in {
     unityhub
     valgrind # c memory analyzer
     websocat
+    xwayland-run
     yt-dlp-light
     zenity
 

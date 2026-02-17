@@ -10,7 +10,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    backupFileExtension = "bak";
+    backupCommand = "rm -f";
     extraSpecialArgs = {inherit inputs username host stablePkgs;};
     users.${username} = {
       imports =

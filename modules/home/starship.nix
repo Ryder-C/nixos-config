@@ -31,7 +31,7 @@
 
       custom.jj = {
         when = "jj-starship detect";
-        command = "JJ_STARSHIP_JJ_SYMBOL='󱗆 ' jj-starship";
+        command = "jj-starship";
         format = "$output ";
       };
 
