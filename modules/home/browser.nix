@@ -9,6 +9,6 @@
     google-chrome
   ];
   home.sessionVariables = {
-    BROWSER = "${pkgs.brave}/bin/brave";
+    BROWSER = "zen";
   };
 }
