@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   lib,
+  host,
   ...
 }: {
   home.packages = with pkgs; [
@@ -35,6 +36,7 @@
   programs.niri.settings = {
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
+    debug.render-drm-device = lib.mkIf (host == "laptop") "/dev/dri/renderD128";
 
     input = {
       keyboard = {
@@ -51,7 +53,7 @@
       focus-follows-mouse.enable = true;
     };
 
-    outputs = {
+    outputs = lib.mkIf (host != "laptop") {
       "DP-3" = {
         mode = {
           width = 3840;
@@ -174,8 +176,6 @@
         skip-confirmation = true;
       };
 
-      # GPU Screen Recorder - Save Replay
-      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
 
       # Media Keys
       "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
@@ -184,21 +184,6 @@
     };
   };
 
-  systemd.user.services.gpu-screen-recorder = {
-    Unit = {
-      Description = "GPU Screen Recorder - Replay Buffer";
-      After = ["graphical-session.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-3 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
 
   systemd.user.services.librepods = {
     Unit = {

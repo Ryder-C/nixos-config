@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }: {
   imports = [
@@ -11,7 +10,6 @@
   environment.systemPackages = with pkgs; [
     acpi
     brightnessctl
-    cpupower-gui
     powertop
   ];
 
@@ -25,17 +23,5 @@
       percentageAction = 3;
       criticalPowerAction = "PowerOff";
     };
-  };
-
-  powerManagement.cpuFreqGovernor = "performance";
-
-  boot = {
-    kernelModules = ["acpi_call"];
-    extraModulePackages = with config.boot.kernelPackages;
-      [
-        acpi_call
-        cpupower
-      ]
-      ++ [pkgs.cpupower-gui];
   };
 }

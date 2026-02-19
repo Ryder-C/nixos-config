@@ -1,13 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  host,
+  lib,
+  ...
+}: {
   hardware = {
     enableAllFirmware = true;
-    flipperzero.enable = true;
-    steam-hardware.enable = true;
-    opentabletdriver.enable = true;
+    flipperzero.enable = host != "laptop";
+    steam-hardware.enable = host != "laptop";
+    opentabletdriver.enable = host != "laptop";
     uinput.enable = true;
     graphics = {
       enable = true;
-      enable32Bit = true;
+      enable32Bit = host != "laptop";
       extraPackages = with pkgs; [
         vulkan-loader
         vulkan-tools

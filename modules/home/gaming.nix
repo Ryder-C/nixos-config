@@ -1,9 +1,11 @@
 {
   pkgs,
   stablePkgs,
+  host,
+  lib,
   ...
 }: {
-  home.packages = with pkgs; [
+  home.packages = lib.mkIf (host != "laptop") (with pkgs; [
     winetricks
     mangohud
 
@@ -18,5 +20,5 @@
     nethack
 
     stablePkgs.lutris
-  ];
+  ]);
 }

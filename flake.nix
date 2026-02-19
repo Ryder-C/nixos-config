@@ -112,6 +112,10 @@
 
     claude-code.url = "github:sadjow/claude-code-nix";
 
+    apple-silicon-support = {
+      url = "github:tpwrules/nixos-apple-silicon";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -125,13 +129,15 @@
     ...
   } @ inputs: let
     username = "ryder";
-    system = "x86_64-linux";
-    stablePkgs = import nixpkgs-stable {
-      inherit system;
-      config.allowUnfree = true;
-    };
+    x86System = "x86_64-linux";
+    armSystem = "aarch64-linux";
+    mkStablePkgs = system:
+      import nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
   in {
-    checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+    checks.${x86System}.pre-commit-check = inputs.pre-commit-hooks.lib.${x86System}.run {
       src = ./.;
       hooks = {
         deadnix.enable = true;
@@ -140,48 +146,48 @@
       };
     };
 
-    devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
-      inherit (self.checks.${system}.pre-commit-check) shellHook;
-      buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+    devShells.${x86System}.default = nixpkgs.legacyPackages.${x86System}.mkShell {
+      inherit (self.checks.${x86System}.pre-commit-check) shellHook;
+      buildInputs = self.checks.${x86System}.pre-commit-check.enabledPackages;
     };
 
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = x86System;
         modules = [(import ./hosts/desktop)];
         specialArgs = {
           host = "desktop";
+          stablePkgs = mkStablePkgs x86System;
           inherit
             self
             inputs
             username
-            stablePkgs
             ;
         };
       };
       laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = armSystem;
         modules = [(import ./hosts/laptop)];
         specialArgs = {
           host = "laptop";
+          stablePkgs = mkStablePkgs armSystem;
           inherit
             self
             inputs
             username
-            stablePkgs
             ;
         };
       };
       vm = nixpkgs.lib.nixosSystem {
-        inherit system;
+        system = x86System;
         modules = [(import ./hosts/vm)];
         specialArgs = {
           host = "vm";
+          stablePkgs = mkStablePkgs x86System;
           inherit
             self
             inputs
             username
-            stablePkgs
             ;
         };
       };

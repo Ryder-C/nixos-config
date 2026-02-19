@@ -2,6 +2,8 @@
   inputs,
   config,
   username,
+  host,
+  lib,
   ...
 }: {
   imports = [
@@ -33,14 +35,17 @@
         enableSpawn = false;
       };
 
-      plugins = {
-        dankCalculator = {
-          src = inputs.dank-calculator;
+      plugins =
+        {
+          dankCalculator = {
+            src = inputs.dank-calculator;
+          };
+        }
+        // lib.optionalAttrs (host != "laptop") {
+          gpuScreenRecorder = {
+            src = ./dms-plugins/gpu-screen-recorder;
+          };
         };
-        gpuScreenRecorder = {
-          src = ./dms-plugins/gpu-screen-recorder;
-        };
-      };
     };
 
     nix-monitor = {
