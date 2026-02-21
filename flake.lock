@@ -1520,8 +1520,7 @@
         "rypkgs": "rypkgs",
         "spicetify-nix": "spicetify-nix",
         "steam-presence": "steam-presence",
-        "vesc-tool": "vesc-tool",
-        "zen-browser": "zen-browser"
+        "vesc-tool": "vesc-tool"
       }
     },
     "rust-analyzer-src": {
@@ -1934,26 +1933,6 @@
       "original": {
         "owner": "Supreeeme",
         "repo": "xwayland-satellite",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1771303137,
-        "narHash": "sha256-CQ0j9kovzdO6pAjesebt6uxkcFsjbhENVrengRvKpUc=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "271488f067d8452dd0494b650e2e263ac4104e06",
-        "type": "github"
-      },
-      "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

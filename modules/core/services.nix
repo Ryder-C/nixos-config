@@ -2,7 +2,6 @@
   username,
   config,
   pkgs,
-  stablePkgs,
   inputs,
   lib,
   ...
@@ -137,7 +136,7 @@ in {
       enable = true;
       port = 8081;
 
-      package = stablePkgs.open-webui;
+      # package = stablePkgs.open-webui;
 
       environment = {
         OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";

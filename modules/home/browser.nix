@@ -4,11 +4,13 @@
   ...
 }: {
   home.packages = with pkgs; [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     brave
     google-chrome
   ];
+
+  programs.librewolf.enable = true;
+
   home.sessionVariables = {
-    BROWSER = "zen";
+    BROWSER = "librewolf";
   };
 }
