@@ -11,6 +11,6 @@
   programs.librewolf.enable = true;
 
   home.sessionVariables = {
-    BROWSER = "librewolf";
+    BROWSER = "brave";
   };
 }
