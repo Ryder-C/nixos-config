@@ -7,6 +7,7 @@
 
   programs.nixcord = {
     enable = true;
+    discord.enable = false;
     equibop.enable = false;
     vesktop.enable = true;
     config = {
@@ -24,6 +25,6 @@
 
   xdg.configFile."vesktop/themes/catppuccin-mocha.theme.css".source = pkgs.fetchurl {
     url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-    hash = "sha256-X1AaGVWr/4Ye/8MMViT70d97Eq0ZOLmvumtOG7tiZ+Y=";
+    hash = "sha256-KVv9vfqI+WADn3w4yE1eNsmtm7PQq9ugKiSL3EOLheI=";
   };
 }

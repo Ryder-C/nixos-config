@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, host, lib, ...}: {
   imports = [
     inputs.niri.homeModules.niri
     inputs.catppuccin.homeModules.catppuccin
@@ -23,11 +23,15 @@
     ./nvim.nix
     ./packages.nix
     ./scripts/scripts.nix
-    ./spicetify.nix
     ./starship.nix
     ./dank.nix
     ./yazi.nix
     ./fish.nix
+  ] ++ lib.optionals (host != "laptop") [
+    ./spicetify.nix
+    ./gpu-screen-recorder.nix
+    ./activitywatch.nix
+    ./librepods.nix
   ];
 
   catppuccin = {

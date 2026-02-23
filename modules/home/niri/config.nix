@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   ...
@@ -9,7 +8,6 @@
     slurp
     swappy
     xwayland-satellite
-    inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.niri.package = lib.mkForce pkgs.niri;
@@ -174,9 +172,6 @@
         skip-confirmation = true;
       };
 
-      # GPU Screen Recorder - Save Replay
-      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
-
       # Media Keys
       "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
       "XF86AudioNext".action.spawn = ["playerctl" "next"];
@@ -184,36 +179,4 @@
     };
   };
 
-  systemd.user.services.gpu-screen-recorder = {
-    Unit = {
-      Description = "GPU Screen Recorder - Replay Buffer";
-      After = ["graphical-session.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-3 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
-
-  systemd.user.services.librepods = {
-    Unit = {
-      Description = "LibrePods";
-      After = ["graphical-session.target" "tray.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
-      ExecStart = "${inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/librepods --start-minimized";
-      Restart = "on-failure";
-      RestartSec = 3;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
 }
