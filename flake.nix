@@ -6,7 +6,10 @@
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    apple-silicon-support = {
+      url = "github:tpwrules/nixos-apple-silicon";
+    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     rypkgs.url = "github:Ryder-C/rypkgs";
     nur.url = "github:nix-community/NUR";

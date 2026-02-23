@@ -2,3 +2,6 @@
 result
 .envrc
 .direnv
+
+# nix generated
+.pre-commit-config.yaml

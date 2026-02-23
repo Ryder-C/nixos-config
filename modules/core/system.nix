@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  host,
+  lib,
   ...
 }: {
   imports = [inputs.catppuccin.nixosModules.catppuccin];
@@ -13,17 +15,29 @@
         "nix-command"
         "flakes"
       ];
-      substituters = [
-        "https://nix-gaming.cachix.org"
-        "https://cuda-maintainers.cachix.org"
-        "https://cache.nixos.org/"
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
+      substituters =
+        [
+          "https://cache.nixos.org/"
+          "https://nix-community.cachix.org"
+        ]
+        ++ lib.optionals (host == "laptop") [
+          "https://nixos-apple-silicon.cachix.org"
+        ]
+        ++ lib.optionals (host != "laptop") [
+          "https://nix-gaming.cachix.org"
+          "https://cuda-maintainers.cachix.org"
+        ];
+      trusted-public-keys =
+        [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ]
+        ++ lib.optionals (host == "laptop") [
+          "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
+        ]
+        ++ lib.optionals (host != "laptop") [
+          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+          "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        ];
     };
     gc = {
       automatic = false;
@@ -45,24 +59,25 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    ntfs3g
-    wget
-    git
-    gparted # partition manager
-    bcachefs-tools
-    inetutils
-    nix-search-cli
-    wireguard-tools
-    openrgb-with-all-plugins
-    icu
+  environment.systemPackages = with pkgs;
+    [
+      ntfs3g
+      wget
+      git
+      gparted
+      inetutils
+      nix-search-cli
+      wireguard-tools
+      icu
 
-    # AppImage and FHS-like runtime for proprietary binaries/games
-    appimage-run
-    steam-run
-
-    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+      inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ]
+    ++ lib.optionals (host != "laptop") [
+      bcachefs-tools
+      openrgb-with-all-plugins
+      appimage-run
+      steam-run
+    ];
 
   catppuccin = {
     enable = true;
@@ -74,7 +89,7 @@
     limine.enable = false;
   };
 
-  services.udev.packages = [pkgs.via];
+  services.udev.packages = lib.optionals (host != "laptop") [pkgs.via];
 
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -83,9 +98,9 @@
     settings = {
       Login = {
         HandlePowerKey = "poweroff";
-        HandleLidSwitch = "ignore";
+        HandleLidSwitch = if host == "laptop" then "suspend" else "ignore";
         HandleLidSwitchDocked = "ignore";
-        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchExternalPower = if host == "laptop" then "suspend" else "ignore";
         IdleAction = "ignore";
       };
     };

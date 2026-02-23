@@ -35,6 +35,10 @@
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
 
+    debug = lib.mkIf (host == "laptop") {
+      render-drm-device = "/dev/dri/renderD128";
+    };
+
     input = {
       keyboard = {
         xkb = {
@@ -45,38 +49,51 @@
       touchpad = {
         tap = true;
         natural-scroll = true;
+        scroll-factor = 0.5;
       };
       warp-mouse-to-focus.enable = false;
       focus-follows-mouse.enable = true;
     };
 
-    outputs = lib.mkIf (host != "laptop") {
-      "DP-3" = {
-        mode = {
-          width = 3840;
-          height = 2160;
-          refresh = 239.996;
+    outputs = lib.mkMerge [
+      (lib.mkIf (host == "laptop") {
+        "eDP-1" = {
+          mode = {
+            width = 3024;
+            height = 1964;
+            refresh = 120.000;
+          };
+          scale = 2.0;
         };
-        scale = 1.5;
-        variable-refresh-rate = false;
-        position = {
-          x = 0;
-          y = 0;
+      })
+      (lib.mkIf (host != "laptop") {
+        "DP-3" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 239.996;
+          };
+          scale = 1.5;
+          variable-refresh-rate = false;
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
-      };
-      "DP-2" = {
-        mode = {
-          width = 3840;
-          height = 2160;
-          refresh = 59.997;
+        "DP-2" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 59.997;
+          };
+          scale = 1.5;
+          position = {
+            x = 2560;
+            y = 0;
+          };
         };
-        scale = 1.5;
-        position = {
-          x = 2560;
-          y = 0;
-        };
-      };
-    };
+      })
+    ];
 
     layout = {
       gaps = 4;

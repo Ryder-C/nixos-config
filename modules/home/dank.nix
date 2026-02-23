@@ -2,6 +2,8 @@
   inputs,
   config,
   username,
+  host,
+  lib,
   ...
 }: {
   imports = [
@@ -21,6 +23,7 @@
     dank-material-shell = {
       enable = true;
       enableVPN = false;
+      enableCalendarEvents = false;
       enableDynamicTheming = true;
 
       systemd = {
@@ -33,14 +36,17 @@
         enableSpawn = false;
       };
 
-      plugins = {
-        dankCalculator = {
-          src = inputs.dank-calculator;
+      plugins =
+        {
+          dankCalculator = {
+            src = inputs.dank-calculator;
+          };
+        }
+        // lib.optionalAttrs (host != "laptop") {
+          gpuScreenRecorder = {
+            src = ./dms-plugins/gpu-screen-recorder;
+          };
         };
-        gpuScreenRecorder = {
-          src = ./dms-plugins/gpu-screen-recorder;
-        };
-      };
     };
 
     nix-monitor = {
