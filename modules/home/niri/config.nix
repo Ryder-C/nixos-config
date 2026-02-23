@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  host,
   ...
 }: {
   home.packages = with pkgs; [
@@ -23,7 +24,7 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
-
+  } // lib.optionalAttrs (host != "laptop") {
     # NVIDIA specifics
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
@@ -49,7 +50,7 @@
       focus-follows-mouse.enable = true;
     };
 
-    outputs = {
+    outputs = lib.mkIf (host != "laptop") {
       "DP-3" = {
         mode = {
           width = 3840;
