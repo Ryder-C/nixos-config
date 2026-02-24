@@ -15,6 +15,13 @@
     powertop
   ];
 
+  boot.extraModprobeConfig = "options appledrm show_notch=1";
+
+  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+
+  systemd.tmpfiles.rules = [
+    "w /sys/class/power_supply/macsmc-battery/charge_control_end_threshold - - - - 80"
+  ];
   services = {
     power-profiles-daemon.enable = true;
 

@@ -10,7 +10,9 @@
     enable = true;
     compositor = {
       name = "niri";
-      customConfig = lib.optionalString (host == "desktop") ''
+      customConfig =
+      if (host == "desktop")
+      then ''
         output "DP-2" {
             scale 1.500000
             position x=2560 y=0
@@ -23,7 +25,14 @@
             mode "3840x2160@239.996000"
         }
         hotkey-overlay { skip-at-startup; }
-      '';
+      ''
+      else if (host == "laptop")
+      then ''
+        debug {
+            render-drm-device "/dev/dri/renderD128"
+        }
+      ''
+      else "";
     };
 
     configHome = "/home/${username}";

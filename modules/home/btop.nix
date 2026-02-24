@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{pkgs, host, lib, ...}: {
   programs.btop = {
     enable = true;
-    package = pkgs.btop-cuda;
+    package = if host != "laptop" then pkgs.btop-cuda else pkgs.btop;
 
     settings = {
       theme_background = false;
@@ -9,5 +9,5 @@
     };
   };
 
-  home.packages = with pkgs; [nvtopPackages.nvidia];
+  home.packages = lib.optionals (host != "laptop") [pkgs.nvtopPackages.nvidia];
 }

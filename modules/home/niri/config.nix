@@ -1,7 +1,7 @@
 {
-  inputs,
   pkgs,
   lib,
+  host,
   ...
 }: {
   home.packages = with pkgs; [
@@ -9,7 +9,6 @@
     slurp
     swappy
     xwayland-satellite
-    inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.niri.package = lib.mkForce pkgs.niri;
@@ -25,7 +24,7 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_QPA_PLATFORM = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
-
+  } // lib.optionalAttrs (host != "laptop") {
     # NVIDIA specifics
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
@@ -35,6 +34,10 @@
   programs.niri.settings = {
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
+
+    debug = lib.mkIf (host == "laptop") {
+      render-drm-device = "/dev/dri/renderD128";
+    };
 
     input = {
       keyboard = {
@@ -46,38 +49,51 @@
       touchpad = {
         tap = true;
         natural-scroll = true;
+        scroll-factor = 0.5;
       };
       warp-mouse-to-focus.enable = false;
       focus-follows-mouse.enable = true;
     };
 
-    outputs = {
-      "DP-3" = {
-        mode = {
-          width = 3840;
-          height = 2160;
-          refresh = 239.996;
+    outputs = lib.mkMerge [
+      (lib.mkIf (host == "laptop") {
+        "eDP-1" = {
+          mode = {
+            width = 3024;
+            height = 1964;
+            refresh = 120.000;
+          };
+          scale = 2.0;
         };
-        scale = 1.5;
-        variable-refresh-rate = false;
-        position = {
-          x = 0;
-          y = 0;
+      })
+      (lib.mkIf (host != "laptop") {
+        "DP-3" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 239.996;
+          };
+          scale = 1.5;
+          variable-refresh-rate = false;
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
-      };
-      "DP-2" = {
-        mode = {
-          width = 3840;
-          height = 2160;
-          refresh = 59.997;
+        "DP-2" = {
+          mode = {
+            width = 3840;
+            height = 2160;
+            refresh = 59.997;
+          };
+          scale = 1.5;
+          position = {
+            x = 2560;
+            y = 0;
+          };
         };
-        scale = 1.5;
-        position = {
-          x = 2560;
-          y = 0;
-        };
-      };
-    };
+      })
+    ];
 
     layout = {
       gaps = 4;
@@ -115,7 +131,7 @@
     binds = {
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
       "Mod+Return".action.spawn = ["alacritty"];
-      "Mod+B".action.spawn = ["librewolf"];
+      "Mod+B".action.spawn = ["brave"];
       "Mod+D".action.spawn = ["vesktop"];
 
       "Mod+Q".action.close-window = {};
@@ -174,9 +190,6 @@
         skip-confirmation = true;
       };
 
-      # GPU Screen Recorder - Save Replay
-      "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
-
       # Media Keys
       "XF86AudioPlay".action.spawn = ["playerctl" "play-pause"];
       "XF86AudioNext".action.spawn = ["playerctl" "next"];
@@ -184,36 +197,4 @@
     };
   };
 
-  systemd.user.services.gpu-screen-recorder = {
-    Unit = {
-      Description = "GPU Screen Recorder - Replay Buffer";
-      After = ["graphical-session.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-3 -c mp4 -f 60 -a default_output -r 120 -o /home/ryder/Videos";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
-
-  systemd.user.services.librepods = {
-    Unit = {
-      Description = "LibrePods";
-      After = ["graphical-session.target" "tray.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
-      ExecStart = "${inputs.librepods.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/librepods --start-minimized";
-      Restart = "on-failure";
-      RestartSec = 3;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
 }
