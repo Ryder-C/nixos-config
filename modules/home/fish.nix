@@ -22,7 +22,7 @@
         '';
 
         nsu = ''
-          nh os switch --hostname ${host} --update $HOME/nixos-config?submodules=1
+          nh os switch --hostname ${host} --update --impure $HOME/nixos-config?submodules=1
           nix-store --optimise
         '';
 
@@ -61,8 +61,8 @@
         # Nixos
         nix-shell = "nix-shell --run fish";
         nix-clean = "nh clean all";
-        ns = "nh os switch --hostname ${host} $HOME/nixos-config?submodules=1";
-        nst = "nh os test --hostname ${host} $HOME/nixos-config?submodules=1";
+        ns = "nh os switch --hostname ${host} --impure $HOME/nixos-config?submodules=1";
+        nst = "nh os test --hostname ${host} --impure $HOME/nixos-config?submodules=1";
 
         # Git
         ga = "git add";

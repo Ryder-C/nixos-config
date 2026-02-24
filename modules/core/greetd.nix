@@ -31,6 +31,7 @@
         debug {
             render-drm-device "/dev/dri/renderD128"
         }
+        hotkey-overlay { skip-at-startup; }
       ''
       else "";
     };

@@ -125,8 +125,7 @@
           "import-environment"
         ];
       }
-      {command = ["vesktop"];}
-    ];
+    ] ++ lib.optionals (host != "laptop") [{command = ["vesktop"];}];
 
     binds = {
       "Mod+Shift+Slash".action.show-hotkey-overlay = {};
