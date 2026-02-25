@@ -19,7 +19,6 @@
       ./virtualization.nix
       ./age.nix
       ./greetd.nix
-      ./plasma.nix
       ./memory.nix
     ]
     ++ lib.optionals (host != "laptop") [
@@ -28,6 +27,8 @@
       ./nixarr.nix
       ./star-citizen.nix
       ./aagl.nix
+      ./gpu-screen-recorder.nix
+      # ./plasma.nix
       # ./sunshine.nix
     ];
 }
