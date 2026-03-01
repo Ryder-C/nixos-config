@@ -9,15 +9,28 @@
   ...
 }: let
   isDesktop = host != "laptop";
-  chownScript = pkgs.writeShellScript "qbt-chown" ''
-    #!${pkgs.runtimeShell}
-    ${pkgs.coreutils}/bin/chown -R ${username}:users "$1"
+  crossSeedWebhook = pkgs.writeShellScript "cross-seed-webhook" ''
+    API_KEY=$(${pkgs.jq}/bin/jq -r '.apiKey' ${config.age.secrets.cross-seed.path})
+    ${pkgs.curl}/bin/curl -XPOST "http://localhost:2468/api/webhook?apikey=$API_KEY" -d "infoHash=$1"
   '';
   qbtConfig = pkgs.writeText "qb-config" ''
     [BitTorrent]
-    Session\DefaultSavePath=/home/${username}/Torrents
+    Session\DefaultSavePath=/storage/Torrents
     Session\Interface=wg0
     Session\InterfaceName=wg0
+    Session\AsyncIOThreadsCount=64
+    Session\CoalesceReadWrite=true
+    Session\DiskCacheSize=2048
+    Session\DiskCacheTTL=60
+    Session\DiskIOReadMode=DisableOSCache
+    Session\DiskIOType=Default
+    Session\DiskIOWriteMode=EnableOSCache
+    Session\DiskQueueSize=67108864
+    Session\PieceExtentAffinity=true
+    Session\SendBufferLowWatermark=2048
+    Session\SendBufferWatermark=8192
+    Session\SendBufferWatermarkFactor=120
+    Session\SuggestMode=true
 
     [Core]
     AutoDeleteAddedTorrentFile=IfAdded
@@ -30,15 +43,13 @@
     WebUI\LocalHostAuth=false
     WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
     Downloads\OnFinish\Enabled=true
-    Downloads\OnFinish\Program=${chownScript} "%F"
+    Downloads\OnFinish\Program=${crossSeedWebhook} "%I"
   '';
   profileBase = "/var/lib/qbittorrent";
   profName = "vpn";
   piaCertPath = "/etc/pia/ca.rsa.4096.crt";
 in {
-  imports =
-    [inputs.nix-pia-vpn.nixosModules.default]
-    ++ lib.optionals isDesktop [./desktop-services.nix];
+  imports = [inputs.nix-pia-vpn.nixosModules.default];
 
   environment.etc."pia/ca.rsa.4096.crt" = {
     source = ../../ca.rsa.4096.crt;

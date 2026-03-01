@@ -17,6 +17,11 @@
           owner = "${username}";
           mode = "0400";
         };
+        cross-seed = {
+          file = ../../secrets/cross-seed.age;
+          owner = "cross-seed";
+          mode = "0400";
+        };
       })
     ];
   };
