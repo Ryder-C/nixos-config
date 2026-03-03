@@ -14,7 +14,10 @@
     rypkgs.url = "github:Ryder-C/rypkgs";
     nur.url = "github:nix-community/NUR";
 
-    nixarr.url = "github:Ryder-C/nixarr";
+    nixarr = {
+      url = "github:Ryder-C/nixarr/multi-instance-support";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
 
