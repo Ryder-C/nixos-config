@@ -3,6 +3,19 @@
   config,
   ...
 }: let
+  tagDeprecatedScript = pkgs.writeShellScript "tag-deprecated" ''
+    is_upgrade="''${Sonarr_IsUpgrade:-$Radarr_IsUpgrade}"
+    if [ "$is_upgrade" != "True" ]; then
+      exit 0
+    fi
+    hash="''${Sonarr_Download_Id:-$Radarr_Download_Id}"
+    if [ -n "$hash" ]; then
+      ${pkgs.curl}/bin/curl -s "http://localhost:8080/api/v2/torrents/addTags" \
+        -d "hashes=$hash" \
+        -d "tags=deprecated"
+    fi
+  '';
+
   configFile = pkgs.writeText "qbit-manage-config.yml" (builtins.toJSON {
     qbt = {
       host = "http://localhost:8080";
@@ -35,6 +48,14 @@
     };
 
     share_limits = {
+      deprecated = {
+        priority = 18;
+        include_all_tags = ["deprecated"];
+        exclude_all_tags = ["manage-ignore"];
+        max_ratio = 2.0;
+        max_seeding_time = "14d";
+        cleanup = true;
+      };
       cross-seed = {
         priority = 19;
         include_all_tags = ["cross-seed"];
@@ -83,6 +104,8 @@
     };
   });
 in {
+  environment.etc."qbit-manage/tag-deprecated".source = tagDeprecatedScript;
+
   systemd.services.qbit-manage = {
     description = "qbit-manage torrent lifecycle manager";
     after = ["network-online.target"];
