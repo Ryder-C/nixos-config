@@ -5,7 +5,10 @@
 }: let
   allowOutsideAccess = false;
 in {
-  imports = [inputs.nixarr.nixosModules.default];
+  imports = [
+    inputs.nixarr.nixosModules.default
+    ./qbit-manage.nix
+  ];
 
   users.users.cross-seed = {
     isSystemUser = true;

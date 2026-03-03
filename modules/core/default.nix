@@ -24,7 +24,7 @@
     ++ lib.optionals (host != "laptop") [
       ./nvidia.nix
       ./steam.nix
-      ./nixarr.nix
+      ./nixarr
       ./star-citizen.nix
       ./aagl.nix
       ./gpu-screen-recorder.nix
