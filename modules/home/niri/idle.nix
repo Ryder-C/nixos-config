@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   services.hypridle = {
     enable = true;
     settings = {
@@ -18,8 +18,8 @@
         # Turn off monitors (DPMS) after 5.5 minutes
         {
           timeout = 330;
-          "on-timeout" = "niri msg action power-off-monitors; openrgb -p off";
-          "on-resume" = "niri msg action power-on-monitors; openrgb -p main";
+          "on-timeout" = "niri msg action power-off-monitors; ${pkgs.openrgb-with-all-plugins}/bin/openrgb -p off";
+          "on-resume" = "niri msg action power-on-monitors; ${pkgs.openrgb-with-all-plugins}/bin/openrgb -p main";
         }
       ];
     };
