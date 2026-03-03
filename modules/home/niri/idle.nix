@@ -18,8 +18,8 @@
         # Turn off monitors (DPMS) after 5.5 minutes
         {
           timeout = 330;
-          "on-timeout" = "niri msg action power-off-monitors";
-          "on-resume" = "niri msg action power-on-monitors";
+          "on-timeout" = "niri msg action power-off-monitors; openrgb -p off";
+          "on-resume" = "niri msg action power-on-monitors; openrgb -p main";
         }
       ];
     };
