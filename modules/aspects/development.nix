@@ -1,57 +1,43 @@
 {inputs, ...}: {
   ry.development.homeManager = {
     pkgs,
-    lib,
-    osConfig,
     ...
-  }: let
-    stablePkgs = import inputs.nixpkgs-stable {
-      inherit (pkgs.stdenv.hostPlatform) system;
-      config.allowUnfree = true;
-    };
-    inherit (osConfig._ry) hasNvidia;
-  in {
-    home.packages = with pkgs;
-      [
-        gh
-        git-lfs
-        difftastic
-        devenv
-        vscode
-        obs-studio
+  }: {
+    home.packages = with pkgs; [
+      gh
+      git-lfs
+      difftastic
+      devenv
+      vscode
+      obs-studio
 
-        # Languages & toolchains
-        nodejs
-        (rust-bin.stable.latest.default.override {
-          extensions = [
-            "rust-src"
-            "rustfmt"
-            "clippy"
-          ];
-          targets = [
-            (
-              if pkgs.stdenv.hostPlatform.isAarch64
-              then "aarch64-unknown-linux-gnu"
-              else "x86_64-unknown-linux-gnu"
-            )
-          ];
-        })
-        rust-analyzer
+      # Languages & toolchains
+      nodejs
+      (rust-bin.stable.latest.default.override {
+        extensions = [
+          "rust-src"
+          "rustfmt"
+          "clippy"
+        ];
+        targets = [
+          (
+            if pkgs.stdenv.hostPlatform.isAarch64
+            then "aarch64-unknown-linux-gnu"
+            else "x86_64-unknown-linux-gnu"
+          )
+        ];
+      })
+      rust-analyzer
 
-        # GPU debugging
-        mesa-demos
-        vulkan-tools
+      # GPU debugging
+      mesa-demos
+      vulkan-tools
 
-        typst
-        typstyle
-        inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-      ]
-      ++ lib.optionals hasNvidia [
-        (stablePkgs.blender.override {cudaSupport = true;})
-      ]
-      ++ lib.optionals (!hasNvidia) [
-        stablePkgs.blender
-      ];
+      typst
+      typstyle
+      inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+      blender
+    ];
 
     programs = {
       zed-editor.enable = true;

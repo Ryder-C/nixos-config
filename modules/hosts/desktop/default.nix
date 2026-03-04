@@ -1,19 +1,57 @@
 {ry, ...}: {
   den.aspects.desktop = {
-    includes = [ry.x86-workstation];
+    includes = [
+      ry.workstation
+      ry.niri-desktop
+      ry.greetd-desktop
+      ry.desktop-tools
+      ry.nvidia
+      ry.steam
+      ry.torrents
+      ry.ollama
+      ry.rgb
+      ry.nixarr
+      ry.star-citizen
+      ry.aagl
+      ry.gpu-screen-recorder
+      ry.bluevein
+      # ry.monado
+      ry.spicetify
+      ry.activitywatch
+      ry.librepods
+      ry.flatpak
+    ];
 
-    nixos = {config, ...}: {
+    nixos = {
+      config,
+      pkgs,
+      ...
+    }: {
       imports = [./_hardware-configuration.nix];
 
-      _ry.isX86 = true;
-      _ry.hasNvidia = true;
-
       powerManagement.cpuFreqGovernor = "performance";
-      boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-      boot.kernelModules = [
-        "v4l2loopback"
-        "wacom"
-      ];
+
+      boot = {
+        supportedFilesystems = ["bcachefs"];
+        kernelPackages = pkgs.linuxPackages_zen;
+        extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+        kernelModules = [
+          "v4l2loopback"
+          "wacom"
+        ];
+      };
+
+      hardware = {
+        flipperzero.enable = true;
+        steam-hardware.enable = true;
+        opentabletdriver.enable = true;
+        graphics.enable32Bit = true;
+      };
+
+      # disable ghost MediaTek bluetooth adapter (0e8d:0616) on desktop
+      services.udev.extraRules = ''
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0e8d", ATTR{idProduct}=="0616", ATTR{authorized}="0"
+      '';
 
       # Nvidia High VRAM usage fix for Niri (and other Wayland compositors)
       # https://yalter.github.io/niri/Nvidia.html#high-vram-usage-fix

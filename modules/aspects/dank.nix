@@ -43,17 +43,11 @@
           enableSpawn = false;
         };
 
-        plugins =
-          {
-            dankCalculator = {
-              src = inputs.dank-calculator;
-            };
-          }
-          // lib.optionalAttrs osConfig._ry.isX86 {
-            gpuScreenRecorder = {
-              src = ./_dms-plugins/gpu-screen-recorder;
-            };
+        plugins = {
+          dankCalculator = {
+            src = inputs.dank-calculator;
           };
+        };
       };
 
       nix-monitor = {

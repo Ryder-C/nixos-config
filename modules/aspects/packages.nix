@@ -5,10 +5,8 @@
     pkgs,
     lib,
     config,
-    osConfig,
     ...
   }: let
-    isDesktop = osConfig._ry.isX86;
     stablePkgs = import inputs.nixpkgs-stable {
       inherit (pkgs.stdenv.hostPlatform) system;
       config.allowUnfree = true;
@@ -24,103 +22,90 @@
       "WEBKIT_DISABLE_DMABUF_RENDERER=1"
     ];
   in {
-    home.packages = with pkgs;
-      [
-        asciiquarium-transparent
-        audacity
-        bandwhich
-        baobab
-        brightnessctl
-        bitwise
-        cbonsai
-        dua
-        entr
-        eza
-        fd
-        file
-        fzf
-        gifsicle
-        gtrash
-        gtt
-        hexdump
-        jellyfin-media-player
-        jdk17
-        jq
-        lazygit
-        libreoffice
-        lorien
-        monero-gui
-        nil
-        nitch
-        nix-prefetch-github
-        obsidian
-        pipes
-        ripgrep
-        tdf
-        todo
-        toipe
-        toggle-hdr
-        unrar
-        websocat
-        xwayland-run
+    home.packages = with pkgs; [
+      asciiquarium-transparent
+      audacity
+      bandwhich
+      baobab
+      brightnessctl
+      bitwise
+      cbonsai
+      dua
+      entr
+      eza
+      fd
+      file
+      fzf
+      gifsicle
+      gtrash
+      gtt
+      hexdump
+      jellyfin-media-player
+      jdk17
+      jq
+      lazygit
+      libreoffice
+      lorien
+      monero-gui
+      nil
+      nitch
+      nix-prefetch-github
+      obsidian
+      pipes
+      ripgrep
+      tdf
+      todo
+      toipe
+      toggle-hdr
+      unrar
+      websocat
+      xwayland-run
 
-        zenity
+      zenity
 
-        kdePackages.kleopatra
+      kdePackages.kleopatra
 
-        # C / C++
-        gcc
-        gnumake
+      # C / C++
+      gcc
+      gnumake
 
-        # Python
-        python3
-        python312Packages.setuptools
-        python312Packages.virtualenv
-        python312Packages.gmpy2
+      # Python
+      python3
+      python312Packages.setuptools
+      python312Packages.virtualenv
+      python312Packages.gmpy2
 
-        bleachbit
-        cmatrix
-        spotify-player
-        ffmpeg
-        imv
-        killall
-        libnotify
-        man-pages
-        mpv
-        gdu
-        openssl
-        stablePkgs.pamixer
-        pavucontrol
-        playerctl
-        wl-clipboard
-        cliphist
-        poweralertd
-        qalculate-gtk
-        unzip
-        xdg-utils
-        xxd
+      bleachbit
+      cmatrix
+      spotify-player
+      ffmpeg
+      imv
+      killall
+      libnotify
+      man-pages
+      mpv
+      gdu
+      openssl
+      stablePkgs.pamixer
+      pavucontrol
+      playerctl
+      wl-clipboard
+      cliphist
+      poweralertd
+      qalculate-gtk
+      unzip
+      xdg-utils
+      xxd
 
-        tinymist
+      tinymist
 
-        # 3D printing
-        orca-slicer
+      # 3D printing
+      orca-slicer
 
-        libvlc
-        zathura
-        leetgo
-      ]
-      ++ lib.optionals isDesktop [
-        unityhub
-        valgrind
-        gpu-screen-recorder-gtk
-
-        wineWow64Packages.waylandFull
-        (bottles.override {removeWarningPopup = true;})
-        inputs.vesc-tool.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.rypkgs.packages.${pkgs.stdenv.hostPlatform.system}.blink
-        tor-browser
-        zoom-us
-      ];
+      libvlc
+      zathura
+      leetgo
+    ];
 
     xdg = {
       mimeApps = {
@@ -130,16 +115,9 @@
         };
       };
 
-      dataFile = lib.mkMerge [
-        {
-          "applications/mimeapps.list".force = true;
-        }
-        (lib.mkIf isDesktop {
-          "icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg" = {
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/flatpak/exports/share/icons/hicolor/scalable/apps/org.vinegarhq.Sober.svg";
-          };
-        })
-      ];
+      dataFile = {
+        "applications/mimeapps.list".force = true;
+      };
 
       desktopEntries."OrcaSlicer" = {
         name = "OrcaSlicer";

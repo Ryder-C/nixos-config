@@ -28,8 +28,8 @@
     ];
   };
 
-  # Steam, gamescope, gamemode (x86 only — reached via x86-workstation includes)
-  ry.gaming-x86 = {
+  # Steam, gamescope, gamemode
+  ry.steam = {
     nixos = {pkgs, config, ...}: {
       imports = [inputs.steam-presence.nixosModules.steam-presence];
 

@@ -2,7 +2,11 @@
   flake-file.inputs.apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
   den.aspects.laptop = {
-    includes = [ry.workstation];
+    includes = [
+      ry.workstation
+      ry.niri-laptop
+      ry.greetd-laptop
+    ];
 
     nixos = {
       pkgs,

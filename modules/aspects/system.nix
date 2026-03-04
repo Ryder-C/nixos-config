@@ -11,16 +11,6 @@
   };
 
   ry.system.nixos = {pkgs, lib, ...}: {
-    options._ry.isX86 = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
-    options._ry.hasNvidia = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
     imports = [inputs.catppuccin.nixosModules.catppuccin];
 
     config = {

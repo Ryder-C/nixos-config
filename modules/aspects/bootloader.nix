@@ -12,15 +12,4 @@ _: {
     };
   };
 
-  ry.bootloader-x86.nixos = {config, pkgs, lib, ...}:
-    lib.mkIf config._ry.isX86 {
-      boot = {
-        supportedFilesystems = ["bcachefs"];
-        kernelPackages = pkgs.linuxPackages_zen;
-        kernelParams = [
-          "nvidia-drm.modeset=1"
-          "nvidia-drm.fbdev=1"
-        ];
-      };
-    };
 }

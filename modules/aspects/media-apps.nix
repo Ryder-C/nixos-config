@@ -6,27 +6,21 @@
 
   ry.media-apps.homeManager = {
     pkgs,
-    lib,
-    osConfig,
     ...
-  }: let
-    inherit (osConfig._ry) hasNvidia;
-  in {
+  }: {
     imports = [
       inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
     ];
 
-    home.packages = with pkgs;
-      [
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.noto
-        twemoji-color-font
-        noto-fonts-color-emoji
-        dracula-theme
-        dracula-icon-theme
-        adwaita-icon-theme
-      ]
-      ++ lib.optionals hasNvidia [pkgs.nvtopPackages.nvidia];
+    home.packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.noto
+      twemoji-color-font
+      noto-fonts-color-emoji
+      dracula-theme
+      dracula-icon-theme
+      adwaita-icon-theme
+    ];
 
     programs = {
       bat = {
@@ -36,10 +30,7 @@
 
       btop = {
         enable = true;
-        package =
-          if hasNvidia
-          then pkgs.btop-cuda
-          else pkgs.btop;
+        package = pkgs.btop;
         settings = {
           theme_background = false;
           update_ms = 500;

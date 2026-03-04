@@ -36,13 +36,42 @@
     };
   };
 
-  ry.services-x86.nixos = {
+  ry.rgb.nixos = {
+    services.hardware.openrgb = {
+      enable = true;
+      motherboard = "amd";
+      startupProfile = "main.orp";
+    };
+  };
+
+  ry.ollama.nixos = {pkgs, ...}: {
+    systemd.tmpfiles.rules = [
+      "d /storage/models 0755 ollama ollama -"
+    ];
+    services = {
+      ollama = {
+        enable = true;
+        package = pkgs.ollama-cuda;
+        user = "ollama";
+        models = "/storage/models";
+      };
+      open-webui = {
+        enable = true;
+        port = 8081;
+        environment = {
+          OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
+          WEBUI_AUTH = "False";
+        };
+      };
+    };
+  };
+
+  ry.torrents.nixos = {
     pkgs,
     config,
     lib,
     ...
-  }:
-    lib.mkIf config._ry.isX86 (let
+  }: let
     crossSeedWebhook = pkgs.writeShellScript "cross-seed-webhook" ''
       API_KEY=$(${pkgs.jq}/bin/jq -r '.apiKey' ${config.age.secrets.cross-seed.path})
       ${pkgs.curl}/bin/curl -XPOST "http://localhost:2468/api/webhook?apikey=$API_KEY" -d "infoHash=$1"
@@ -91,7 +120,6 @@
     systemd = {
       tmpfiles.rules = [
         "d ${profileBase} 0755 root root - -"
-        "d /storage/models 0755 ollama ollama -"
       ];
       services.pia-vpn = {
         enable = true;
@@ -122,12 +150,6 @@
     };
 
     services = {
-      hardware.openrgb = {
-        enable = true;
-        motherboard = "amd";
-        startupProfile = "main.orp";
-      };
-
       pia-vpn = {
         enable = true;
         certificateFile = piaCertPath;
@@ -143,21 +165,6 @@
           '';
         };
       };
-
-      ollama = {
-        enable = true;
-        package = pkgs.ollama-cuda;
-        user = "ollama";
-        models = "/storage/models";
-      };
-      open-webui = {
-        enable = true;
-        port = 8081;
-        environment = {
-          OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
-          WEBUI_AUTH = "False";
-        };
-      };
     };
-  });
+  };
 }

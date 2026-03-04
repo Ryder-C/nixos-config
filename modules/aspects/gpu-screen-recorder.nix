@@ -1,15 +1,16 @@
 _: {
   ry.gpu-screen-recorder = {
-    nixos = {config, lib, ...}:
-      lib.mkIf config._ry.isX86 {
-        programs.gpu-screen-recorder.enable = true;
-      };
+    nixos = {
+      programs.gpu-screen-recorder.enable = true;
+    };
 
     homeManager = {
       pkgs,
       config,
       ...
     }: {
+      programs.dank-material-shell.plugins.gpuScreenRecorder.src = ./_dms-plugins/gpu-screen-recorder;
+
       systemd.user.services.gpu-screen-recorder = {
         Unit = {
           Description = "GPU Screen Recorder - Replay Buffer";

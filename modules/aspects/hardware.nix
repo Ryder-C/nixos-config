@@ -14,14 +14,4 @@ _: {
     };
     hardware.enableRedistributableFirmware = true;
   };
-
-  ry.hardware-x86.nixos = {config, lib, ...}:
-    lib.mkIf config._ry.isX86 {
-      hardware = {
-        flipperzero.enable = true;
-        steam-hardware.enable = true;
-        opentabletdriver.enable = true;
-        graphics.enable32Bit = true;
-      };
-    };
 }

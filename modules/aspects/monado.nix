@@ -1,6 +1,5 @@
 _: {
-  ry.monado.nixos = {config, pkgs, lib, ...}:
-    lib.mkIf config._ry.isX86 {
+  ry.monado.nixos = {pkgs, ...}: {
     services.monado = {
       enable = true;
       defaultRuntime = true;

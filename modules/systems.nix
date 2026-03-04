@@ -39,27 +39,5 @@
       ry.home-services
       ry.gaming
     ];
-
-    # x86 workstation (extends full desktop)
-    x86-workstation.includes = [
-      ry.workstation
-
-      ry.bootloader-x86
-      ry.hardware-x86
-      ry.system-x86
-      ry.services-x86
-      ry.nvidia
-      ry.gaming-x86
-      ry.nixarr
-      ry.star-citizen
-      ry.aagl
-      ry.gpu-screen-recorder
-      ry.bluevein
-      ry.monado
-      ry.spicetify
-      ry.activitywatch
-      ry.librepods
-      ry.flatpak
-    ];
   };
 }
