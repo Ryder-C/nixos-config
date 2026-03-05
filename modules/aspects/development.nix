@@ -10,7 +10,6 @@
       devenv
       vscode
       obs-studio
-      mcp-nixos
 
       # Languages & toolchains
       nodejs
@@ -42,9 +41,20 @@
 
     programs = {
       zed-editor.enable = true;
+      mcp = {
+        enable = true;
+        servers = {
+          nixos.command = "${pkgs.mcp-nixos}/bin/mcp-nixos";
+        };
+      };
       claude-code = {
         enable = true;
+        enableMcpIntegration = true;
         package = pkgs.claude-code;
+      };
+      opencode = {
+        enable = true;
+        enableMcpIntegration = true;
       };
       gemini-cli = {
         enable = true;
@@ -56,7 +66,6 @@
           experimental.plan = true;
         };
       };
-      opencode.enable = true;
       direnv.enable = true;
 
       # Git
