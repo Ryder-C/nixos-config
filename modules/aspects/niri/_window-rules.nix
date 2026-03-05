@@ -16,7 +16,7 @@ _: {
         focus-ring.enable = false;
       }
       {
-        matches = [{app-id = "^equibop$";}];
+        matches = [{app-id = "^vesktop$";}];
         open-on-output = "DP-2";
         open-maximized = true;
       }
@@ -27,6 +27,10 @@ _: {
       {
         matches = [{app-id = "^antigravity$";}];
         open-maximized = true;
+      }
+      {
+        matches = [{app-id = "^org\\.jellyfin\\.JellyfinDesktop$";}];
+        open-on-output = "DP-3";
       }
       {
         matches = [

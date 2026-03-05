@@ -1,6 +1,5 @@
 {inputs, ...}: {
   flake-file.inputs = {
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:ryantm/agenix";
     };
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.url = "github:kamadorueda/alejandra";
     apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
     catppuccin.url = "github:catppuccin/nix";
     catppuccin-stylus-json = {
@@ -86,10 +86,6 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixvim.url = "github:Ryder-C/nixvim";
     nur.url = "github:nix-community/NUR";
-    pre-commit-hooks = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:cachix/pre-commit-hooks.nix";
-    };
     rust-overlay = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:oxalica/rust-overlay";

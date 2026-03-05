@@ -1,8 +1,8 @@
 {inputs, ...}: {
-  ry.development.homeManager = {
-    pkgs,
-    ...
-  }: {
+  flake-file.inputs = {
+    alejandra.url = "github:kamadorueda/alejandra";
+  };
+  ry.development.homeManager = {pkgs, ...}: {
     home.packages = with pkgs; [
       gh
       git-lfs
@@ -10,6 +10,7 @@
       devenv
       vscode
       obs-studio
+      mcp-nixos
 
       # Languages & toolchains
       nodejs
