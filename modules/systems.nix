@@ -31,6 +31,7 @@
       ry.workstation-base
 
       ry.niri
+      ry.plasma
       ry.dank
       ry.browser
       ry.discord

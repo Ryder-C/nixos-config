@@ -83,7 +83,6 @@
       killall
       libnotify
       man-pages
-      mpv
       gdu
       openssl
       stablePkgs.pamixer
