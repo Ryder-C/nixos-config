@@ -26,7 +26,6 @@ _: {
           WantedBy = ["graphical-session.target"];
         };
       };
-
     };
   };
 }

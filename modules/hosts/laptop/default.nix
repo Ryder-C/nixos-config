@@ -1,4 +1,8 @@
-{inputs, ry, ...}: {
+{
+  inputs,
+  ry,
+  ...
+}: {
   flake-file.inputs.apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
   den.aspects.laptop = {

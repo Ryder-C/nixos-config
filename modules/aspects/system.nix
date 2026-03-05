@@ -10,7 +10,11 @@
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  ry.system.nixos = {pkgs, lib, ...}: {
+  ry.system.nixos = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [inputs.catppuccin.nixosModules.catppuccin];
 
     config = {

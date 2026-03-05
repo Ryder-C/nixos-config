@@ -4,7 +4,12 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.nixarr.nixos = {config, pkgs, lib, ...}: let
+  ry.nixarr.nixos = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: let
     allowOutsideAccess = false;
   in {
     imports = [

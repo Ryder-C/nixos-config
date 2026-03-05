@@ -26,7 +26,7 @@ _: {
     };
 
     homeManager = {pkgs, ...}: {
-      home.packages = [ pkgs.nvtopPackages.nvidia ];
+      home.packages = [pkgs.nvtopPackages.nvidia];
     };
   };
 }

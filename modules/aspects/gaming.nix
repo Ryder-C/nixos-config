@@ -30,7 +30,11 @@
 
   # Steam, gamescope, gamemode
   ry.steam = {
-    nixos = {pkgs, config, ...}: {
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: {
       imports = [inputs.steam-presence.nixosModules.steam-presence];
 
       environment.sessionVariables = {

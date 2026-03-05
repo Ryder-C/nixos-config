@@ -4,10 +4,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.media-apps.homeManager = {
-    pkgs,
-    ...
-  }: {
+  ry.media-apps.homeManager = {pkgs, ...}: {
     imports = [
       inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
     ];

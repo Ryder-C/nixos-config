@@ -11,5 +11,4 @@ _: {
       plymouth.enable = false;
     };
   };
-
 }
