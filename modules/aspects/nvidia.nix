@@ -1,6 +1,11 @@
-_: {
+{inputs, ...}: let
+  cudaOverlay = final: prev: {
+    btop = prev.btop.override {cudaSupport = true;};
+    blender = prev.blender.override {cudaSupport = true;};
+  };
+in {
   ry.nvidia = {
-    nixos = {config, ...}: {
+    nixos = {config, lib, pkgs, ...}: {
       services.xserver.videoDrivers = ["nvidia"];
 
       hardware.nvidia = {
@@ -17,12 +22,13 @@ _: {
         "nvidia-drm.fbdev=1"
       ];
 
-      nixpkgs.overlays = [
-        (final: prev: {
-          btop = prev.btop.override {cudaSupport = true;};
-          blender = prev.blender.override {cudaSupport = true;};
-        })
-      ];
+      _module.args.stablePkgs = lib.mkForce (import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+        overlays = [cudaOverlay];
+      });
+
+      nixpkgs.overlays = [cudaOverlay];
     };
 
     homeManager = {pkgs, ...}: {

@@ -63,11 +63,20 @@
       gemini-cli = {
         enable = true;
         settings = {
+          mcpServers = {
+            nixos.command = "${pkgs.mcp-nixos}/bin/mcp-nixos";
+          };
           general = {
+            sessionRetention = {
+              enabled = true;
+              maxAge = "30d";
+              warningAcknowledged = true;
+            };
             preferredEditor = "nvim";
             previewFeatures = true;
           };
           experimental.plan = true;
+          security.auth.selectedType = "oauth-personal";
         };
       };
       direnv.enable = true;
