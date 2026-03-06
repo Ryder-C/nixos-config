@@ -3,6 +3,29 @@ _: {
     programs.mpv = {
       enable = true;
     };
+
+    services.jellyfin-mpv-shim = {
+      enable = true;
+      settings = {
+        fullscreen = true;
+        transcode_hdr = false;
+      };
+      mpvConfig = {
+        vo = "gpu-next";
+        target-colorspace-hint = true;
+        gpu-api = "vulkan";
+        gpu-context = "waylandvk";
+
+        target-trc = "pq";
+        target-prim = "bt.2020";
+        target-peak = "1000";
+        hdr-compute-peak = "no";
+      };
+    };
+
+    # Only start jellyfin-mpv-shim when logged into Plasma
+    systemd.user.services.jellyfin-mpv-shim.Service.ExecCondition =
+      "${pkgs.bash}/bin/bash -c '[ \"$XDG_CURRENT_DESKTOP\" = \"KDE\" ]'";
   };
 
   ry.plasma.nixos = {pkgs, ...}: {

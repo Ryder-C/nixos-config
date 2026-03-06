@@ -40,7 +40,7 @@
       gtrash
       gtt
       hexdump
-      jellyfin-media-player
+      jellyfin-desktop
       jdk17
       jq
       lazygit
