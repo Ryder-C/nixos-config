@@ -5,13 +5,9 @@
     pkgs,
     lib,
     config,
+    stablePkgs,
     ...
   }: let
-    stablePkgs = import inputs.nixpkgs-stable {
-      inherit (pkgs.stdenv.hostPlatform) system;
-      config.allowUnfree = true;
-    };
-
     toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
 
     zink-env = [

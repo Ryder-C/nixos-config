@@ -24,8 +24,7 @@ _: {
     };
 
     # Only start jellyfin-mpv-shim when logged into Plasma
-    systemd.user.services.jellyfin-mpv-shim.Service.ExecCondition =
-      "${pkgs.bash}/bin/bash -c '[ \"$XDG_CURRENT_DESKTOP\" = \"KDE\" ]'";
+    systemd.user.services.jellyfin-mpv-shim.Service.ExecCondition = "${pkgs.bash}/bin/bash -c '[ \"$XDG_CURRENT_DESKTOP\" = \"KDE\" ]'";
   };
 
   ry.plasma.nixos = {pkgs, ...}: {

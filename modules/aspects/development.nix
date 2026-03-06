@@ -2,7 +2,11 @@
   flake-file.inputs = {
     alejandra.url = "github:kamadorueda/alejandra";
   };
-  ry.development.homeManager = {pkgs, ...}: {
+  ry.development.homeManager = {
+    pkgs,
+    stablePkgs,
+    ...
+  }: {
     home.packages = with pkgs; [
       gh
       git-lfs
@@ -36,7 +40,7 @@
       typst
       typstyle
       inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-      blender
+      stablePkgs.blender
     ];
 
     programs = {

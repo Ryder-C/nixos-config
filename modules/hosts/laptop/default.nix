@@ -1,6 +1,7 @@
 {
   inputs,
   ry,
+  lib,
   ...
 }: {
   flake-file.inputs.apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
@@ -63,14 +64,16 @@
 
       # Laptop-specific lid switch behavior
       services.logind.settings.Login = {
-        HandleLidSwitch = "suspend";
-        HandleLidSwitchExternalPower = "suspend";
+        HandleLidSwitch = lib.mkForce "suspend";
+        HandleLidSwitchExternalPower = lib.mkForce "suspend";
       };
 
       # Apple Silicon cache
       nix.settings = {
         substituters = ["https://nixos-apple-silicon.cachix.org"];
-        trusted-public-keys = ["nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="];
+        trusted-public-keys = [
+          "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20="
+        ];
       };
     };
   };

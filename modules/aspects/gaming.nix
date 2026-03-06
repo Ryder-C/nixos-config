@@ -11,12 +11,11 @@
   };
 
   # Gaming HM packages (all hosts)
-  ry.gaming.homeManager = {pkgs, ...}: let
-    stablePkgs = import inputs.nixpkgs-stable {
-      inherit (pkgs.stdenv.hostPlatform) system;
-      config.allowUnfree = true;
-    };
-  in {
+  ry.gaming.homeManager = {
+    pkgs,
+    stablePkgs,
+    ...
+  }: {
     home.packages = with pkgs; [
       ## Minecraft
       stablePkgs.prismlauncher
@@ -85,12 +84,11 @@
       };
     };
 
-    homeManager = {pkgs, ...}: let
-      stablePkgs = import inputs.nixpkgs-stable {
-        inherit (pkgs.stdenv.hostPlatform) system;
-        config.allowUnfree = true;
-      };
-    in {
+    homeManager = {
+      pkgs,
+      stablePkgs,
+      ...
+    }: {
       home.packages = with pkgs; [
         winetricks
         mangohud

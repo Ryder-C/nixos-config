@@ -1,10 +1,28 @@
-{den, ...}: {
-  den.base.user.classes = ["homeManager"];
+{
+  den,
+  inputs,
+  ...
+}: {
+  den.schema.user = {lib, ...}: {
+    config.classes = lib.mkDefault ["homeManager"];
+  };
 
   den.default = {
-    nixos.system.stateVersion = "24.05";
-    homeManager.home.stateVersion = "24.05";
-    homeManager.programs.home-manager.enable = true;
+    nixos = {pkgs, ...}: {
+      system.stateVersion = "24.05";
+      _module.args.stablePkgs = import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    };
+    homeManager = {pkgs, ...}: {
+      home.stateVersion = "24.05";
+      programs.home-manager.enable = true;
+      _module.args.stablePkgs = import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    };
 
     includes = [
       den._.define-user
