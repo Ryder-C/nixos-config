@@ -21,11 +21,10 @@ _: {
         open-maximized = true;
       }
       {
-        matches = [{app-id = "^code$";}];
-        open-maximized = true;
-      }
-      {
-        matches = [{app-id = "^antigravity$";}];
+        matches = [
+          {app-id = "^code$";}
+          {app-id = "^antigravity$";}
+        ];
         open-maximized = true;
       }
       {
@@ -34,6 +33,14 @@ _: {
       }
       {
         matches = [
+          {app-id = "^.blueman-manager-wrapped$";}
+          {app-id = "^[Ww]aydroid";}
+          {app-id = "^org.gnome.Nautilus$";}
+          {app-id = "^ninjabrainbot";}
+          {
+            app-id = "^thunar$";
+            title = "^Rename";
+          }
           {
             app-id = "^thunar$";
             title = "^File Operation Progress$";
@@ -41,30 +48,11 @@ _: {
         ];
         open-floating = true;
       }
+    ];
+    layer-rules = [
       {
-        matches = [
-          {
-            app-id = "^thunar$";
-            title = "^Rename";
-          }
-        ];
-        open-floating = true;
-      }
-      {
-        matches = [{app-id = "^.blueman-manager-wrapped$";}];
-        open-floating = true;
-      }
-      {
-        matches = [{app-id = "^[Ww]aydroid";}];
-        open-floating = true;
-      }
-      {
-        matches = [{app-id = "^org.gnome.Nautilus$";}];
-        open-floating = true;
-      }
-      {
-        matches = [{app-id = "^ninjabrainbot";}];
-        open-floating = true;
+        matches = [{namespace = "^dms:notification-popup$";}];
+        block-out-from = "screencast";
       }
     ];
   };

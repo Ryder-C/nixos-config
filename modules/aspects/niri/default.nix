@@ -40,6 +40,9 @@
         hotkey-overlay.skip-at-startup = true;
 
         input = {
+          mouse = {
+            accel-profile = "flat";
+          };
           keyboard.xkb = {
             layout = "us,fr";
             options = "grp:alt_caps_toggle";
@@ -51,6 +54,7 @@
           };
           warp-mouse-to-focus.enable = false;
           focus-follows-mouse.enable = true;
+          workspace-auto-back-and-forth = true;
         };
 
         layout = {
@@ -69,6 +73,7 @@
             inactive.color = "#45475a";
           };
           border.enable = false;
+          tab-indicator.place-within-column = true;
         };
 
         spawn-at-startup = [
@@ -89,17 +94,23 @@
 
           "Mod+Q".action.close-window = {};
 
+          "Mod+C".action.center-column = {};
+
           # Colemak Focus
-          "Mod+m".action.focus-column-left = {};
-          "Mod+n".action.focus-window-down = {};
-          "Mod+e".action.focus-window-up = {};
-          "Mod+i".action.focus-column-right = {};
+          "Mod+m".action.focus-column-or-monitor-left = {};
+          "Mod+n".action.focus-window-or-workspace-down = {};
+          "Mod+e".action.focus-window-or-workspace-up = {};
+          "Mod+i".action.focus-column-or-monitor-right = {};
 
           # Colemak Move
-          "Mod+Shift+m".action.move-column-left = {};
-          "Mod+Shift+n".action.move-window-down = {};
-          "Mod+Shift+e".action.move-window-up = {};
-          "Mod+Shift+i".action.move-column-right = {};
+          "Mod+Shift+m".action.move-column-left-or-to-monitor-left = {};
+          "Mod+Shift+n".action.move-window-down-or-to-workspace-down = {};
+          "Mod+Shift+e".action.move-window-up-or-to-workspace-up = {};
+          "Mod+Shift+i".action.move-column-right-or-to-monitor-right = {};
+
+          # Colemak Consume/Expel - Move
+          "Mod+Ctrl+m".action.consume-or-expel-window-left = {};
+          "Mod+Ctrl+i".action.consume-or-expel-window-right = {};
 
           # Monitor Focus
           "Mod+Left".action.focus-monitor-left = {};
@@ -107,9 +118,10 @@
           "Mod+Shift+Left".action.spawn = ["sh" "-c" "niri msg action move-window-to-monitor-left && niri msg action move-column-to-first"];
           "Mod+Shift+Right".action.spawn = ["sh" "-c" "niri msg action move-window-to-monitor-right && niri msg action move-column-to-first"];
 
-          "Mod+C".action.center-column = {};
-
           # Workspaces
+          "Mod+Up".action.focus-workspace-up = {};
+          "Mod+Down".action.focus-workspace-down = {};
+
           "Mod+1".action.focus-workspace = 1;
           "Mod+2".action.focus-workspace = 2;
           "Mod+3".action.focus-workspace = 3;
@@ -131,8 +143,10 @@
           "Mod+Shift+9".action.move-column-to-workspace = 9;
 
           "Mod+O".action.toggle-overview = {};
+          "Mod+W".action.toggle-column-tabbed-display = {};
 
           "Mod+F".action.maximize-column = {};
+          "Mod+Ctrl+F".action.expand-column-to-available-width = {};
           "Mod+Shift+F".action.fullscreen-window = {};
           "Mod+Shift+Space".action.toggle-window-floating = {};
 
