@@ -43,11 +43,13 @@ _: {
       '';
 
       sessionVariables = {
-        # Disable kwallet daemon
         KWALLETD_ENABLED = "false";
-        # Enable HDR for Vulkan
-        ENABLE_HDR_WSI = "1";
       };
+
+      # Only set in Plasma sessions — breaks GNOME portal screencast on niri
+      etc."xdg/plasma-workspace/env/hdr.sh".text = ''
+        export ENABLE_HDR_WSI=1
+      '';
 
       systemPackages = with pkgs; [
         vulkan-hdr-layer-kwin6
