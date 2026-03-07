@@ -31,7 +31,12 @@ in {
       nixpkgs.overlays = [cudaOverlay];
     };
 
-    homeManager = {pkgs, ...}: {
+    homeManager = {lib, pkgs, ...}: {
+      _module.args.stablePkgs = lib.mkForce (import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+        overlays = [cudaOverlay];
+      });
       home.packages = [pkgs.nvtopPackages.nvidia];
     };
   };
