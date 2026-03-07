@@ -19,6 +19,7 @@
 
     config = {
       nix = {
+        package = pkgs.lixPackageSets.latest.lix;
         settings = {
           eval-cache = true;
           auto-optimise-store = true;
@@ -43,6 +44,13 @@
 
       nixpkgs = {
         overlays = [
+          (final: prev: {
+            inherit (prev.lixPackageSets.latest)
+              nixpkgs-review
+              nix-eval-jobs
+              nix-fast-build
+              colmena;
+          })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default
           inputs.rypkgs.overlays.default
