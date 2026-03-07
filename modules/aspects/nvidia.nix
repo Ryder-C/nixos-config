@@ -5,7 +5,12 @@
   };
 in {
   ry.nvidia = {
-    nixos = {config, lib, pkgs, ...}: {
+    nixos = {
+      config,
+      lib,
+      pkgs,
+      ...
+    }: {
       services.xserver.videoDrivers = ["nvidia"];
 
       hardware.nvidia = {
@@ -31,7 +36,11 @@ in {
       nixpkgs.overlays = [cudaOverlay];
     };
 
-    homeManager = {lib, pkgs, ...}: {
+    homeManager = {
+      lib,
+      pkgs,
+      ...
+    }: {
       _module.args.stablePkgs = lib.mkForce (import inputs.nixpkgs-stable {
         inherit (pkgs.stdenv.hostPlatform) system;
         config.allowUnfree = true;

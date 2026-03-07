@@ -66,13 +66,13 @@
             {proportion = 0.66667;}
           ];
           default-column-width.proportion = 0.5;
-          focus-ring = {
+          border = {
             enable = true;
             width = 2;
             active.color = "#cba6f7";
             inactive.color = "#45475a";
           };
-          border.enable = false;
+          focus-ring.enable = false;
           tab-indicator.place-within-column = true;
         };
 

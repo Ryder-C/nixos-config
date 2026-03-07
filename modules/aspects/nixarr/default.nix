@@ -23,9 +23,24 @@
       extraGroups = ["users"];
     };
 
-    systemd.services.cross-seed.serviceConfig = {
-      ReadWritePaths = ["/storage/Torrents/cross-seed"];
-      ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
+    systemd.services = let
+      requireStorage = {
+        unitConfig.RequiresMountsFor = "/storage";
+      };
+    in {
+      radarr = requireStorage;
+      radarr-anime = requireStorage;
+      sonarr = requireStorage;
+      sonarr-anime = requireStorage;
+      prowlarr = requireStorage;
+      jellyfin = requireStorage;
+      recyclarr = requireStorage;
+      cross-seed = requireStorage // {
+        serviceConfig = {
+          ReadWritePaths = ["/storage/Torrents/cross-seed"];
+          ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
+        };
+      };
     };
 
     systemd.tmpfiles.rules = [

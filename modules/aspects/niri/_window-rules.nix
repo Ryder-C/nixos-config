@@ -32,6 +32,24 @@ _: {
         open-on-output = "DP-3";
       }
       {
+        # Indicate screencasted windows with red colors
+        matches = [{is-window-cast-target = true;}];
+        focus-ring = {
+          active.color = "#f38ba8";
+          inactive.color = "#7d0d2d";
+        };
+        border = {
+          inactive.color = "#7d0d2d";
+        };
+        shadow = {
+          color = "#7d0d2d70";
+        };
+        tab-indicator = {
+          active.color = "#f38ba8";
+          inactive.color = "#7d0d2d";
+        };
+      }
+      {
         matches = [
           {app-id = "^.blueman-manager-wrapped$";}
           {app-id = "^[Ww]aydroid";}
