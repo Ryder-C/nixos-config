@@ -1644,6 +1644,7 @@
         "nixvim": "nixvim",
         "nur": "nur",
         "rust-overlay": "rust-overlay_2",
+        "rycharger": "rycharger",
         "rypkgs": "rypkgs",
         "spicetify-nix": "spicetify-nix",
         "steam-presence": "steam-presence",
@@ -1702,6 +1703,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rycharger": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773011771,
+        "narHash": "sha256-1CiNAyuhpm2zRciWpNZJbE4C040DIPOdEEkE/5wfJkA=",
+        "owner": "Ryder-C",
+        "repo": "rycharger",
+        "rev": "5e797ccf1b1eb0952a0f969a51fd2178dd30e2ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Ryder-C",
+        "repo": "rycharger",
         "type": "github"
       }
     },

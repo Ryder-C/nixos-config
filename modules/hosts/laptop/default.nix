@@ -11,6 +11,7 @@
       ry.workstation
       ry.niri-laptop
       ry.greetd-laptop
+      ry.charger
     ];
 
     nixos = {
@@ -35,11 +36,8 @@
         binfmt.emulatedSystems = ["x86_64-linux"];
       };
 
-      systemd.tmpfiles.rules = [
-        "w /sys/class/power_supply/macsmc-battery/charge_control_end_threshold - - - - 80"
-      ];
-
       services = {
+        rycharger.settings.battery.device = "macsmc-battery";
         power-profiles-daemon.enable = true;
         upower = {
           enable = true;

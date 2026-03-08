@@ -1,7 +1,8 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
     aagl = {
@@ -89,6 +90,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:oxalica/rust-overlay";
     };
+    rycharger = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Ryder-C/rycharger";
+    };
     rypkgs.url = "github:Ryder-C/rypkgs";
     spicetify-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -100,4 +105,5 @@
     };
     vesc-tool.url = "github:vedderb/vesc_tool";
   };
+
 }
