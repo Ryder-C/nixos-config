@@ -14,8 +14,8 @@
 
     programs.rsi-launcher = {
       enable = true;
-      enforceWaylandDrv = true;
-      umu.enable = true;
+      enforceWaylandDrv = false;
+      umu.enable = false;
       gamescope = {
         enable = false;
         args = [
@@ -33,6 +33,10 @@
           "sdl"
         ];
       };
+      preCommands = ''
+        # Disable VR client DLLs so DXVK skips OpenVR initialization
+        export WINEDLLOVERRIDES="vrclient=d;vrclient_x64=d;openvr_api_dxvk=d;''${WINEDLLOVERRIDES}"
+      '';
     };
   };
 }

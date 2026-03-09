@@ -81,7 +81,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:kaylorben/nixcord";
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixvim.url = "github:Ryder-C/nixvim";
