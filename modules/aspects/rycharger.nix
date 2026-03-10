@@ -4,14 +4,16 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.charger.nixos = {username, ...}: {
-    imports = [inputs.rycharger.nixosModules.default];
+  ry.charger = {user, ...}: {
+    nixos = {
+      imports = [inputs.rycharger.nixosModules.default];
 
-    services.rycharger = {
-      enable = true;
-      user = "${username}";
-      settings = {
-        battery.hold_percent = 80;
+      services.rycharger = {
+        enable = true;
+        user = user.userName;
+        settings = {
+          battery.hold_percent = 80;
+        };
       };
     };
   };
