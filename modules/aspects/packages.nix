@@ -36,7 +36,6 @@
       gtrash
       gtt
       hexdump
-      jellyfin-desktop
       jdk17
       jq
       lazygit

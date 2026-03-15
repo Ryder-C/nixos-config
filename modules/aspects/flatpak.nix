@@ -27,6 +27,7 @@
           "flathub:app/com.heroicgameslauncher.hgl/x86_64/stable"
           "flathub:app/org.vinegarhq.Sober/x86_64/stable"
           "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
+          "flathub:app/org.jellyfin.JellyfinDesktop/x86_64/stable"
           ":${hytale-flatpak}"
 
           "flathub:runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
