@@ -218,6 +218,18 @@
         "type": "github"
       }
     },
+    "discord-catppuccin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-kQK+xOaUBqWXtGhyS2GuSMztQAMy7/jIz85mhjgBiDw=",
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+      }
+    },
     "dms": {
       "inputs": {
         "nixpkgs": [
@@ -1134,14 +1146,15 @@
         "flake-parts": "flake-parts_5",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "nixpkgs-nixcord": "nixpkgs-nixcord"
       },
       "locked": {
-        "lastModified": 1772891434,
-        "narHash": "sha256-+MUN+5lOvWS6T4pvIZBGL4AKJkflLXGgVRYTlNeZEiE=",
+        "lastModified": 1773449015,
+        "narHash": "sha256-7Q4MsuktyGzRC5B+RuTITnZaDT5JqUq19P7wNFL+7ac=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "fc63af2dbc92cdcfeb6c650d986280057b0f135c",
+        "rev": "3e0fc6c4baba8d1a63e11a6d8977a0f92c859801",
         "type": "github"
       },
       "original": {
@@ -1223,6 +1236,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-nixcord": {
+      "locked": {
+        "lastModified": 1773222311,
+        "narHash": "sha256-BHoB/XpbqoZkVYZCfXJXfkR+GXFqwb/4zbWnOr2cRcU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0590cd39f728e129122770c029970378a79d076a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -1617,6 +1646,7 @@
         "claude-code": "claude-code",
         "dank-calculator": "dank-calculator",
         "den": "den",
+        "discord-catppuccin": "discord-catppuccin",
         "dms": "dms",
         "flake-aspects": "flake-aspects",
         "flake-file": "flake-file",

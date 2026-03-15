@@ -1,17 +1,28 @@
 {inputs, ...}: {
-  flake-file.inputs.nixcord = {
-    url = "github:kaylorben/nixcord";
-    inputs.nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    discord-catppuccin = {
+      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
+      flake = false;
+    };
   };
 
-  ry.discord.homeManager = {pkgs, ...}: {
+  ry.discord.homeManager = {pkgs, ...}: let
+    catppuccinTheme = inputs.discord-catppuccin;
+  in {
     imports = [inputs.nixcord.homeModules.nixcord];
 
     programs.nixcord = {
       enable = true;
+
       discord.enable = false;
       equibop.enable = false;
       vesktop.enable = true;
+      dorion.enable = false;
+
       config = {
         enabledThemes = [
           "catppuccin-mocha.theme.css"
@@ -21,13 +32,15 @@
           silentTyping.enable = true;
           typingIndicator.enable = true;
           shikiCodeblocks.enable = true;
+          webScreenShareFixes.enable = true;
         };
       };
     };
 
-    xdg.configFile."vesktop/themes/catppuccin-mocha.theme.css".source = pkgs.fetchurl {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-      hash = "sha256-KVv9vfqI+WADn3w4yE1eNsmtm7PQq9ugKiSL3EOLheI=";
+    xdg.configFile = {
+      "vesktop/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
+      "equibop/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
+      "dorion/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
     };
   };
 }

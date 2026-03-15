@@ -26,6 +26,10 @@
       url = "github:rochacbruno/DankCalculator";
     };
     den.url = "github:vic/den";
+    discord-catppuccin = {
+      flake = false;
+      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
+    };
     dms = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:AvengeMedia/DankMaterialShell/stable";
