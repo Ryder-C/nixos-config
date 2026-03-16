@@ -207,6 +207,10 @@
   ry.niri-laptop.homeManager = {
     programs.niri.settings = {
       debug.render-drm-device = "/dev/dri/renderD128";
+      switch-events = {
+        lid-close.action.spawn = ["sh" "-c" "niri msg action power-off-monitors"];
+        lid-open.action.spawn = ["sh" "-c" "sleep 0.5 && niri msg action power-on-monitors"];
+      };
       outputs = {
         "eDP-1" = {
           mode = {

@@ -10,9 +10,8 @@
 
       services.rycharger = {
         enable = true;
-        user = user.userName;
         settings = {
-          battery.hold_percent = 80;
+          battery.device = "macsmc-battery";
         };
       };
     };

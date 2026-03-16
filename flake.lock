@@ -1743,11 +1743,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773014878,
-        "narHash": "sha256-REnagCGOEZ3QHUkUIRwsjSTgl7qPaBdwxGjLpCZg3k4=",
+        "lastModified": 1773561553,
+        "narHash": "sha256-ujkInTwr0M4ShZkWsK7j4tGkQqFQbpwDZaNtCsLmVCc=",
         "owner": "Ryder-C",
         "repo": "rycharger",
-        "rev": "0acf607051b3486f446c72ae0343b01d8f5105bb",
+        "rev": "720da803c104fcbd10f293351d355dccf98da7ee",
         "type": "github"
       },
       "original": {

@@ -8,7 +8,7 @@
       }
       {
         event = "after-resume";
-        command = "niri msg action power-on-monitors";
+        command = "sleep 1 && niri msg action power-on-monitors";
       }
       {
         event = "lock";
