@@ -4,15 +4,13 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.charger = {user, ...}: {
-    nixos = {
-      imports = [inputs.rycharger.nixosModules.default];
+  ry.charger.nixos = {...}: {
+    imports = [inputs.rycharger.nixosModules.default];
 
-      services.rycharger = {
-        enable = true;
-        settings = {
-          battery.device = "macsmc-battery";
-        };
+    services.rycharger = {
+      enable = true;
+      settings = {
+        battery.device = "macsmc-battery";
       };
     };
   };

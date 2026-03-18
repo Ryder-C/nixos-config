@@ -122,7 +122,7 @@
     "catppuccin-stylus-json": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-4py12hFoHCBzPH0uBVNRP5cmMdILDW7dqv4sLM1BLfM=",
+        "narHash": "sha256-/vu2QVeGA43Y5GSl6H5LMNjp+YTA2bIJMxZfiSZWJIs=",
         "type": "file",
         "url": "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json"
       },
