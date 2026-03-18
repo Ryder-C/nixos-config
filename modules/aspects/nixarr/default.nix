@@ -95,11 +95,7 @@
         enable = true;
         openFirewall = false;
       };
-      tailscale = {
-        enable = true;
-        openFirewall = true;
-      };
-    };
+};
 
     nixarr = {
       enable = true;

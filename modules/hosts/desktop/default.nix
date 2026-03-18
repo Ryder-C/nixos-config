@@ -20,6 +20,7 @@
       ry.activitywatch
       ry.librepods
       ry.flatpak
+      ry.tailscale
     ];
 
     nixos = {

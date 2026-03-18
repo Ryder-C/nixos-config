@@ -12,6 +12,7 @@
       ry.niri-laptop
       ry.greetd-laptop
       ry.charger
+      ry.tailscale
     ];
 
     nixos = {
