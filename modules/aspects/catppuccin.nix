@@ -25,8 +25,18 @@
         cursors.enable = true;
       };
 
-      # Symlink the Catppuccin Stylus JSON
-      home.file."catppuccin_styles.json".source = inputs.catppuccin-stylus-json;
+      # Symlink the Catppuccin Stylus JSON (patched to keep YouTube video backgrounds black)
+      home.file."catppuccin_styles.json".source = pkgs.runCommand "catppuccin-stylus-patched.json" {
+        nativeBuildInputs = [pkgs.jq];
+      } ''
+        jq '
+          map(
+            if .name == "YouTube Catppuccin" then
+              .sourceCode += "\n/* Override: keep video letterbox bars black */\nvideo, video::backdrop, .html5-video-player, .html5-video-container { background-color: #000 !important; }\n"
+            else . end
+          )
+        ' ${inputs.catppuccin-stylus-json} > $out
+      '';
 
       # Ensure terminal applications use Neovim by default
       home.sessionVariables = {

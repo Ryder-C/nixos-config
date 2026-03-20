@@ -21,7 +21,6 @@
       discord.enable = false;
       equibop.enable = false;
       vesktop.enable = true;
-      dorion.enable = false;
 
       config = {
         enabledThemes = [
