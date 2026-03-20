@@ -48,7 +48,7 @@
             options = "grp:alt_caps_toggle";
           };
           touchpad = {
-            tap = true;
+            tap = false;
             natural-scroll = true;
             scroll-factor = 0.5;
           };
