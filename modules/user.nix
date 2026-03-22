@@ -15,9 +15,12 @@
         nix.settings.allowed-users = ["ryder"];
       };
 
-      homeManager = {
+      homeManager = {pkgs, ...}: {
         home.username = "ryder";
-        home.homeDirectory = "/home/ryder";
+        home.homeDirectory =
+          if pkgs.stdenv.isDarwin
+          then "/Users/ryder"
+          else "/home/ryder";
       };
     };
 
@@ -25,6 +28,7 @@
       x86_64-linux.desktop.users.ryder = {};
       aarch64-linux.laptop.users.ryder = {};
       x86_64-linux.vm.users.ryder = {};
+      aarch64-darwin.mac.users.ryder = {};
     };
   };
 }
