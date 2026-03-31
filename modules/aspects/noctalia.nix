@@ -25,13 +25,42 @@
   in {
     imports = [inputs.noctalia.homeModules.default];
 
-    home.packages = [pkgs.satty];
+    home.packages = with pkgs; [
+      satty
+      gpu-screen-recorder
+      fastfetch
+    ];
 
     programs.noctalia-shell = {
       enable = true;
       package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+      plugins = {
+        sources = [
+          {
+            enabled = true;
+            name = "Official Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
+        states = {
+          screen-recorder.enabled = true;
+          polkit-agent.enabled = true;
+          weather-indicator.enabled = true;
+          catwalk.enabled = true;
+        };
+      };
+
+      pluginSettings = {
+        screen-recorder = {
+          replayEnabled = true;
+          replayDuration = "30";
+          frameRate = "30";
+          resolution = "1920x1080";
+        };
+      };
+
       settings = {
-        settingsVersion = 59;
         bar = {
           barType = "simple";
           position = "top";
@@ -50,19 +79,26 @@
                 showBadge = true;
               }
               {
-                id = "SystemMonitor";
-                compactMode = true;
-                showCpuTemp = true;
-                showMemoryUsage = true;
+                id = "plugin:catwalk";
               }
             ];
             center = [
               {
                 id = "Clock";
-                formatHorizontal = "HH:mm ddd, MMM dd";
+                formatHorizontal = "ddd, MMM dd";
+              }
+              {
+                id = "plugin:weather-indicator";
+              }
+              {
+                id = "Clock";
+                formatHorizontal = "h:mm AP";
               }
             ];
             right = [
+              {
+                id = "plugin:screen-recorder";
+              }
               {
                 id = "Tray";
                 pinned = ["Battery Status"];
@@ -109,11 +145,13 @@
         };
         idle = {
           enabled = true;
-          screenOffTimeout = 600;
+          screenOffTimeout = 330;
+          lockTimeout = 600;
+          suspendTimeout = 0;
           customCommands = builtins.toJSON [
             {
               name = "Turn off rgb";
-              timeout = 600;
+              timeout = 330;
               command = "openrgb -p off";
               resumeCommand = "openrgb -p main";
             }
