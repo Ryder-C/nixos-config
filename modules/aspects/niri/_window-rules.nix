@@ -55,6 +55,7 @@ _: {
           {app-id = "^[Ww]aydroid";}
           {app-id = "^org.gnome.Nautilus$";}
           {app-id = "^ninjabrainbot";}
+          {app-id = "^com\\.gabm\\.satty$";}
           {
             app-id = "^thunar$";
             title = "^Rename";
@@ -65,12 +66,6 @@ _: {
           }
         ];
         open-floating = true;
-      }
-    ];
-    layer-rules = [
-      {
-        matches = [{namespace = "^dms:notification-popup$";}];
-        block-out-from = "screencast";
       }
     ];
   };

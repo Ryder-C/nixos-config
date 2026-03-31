@@ -8,7 +8,6 @@
   }: {
     imports = [
       inputs.niri.homeModules.niri
-      ./_idle.nix
       ./_window-rules.nix
     ];
 
@@ -164,6 +163,11 @@
 
           # GPU Screen Recorder replay save
           "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
+
+          # Screenshots
+          "Mod+S".action.screenshot = {};
+          "Mod+Shift+S".action.screenshot-screen = {};
+          "Mod+Alt+S".action.screenshot-window = {};
         };
       };
     };

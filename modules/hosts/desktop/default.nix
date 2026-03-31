@@ -13,9 +13,7 @@
       ry.nixarr
       ry.star-citizen
       ry.aagl
-      ry.gpu-screen-recorder
       ry.bluevein
-      # ry.monado
       ry.spicetify
       ry.activitywatch
       ry.librepods

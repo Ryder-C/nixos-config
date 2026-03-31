@@ -9,8 +9,6 @@ _: {
       config,
       ...
     }: {
-      programs.dank-material-shell.plugins.gpuScreenRecorder.src = ./_dms-plugins/gpu-screen-recorder;
-
       systemd.user.services.gpu-screen-recorder = {
         Unit = {
           Description = "GPU Screen Recorder - Replay Buffer";

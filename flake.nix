@@ -92,6 +92,10 @@
     nixpkgs-lib.follows = "nixpkgs";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixvim.url = "github:Ryder-C/nixvim";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur.url = "github:nix-community/NUR";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";

@@ -47,6 +47,9 @@
           dankCalculator = {
             src = inputs.dank-calculator;
           };
+          gpuScreenRecorder = {
+            src = ./_dms-plugins/gpu-screen-recorder;
+          };
         };
       };
 

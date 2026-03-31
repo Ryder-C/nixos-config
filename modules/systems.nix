@@ -32,7 +32,7 @@
 
       ry.niri
       ry.plasma
-      ry.dank
+      ry.noctalia
       ry.browser
       ry.discord
       ry.catppuccin
