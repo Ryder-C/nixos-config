@@ -1,11 +1,28 @@
 {
   den,
   inputs,
+  lib,
   ...
 }: {
   den.schema.user = {lib, ...}: {
     config.classes = lib.mkDefault ["homeManager"];
   };
+
+  # Forward host aspects into home-manager user environments
+  den.ctx.hm-user.includes = [
+    ({host, user}:
+      den._.forward {
+        each = lib.singleton true;
+        fromClass = _: "homeManager";
+        intoClass = _: host.class;
+        intoPath = _: [
+          "home-manager"
+          "users"
+          user.userName
+        ];
+        fromAspect = _: den.aspects.${host.aspect};
+      })
+  ];
 
   den.default = {
     nixos = {pkgs, ...}: {

@@ -1,4 +1,8 @@
-{den, ...}: {
+{
+  den,
+  ry,
+  ...
+}: {
   den = {
     aspects.ryder = {
       includes = [
