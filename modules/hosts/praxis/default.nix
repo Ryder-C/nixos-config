@@ -1,9 +1,9 @@
 {ry, ...}: {
-  den.aspects.desktop = {
+  den.aspects.praxis = {
     includes = [
       ry.workstation
-      ry.niri-desktop
-      ry.greetd-desktop
+      ry.niri-praxis
+      ry.greetd-praxis
       ry.desktop-tools
       ry.nvidia
       ry.steam

@@ -29,10 +29,11 @@
     };
 
     hosts = {
-      x86_64-linux.desktop.users.ryder = {};
-      aarch64-linux.laptop.users.ryder = {};
-      x86_64-linux.vm.users.ryder = {};
-      aarch64-darwin.mac.users.ryder = {};
+      x86_64-linux.praxis.users.ryder = {};
+      aarch64-linux.sputnik.users.ryder = {};
+      x86_64-linux.tabula.users.ryder = {};
+      aarch64-darwin.umbra.users.ryder = {};
+      x86_64-linux.fornax.users.ryder = {};
     };
   };
 }

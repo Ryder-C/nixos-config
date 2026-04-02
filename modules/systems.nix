@@ -1,28 +1,31 @@
 {ry, ...}: {
   ry = {
-    # Base aspects shared by all hosts (including VM)
-    workstation-base.includes = [
-      ry.bootloader
+    # Fundamental CLI-only aspects (Server, VM, Desktop)
+    base.includes = [
       ry.network
-      ry.bluetooth
-      ry.audio
       ry.programs
       ry.security
       ry.services
       ry.system
-      ry.wayland
-      ry.virtualization
       ry.secrets
-      ry.greetd
       ry.memory
-      ry.hardware
-
-      # Minimal home aspects (VM-compatible)
+      ry.bootloader
       ry.terminal
       ry.shell
       ry.editor
       ry.development
       ry.packages
+    ];
+
+    # Base workstation aspects (adds minimal GUI/Desktop)
+    workstation-base.includes = [
+      ry.base
+      ry.bluetooth
+      ry.audio
+      ry.wayland
+      ry.greetd
+      ry.virtualization
+      ry.hardware
       ry.media-apps
     ];
 

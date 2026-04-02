@@ -1,5 +1,5 @@
 {ry, ...}: {
-  den.aspects.mac = {
+  den.aspects.umbra = {
     includes = [
       ry.terminal
       ry.shell

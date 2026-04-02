@@ -1,5 +1,5 @@
 {ry, ...}: {
-  den.aspects.vm = {
+  den.aspects.tabula = {
     includes = [ry.workstation-base];
 
     nixos = {lib, ...}: {

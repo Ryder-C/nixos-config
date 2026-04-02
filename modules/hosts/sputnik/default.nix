@@ -6,11 +6,11 @@
 }: {
   flake-file.inputs.apple-silicon-support.url = "github:tpwrules/nixos-apple-silicon";
 
-  den.aspects.laptop = {
+  den.aspects.sputnik = {
     includes = [
       ry.workstation
-      ry.niri-laptop
-      ry.greetd-laptop
+      ry.niri-sputnik
+      ry.greetd-sputnik
       ry.charger
       ry.tailscale
     ];

@@ -18,7 +18,7 @@
       };
     };
 
-    greetd-desktop.nixos = {
+    greetd-praxis.nixos = {
       services.displayManager.dms-greeter.compositor.customConfig = ''
         output "DP-2" {
             scale 1.500000
@@ -35,7 +35,7 @@
       '';
     };
 
-    greetd-laptop.nixos = {
+    greetd-sputnik.nixos = {
       services.displayManager.dms-greeter.compositor.customConfig = ''
         debug {
             render-drm-device "/dev/dri/renderD128"

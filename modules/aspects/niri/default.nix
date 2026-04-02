@@ -173,7 +173,7 @@
     };
   };
 
-  ry.niri-desktop.homeManager = {
+  ry.niri-praxis.homeManager = {
     programs.niri.settings = {
       outputs = {
         "DP-3" = {
@@ -208,7 +208,7 @@
     };
   };
 
-  ry.niri-laptop.homeManager = {
+  ry.niri-sputnik.homeManager = {
     programs.niri.settings = {
       debug.render-drm-device = "/dev/dri/renderD128";
       switch-events = {
