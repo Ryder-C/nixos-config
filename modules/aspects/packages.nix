@@ -7,8 +7,6 @@ _: {
     stablePkgs,
     ...
   }: let
-    toggle-hdr = pkgs.callPackage ../../pkgs/hdr-toggle/default.nix {};
-
     zink-env = [
       "__GLX_VENDOR_LIBRARY_NAME=mesa"
       "__EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json"
