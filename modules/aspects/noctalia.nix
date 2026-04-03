@@ -44,6 +44,7 @@
           polkit-agent.enabled = true;
           weather-indicator.enabled = true;
           catwalk.enabled = true;
+          github-feed.enabled = true;
         };
       };
 
@@ -106,6 +107,9 @@
               {
                 id = "Bluetooth";
                 displayMode = "onhover";
+              }
+              {
+                id = "plugin:github-feed";
               }
               {
                 id = "NotificationHistory";

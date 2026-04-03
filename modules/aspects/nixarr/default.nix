@@ -50,10 +50,6 @@
       mode = "0400";
     };
 
-    age.secrets.pia = {
-      file = ../../../secrets/pia.age;
-    };
-
     services = {
       cross-seed = {
         enable = true;

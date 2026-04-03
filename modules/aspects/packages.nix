@@ -48,7 +48,6 @@ _: {
       tdf
       todo
       toipe
-      toggle-hdr
       unrar
       websocat
       xwayland-run

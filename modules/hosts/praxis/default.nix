@@ -10,7 +10,6 @@
       ry.torrents
       ry.ollama
       ry.rgb
-      ry.nixarr
       ry.star-citizen
       ry.aagl
       ry.bluevein

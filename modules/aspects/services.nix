@@ -13,6 +13,10 @@
         services.systemd-networkd-wait-online.enable = lib.mkForce false;
       };
 
+      age.secrets.pia = {
+        file = ../../secrets/pia.age;
+      };
+
       services = {
         avahi = {
           enable = true;
@@ -70,12 +74,18 @@
     torrents.nixos = {
       pkgs,
       config,
+      lib,
       ...
     }: let
-      crossSeedWebhook = pkgs.writeShellScript "cross-seed-webhook" ''
-        API_KEY=$(${pkgs.jq}/bin/jq -r '.apiKey' ${config.age.secrets.cross-seed.path})
-        ${pkgs.curl}/bin/curl -XPOST "http://localhost:2468/api/webhook?apikey=$API_KEY" -d "infoHash=$1"
-      '';
+      hasCrossSeed = config.age.secrets ? cross-seed;
+      crossSeedWebhook =
+        if hasCrossSeed
+        then
+          pkgs.writeShellScript "cross-seed-webhook" ''
+            API_KEY=$(${pkgs.jq}/bin/jq -r '.apiKey' ${config.age.secrets.cross-seed.path})
+            ${pkgs.curl}/bin/curl -XPOST "http://localhost:2468/api/webhook?apikey=$API_KEY" -d "infoHash=$1"
+          ''
+        else null;
       qbtConfig = pkgs.writeText "qb-config" ''
         [BitTorrent]
         Session\DefaultSavePath=/storage/Torrents
@@ -105,8 +115,10 @@
         General\Locale=en
         WebUI\LocalHostAuth=false
         WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
-        Downloads\OnFinish\Enabled=true
-        Downloads\OnFinish\Program=${crossSeedWebhook} "%I"
+        ${if hasCrossSeed then ''
+          Downloads\OnFinish\Enabled=true
+          Downloads\OnFinish\Program=${crossSeedWebhook} "%I"
+        '' else ""}
       '';
       profileBase = "/var/lib/qbittorrent";
       profName = "vpn";
