@@ -56,10 +56,10 @@ modules/
 | Host        | Hardware         | Role     | Key Features                                |
 | :---------- | :--------------- | :------- | :------------------------------------------ |
 | **Praxis**  | Desktop (Nvidia) | Main Rig | Gaming, Nixarr, LLMs (Ollama), Star Citizen |
-| **Sputnik** | MacBook Pro (M2) | Portable | Asahi, HiDPI Niri, Battery Optimization     |
+| **Sputnik** | MacBook Pro (M1) | Portable | Asahi, HiDPI Niri, Battery Optimization     |
 | **Fornax**  | Server           | Home Lab | Media, Nixarr, Headless                     |
-| **Tabula**  | Workstation      | Testing  | Base Workstation experiments                |
-| **Umbra**   | VM / WSL         | Minimal  | Terminal tools & Dev essentials             |
+| **Tabula**  | VM / WSL         | Minimal  | Terminal tools & Dev essentials             |
+| **Umbra**   | MacBook Pro (M1) | macOS    | Nix-darwin, Home-manager                    |
 
 ---
 
