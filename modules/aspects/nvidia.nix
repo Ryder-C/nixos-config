@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  cudaOverlay = final: prev: {
+  cudaOverlay = _final: prev: {
     btop = prev.btop.override {cudaSupport = true;};
     blender = prev.blender.override {cudaSupport = true;};
   };

@@ -10,11 +10,7 @@
     claude-code.url = "github:sadjow/claude-code-nix";
   };
 
-  ry.system.nixos = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  ry.system.nixos = {pkgs, ...}: {
     imports = [inputs.catppuccin.nixosModules.catppuccin];
 
     config = {
@@ -44,12 +40,14 @@
 
       nixpkgs = {
         overlays = [
-          (final: prev: {
-            inherit (prev.lixPackageSets.latest)
+          (_final: prev: {
+            inherit
+              (prev.lixPackageSets.latest)
               nixpkgs-review
               nix-eval-jobs
               nix-fast-build
-              colmena;
+              colmena
+              ;
           })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default

@@ -6,7 +6,7 @@
       ry.tailscale
     ];
 
-    nixos = {pkgs, ...}: {
+    nixos = {...}: {
       imports = [./_hardware-configuration.nix];
 
       # Headless server optimizations

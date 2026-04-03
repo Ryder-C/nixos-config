@@ -4,12 +4,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.nixarr.nixos = {
-    config,
-    pkgs,
-    lib,
-    ...
-  }: let
+  ry.nixarr.nixos = {config, ...}: let
     allowOutsideAccess = false;
   in {
     imports = [
@@ -35,12 +30,14 @@
       prowlarr = requireStorage;
       jellyfin = requireStorage;
       recyclarr = requireStorage;
-      cross-seed = requireStorage // {
-        serviceConfig = {
-          ReadWritePaths = ["/storage/Torrents/cross-seed"];
-          ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
+      cross-seed =
+        requireStorage
+        // {
+          serviceConfig = {
+            ReadWritePaths = ["/storage/Torrents/cross-seed"];
+            ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
+          };
         };
-      };
     };
 
     systemd.tmpfiles.rules = [
@@ -95,7 +92,7 @@
         enable = true;
         openFirewall = false;
       };
-};
+    };
 
     nixarr = {
       enable = true;

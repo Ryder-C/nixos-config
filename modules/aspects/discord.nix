@@ -10,7 +10,7 @@
     };
   };
 
-  ry.discord.homeManager = {pkgs, ...}: let
+  ry.discord.homeManager = _: let
     catppuccinTheme = inputs.discord-catppuccin;
   in {
     imports = [inputs.nixcord.homeModules.nixcord];

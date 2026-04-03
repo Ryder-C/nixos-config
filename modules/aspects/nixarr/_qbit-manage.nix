@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   tagDeprecatedScript = pkgs.writeShellScript "tag-deprecated" ''
     is_upgrade="''${Sonarr_IsUpgrade:-$Radarr_IsUpgrade}"
     if [ "$is_upgrade" != "True" ]; then

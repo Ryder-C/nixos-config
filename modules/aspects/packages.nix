@@ -1,10 +1,9 @@
-{inputs, ...}: {
+_: {
   flake-file.inputs.vesc-tool.url = "github:vedderb/vesc_tool";
 
   ry.packages.homeManager = {
     pkgs,
     lib,
-    config,
     stablePkgs,
     ...
   }: let

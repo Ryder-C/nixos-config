@@ -7,12 +7,7 @@
     nix-monitor.url = "github:antonjah/nix-monitor";
   };
 
-  ry.dank.homeManager = {
-    config,
-    lib,
-    osConfig,
-    ...
-  }: {
+  ry.dank.homeManager = {config, ...}: {
     imports = [
       inputs.dms.homeModules.dank-material-shell
       inputs.dms.homeModules.niri

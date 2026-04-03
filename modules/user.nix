@@ -1,8 +1,4 @@
-{
-  den,
-  ry,
-  ...
-}: {
+{den, ...}: {
   den = {
     aspects.ryder = {
       includes = [
@@ -29,11 +25,13 @@
     };
 
     hosts = {
-      x86_64-linux.praxis.users.ryder = {};
+      x86_64-linux = {
+        praxis.users.ryder = {};
+        tabula.users.ryder = {};
+        fornax.users.ryder = {};
+      };
       aarch64-linux.sputnik.users.ryder = {};
-      x86_64-linux.tabula.users.ryder = {};
       aarch64-darwin.umbra.users.ryder = {};
-      x86_64-linux.fornax.users.ryder = {};
     };
   };
 }

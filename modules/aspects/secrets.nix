@@ -4,7 +4,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.secrets.nixos = {lib, ...}: {
+  ry.secrets.nixos = {...}: {
     imports = [inputs.agenix.nixosModules.default];
 
     age = {

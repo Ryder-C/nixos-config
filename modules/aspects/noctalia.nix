@@ -1,14 +1,10 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
+{inputs, ...}: {
   flake-file.inputs.noctalia = {
     url = "github:noctalia-dev/noctalia-shell";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.noctalia.nixos = {...}: {
+  ry.noctalia.nixos = _: {
     nix.settings = {
       substituters = ["https://noctalia.cachix.org"];
       trusted-public-keys = ["noctalia.cachix.org-1:X+I9x9j4W6h6q5lG2G8uX+5f6L2yU8K5o9y9U+L6J9o="];
