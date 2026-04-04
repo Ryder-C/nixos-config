@@ -177,7 +177,7 @@
     niri-praxis.homeManager = {
       programs.niri.settings = {
         outputs = {
-          "DP-3" = {
+          "DP-2" = {
             mode = {
               width = 3840;
               height = 2160;
@@ -190,7 +190,7 @@
               y = 0;
             };
           };
-          "DP-2" = {
+          "DP-1" = {
             mode = {
               width = 3840;
               height = 2160;
