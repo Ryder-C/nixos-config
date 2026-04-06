@@ -29,8 +29,6 @@
           "-H"
           "2160"
           "--force-grab-cursor"
-          "--backend"
-          "sdl"
         ];
       };
       preCommands = ''

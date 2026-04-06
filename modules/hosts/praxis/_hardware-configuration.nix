@@ -32,11 +32,10 @@
       options = ["fmask=0077" "dmask=0077"];
     };
 
-    # "/storage" = {
-    #   device = "/dev/disk/by-uuid/7ab44d81-1059-45ff-bdd5-2cf0583dae7e";
-    #   fsType = "bcachefs";
-    #   options = ["compression=zstd" "noatime" "nofail" "background_compression=zstd"];
-    # };
+    "/storage" = {
+      device = "/dev/disk/bu-uuid/2eaf35bc-2ef8-4b9f-98d3-e8b14a2a1a33";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [];
