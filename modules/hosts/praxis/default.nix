@@ -11,7 +11,7 @@
       ry.torrents
       ry.ollama
       ry.rgb
-      ry.star-citizen
+      # ry.star-citizen
       ry.aagl
       ry.bluevein
       ry.spicetify
