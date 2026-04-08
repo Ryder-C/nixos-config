@@ -17,6 +17,8 @@
     ...
   }: {
     home.packages = with pkgs; [
+      osu-lazer
+
       ## Minecraft
       stablePkgs.prismlauncher
       libxkbcommon
