@@ -41,7 +41,6 @@
           states = {
             polkit-agent.enabled = true;
             weather-indicator.enabled = true;
-            catwalk.enabled = true;
             github-feed.enabled = true;
           };
         };
@@ -74,7 +73,7 @@
                   showBadge = true;
                 }
                 {
-                  id = "plugin:catwalk";
+                  id = "SystemMonitor";
                 }
               ];
               center = [
@@ -83,11 +82,11 @@
                   formatHorizontal = "ddd, MMM dd";
                 }
                 {
-                  id = "plugin:weather-indicator";
-                }
-                {
                   id = "Clock";
                   formatHorizontal = "h:mm AP";
+                }
+                {
+                  id = "plugin:weather-indicator";
                 }
               ];
               right = [
@@ -220,7 +219,9 @@
 
       programs.noctalia-shell = {
         plugins.states.screen-recorder.enabled = true;
-        settings.bar.widgets.right = lib.mkBefore [{id = "plugin:screen-recorder";}];
+        settings.bar.widgets = {
+          right = lib.mkBefore [{id = "plugin:screen-recorder";}];
+        };
       };
     };
 
