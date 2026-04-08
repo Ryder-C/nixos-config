@@ -33,7 +33,7 @@
     };
 
     "/storage" = {
-      device = "/dev/disk/bu-uuid/2eaf35bc-2ef8-4b9f-98d3-e8b14a2a1a33";
+      device = "/dev/disk/by-uuid/0779302f-e514-40f4-8e0b-6601872fd8fa";
       fsType = "ext4";
     };
   };
