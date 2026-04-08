@@ -5,4 +5,5 @@ in {
   "pia.age".publicKeys = users;
   "steam_key.age".publicKeys = users;
   "cross-seed.age".publicKeys = users;
+  "openclaw_telegram.age".publicKeys = users;
 }

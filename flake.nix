@@ -72,6 +72,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-monitor.url = "github:antonjah/nix-monitor";
+    nix-openclaw = {
+      url = "github:openclaw/nix-openclaw";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-pia-vpn = {
       url = "github:rcambrj/nix-pia-vpn";
       inputs.nixpkgs.follows = "nixpkgs";
