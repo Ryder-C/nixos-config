@@ -122,7 +122,7 @@
     "catppuccin-stylus-json": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Usk0OhoZx5BUOL7iANwEAprXHzrNJbmfwhkz7HQ5YoE=",
+        "narHash": "sha256-eUyGaAeg3alpTHqCj/ywPfbxriim7paQGNC9ymgyajg=",
         "type": "file",
         "url": "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json"
       },
@@ -1827,11 +1827,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773561553,
-        "narHash": "sha256-ujkInTwr0M4ShZkWsK7j4tGkQqFQbpwDZaNtCsLmVCc=",
+        "lastModified": 1775466028,
+        "narHash": "sha256-z83plo4PKSG23vCKqDyYsEwnO+MCa4p5Ka1viGcssV4=",
         "owner": "Ryder-C",
         "repo": "rycharger",
-        "rev": "720da803c104fcbd10f293351d355dccf98da7ee",
+        "rev": "8d4df8992f414bd353040ed9fde8db0c357655cf",
         "type": "github"
       },
       "original": {

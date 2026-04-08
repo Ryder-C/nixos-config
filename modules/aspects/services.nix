@@ -13,10 +13,6 @@
         services.systemd-networkd-wait-online.enable = lib.mkForce false;
       };
 
-      age.secrets.pia = {
-        file = ../../secrets/pia.age;
-      };
-
       services = {
         avahi = {
           enable = true;
@@ -124,6 +120,10 @@
       profName = "vpn";
       piaCertPath = "/etc/pia/ca.rsa.4096.crt";
     in {
+      age.secrets.pia = {
+        file = ../../secrets/pia.age;
+      };
+
       environment.etc."pia/ca.rsa.4096.crt" = {
         source = ../../ca.rsa.4096.crt;
         mode = "0444";
