@@ -109,10 +109,6 @@
                   id = "NotificationHistory";
                   showUnreadBadge = true;
                 }
-                {
-                  id = "Battery";
-                  displayMode = "graphic-clean";
-                }
               ];
             };
           };
@@ -241,6 +237,12 @@
           }
         ];
         center = lib.mkForce [];
+        right = lib.mkAfter [
+          {
+            id = "Battery";
+            displayMode = "graphic-clean";
+          }
+        ];
       };
     };
   };
