@@ -71,6 +71,7 @@
               tokenFile = osConfig.age.secrets.openclaw_telegram.path;
               allowFrom = [6599976454];
               groups."*" = {requireMention = true;};
+              heartbeat.directPolicy = "allow";
             };
 
             agents.defaults = {
@@ -91,6 +92,7 @@
             browser = {
               enabled = true;
               executablePath = "${pkgs.brave}/bin/brave";
+              profile = "user";
             };
           };
         };

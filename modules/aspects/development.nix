@@ -60,6 +60,33 @@
         enable = true;
         enableMcpIntegration = true;
         package = pkgs.claude-code;
+
+        settings = {
+          hooks = {
+            Notification = [
+              {
+                matcher = "";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "read data && echo \"$data\" | jq -e '.message | length > 0' > /dev/null && notify-send -u critical 'Claude Code' 'Needs your attention'";
+                  }
+                ];
+              }
+            ];
+            Stop = [
+              {
+                matcher = "";
+                hooks = [
+                  {
+                    type = "command";
+                    command = "notify-send 'Claude Code' 'Task completed'";
+                  }
+                ];
+              }
+            ];
+          };
+        };
       };
       opencode = {
         enable = true;
