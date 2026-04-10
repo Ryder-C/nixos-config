@@ -5,6 +5,7 @@
   ry.development.homeManager = {
     pkgs,
     stablePkgs,
+    lib,
     ...
   }: {
     home.packages = with pkgs; [
@@ -49,6 +50,10 @@
         enable = true;
         servers = {
           nixos.command = "${pkgs.mcp-nixos}/bin/mcp-nixos";
+          "duckduckgo" = {
+            command = lib.getExe' pkgs.uv "uvx";
+            args = ["duckduckgo-mcp-server"];
+          };
         };
       };
       claude-code = {
