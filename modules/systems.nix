@@ -14,7 +14,6 @@
       ry.shell
       ry.editor
       ry.development
-      ry.packages
     ];
 
     # Base workstation aspects (adds minimal GUI/Desktop)
@@ -27,9 +26,10 @@
       ry.virtualization
       ry.hardware
       ry.media-apps
+      ry.packages
     ];
 
-    # Full desktop aspects (extends base)
+    # Full desktop aspects (extends wokstation-base)
     workstation.includes = [
       ry.workstation-base
 

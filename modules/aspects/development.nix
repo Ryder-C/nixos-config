@@ -10,6 +10,7 @@
   }: {
     home.packages = with pkgs; [
       gh
+      ripgrep
       git-lfs
       difftastic
       devenv
