@@ -1,4 +1,9 @@
-{ry, ...}: {
+{
+  inputs,
+  ry,
+  ...
+}: {
+  flake-file.inputs.nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   den.aspects.praxis = {
     includes = [
       ry.workstation
@@ -29,11 +34,18 @@
     }: {
       imports = [./_hardware-configuration.nix];
 
+      nixpkgs.overlays = [inputs.nix-cachyos-kernel.overlays.default];
+
+      nix.settings = {
+        substituters = ["https://attic.xuyh0120.win/lantian"];
+        trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
+      };
+
       powerManagement.cpuFreqGovernor = "performance";
 
       boot = {
         supportedFilesystems = ["bcachefs"];
-        kernelPackages = pkgs.linuxPackages_zen;
+        kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
         extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
         kernelModules = [
           "v4l2loopback"

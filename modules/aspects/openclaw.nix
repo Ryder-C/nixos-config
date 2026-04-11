@@ -92,7 +92,6 @@
             browser = {
               enabled = true;
               executablePath = "${pkgs.brave}/bin/brave";
-              profile = "user";
             };
           };
         };
