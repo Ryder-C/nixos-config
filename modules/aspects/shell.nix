@@ -127,6 +127,11 @@
       };
 
       zellij.settings.default_shell = "fish";
+      bat = {
+        enable = true;
+        config.pager = "less -FR";
+      };
+
       yazi.enableFishIntegration = true;
 
       starship = {

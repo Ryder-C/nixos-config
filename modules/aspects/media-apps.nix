@@ -10,7 +10,7 @@
     ];
 
     home.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
       nerd-fonts.noto
       twemoji-color-font
       noto-fonts-color-emoji
@@ -20,11 +20,6 @@
     ];
 
     programs = {
-      bat = {
-        enable = true;
-        config.pager = "less -FR";
-      };
-
       btop = {
         enable = true;
         package = pkgs.btop;
@@ -73,7 +68,7 @@
 
     fonts.fontconfig = {
       enable = true;
-      defaultFonts.monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+      defaultFonts.monospace = ["FiraCode Nerd Font" "Noto Color Emoji"];
     };
 
     gtk = {
@@ -83,7 +78,7 @@
         package = pkgs.dracula-theme;
       };
       font = {
-        name = "JetBrainsMono Nerd Font";
+        name = "FiraCode Nerd Font";
         size = 11;
       };
     };

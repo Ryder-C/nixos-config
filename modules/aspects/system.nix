@@ -92,6 +92,17 @@
         IdleAction = "ignore";
       };
 
+      services.kmscon = {
+        enable = true;
+        fonts = [
+          {
+            name = "FiraCode Nerd Font";
+            package = pkgs.nerd-fonts.fira-code;
+          }
+        ];
+        extraConfig = "font-size=18";
+      };
+
       boot.tmp.useTmpfs = true;
       boot.kernel.sysctl = {
         "vm.max_map_count" = 16777216;
@@ -99,7 +110,7 @@
       };
 
       fonts.packages = with pkgs; [
-        nerd-fonts.jetbrains-mono
+        nerd-fonts.fira-code
         noto-fonts
         noto-fonts-color-emoji
       ];
