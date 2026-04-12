@@ -16,6 +16,8 @@
     }: {
       imports = [./_hardware-configuration.nix];
 
+      boot.supportedFilesystems = ["bcachefs"];
+
       # Headless server optimizations
       networking.firewall.enable = true;
       services = {

@@ -44,7 +44,6 @@
       powerManagement.cpuFreqGovernor = "performance";
 
       boot = {
-        supportedFilesystems = ["bcachefs"];
         kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
         extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
         kernelModules = [

@@ -1,6 +1,10 @@
 {inputs, ...}: {
   flake-file.inputs = {
     alejandra.url = "github:kamadorueda/alejandra";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   ry.development.homeManager = {
     pkgs,
@@ -8,6 +12,10 @@
     lib,
     ...
   }: {
+    imports = [
+      inputs.nix-index-database.homeModules.nix-index
+    ];
+
     home.packages = with pkgs; [
       gh
       ripgrep
@@ -46,6 +54,7 @@
     ];
 
     programs = {
+      nix-index-database.comma.enable = true;
       zed-editor.enable = true;
       mcp = {
         enable = true;

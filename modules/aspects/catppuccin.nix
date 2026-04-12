@@ -4,17 +4,12 @@
       url = "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json";
       flake = false;
     };
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   ry.catppuccin = {
     homeManager = {pkgs, ...}: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
-        inputs.nix-index-database.homeModules.nix-index
       ];
 
       catppuccin = {
@@ -44,9 +39,6 @@
         EDITOR = "nvim";
         VISUAL = "nvim";
       };
-
-      # nix-index with comma - run any command without installing
-      programs.nix-index-database.comma.enable = true;
     };
   };
 }

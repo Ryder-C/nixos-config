@@ -111,10 +111,14 @@
         General\Locale=en
         WebUI\LocalHostAuth=false
         WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
-        ${if hasCrossSeed then ''
-          Downloads\OnFinish\Enabled=true
-          Downloads\OnFinish\Program=${crossSeedWebhook} "%I"
-        '' else ""}
+        ${
+          if hasCrossSeed
+          then ''
+            Downloads\OnFinish\Enabled=true
+            Downloads\OnFinish\Program=${crossSeedWebhook} "%I"
+          ''
+          else ""
+        }
       '';
       profileBase = "/var/lib/qbittorrent";
       profName = "vpn";
