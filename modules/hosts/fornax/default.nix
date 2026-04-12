@@ -6,6 +6,7 @@
       ry.tailscale
       ry.rgb
       ry.nvidia
+      ry.audio
     ];
 
     nixos = {
@@ -31,7 +32,19 @@
         gamescope.enable = true;
         steam = {
           enable = true;
-          gamescopeSession.enable = true;
+          gamescopeSession = {
+            enable = true;
+            args = [
+              # "--backend sdl"
+              "-W 3840"
+              "-H 2160"
+              "-w 3840"
+              "-h 2160"
+              "-r 60"
+              "-o 60"
+              "--force-grab-cursor"
+            ];
+          };
         };
       };
     };
