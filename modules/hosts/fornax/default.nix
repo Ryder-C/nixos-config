@@ -3,6 +3,7 @@
     includes = [
       ry.base
       ry.immich
+      ry.homepage
       ry.nixflix
       ry.torrents
       ry.tailscale

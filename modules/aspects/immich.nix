@@ -1,7 +1,8 @@
-_: {
-  ry.immich.nixos = _: {
+{
+  ry.immich.nixos = {
     services.immich = {
       enable = true;
+      host = "0.0.0.0";
       mediaLocation = "/storage/media/photos";
       openFirewall = true;
     };
