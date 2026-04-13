@@ -1,6 +1,7 @@
 let
-  ryder = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBKe9Q3rWE2xfBPp3oc4F+Edk9RqgTIio9OB6assgPw";
-  users = [ryder];
+  praxis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBKe9Q3rWE2xfBPp3oc4F+Edk9RqgTIio9OB6assgPw";
+  fornax = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQMQHflbq0edpmCdU0xFfySV8RZj7JMhCsw837sy2h8";
+  users = [praxis fornax];
 in {
   "pia.age".publicKeys = users;
   "steam_key.age".publicKeys = users;

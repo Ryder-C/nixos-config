@@ -2,7 +2,8 @@
   den.aspects.fornax = {
     includes = [
       ry.base
-      # ry.nixarr
+      ry.nixflix
+      ry.torrents
       ry.tailscale
       ry.rgb
       ry.nvidia
