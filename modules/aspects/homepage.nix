@@ -31,7 +31,7 @@
           "Media" = [
             {
               "Jellyfin" = {
-                href = "http://fornax.stork-mulley.ts.net:8096";
+                href = "https://media.ryder.rs";
                 icon = "jellyfin";
                 widget = {
                   type = "jellyfin";
@@ -41,9 +41,9 @@
               };
             }
             {
-              "Immich" = {
-                href = "http://fornax.stork-mulley.ts.net:2283";
-                icon = "immich";
+              "Ente" = {
+                href = "https://photos.ryder.rs";
+                icon = "ente";
               };
             }
           ];

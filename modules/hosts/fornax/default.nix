@@ -2,10 +2,11 @@
   den.aspects.fornax = {
     includes = [
       ry.base
-      ry.immich
       ry.homepage
+      ry.ente
       ry.nixflix
       ry.torrents
+      ry.caddy
       ry.tailscale
       ry.rgb
       ry.nvidia

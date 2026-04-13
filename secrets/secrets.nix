@@ -7,4 +7,5 @@ in {
   "steam_key.age".publicKeys = users;
   "cross-seed.age".publicKeys = users;
   "openclaw_telegram.age".publicKeys = users;
+  "cloudflare-api-token.age".publicKeys = users;
 }
