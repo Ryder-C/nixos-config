@@ -1,9 +1,6 @@
 # Recyclarr configuration for nixflix
 #
 # Merged "best available quality" -- 4K preferred, 1080p fallback.
-#
-# API keys and base_url for nixflix-managed services (radarr, sonarr, sonarr-anime)
-# are auto-populated by nixflix. Only radarr-anime (manual instance) needs explicit config.
 let
   # Helper to reduce repetition in custom_formats
   cf = profile: trash_id: score: {
@@ -216,93 +213,10 @@ in {
           (cf "movies" "caa37d0df9c348912df1fb1d88f9273a" 100) # HDR10+ Boost
         ];
     };
-
-    # Radarr Anime (manual instance on port 7879)
-    # TODO: uncomment once radarr-anime has run and generated an API key
-    # Extract from /storage/.state/radarr-anime/config.xml after first run
-    radarranime = {
-      base_url = "http://127.0.0.1:7879";
-      api_key = "REPLACE_WITH_RADARR_ANIME_API_KEY";
-      include = [];
-      delete_old_custom_formats = false;
-      replace_existing_custom_formats = true;
-
-      quality_profiles = [
-        {
-          name = "animemovies";
-          reset_unmatched_scores.enabled = false;
-          upgrade = {
-            allowed = true;
-            until_quality = "Remux 1080p";
-            until_score = 20000;
-          };
-          min_format_score = 0;
-          quality_sort = "top";
-          qualities = [
-            {
-              name = "Remux 1080p";
-              qualities = ["Remux-1080p" "Bluray-1080p"];
-            }
-            {
-              name = "WEB 1080p";
-              qualities = ["WEBDL-1080p" "WEBRip-1080p" "HDTV-1080p"];
-            }
-            {name = "Bluray-720p";}
-            {
-              name = "WEB 720p";
-              qualities = ["WEBDL-720p" "WEBRip-720p" "HDTV-720p"];
-            }
-            {name = "Bluray-576p";}
-            {name = "Bluray-480p";}
-            {
-              name = "WEB 480p";
-              qualities = ["WEBDL-480p" "WEBRip-480p"];
-            }
-            {name = "DVD";}
-            {name = "SDTV";}
-          ];
-        }
-      ];
-
-      custom_formats = [
-        (cf "animemovies" "fb3ccc5d5cc8f77c9055d4cb4561dded" 1400) # Anime BD Tier 01
-        (cf "animemovies" "66926c8fa9312bc74ab71bf69aae4f4a" 1300) # Anime BD Tier 02
-        (cf "animemovies" "fa857662bad28d5ff21a6e611869a0ff" 1200) # Anime BD Tier 03
-        (cf "animemovies" "f262f1299d99b1a2263375e8fa2ddbb3" 1100) # Anime BD Tier 04
-        (cf "animemovies" "ca864ed93c7b431150cc6748dc34875d" 1000) # Anime BD Tier 05
-        (cf "animemovies" "9dce189b960fddf47891b7484ee886ca" 900) # Anime BD Tier 06
-        (cf "animemovies" "1ef101b3a82646b40e0cab7fc92cd896" 800) # Anime BD Tier 07
-        (cf "animemovies" "6115ccd6640b978234cc47f2c1f2cadc" 700) # Anime BD Tier 08
-        (cf "animemovies" "8167cffba4febfb9a6988ef24f274e7e" 600) # Anime Web Tier 01
-        (cf "animemovies" "8526c54e36b4962d340fce52ef030e76" 500) # Anime Web Tier 02
-        (cf "animemovies" "de41e72708d2c856fa261094c85e965d" 400) # Anime Web Tier 03
-        (cf "animemovies" "9edaeee9ea3bcd585da9b7c0ac3fc54f" 300) # Anime Web Tier 04
-        (cf "animemovies" "22d953bbe897857b517928f3652b8dd3" 200) # Anime Web Tier 05
-        (cf "animemovies" "a786fbc0eae05afe3bb51aee3c83a9d4" 100) # Anime Web Tier 06
-        (cf "animemovies" "3a3ff47579026e76d6504ebea39390de" 1050) # Remux Tier 01
-        (cf "animemovies" "9f98181fe5a3fbeb0cc29340da2a468a" 1000) # Remux Tier 02
-        (cf "animemovies" "8baaf0b3142bf4d94c42a724f034e27a" 950) # Remux Tier 03
-        (cf "animemovies" "c20f169ef63c5f40c2def54abaf4438e" 350) # WEB Tier 01
-        (cf "animemovies" "403816d65392c79236dcb6dd591aeda4" 250) # WEB Tier 02
-        (cf "animemovies" "af94e0fe497124d1f9ce732069ec8c3b" 150) # WEB Tier 03
-        (cf "animemovies" "c259005cbaeb5ab44c06eddb4751e70c" (-51)) # v0
-        (cf "animemovies" "5f400539421b8fcf71d51e6384434573" 1) # v1
-        (cf "animemovies" "3df5e6dfef4b09bb6002f732bed5b774" 2) # v2
-        (cf "animemovies" "db92c27ba606996b146b57fbe6d09186" 3) # v3
-        (cf "animemovies" "d4e5e842fad129a3c097bdb2d20d31a0" 4) # v4
-        (cf "animemovies" "b0fdc5897f68c9a68c70c25169f77447" (-10000)) # Anime LQ Groups
-        (cf "animemovies" "b23eae459cc960816f2d6ba84af45055" (-10000)) # Dubs Only
-        (cf "animemovies" "9172b2f683f6223e3a1846427b417a3d" (-10000)) # VOSTFR
-        (cf "animemovies" "cae4ca30163749b891686f95532519bd" (-10000)) # AV1
-        (cf "animemovies" "a5d148168c4506b55cf53984107c396e" 10) # 10bit
-        (cf "animemovies" "064af5f084a0a24458cc8ecd3220f93f" 10) # Uncensored
-      ];
-    };
   };
 
   sonarr = {
     # Main Sonarr -- merged best available (4K preferred, 1080p fallback)
-    # base_url and api_key auto-populated by nixflix
     sonarr = {
       include = [];
       delete_old_custom_formats = false;

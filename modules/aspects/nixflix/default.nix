@@ -29,34 +29,12 @@
       extraGroups = ["users"];
     };
 
-    # -- radarr-anime (manual, nixflix has no multi-instance) --
-    users.users.radarr-anime = {
-      isSystemUser = true;
-      group = "media";
-    };
-
     systemd.services = let
       requireStorage = {
         unitConfig.RequiresMountsFor = "/storage";
       };
     in {
       radarr = requireStorage;
-      radarr-anime =
-        requireStorage
-        // {
-          description = "Radarr (Anime)";
-          after = ["network-online.target"];
-          wants = ["network-online.target"];
-          wantedBy = ["multi-user.target"];
-          serviceConfig = {
-            Type = "simple";
-            User = "radarr-anime";
-            Group = "media";
-            ExecStart = "${pkgs.radarr}/bin/Radarr -nobrowser -data=/storage/.state/radarr-anime";
-            Restart = "on-failure";
-            StateDirectory = "radarr-anime";
-          };
-        };
       sonarr = requireStorage;
       sonarr-anime = requireStorage;
       prowlarr = requireStorage;
@@ -74,7 +52,6 @@
 
     systemd.tmpfiles.rules = [
       "d /storage/Torrents/cross-seed 0775 cross-seed media - -"
-      "d /storage/.state/radarr-anime 0755 radarr-anime media - -"
     ];
 
     age.secrets.cross-seed = {
@@ -120,23 +97,28 @@
 
     nixflix = {
       enable = true;
-      mediaDir = "/storage/media";
+      mediaDir = "/storage/media/library";
       stateDir = "/storage/.state";
+      downloadsDir = "/storage/Torrents";
 
       jellyfin = {
         enable = true;
-        apiKey = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"; # TODO: replace with real key or agenix secret
+        apiKey = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+        openFirewall = true;
         users.ryder = {
           policy.isAdministrator = true;
-          password = "ryder123"; # TODO: change on first login
+          password = "ryder123";
         };
       };
 
       prowlarr = {
         enable = true;
         config = {
-          apiKey = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"; # TODO: replace with real key or agenix secret
-          hostConfig.password = "ryder123"; # TODO: replace with real password
+          apiKey = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
+          hostConfig = {
+            password = "ryder123";
+            bindAddress = "0.0.0.0";
+          };
         };
       };
 
@@ -144,14 +126,20 @@
         enable = true;
         config = {
           apiKey = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5"; # TODO: replace with real key or agenix secret
-          hostConfig.password = "ryder123";
+          hostConfig = {
+            password = "ryder123";
+            bindAddress = "0.0.0.0";
+          };
         };
       };
       sonarr-anime = {
         enable = true;
         config = {
           apiKey = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6"; # TODO: replace with real key or agenix secret
-          hostConfig.password = "ryder123";
+          hostConfig = {
+            password = "ryder123";
+            bindAddress = "0.0.0.0";
+          };
         };
       };
 
@@ -159,7 +147,10 @@
         enable = true;
         config = {
           apiKey = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1"; # TODO: replace with real key or agenix secret
-          hostConfig.password = "ryder123";
+          hostConfig = {
+            password = "ryder123";
+            bindAddress = "0.0.0.0";
+          };
         };
       };
 

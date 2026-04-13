@@ -29,7 +29,6 @@
     cat = {
       cross-seed = "/storage/Torrents/cross-seed";
       radarr = "/storage/Torrents/radarr";
-      radarr-anime = "/storage/Torrents/radarr-anime";
       tv-sonarr = "/storage/Torrents/tv-sonarr";
       tv-sonarr-anime = "/storage/Torrents/tv-sonarr-anime";
     };

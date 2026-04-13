@@ -24,7 +24,6 @@
       };
     in {
       radarr = requireStorage;
-      radarr-anime = requireStorage;
       sonarr = requireStorage;
       sonarr-anime = requireStorage;
       prowlarr = requireStorage;

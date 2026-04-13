@@ -110,7 +110,8 @@
         [Preferences]
         General\Locale=en
         WebUI\LocalHostAuth=false
-        WebUI\Password_PBKDF2="@ByteArray(j4+5SCWf/tQzuaO6WYBu6A==:JSufcib2gxnil8o6KysPWMxQQ9wr2KYtwh5Fn0CrTs688o70InrEX89mfmmZgiAe5glgHLiahw7AyDgMhGkNng==)"
+        WebUI\Password_PBKDF2="@ByteArray(iCp/Z6bCKxlKKvdo2V83DA==:gl77/ciU/P+lQpul2KktZyuAj0ulk0lamAnsPSa4cjyD4fgojn
+          +et4ctn1cOEa6ACbI+gSp/1+cw4OBbUiVtQtg==)"
         ${
           if hasCrossSeed
           then ''
@@ -176,6 +177,7 @@
             enable = true;
             script = ''
               mkdir -p ${profileBase}/qBittorrent_${profName}
+              rm -f ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
               cp ${qbtConfig} ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
               ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
             '';
