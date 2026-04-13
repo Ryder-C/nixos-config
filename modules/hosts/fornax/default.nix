@@ -2,6 +2,7 @@
   den.aspects.fornax = {
     includes = [
       ry.base
+      ry.immich
       ry.nixflix
       ry.torrents
       ry.tailscale
