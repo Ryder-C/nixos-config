@@ -24,7 +24,7 @@
             "users"
             user.userName
           ];
-          fromAspect = _: den.aspects.${host.aspect};
+          fromAspect = _: host.aspect;
         })
     ];
 
