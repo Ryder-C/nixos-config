@@ -142,7 +142,6 @@ in {
     radarr = {
       include = [];
       delete_old_custom_formats = false;
-      replace_existing_custom_formats = true;
 
       quality_profiles = [
         {
@@ -220,7 +219,6 @@ in {
     sonarr = {
       include = [];
       delete_old_custom_formats = false;
-      replace_existing_custom_formats = true;
 
       quality_profiles = [
         {
@@ -297,7 +295,6 @@ in {
     sonarr_anime = {
       include = [];
       delete_old_custom_formats = false;
-      replace_existing_custom_formats = true;
 
       quality_profiles = [
         {
