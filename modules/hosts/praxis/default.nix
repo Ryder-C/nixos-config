@@ -7,6 +7,8 @@
   den.aspects.praxis = {
     includes = [
       ry.workstation
+      ry.plasma
+      ry.gaming
       ry.niri-praxis
       ry.greetd-praxis
       ry.noctalia-praxis

@@ -34,14 +34,12 @@
       ry.workstation-base
 
       ry.niri
-      ry.plasma
       ry.noctalia
       ry.browser
       ry.discord
       ry.catppuccin
       ry.scripts
       ry.home-services
-      ry.gaming
     ];
   };
 }
