@@ -4,6 +4,14 @@
     config,
     ...
   }: {
+    # ry.caddy.vhosts = {
+    #   "photos" = 3001;
+    #   "albums.photos" = 3001;
+    #   "accounts.photos" = 3001;
+    #   "cast.photos" = 3001;
+    #   "api.photos" = 8085;
+    # };
+
     services.ente = {
       api = {
         enable = true;

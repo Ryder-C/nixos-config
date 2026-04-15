@@ -22,6 +22,8 @@
       ./_qbit-manage.nix
     ];
 
+    ry.caddy.vhosts."media" = 8096;
+
     # -- cross-seed (from nixarr module) --
     users.users.cross-seed = {
       isSystemUser = true;

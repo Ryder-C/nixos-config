@@ -4,6 +4,7 @@
       ry.base
       ry.homepage
       # ry.ente
+      ry.minecraft
       ry.nixflix
       ry.torrents
       ry.caddy
