@@ -1,5 +1,9 @@
 {
-  ry.ente.nixos = {lib, config, ...}: {
+  ry.ente.nixos = {
+    lib,
+    config,
+    ...
+  }: {
     services.ente = {
       api = {
         enable = true;
@@ -83,7 +87,7 @@
     };
 
     systemd.tmpfiles.rules = [
-      "d /storage/ente 0750 museum museum -"
+      "d /storage/ente 0750 ente ente -"
     ];
   };
 }

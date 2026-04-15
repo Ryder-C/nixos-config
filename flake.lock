@@ -1365,16 +1365,15 @@
         "website-builder": "website-builder"
       },
       "locked": {
-        "lastModified": 1772501436,
-        "narHash": "sha256-xoW8c1uPPkxfmr8lDJKU6YT9A3jJuwJO/SKuxfJ1Qw0=",
-        "owner": "Ryder-C",
+        "lastModified": 1770542066,
+        "narHash": "sha256-RTyyeuvK84WqFah0qUoyq28o2oM7yBfkFIHjFu5h0hc=",
+        "owner": "nix-media-server",
         "repo": "nixarr",
-        "rev": "a44a649e07d903352971411a64cfdff28bbd93e4",
+        "rev": "7cc521933dc6800ae81ecfc91fe36237476e4ffb",
         "type": "github"
       },
       "original": {
-        "owner": "Ryder-C",
-        "ref": "multi-instance-support",
+        "owner": "nix-media-server",
         "repo": "nixarr",
         "type": "github"
       }

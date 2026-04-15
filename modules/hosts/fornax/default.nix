@@ -3,7 +3,7 @@
     includes = [
       ry.base
       ry.homepage
-      ry.ente
+      # ry.ente
       ry.nixflix
       ry.torrents
       ry.caddy

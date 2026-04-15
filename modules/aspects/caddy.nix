@@ -1,5 +1,9 @@
 {
-  ry.caddy.nixos = {config, pkgs, ...}: let
+  ry.caddy.nixos = {
+    config,
+    pkgs,
+    ...
+  }: let
     dnsSnippet = ''
       tls {
         dns cloudflare {env.CF_API_TOKEN}
@@ -18,29 +22,29 @@
           reverse_proxy localhost:8096
         '';
 
-        # Ente — static web apps served by nginx on :3001
-        "photos.ryder.rs".extraConfig = ''
-          ${dnsSnippet}
-          reverse_proxy localhost:3001
-        '';
-        "albums.photos.ryder.rs".extraConfig = ''
-          ${dnsSnippet}
-          reverse_proxy localhost:3001
-        '';
-        "accounts.photos.ryder.rs".extraConfig = ''
-          ${dnsSnippet}
-          reverse_proxy localhost:3001
-        '';
-        "cast.photos.ryder.rs".extraConfig = ''
-          ${dnsSnippet}
-          reverse_proxy localhost:3001
-        '';
+        # Ente static web apps
+        # "photos.ryder.rs".extraConfig = ''
+        #   ${dnsSnippet}
+        #   reverse_proxy localhost:3001
+        # '';
+        # "albums.photos.ryder.rs".extraConfig = ''
+        #   ${dnsSnippet}
+        #   reverse_proxy localhost:3001
+        # '';
+        # "accounts.photos.ryder.rs".extraConfig = ''
+        #   ${dnsSnippet}
+        #   reverse_proxy localhost:3001
+        # '';
+        # "cast.photos.ryder.rs".extraConfig = ''
+        #   ${dnsSnippet}
+        #   reverse_proxy localhost:3001
+        # '';
 
         # Ente API
-        "api.photos.ryder.rs".extraConfig = ''
-          ${dnsSnippet}
-          reverse_proxy localhost:8085
-        '';
+        # "api.photos.ryder.rs".extraConfig = ''
+        #   ${dnsSnippet}
+        #   reverse_proxy localhost:8085
+        # '';
       };
     };
 
