@@ -28,6 +28,19 @@
 
       services = [
         {
+          "Game" = [
+            {
+              "Minecraft" = {
+                icon = "minecraft";
+                widget = {
+                  type = "minecraft";
+                  url = "udp://localhost:25565";
+                };
+              };
+            }
+          ];
+        }
+        {
           "Media" = [
             {
               "Jellyfin" = {
