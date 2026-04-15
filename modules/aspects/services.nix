@@ -179,7 +179,8 @@
               mkdir -p ${profileBase}/qBittorrent_${profName}
               rm -f ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
               cp ${qbtConfig} ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
-              ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
+              umask 0002
+              ${pkgs.util-linux}/bin/runuser -u root -g media -- ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
             '';
           };
         };

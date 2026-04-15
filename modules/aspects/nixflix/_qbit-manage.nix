@@ -13,6 +13,11 @@
   '';
 
   configFile = pkgs.writeText "qbit-manage-config.yml" (builtins.toJSON {
+    commands = {
+      tag_nohardlinks = true;
+      share_limits = true;
+    };
+
     qbt = {
       host = "http://localhost:8080";
       user = null;
@@ -43,6 +48,13 @@
     };
 
     share_limits = {
+      noHL = {
+        priority = 17;
+        include_all_tags = ["noHL"];
+        exclude_all_tags = ["manage-ignore"];
+        max_seeding_time = "14d";
+        cleanup = true;
+      };
       deprecated = {
         priority = 18;
         include_all_tags = ["deprecated"];
@@ -81,7 +93,9 @@
       cross_seed_tag = "cross-seed";
       cat_filter_completed = true;
       share_limits_filter_completed = true;
+      tag_nohardlinks_filter_completed = true;
       cat_update_all = true;
+      nohardlinks_tag = "noHL";
       force_auto_tmm_ignore_tags = ["manage-ignore"];
       disable_qbt_default_share_limits = true;
       tag_stalled_torrents = true;
@@ -96,6 +110,12 @@
       empty_after_x_days = 0;
       exclude_patterns = [];
       max_orphaned_files_to_delete = -1;
+    };
+
+    nohardlinks = {
+      radarr = {};
+      tv-sonarr = {};
+      tv-sonarr-anime = {};
     };
   });
 in {
@@ -112,7 +132,7 @@ in {
         cp -f ${configFile} /var/lib/qbit-manage/config.yml
         chmod 644 /var/lib/qbit-manage/config.yml
       ''}";
-      ExecStart = "${pkgs.qbit-manage}/bin/qbit-manage -cd /var/lib/qbit-manage --run --web-server=False -cu -tu -ro -sl -tte";
+      ExecStart = "${pkgs.qbit-manage}/bin/qbit-manage -cd /var/lib/qbit-manage --run --web-server=False -cu -tu -ro -sl -tte -tnhl";
       StateDirectory = "qbit-manage";
       WorkingDirectory = "/var/lib/qbit-manage";
       ReadWritePaths = ["/storage/Torrents"];
