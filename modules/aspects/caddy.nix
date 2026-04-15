@@ -23,21 +23,21 @@
           ${dnsSnippet}
           reverse_proxy localhost:3001
         '';
-        "albums.ryder.rs".extraConfig = ''
+        "albums.photos.ryder.rs".extraConfig = ''
           ${dnsSnippet}
           reverse_proxy localhost:3001
         '';
-        "accounts.ryder.rs".extraConfig = ''
+        "accounts.photos.ryder.rs".extraConfig = ''
           ${dnsSnippet}
           reverse_proxy localhost:3001
         '';
-        "cast.ryder.rs".extraConfig = ''
+        "cast.photos.ryder.rs".extraConfig = ''
           ${dnsSnippet}
           reverse_proxy localhost:3001
         '';
 
         # Ente API
-        "ente-api.ryder.rs".extraConfig = ''
+        "api.photos.ryder.rs".extraConfig = ''
           ${dnsSnippet}
           reverse_proxy localhost:8085
         '';

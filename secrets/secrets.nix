@@ -8,4 +8,8 @@ in {
   "cross-seed.age".publicKeys = users;
   "openclaw_telegram.age".publicKeys = users;
   "cloudflare-api-token.age".publicKeys = users;
+  "ente-encryption-key.age".publicKeys = users;
+  "ente-hash-key.age".publicKeys = users;
+  "ente-jwt-secret.age".publicKeys = users;
+  "ente-ott.age".publicKeys = users;
 }

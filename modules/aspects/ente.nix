@@ -1,10 +1,10 @@
 {
-  ry.ente.nixos = {lib, ...}: {
+  ry.ente.nixos = {lib, config, ...}: {
     services.ente = {
       api = {
         enable = true;
         enableLocalDB = true;
-        domain = "ente-api.ryder.rs";
+        domain = "api.photos.ryder.rs";
         nginx.enable = false;
         settings = {
           http.port = 8085;
@@ -23,6 +23,14 @@
               bucket = "dummy";
             };
           };
+          key = {
+            encryption._secret = config.age.secrets.ente-encryption-key.path;
+            hash._secret = config.age.secrets.ente-hash-key.path;
+          };
+          jwt.secret._secret = config.age.secrets.ente-jwt-secret.path;
+          internal.admins = [1580559962386438];
+          internal.disable-registration = true;
+          internal.hardcoded-ott.emails = [{_secret = config.age.secrets.ente-ott.path;}];
         };
       };
 
@@ -30,9 +38,9 @@
         enable = true;
         domains = {
           photos = "photos.ryder.rs";
-          albums = "albums.ryder.rs";
-          accounts = "accounts.ryder.rs";
-          cast = "cast.ryder.rs";
+          albums = "albums.photos.ryder.rs";
+          accounts = "accounts.photos.ryder.rs";
+          cast = "cast.photos.ryder.rs";
         };
       };
     };
@@ -45,9 +53,32 @@
       virtualHosts = let
         noSSL = {forceSSL = lib.mkForce false;};
       in {
-        "photos.ryder.rs" = noSSL;
-        "accounts.ryder.rs" = noSSL;
-        "cast.ryder.rs" = noSSL;
+        "photos.ryder.rs" = noSSL; # albums is a serverAlias on this vhost
+        "accounts.photos.ryder.rs" = noSSL;
+        "cast.photos.ryder.rs" = noSSL;
+      };
+    };
+
+    age.secrets = {
+      ente-encryption-key = {
+        file = ../../secrets/ente-encryption-key.age;
+        owner = "ente";
+        mode = "0400";
+      };
+      ente-hash-key = {
+        file = ../../secrets/ente-hash-key.age;
+        owner = "ente";
+        mode = "0400";
+      };
+      ente-jwt-secret = {
+        file = ../../secrets/ente-jwt-secret.age;
+        owner = "ente";
+        mode = "0400";
+      };
+      ente-ott = {
+        file = ../../secrets/ente-ott.age;
+        owner = "ente";
+        mode = "0400";
       };
     };
 
