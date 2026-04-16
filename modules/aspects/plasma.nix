@@ -9,6 +9,8 @@ _: {
       settings = {
         fullscreen = true;
         transcode_hdr = false;
+        remote_kbps = 2147483;
+        discord_presence = true;
       };
       mpvConfig = {
         vo = "gpu-next";
@@ -24,7 +26,11 @@ _: {
     };
 
     # Only start jellyfin-mpv-shim when logged into Plasma
-    systemd.user.services.jellyfin-mpv-shim.Service.ExecCondition = "${pkgs.bash}/bin/bash -c '[ \"$XDG_CURRENT_DESKTOP\" = \"KDE\" ]'";
+    # Disable the HDR WSI layer so mpv can create its own HDR swapchain directly
+    systemd.user.services.jellyfin-mpv-shim.Service = {
+      ExecCondition = "${pkgs.bash}/bin/bash -c '[ \"$XDG_CURRENT_DESKTOP\" = \"KDE\" ]'";
+      Environment = "ENABLE_HDR_WSI=0";
+    };
   };
 
   ry.plasma.nixos = {pkgs, ...}: {

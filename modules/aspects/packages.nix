@@ -33,7 +33,7 @@ _: {
       gtrash
       gtt
       hexdump
-      jdk17
+      jdk25
       jq
       lazygit
       libreoffice

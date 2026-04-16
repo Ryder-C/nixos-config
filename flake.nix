@@ -40,6 +40,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs-lib";
     };
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

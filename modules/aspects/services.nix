@@ -134,6 +134,8 @@
         mode = "0444";
       };
 
+      users.groups.media = {};
+
       systemd = {
         tmpfiles.rules = [
           "d ${profileBase} 0755 root root - -"

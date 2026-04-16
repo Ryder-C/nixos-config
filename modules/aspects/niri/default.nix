@@ -89,7 +89,7 @@
           binds = {
             "Mod+Shift+Slash".action.show-hotkey-overlay = {};
             "Mod+Return".action.spawn = ["alacritty"];
-            "Mod+B".action.spawn = ["brave"];
+            "Mod+B".action.spawn = ["helium"];
             "Mod+D".action.spawn = ["vesktop"];
 
             "Mod+Q".action.close-window = {};
