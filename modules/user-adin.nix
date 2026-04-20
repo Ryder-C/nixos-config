@@ -1,9 +1,12 @@
-{den, ...}: {
+{den, ry, ...}: {
   den = {
     aspects.adin = {
       includes = [
         den._.primary-user
         (den._.user-shell "fish")
+        ry.cosmic
+        ry.discord
+        ry.browser
       ];
 
       nixos = _: {
