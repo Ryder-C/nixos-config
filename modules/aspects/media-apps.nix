@@ -58,14 +58,6 @@
       };
     };
 
-    catppuccin = {
-      cava.transparent = true;
-      cursors = {
-        enable = true;
-        accent = "dark";
-      };
-    };
-
     fonts.fontconfig = {
       enable = true;
       defaultFonts.monospace = ["FiraCode Nerd Font" "Noto Color Emoji"];

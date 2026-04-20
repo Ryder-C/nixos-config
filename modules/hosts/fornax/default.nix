@@ -11,6 +11,7 @@
       ry.rgb
       ry.nvidia
       ry.audio
+      ry.gamescope-kiosk
     ];
 
     nixos = {
@@ -32,26 +33,6 @@
       hardware.nvidia = {
         open = lib.mkForce false;
         package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-      };
-
-      programs = {
-        gamescope.enable = true;
-        steam = {
-          enable = true;
-          gamescopeSession = {
-            enable = true;
-            args = [
-              # "--backend sdl"
-              "-W 3840"
-              "-H 2160"
-              "-w 3840"
-              "-h 2160"
-              "-r 60"
-              "-o 60"
-              "--force-grab-cursor"
-            ];
-          };
-        };
       };
     };
   };

@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, ry, ...}: {
   flake-file.inputs = {
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
@@ -37,14 +37,6 @@
       ...
     }: {
       imports = [inputs.steam-presence.nixosModules.steam-presence];
-
-      environment.sessionVariables = {
-        GBM_BACKEND = "nvidia-drm";
-        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-        LIBVA_DRIVER_NAME = "nvidia";
-        WLR_NO_HARDWARE_CURSORS = "1";
-        __GL_VRR_ALLOWED = "0";
-      };
 
       programs = {
         steam = {
@@ -98,6 +90,25 @@
         glfw3-minecraft
         stablePkgs.lutris
       ];
+    };
+  };
+
+  # Headless gamescope session (e.g. streaming server)
+  ry.gamescope-kiosk = {
+    includes = [ry.steam];
+    nixos = {
+      programs.steam.gamescopeSession = {
+        enable = true;
+        args = [
+          "-W 3840"
+          "-H 2160"
+          "-w 3840"
+          "-h 2160"
+          "-r 60"
+          "-o 60"
+          "--force-grab-cursor"
+        ];
+      };
     };
   };
 }

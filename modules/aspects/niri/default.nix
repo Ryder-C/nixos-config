@@ -174,56 +174,60 @@
       };
     };
 
-    niri-praxis.homeManager = {
-      programs.niri.settings = {
-        outputs = {
-          "DP-2" = {
-            mode = {
-              width = 3840;
-              height = 2160;
-              refresh = 239.996;
+    niri-praxis = {
+      homeManager = {
+        programs.niri.settings = {
+          outputs = {
+            "DP-2" = {
+              mode = {
+                width = 3840;
+                height = 2160;
+                refresh = 239.996;
+              };
+              scale = 1.5;
+              variable-refresh-rate = false;
+              position = {
+                x = 0;
+                y = 0;
+              };
             };
-            scale = 1.5;
-            variable-refresh-rate = false;
-            position = {
-              x = 0;
-              y = 0;
+            "DP-1" = {
+              mode = {
+                width = 3840;
+                height = 2160;
+                refresh = 59.997;
+              };
+              scale = 1.5;
+              position = {
+                x = 2560;
+                y = 0;
+              };
             };
           };
-          "DP-1" = {
-            mode = {
-              width = 3840;
-              height = 2160;
-              refresh = 59.997;
-            };
-            scale = 1.5;
-            position = {
-              x = 2560;
-              y = 0;
-            };
-          };
+          spawn-at-startup = [
+            {command = ["vesktop"];}
+          ];
         };
-        spawn-at-startup = [
-          {command = ["vesktop"];}
-        ];
       };
     };
 
-    niri-sputnik.homeManager = {
-      programs.niri.settings = {
-        debug.render-drm-device = "/dev/dri/renderD128";
-        switch-events = {
-          lid-close.action.spawn = ["sh" "-c" "niri msg action power-off-monitors"];
-          lid-open.action.spawn = ["sh" "-c" "sleep 0.5 && niri msg action power-on-monitors"];
-        };
-        outputs = {
-          "eDP-1" = {
-            mode = {
-              width = 3024;
-              height = 1964;
-              refresh = 120.000;
+    niri-sputnik = {
+      homeManager = {
+        programs.niri.settings = {
+          debug.render-drm-device = "/dev/dri/renderD128";
+          switch-events = {
+            lid-close.action.spawn = ["sh" "-c" "niri msg action power-off-monitors"];
+            lid-open.action.spawn = ["sh" "-c" "sleep 0.5 && niri msg action power-on-monitors"];
+          };
+          outputs = {
+            "eDP-1" = {
+              mode = {
+                width = 3024;
+                height = 1964;
+                refresh = 120.000;
+              };
+              scale = 2.0;
             };
-            scale = 2.0;
           };
         };
       };

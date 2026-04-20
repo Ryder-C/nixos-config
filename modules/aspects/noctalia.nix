@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, ry, ...}: {
   flake-file.inputs.noctalia = {
     url = "github:noctalia-dev/noctalia-shell";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -206,43 +206,42 @@
       };
     };
 
-    noctalia-praxis.homeManager = {
-      lib,
-      pkgs,
-      ...
-    }: {
-      home.packages = [pkgs.gpu-screen-recorder];
-
-      programs.noctalia-shell = {
-        plugins.states.screen-recorder.enabled = true;
-        settings.bar.widgets = {
-          right = lib.mkBefore [{id = "plugin:screen-recorder";}];
+    noctalia-praxis = {
+      includes = [ry.gpu-screen-recorder];
+      homeManager = {lib, ...}: {
+        programs.noctalia-shell = {
+          plugins.states.screen-recorder.enabled = true;
+          settings.bar.widgets = {
+            right = lib.mkBefore [{id = "plugin:screen-recorder";}];
+          };
         };
       };
     };
 
-    noctalia-sputnik.homeManager = {lib, ...}: {
-      programs.noctalia-shell.settings.bar.widgets = {
-        left = lib.mkAfter [
-          {
-            id = "Clock";
-            formatHorizontal = "ddd, MMM dd";
-          }
-          {
-            id = "plugin:weather-indicator";
-          }
-          {
-            id = "Clock";
-            formatHorizontal = "h:mm AP";
-          }
-        ];
-        center = lib.mkForce [];
-        right = lib.mkAfter [
-          {
-            id = "Battery";
-            displayMode = "graphic-clean";
-          }
-        ];
+    noctalia-sputnik = {
+      homeManager = {lib, ...}: {
+        programs.noctalia-shell.settings.bar.widgets = {
+          left = lib.mkAfter [
+            {
+              id = "Clock";
+              formatHorizontal = "ddd, MMM dd";
+            }
+            {
+              id = "plugin:weather-indicator";
+            }
+            {
+              id = "Clock";
+              formatHorizontal = "h:mm AP";
+            }
+          ];
+          center = lib.mkForce [];
+          right = lib.mkAfter [
+            {
+              id = "Battery";
+              displayMode = "graphic-clean";
+            }
+          ];
+        };
       };
     };
   };

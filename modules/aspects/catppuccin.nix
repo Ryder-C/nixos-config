@@ -17,7 +17,11 @@
         cache.enable = true;
         accent = "mauve";
         flavor = "mocha";
-        cursors.enable = true;
+        cava.transparent = true;
+        cursors = {
+          enable = true;
+          accent = "dark";
+        };
       };
 
       # Symlink the Catppuccin Stylus JSON (patched to keep YouTube video backgrounds black)

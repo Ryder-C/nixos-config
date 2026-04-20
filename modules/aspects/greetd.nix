@@ -18,30 +18,34 @@
       };
     };
 
-    greetd-praxis.nixos = {
-      services.displayManager.dms-greeter.compositor.customConfig = ''
-        output "DP-1" {
-            scale 1.500000
-            position x=2560 y=0
-            mode "3840x2160@59.997"
-        }
-        output "DP-2" {
-            scale 1.500000
-            transform "normal"
-            position x=0 y=0
-            mode "3840x2160@239.996"
-        }
-        hotkey-overlay { skip-at-startup; }
-      '';
+    greetd-praxis = {
+      nixos = {
+        services.displayManager.dms-greeter.compositor.customConfig = ''
+          output "DP-1" {
+              scale 1.500000
+              position x=2560 y=0
+              mode "3840x2160@59.997"
+          }
+          output "DP-2" {
+              scale 1.500000
+              transform "normal"
+              position x=0 y=0
+              mode "3840x2160@239.996"
+          }
+          hotkey-overlay { skip-at-startup; }
+        '';
+      };
     };
 
-    greetd-sputnik.nixos = {
-      services.displayManager.dms-greeter.compositor.customConfig = ''
-        debug {
-            render-drm-device "/dev/dri/renderD128"
-        }
-        hotkey-overlay { skip-at-startup; }
-      '';
+    greetd-sputnik = {
+      nixos = {
+        services.displayManager.dms-greeter.compositor.customConfig = ''
+          debug {
+              render-drm-device "/dev/dri/renderD128"
+          }
+          hotkey-overlay { skip-at-startup; }
+        '';
+      };
     };
   };
 }

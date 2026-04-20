@@ -1,13 +1,6 @@
 {ry, ...}: {
   den.aspects.umbra = {
-    includes = [
-      ry.terminal
-      ry.shell
-      ry.editor
-      ry.development
-      ry.packages
-      ry.media-apps
-    ];
+    includes = [ry.base-darwin];
 
     darwin = {
       services.nix-daemon.enable = true;
