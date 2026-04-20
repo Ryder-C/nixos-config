@@ -6,7 +6,6 @@
       # ry.ente
       ry.minecraft
       ry.nixflix
-      ry.torrents
       ry.caddy
       ry.tailscale
       ry.rgb
