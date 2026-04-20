@@ -17,6 +17,7 @@
     nixos = {
       config,
       pkgs,
+      lib,
       ...
     }: {
       imports = [
@@ -58,6 +59,7 @@
               ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
             };
           };
+        prowlarr-indexers.enable = lib.mkForce false;
       };
 
       systemd.tmpfiles.rules = [
