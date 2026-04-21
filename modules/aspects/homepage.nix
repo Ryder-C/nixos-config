@@ -31,6 +31,7 @@
           "Game" = [
             {
               "Minecraft" = {
+                href="http://fornax.stork-mulley.ts.net:8100";
                 icon = "minecraft";
                 widget = {
                   type = "minecraft";
