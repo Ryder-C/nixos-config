@@ -102,10 +102,11 @@
         enable = true;
         autoStart = true;
 
-        package = pkgs.purpur-server.override {jre = pkgs.jdk25; };
+        package = pkgs.purpur-server.override {jre = pkgs.jdk25;};
 
         serverProperties = {
           white-list = true;
+          spawn-protection = 0;
           difficulty = 3;
           gamemode = 0;
           motd = "i guess";
@@ -115,9 +116,9 @@
         };
 
         files = {
-            "plugins/voicechat-bukkit-2.6.16.jar" = voiceChat;
-            "plugins/bluemap-5.20-paper.jar" = blueMap;
-            "plugins/DistantHorizonsSupport-0.13.0.jar" = distantHorizons;
+          "plugins/voicechat-bukkit-2.6.16.jar" = voiceChat;
+          "plugins/bluemap-5.20-paper.jar" = blueMap;
+          "plugins/DistantHorizonsSupport-0.13.0.jar" = distantHorizons;
         };
 
         jvmOpts = "-Xmx12G -Xms12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";

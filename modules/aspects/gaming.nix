@@ -1,4 +1,8 @@
-{inputs, ry, ...}: {
+{
+  inputs,
+  ry,
+  ...
+}: {
   flake-file.inputs = {
     steam-presence = {
       url = "github:JustTemmie/steam-presence";

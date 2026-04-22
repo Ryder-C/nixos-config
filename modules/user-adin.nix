@@ -1,4 +1,8 @@
-{den, ry, ...}: {
+{
+  den,
+  ry,
+  ...
+}: {
   den = {
     aspects.adin = {
       includes = [

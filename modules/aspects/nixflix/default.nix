@@ -1,4 +1,8 @@
-{inputs, ry, ...}: {
+{
+  inputs,
+  ry,
+  ...
+}: {
   flake-file.inputs = {
     nixflix = {
       url = "github:kiriwalawren/nixflix";
@@ -66,10 +70,13 @@
         "d /storage/Torrents/cross-seed 0775 cross-seed media - -"
       ];
 
-      age.secrets.cross-seed = {
-        file = ../../../secrets/cross-seed.age;
-        owner = "cross-seed";
-        mode = "0400";
+      age.secrets = {
+        cross-seed = {
+          file = ../../../secrets/cross-seed.age;
+          owner = "cross-seed";
+          mode = "0400";
+        };
+        jellyfin-admin.file = ../../../secrets/jellyfin-admin.age;
       };
 
       services = {
@@ -120,6 +127,17 @@
           users.ryder = {
             policy.isAdministrator = true;
             password = "ryder123";
+          };
+        };
+
+        seerr = {
+          enable = true;
+          openFirewall = true;
+          apiKey = "seerr";
+          jellyfin = {
+            adminPassword = {_secret = config.age.secrets.jellyfin-admin.path;};
+            # enableAllLibraries = false;
+            # libraryFilter.names = ["Anime" "Movies" "Shows"];
           };
         };
 
