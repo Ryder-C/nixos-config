@@ -72,6 +72,10 @@
         package = pkgs.claude-code;
 
         settings = {
+          statusLine = {
+            type = "command";
+            command = "bash /home/ryder/.claude/statusline-command.sh";
+          };
           hooks = {
             Notification = [
               {
@@ -189,5 +193,52 @@
         };
       };
     };
+
+    home.file.".claude/statusline-command.sh" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+        # Claude Code status line — mirrors Starship Catppuccin Mocha prompt style
+
+        input=$(cat)
+
+        cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
+        model=$(echo "$input" | jq -r '.model.display_name // empty')
+        used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+
+        # Catppuccin Mocha colours (dimmed-friendly)
+        blue='\033[38;2;137;180;250m'    # #89b4fa
+        lavender='\033[38;2;180;190;254m' # #b4befe
+        yellow='\033[38;2;249;226;175m'  # #f9e2af
+        reset='\033[0m'
+
+        # Shorten home directory to ~
+        if [ -n "$cwd" ]; then
+            home="$HOME"
+            short_cwd="''${cwd/#$home/~}"
+        else
+            short_cwd="?"
+        fi
+
+        parts=""
+
+        # Directory segment (blue  icon + lavender path)
+        parts="''${parts}$(printf "''${blue} ''${lavender}''${short_cwd}''${reset}")"
+
+        # Model segment
+        if [ -n "$model" ]; then
+            parts="''${parts}  $(printf "''${blue}''${model}''${reset}")"
+        fi
+
+        # Context usage segment
+        if [ -n "$used" ]; then
+            used_int=$(printf '%.0f' "$used")
+            parts="''${parts}  $(printf "''${yellow}ctx:''${used_int}%%''${reset}")"
+        fi
+
+        printf "%b" "$parts"
+      '';
+    };
   };
 }
+
