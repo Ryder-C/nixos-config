@@ -16,7 +16,7 @@
       ry.nvidia
       ry.steam
       ry.torrents
-      ry.ollama
+      # ry.ollama
       # ry.openclaw
       ry.rgb
       # ry.star-citizen

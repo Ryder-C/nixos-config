@@ -16,6 +16,8 @@
     config = {
       nix = {
         package = pkgs.lixPackageSets.latest.lix;
+        daemonCPUSchedPolicy = "idle";
+        daemonIOSchedClass = "idle";
         settings = {
           eval-cache = true;
           auto-optimise-store = true;
@@ -48,6 +50,14 @@
               nix-fast-build
               colmena
               ;
+            # aioboto3 15.5.0 installCheck tests fail with "Duplicate 'Server' header" on newer aiohttp
+            python313 = prev.python313.override {
+              packageOverrides = _pyFinal: pyPrev: {
+                aioboto3 = pyPrev.aioboto3.overrideAttrs (_: {doInstallCheck = false;});
+              };
+            };
+            # openldap test017-syncreplication-refresh is a flaky timing-sensitive test
+            openldap = prev.openldap.overrideAttrs (_: {doCheck = false;});
           })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default

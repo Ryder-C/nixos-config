@@ -36,7 +36,6 @@ _: {
       jdk25
       jq
       lazygit
-      libreoffice
       lorien
       monero-gui
       nil
