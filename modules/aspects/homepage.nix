@@ -28,6 +28,16 @@
 
       services = [
         {
+          "Security" = [
+            {
+              "Vaultwarden" = {
+                href = "https://vault.ryder.rs";
+                icon = "vaultwarden";
+              };
+            }
+          ];
+        }
+        {
           "Game" = [
             {
               "Minecraft" = {

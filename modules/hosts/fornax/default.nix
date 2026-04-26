@@ -8,6 +8,7 @@
       ry.nixflix
       ry.caddy
       ry.tailscale
+      ry.vaultwarden
       ry.rgb
       ry.nvidia
       ry.audio
