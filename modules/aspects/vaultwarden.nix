@@ -1,6 +1,16 @@
 {
   ry.vaultwarden.nixos = {config, ...}: {
-    ry.caddy.vhosts."vault" = 8222;
+    services.caddy.virtualHosts."vault.ryder.rs".extraConfig = ''
+      tls {
+        dns cloudflare {env.CF_API_TOKEN}
+      }
+      @adminRemote {
+        path /admin*
+        not remote_ip private_ranges
+      }
+      respond @adminRemote 403
+      reverse_proxy localhost:8222
+    '';
 
     services.vaultwarden = {
       enable = true;
