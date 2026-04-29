@@ -4,14 +4,17 @@
   ...
 }: {
   flake-file.inputs = {
+    vpnconfinement.url = "github:Maroka-chan/VPN-Confinement";
     nixflix = {
       url = "github:kiriwalawren/nixflix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs."vpn-confinement".follows = "vpnconfinement";
     };
     # Kept solely for the cross-seed NixOS module
     nixarr = {
       url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.vpnconfinement.follows = "vpnconfinement";
     };
   };
 
@@ -131,7 +134,7 @@
         };
 
         seerr = {
-          enable = true;
+          enable = false;
           openFirewall = true;
           apiKey = "seerr";
           jellyfin = {

@@ -1,7 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
     aagl = {
@@ -92,7 +92,10 @@
     };
     nixarr = {
       url = "github:nix-media-server/nixarr";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        vpnconfinement.follows = "vpnconfinement";
+      };
     };
     nixcord = {
       url = "github:kaylorben/nixcord";
@@ -100,7 +103,10 @@
     };
     nixflix = {
       url = "github:kiriwalawren/nixflix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        vpn-confinement.follows = "vpnconfinement";
+      };
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
@@ -129,5 +135,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vesc-tool.url = "github:vedderb/vesc_tool";
+    vpnconfinement.url = "github:Maroka-chan/VPN-Confinement";
   };
 }
