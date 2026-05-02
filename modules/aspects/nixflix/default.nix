@@ -33,7 +33,7 @@
         ./_qbit-manage.nix
       ];
 
-      ry.caddy.vhosts."media" = 8096;
+      ry.caddy.vhosts."ryder.rs".media = 8096;
 
       # -- cross-seed (from nixarr module) --
       users.users.cross-seed = {

@@ -5,14 +5,13 @@
     lib,
     ...
   }: let
-    dnsSnippet = ''
-      tls {
-        dns cloudflare {env.CF_API_TOKEN}
-      }
-    '';
+    domainTokens = {
+      "ryder.rs" = "CF_API_TOKEN_RYDER";
+      "adinack.dev" = "CF_API_TOKEN_ADIN";
+    };
   in {
     options.ry.caddy.vhosts = lib.mkOption {
-      type = lib.types.attrsOf lib.types.port;
+      type = lib.types.attrsOf (lib.types.attrsOf lib.types.port);
       default = {};
       description = "Map of subdomain to port";
     };
@@ -24,13 +23,17 @@
           plugins = ["github.com/caddy-dns/cloudflare@v0.2.4"];
           hash = "sha256-J0HWjCPoOoARAxDpG2bS9c0x5Wv4Q23qWZbTjd8nW84=";
         };
-        virtualHosts = lib.mapAttrs' (subdomain: port:
-          lib.nameValuePair "${subdomain}.ryder.rs" {
-            extraConfig = ''
-              ${dnsSnippet}
-              reverse_proxy localhost:${toString port}
-            '';
-          })
+        virtualHosts = lib.concatMapAttrs (domain: subdomains:
+          lib.mapAttrs' (subdomain: port:
+            lib.nameValuePair "${subdomain}.${domain}" {
+              extraConfig = ''
+                tls {
+                  dns cloudflare {env.${domainTokens.${domain}}}
+                }
+                reverse_proxy localhost:${toString port}
+              '';
+            })
+          subdomains)
         config.ry.caddy.vhosts;
       };
 

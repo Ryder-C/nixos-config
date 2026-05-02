@@ -2,7 +2,7 @@
   ry.vaultwarden.nixos = {config, ...}: {
     services.caddy.virtualHosts."vault.ryder.rs".extraConfig = ''
       tls {
-        dns cloudflare {env.CF_API_TOKEN}
+        dns cloudflare {env.CF_API_TOKEN_RYDER}
       }
       @adminRemote {
         path /admin*
