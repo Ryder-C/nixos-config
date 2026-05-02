@@ -1,6 +1,5 @@
 {inputs, ...}: {
   flake-file.inputs = {
-    catppuccin.url = "github:catppuccin/nix";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,8 +10,6 @@
   };
 
   ry.system.nixos = {pkgs, ...}: {
-    imports = [inputs.catppuccin.nixosModules.catppuccin];
-
     config = {
       nix = {
         package = pkgs.nix;
@@ -74,15 +71,6 @@
         icu
         inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
-
-      catppuccin = {
-        enable = true;
-        cache.enable = true;
-        flavor = "mocha";
-        accent = "mauve";
-        tty.enable = false;
-        limine.enable = false;
-      };
 
       time.timeZone = "America/Los_Angeles";
       i18n.defaultLocale = "en_US.UTF-8";

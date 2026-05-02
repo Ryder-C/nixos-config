@@ -1,5 +1,6 @@
 {inputs, ...}: {
   flake-file.inputs = {
+    catppuccin.url = "github:catppuccin/nix";
     catppuccin-stylus-json = {
       url = "https://github.com/catppuccin/userstyles/releases/download/all-userstyles-export/import.json";
       flake = false;
@@ -7,6 +8,18 @@
   };
 
   ry.catppuccin = {
+    nixos = {
+      imports = [inputs.catppuccin.nixosModules.catppuccin];
+
+      catppuccin = {
+        enable = true;
+        cache.enable = true;
+        flavor = "mocha";
+        accent = "mauve";
+        tty.enable = false;
+        limine.enable = false;
+      };
+    };
     homeManager = {pkgs, ...}: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
