@@ -38,7 +38,6 @@ _: {
       lazygit
       lorien
       monero-gui
-      nil
       nitch
       nix-prefetch-github
       obsidian

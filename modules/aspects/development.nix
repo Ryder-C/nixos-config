@@ -23,6 +23,7 @@
       difftastic
       devenv
       vscode
+      nil
       obs-studio
 
       # Languages & toolchains

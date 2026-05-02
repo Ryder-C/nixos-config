@@ -150,7 +150,7 @@
             apiKey = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
             hostConfig = {
               password = "ryder123";
-              bindAddress = "0.0.0.0";
+              bindAddress = "127.0.0.1";
             };
           };
         };
@@ -161,7 +161,7 @@
             apiKey = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5"; # TODO: replace with real key or agenix secret
             hostConfig = {
               password = "ryder123";
-              bindAddress = "0.0.0.0";
+              bindAddress = "127.0.0.1";
             };
           };
         };
@@ -171,7 +171,7 @@
             apiKey = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6"; # TODO: replace with real key or agenix secret
             hostConfig = {
               password = "ryder123";
-              bindAddress = "0.0.0.0";
+              bindAddress = "127.0.0.1";
             };
           };
         };
@@ -182,7 +182,7 @@
             apiKey = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1"; # TODO: replace with real key or agenix secret
             hostConfig = {
               password = "ryder123";
-              bindAddress = "0.0.0.0";
+              bindAddress = "127.0.0.1";
             };
           };
         };

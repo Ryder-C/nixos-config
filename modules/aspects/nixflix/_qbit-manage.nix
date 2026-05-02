@@ -15,6 +15,10 @@
   configFile = pkgs.writeText "qbit-manage-config.yml" (builtins.toJSON {
     commands = {
       tag_nohardlinks = true;
+      tag_update = true;
+      cat_update = true;
+      tag_tracker_error = true;
+      rem_orphaned = true;
       share_limits = true;
     };
 
