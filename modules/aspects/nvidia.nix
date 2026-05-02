@@ -55,6 +55,16 @@ in {
         overlays = [cudaOverlay];
       });
       home.packages = [pkgs.nvtopPackages.nvidia];
+
+      xdg.desktopEntries.vesktop = {
+        name = "Vesktop";
+        genericName = "Internet Messenger";
+        exec = "vesktop --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs --ignore-gpu-blocklist --enable-zero-copy %U";
+        icon = "vesktop";
+        categories = ["Network" "InstantMessaging" "Chat"];
+        mimeType = ["x-scheme-handler/discord"];
+        settings.StartupWMClass = "Vesktop";
+      };
     };
   };
 }

@@ -205,7 +205,7 @@
             };
           };
           spawn-at-startup = [
-            {command = ["vesktop"];}
+            {command = ["${lib.getExe' pkgs.gtk3 "gtk-launch"}" "vesktop"];}
           ];
         };
       };
