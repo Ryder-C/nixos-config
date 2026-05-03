@@ -5,7 +5,7 @@
       ry.homepage
       # ry.ente
       ry.minecraft
-      ry.forgejo
+      # ry.forgejo
       ry.nixflix
       ry.caddy
       ry.tailscale
