@@ -1,5 +1,11 @@
 {inputs, ...}: {
-  flake-file.inputs.flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
+  flake-file.inputs = {
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak";
+    hytale-flatpak = {
+      url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
+      flake = false;
+    };
+  };
 
   ry.flatpak = {
     nixos.services.flatpak.enable = true;

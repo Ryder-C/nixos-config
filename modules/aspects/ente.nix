@@ -1,3 +1,4 @@
+# Disabled in fornax/default.nix; ready to re-enable.
 {
   ry.ente.nixos = {
     lib,
@@ -11,6 +12,19 @@
     #   "cast.photos" = 3001;
     #   "api.photos" = 8085;
     # };
+
+    services.homepage-dashboard.services = [
+      {
+        "Photos" = [
+          {
+            "Ente" = {
+              href = "https://photos.ryder.rs";
+              icon = "ente";
+            };
+          }
+        ];
+      }
+    ];
 
     services.ente = {
       api = {

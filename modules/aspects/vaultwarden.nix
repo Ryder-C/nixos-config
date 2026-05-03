@@ -29,5 +29,18 @@
       owner = "vaultwarden";
       mode = "0400";
     };
+
+    services.homepage-dashboard.services = [
+      {
+        "Security" = [
+          {
+            "Vaultwarden" = {
+              href = "https://vault.ryder.rs";
+              icon = "vaultwarden";
+            };
+          }
+        ];
+      }
+    ];
   };
 }

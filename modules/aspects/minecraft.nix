@@ -1,7 +1,11 @@
 {inputs, ...}: {
   flake-file.inputs.nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
-  ry.minecraft.nixos = {pkgs, ...}: let
+  ry.minecraft.nixos = {
+    pkgs,
+    config,
+    ...
+  }: let
     voiceChat = pkgs.fetchurl {
       url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/ZQfVgh62/voicechat-bukkit-2.6.16.jar";
       sha256 = "0c7z56qkd2avn49135jhk42b5dxn0rixsjcs5bzrnaqkylaw3dyj";
@@ -60,5 +64,22 @@
         jvmOpts = "-Xmx12G -Xms12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true";
       };
     };
+
+    services.homepage-dashboard.services = [
+      {
+        "Game" = [
+          {
+            "Minecraft" = {
+              href = "http://${config.networking.hostName}.stork-mulley.ts.net:8100";
+              icon = "minecraft";
+              widget = {
+                type = "minecraft";
+                url = "udp://localhost:25565";
+              };
+            };
+          }
+        ];
+      }
+    ];
   };
 }

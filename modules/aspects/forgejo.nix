@@ -1,3 +1,4 @@
+# Disabled in fornax/default.nix; ready to re-enable.
 {
   ry.forgejo.nixos = {
     ry.caddy.vhosts = {

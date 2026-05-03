@@ -19,7 +19,7 @@
   };
 
   ry.nixflix = {
-    includes = [ry.torrents];
+    includes = [ry.torrents ry.caddy];
 
     nixos = {
       config,
@@ -34,6 +34,86 @@
       ];
 
       ry.caddy.vhosts."ryder.rs".media = 8096;
+
+      services.homepage-dashboard.services = [
+        {
+          "Media" = [
+            {
+              "Jellyfin" = {
+                href = "https://media.ryder.rs";
+                icon = "jellyfin";
+                widget = {
+                  type = "jellyfin";
+                  url = "http://localhost:8096";
+                  key = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+                };
+              };
+            }
+          ];
+        }
+        {
+          "Downloads" = [
+            {
+              "qBittorrent" = {
+                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8080";
+                icon = "qbittorrent";
+                widget = {
+                  type = "qbittorrent";
+                  url = "http://localhost:8080";
+                };
+              };
+            }
+          ];
+        }
+        {
+          "Arr" = [
+            {
+              "Radarr" = {
+                href = "http://${config.networking.hostName}.stork-mulley.ts.net:7878";
+                icon = "radarr";
+                widget = {
+                  type = "radarr";
+                  url = "http://localhost:7878";
+                  key = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1";
+                };
+              };
+            }
+            {
+              "Sonarr" = {
+                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8989";
+                icon = "sonarr";
+                widget = {
+                  type = "sonarr";
+                  url = "http://localhost:8989";
+                  key = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5";
+                };
+              };
+            }
+            {
+              "Sonarr Anime" = {
+                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8990";
+                icon = "sonarr";
+                widget = {
+                  type = "sonarr";
+                  url = "http://localhost:8990";
+                  key = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6";
+                };
+              };
+            }
+            {
+              "Prowlarr" = {
+                href = "http://${config.networking.hostName}.stork-mulley.ts.net:9696";
+                icon = "prowlarr";
+                widget = {
+                  type = "prowlarr";
+                  url = "http://localhost:9696";
+                  key = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
+                };
+              };
+            }
+          ];
+        }
+      ];
 
       # -- cross-seed (from nixarr module) --
       users.users.cross-seed = {

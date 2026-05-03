@@ -1,9 +1,9 @@
 {
-  ry.homepage.nixos = {
+  ry.homepage.nixos = {config, ...}: {
     services.homepage-dashboard = {
       enable = true;
       openFirewall = true;
-      allowedHosts = "fornax.stork-mulley.ts.net:8082";
+      allowedHosts = "${config.networking.hostName}.stork-mulley.ts.net:8082";
 
       widgets = [
         {
@@ -26,115 +26,9 @@
         }
       ];
 
-      services = [
-        {
-          "Security" = [
-            {
-              "Vaultwarden" = {
-                href = "https://vault.ryder.rs";
-                icon = "vaultwarden";
-              };
-            }
-          ];
-        }
-        {
-          "Game" = [
-            {
-              "Minecraft" = {
-                href = "http://fornax.stork-mulley.ts.net:8100";
-                icon = "minecraft";
-                widget = {
-                  type = "minecraft";
-                  url = "udp://localhost:25565";
-                };
-              };
-            }
-          ];
-        }
-        {
-          "Media" = [
-            {
-              "Jellyfin" = {
-                href = "https://media.ryder.rs";
-                icon = "jellyfin";
-                widget = {
-                  type = "jellyfin";
-                  url = "http://localhost:8096";
-                  key = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
-                };
-              };
-            }
-            {
-              "Ente" = {
-                href = "https://photos.ryder.rs";
-                icon = "ente";
-              };
-            }
-          ];
-        }
-        {
-          "Downloads" = [
-            {
-              "qBittorrent" = {
-                href = "http://fornax.stork-mulley.ts.net:8080";
-                icon = "qbittorrent";
-                widget = {
-                  type = "qbittorrent";
-                  url = "http://localhost:8080";
-                };
-              };
-            }
-          ];
-        }
-        {
-          "Arr" = [
-            {
-              "Radarr" = {
-                href = "http://fornax.stork-mulley.ts.net:7878";
-                icon = "radarr";
-                widget = {
-                  type = "radarr";
-                  url = "http://localhost:7878";
-                  key = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1";
-                };
-              };
-            }
-            {
-              "Sonarr" = {
-                href = "http://fornax.stork-mulley.ts.net:8989";
-                icon = "sonarr";
-                widget = {
-                  type = "sonarr";
-                  url = "http://localhost:8989";
-                  key = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5";
-                };
-              };
-            }
-            {
-              "Sonarr Anime" = {
-                href = "http://fornax.stork-mulley.ts.net:8990";
-                icon = "sonarr";
-                widget = {
-                  type = "sonarr";
-                  url = "http://localhost:8990";
-                  key = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6";
-                };
-              };
-            }
-            {
-              "Prowlarr" = {
-                href = "http://fornax.stork-mulley.ts.net:9696";
-                icon = "prowlarr";
-                widget = {
-                  type = "prowlarr";
-                  url = "http://localhost:9696";
-                  key = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
-                };
-              };
-            }
-          ];
-        }
-      ];
+      # Service entries are contributed by their owning aspects via
+      # services.homepage-dashboard.services, so each tile only appears
+      # when both ry.homepage and the source aspect are included.
     };
   };
 }
