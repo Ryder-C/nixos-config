@@ -214,11 +214,14 @@
         cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // empty')
         model=$(echo "$input" | jq -r '.model.display_name // empty')
         used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+        five_hour=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+        seven_day=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
         # Catppuccin Mocha colours (dimmed-friendly)
         blue='\033[38;2;137;180;250m'    # #89b4fa
         lavender='\033[38;2;180;190;254m' # #b4befe
         yellow='\033[38;2;249;226;175m'  # #f9e2af
+        peach='\033[38;2;250;179;135m'   # #fab387
         reset='\033[0m'
 
         # Shorten home directory to ~
@@ -243,6 +246,16 @@
         if [ -n "$used" ]; then
             used_int=$(printf '%.0f' "$used")
             parts="''${parts}  $(printf "''${yellow}ctx:''${used_int}%%''${reset}")"
+        fi
+
+        # Plan usage segments
+        if [ -n "$five_hour" ]; then
+            five_int=$(printf '%.0f' "$five_hour")
+            parts="''${parts}  $(printf "''${peach}5h:''${five_int}%%''${reset}")"
+        fi
+        if [ -n "$seven_day" ]; then
+            week_int=$(printf '%.0f' "$seven_day")
+            parts="''${parts}  $(printf "''${peach}7d:''${week_int}%%''${reset}")"
         fi
 
         printf "%b" "$parts"
