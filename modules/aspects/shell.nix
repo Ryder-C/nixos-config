@@ -73,6 +73,7 @@
           nix-clean = "nh clean all";
           ns = "nh os switch --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
           nst = "nh os test --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
+          nsb = "nh os boot --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
 
           # Git
           ga = "git add";

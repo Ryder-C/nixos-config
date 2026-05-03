@@ -176,6 +176,10 @@
 
     niri-praxis = {
       homeManager = {
+        lib,
+        pkgs,
+        ...
+      }: {
         programs.niri.settings = {
           outputs = {
             "DP-2" = {
