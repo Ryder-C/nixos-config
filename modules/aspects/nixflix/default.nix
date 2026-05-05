@@ -33,7 +33,10 @@
         ./_qbit-manage.nix
       ];
 
-      ry.caddy.vhosts."ryder.rs".media = 8096;
+      ry.caddy.vhosts."ryder.rs" = {
+        media = 8096;
+        request = 5055;
+      };
 
       services.homepage-dashboard.services = [
         {
@@ -160,6 +163,10 @@
           mode = "0400";
         };
         jellyfin-admin.file = ../../../secrets/jellyfin-admin.age;
+        seerr.file = ../../../secrets/seerr.age;
+        sonarr.file = ../../../secrets/sonarr.age;
+        sonarr-anime.file = ../../../secrets/sonarr-anime.age;
+        radarr.file = ../../../secrets/radarr.age;
       };
 
       services = {
@@ -205,20 +212,22 @@
 
         jellyfin = {
           enable = true;
-          apiKey = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
           openFirewall = true;
+          apiKey = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
           users.ryder = {
             policy.isAdministrator = true;
             password = "ryder123";
           };
+
+          branding.customCss = ''@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");'';
         };
 
         seerr = {
-          enable = false;
+          enable = true;
           openFirewall = true;
-          apiKey = "seerr";
+          apiKey._secret = config.age.secrets.seerr.path;
           jellyfin = {
-            adminPassword = {_secret = config.age.secrets.jellyfin-admin.path;};
+            adminPassword._secret = config.age.secrets.jellyfin-admin.path;
             # enableAllLibraries = false;
             # libraryFilter.names = ["Anime" "Movies" "Shows"];
           };
@@ -238,7 +247,7 @@
         sonarr = {
           enable = true;
           config = {
-            apiKey = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5"; # TODO: replace with real key or agenix secret
+            apiKey._secret = config.age.secrets.sonarr.path;
             hostConfig = {
               password = "ryder123";
               bindAddress = "127.0.0.1";
@@ -248,7 +257,7 @@
         sonarr-anime = {
           enable = true;
           config = {
-            apiKey = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6"; # TODO: replace with real key or agenix secret
+            apiKey._secret = config.age.secrets.sonarr-anime.path;
             hostConfig = {
               password = "ryder123";
               bindAddress = "127.0.0.1";
@@ -259,7 +268,7 @@
         radarr = {
           enable = true;
           config = {
-            apiKey = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1"; # TODO: replace with real key or agenix secret
+            apiKey._secret = config.age.secrets.radarr.path;
             hostConfig = {
               password = "ryder123";
               bindAddress = "127.0.0.1";
@@ -272,6 +281,10 @@
         recyclarr = {
           enable = true;
           config = import ./_recyclarr.nix;
+          cleanupUnmanagedProfiles = {
+            enable = true;
+            managedProfiles = ["movies" "shows" "anime"];
+          };
         };
       };
     };

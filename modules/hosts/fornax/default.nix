@@ -35,7 +35,7 @@
 
       hardware.nvidia = {
         open = lib.mkForce false;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
       };
     };
   };

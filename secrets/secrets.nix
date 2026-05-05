@@ -14,4 +14,8 @@ in {
   "ente-ott.age".publicKeys = users;
   "jellyfin-admin.age".publicKeys = users;
   "vaultwarden.age".publicKeys = users;
+  "seerr.age".publicKeys = users;
+  "sonarr.age".publicKeys = users;
+  "sonarr-anime.age".publicKeys = users;
+  "radarr.age".publicKeys = users;
 }
