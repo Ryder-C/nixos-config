@@ -11,7 +11,7 @@ _: {
           };
         };
         font.normal = {
-          family = "monospace";
+          family = "FiraCode Nerd Font";
           style = "Regular";
         };
       };

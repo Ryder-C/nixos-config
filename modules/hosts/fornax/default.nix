@@ -2,6 +2,7 @@
   den.aspects.fornax = {
     includes = [
       ry.base
+      ry.packages
       ry.homepage
       # ry.ente
       ry.minecraft

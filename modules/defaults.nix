@@ -35,6 +35,8 @@
           inherit (pkgs.stdenv.hostPlatform) system;
           config.allowUnfree = true;
         };
+        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
+        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
       darwin = {pkgs, ...}: {
         system.stateVersion = 6;
@@ -42,6 +44,8 @@
           inherit (pkgs.stdenv.hostPlatform) system;
           config.allowUnfree = true;
         };
+        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
+        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
       homeManager = {pkgs, ...}: {
         home.stateVersion = "24.05";
@@ -50,6 +54,8 @@
           inherit (pkgs.stdenv.hostPlatform) system;
           config.allowUnfree = true;
         };
+        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
+        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
 
       includes = [

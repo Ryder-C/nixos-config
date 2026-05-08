@@ -4,20 +4,37 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.media-apps.homeManager = {pkgs, ...}: {
-    imports = [
-      inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
-    ];
+  ry.media-apps = {
+    nixos = {pkgs, ...}: {
+      home-manager.sharedModules = [
+        inputs.nix-yazi-plugins.legacyPackages.${pkgs.stdenv.hostPlatform.system}.homeManagerModules.default
+      ];
+    };
+    darwin = {pkgs, ...}: {
+      home-manager.sharedModules = [
+        inputs.nix-yazi-plugins.legacyPackages.${pkgs.stdenv.hostPlatform.system}.homeManagerModules.default
+      ];
+    };
+  };
 
-    home.packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.noto
-      twemoji-color-font
-      noto-fonts-color-emoji
-      dracula-theme
-      dracula-icon-theme
-      adwaita-icon-theme
-    ];
+  ry.media-apps.homeManager = {
+    pkgs,
+    lib,
+    isLinux,
+    ...
+  }: {
+    home.packages = with pkgs;
+      [
+        nerd-fonts.fira-code
+        nerd-fonts.noto
+        twemoji-color-font
+        noto-fonts-color-emoji
+      ]
+      ++ lib.optionals isLinux [
+        dracula-theme
+        dracula-icon-theme
+        adwaita-icon-theme
+      ];
 
     programs = {
       btop = {
@@ -29,7 +46,7 @@
         };
       };
 
-      cava.enable = true;
+      cava.enable = isLinux;
 
       yazi = {
         enable = true;
@@ -63,7 +80,7 @@
       defaultFonts.monospace = ["FiraCode Nerd Font" "Noto Color Emoji"];
     };
 
-    gtk = {
+    gtk = lib.mkIf isLinux {
       enable = true;
       theme = {
         name = "Dracula";

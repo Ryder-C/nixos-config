@@ -1,11 +1,17 @@
 {inputs, ...}: {
   flake-file.inputs.nixvim.url = "github:Ryder-C/nixvim";
 
-  ry.editor.homeManager = {pkgs, ...}: {
+  ry.editor.homeManager = {
+    pkgs,
+    lib,
+    isLinux,
+    ...
+  }: {
     # Neovim
-    home.packages = [
-      inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ];
+    home.packages =
+      if isLinux
+      then [inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default]
+      else [pkgs.neovim];
     home.sessionVariables.EDITOR = "nvim";
 
     # Micro

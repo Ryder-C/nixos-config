@@ -20,7 +20,11 @@
         limine.enable = false;
       };
     };
-    homeManager = {pkgs, ...}: {
+    homeManager = {
+      pkgs,
+      isLinux,
+      ...
+    }: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
       ];
@@ -32,7 +36,7 @@
         flavor = "mocha";
         cava.transparent = true;
         cursors = {
-          enable = true;
+          enable = isLinux;
           accent = "dark";
         };
       };

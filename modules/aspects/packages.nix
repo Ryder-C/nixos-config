@@ -5,6 +5,7 @@ _: {
     pkgs,
     lib,
     stablePkgs,
+    isLinux,
     ...
   }: let
     zink-env = [
@@ -15,87 +16,88 @@ _: {
       "WEBKIT_DISABLE_DMABUF_RENDERER=1"
     ];
   in {
-    home.packages = with pkgs; [
-      asciiquarium-transparent
-      audacity
-      bandwhich
-      baobab
-      brightnessctl
-      bitwise
-      cbonsai
-      dua
-      entr
-      eza
-      fd
-      file
-      fzf
-      gifsicle
-      gtrash
-      gtt
-      hexdump
-      jdk25
-      jq
-      lazygit
-      lorien
-      monero-gui
-      nitch
-      nix-prefetch-github
-      obsidian
-      pipes
-      ripgrep
-      tdf
-      todo
-      toipe
-      unrar
-      websocat
-      xwayland-run
+    home.packages = with pkgs;
+      [
+        bandwhich
+        bitwarden-desktop
+        bitwise
+        cbonsai
+        dua
+        entr
+        eza
+        fd
+        file
+        fzf
+        jdk25
+        jq
+        lazygit
+        nix-prefetch-github
+        obsidian
+        pipes
+        ripgrep
+        tdf
+        todo
+        toipe
+        unrar
+        websocat
 
-      zenity
+        # C / C++
+        gcc
+        gnumake
 
-      kdePackages.kleopatra
+        # Python
+        python3
+        python312Packages.setuptools
+        python312Packages.virtualenv
+        python312Packages.gmpy2
 
-      # C / C++
-      gcc
-      gnumake
+        cmatrix
+        spotify-player
+        ffmpeg
+        killall
+        man-pages
+        gdu
+        openssl
+        unzip
+        xxd
 
-      # Python
-      python3
-      python312Packages.setuptools
-      python312Packages.virtualenv
-      python312Packages.gmpy2
+        tinymist
+        leetgo
+      ]
+      ++ lib.optionals isLinux [
+        nitch
+        asciiquarium-transparent
+        audacity
+        baobab
+        brightnessctl
+        gifsicle
+        gtrash
+        gtt
+        hexdump
+        lorien
+        monero-gui
+        xwayland-run
+        zenity
+        kdePackages.kleopatra
+        bleachbit
+        imv
+        libnotify
+        stablePkgs.pamixer
+        pavucontrol
+        playerctl
+        wl-clipboard
+        cliphist
+        poweralertd
+        qalculate-gtk
+        xdg-utils
+        libvlc
+        zathura
 
-      bleachbit
-      cmatrix
-      spotify-player
-      ffmpeg
-      imv
-      killall
-      libnotify
-      man-pages
-      gdu
-      openssl
-      stablePkgs.pamixer
-      pavucontrol
-      playerctl
-      wl-clipboard
-      cliphist
-      poweralertd
-      qalculate-gtk
-      unzip
-      xdg-utils
-      xxd
+        # 3D printing
+        orca-slicer
+      ];
 
-      tinymist
-
-      # 3D printing
-      orca-slicer
-
-      libvlc
-      zathura
-      leetgo
-    ];
-
-    xdg = {
+    xdg = lib.mkIf isLinux {
       mimeApps = {
         enable = true;
         defaultApplications = {

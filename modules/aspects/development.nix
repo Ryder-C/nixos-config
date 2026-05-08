@@ -10,49 +10,55 @@
     pkgs,
     stablePkgs,
     lib,
+    isLinux,
     ...
   }: {
     imports = [
       inputs.nix-index-database.homeModules.nix-index
     ];
 
-    home.packages = with pkgs; [
-      gh
-      ripgrep
-      git-lfs
-      difftastic
-      devenv
-      vscode
-      nil
-      obs-studio
+    home.packages = with pkgs;
+      [
+        gh
+        ripgrep
+        git-lfs
+        difftastic
+        devenv
+        vscode
+        nil
 
-      # Languages & toolchains
-      nodejs
-      (rust-bin.stable.latest.default.override {
-        extensions = [
-          "rust-src"
-          "rustfmt"
-          "clippy"
-        ];
-        targets = [
-          (
-            if pkgs.stdenv.hostPlatform.isAarch64
-            then "aarch64-unknown-linux-gnu"
-            else "x86_64-unknown-linux-gnu"
-          )
-        ];
-      })
-      rust-analyzer
+        # Languages & toolchains
+        nodejs
 
-      # GPU debugging
-      mesa-demos
-      vulkan-tools
+        typst
+        typstyle
+      ]
+      ++ lib.optionals isLinux [
+        inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+        obs-studio
 
-      typst
-      typstyle
-      inputs.alejandra.defaultPackage.${pkgs.stdenv.hostPlatform.system}
-      stablePkgs.blender
-    ];
+        (rust-bin.stable.latest.default.override {
+          extensions = [
+            "rust-src"
+            "rustfmt"
+            "clippy"
+          ];
+          targets = [
+            (
+              if pkgs.stdenv.hostPlatform.isAarch64
+              then "aarch64-unknown-linux-gnu"
+              else "x86_64-unknown-linux-gnu"
+            )
+          ];
+        })
+        rust-analyzer
+
+        # GPU debugging
+        mesa-demos
+        vulkan-tools
+
+        stablePkgs.blender
+      ];
 
     programs = {
       nix-index-database.comma.enable = true;
@@ -72,36 +78,38 @@
         enableMcpIntegration = true;
         package = pkgs.claude-code;
 
-        settings = {
-          statusLine = {
-            type = "command";
-            command = "bash /home/ryder/.claude/statusline-command.sh";
-          };
-          hooks = {
-            Notification = [
-              {
-                matcher = "";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "read data && echo \"$data\" | jq -e '.message | length > 0' > /dev/null && notify-send -u critical 'Claude Code' 'Needs your attention'";
-                  }
-                ];
-              }
-            ];
-            Stop = [
-              {
-                matcher = "";
-                hooks = [
-                  {
-                    type = "command";
-                    command = "notify-send 'Claude Code' 'Task completed'";
-                  }
-                ];
-              }
-            ];
-          };
-        };
+        settings = lib.mkMerge [
+          (lib.mkIf isLinux {
+            statusLine = {
+              type = "command";
+              command = "bash /home/ryder/.claude/statusline-command.sh";
+            };
+            hooks = {
+              Notification = [
+                {
+                  matcher = "";
+                  hooks = [
+                    {
+                      type = "command";
+                      command = "read data && echo \"$data\" | jq -e '.message | length > 0' > /dev/null && notify-send -u critical 'Claude Code' 'Needs your attention'";
+                    }
+                  ];
+                }
+              ];
+              Stop = [
+                {
+                  matcher = "";
+                  hooks = [
+                    {
+                      type = "command";
+                      command = "notify-send 'Claude Code' 'Task completed'";
+                    }
+                  ];
+                }
+              ];
+            };
+          })
+        ];
       };
       opencode = {
         enable = true;
@@ -195,7 +203,7 @@
       };
     };
 
-    home.file.".claude/statusline-command.sh" = {
+    home.file.".claude/statusline-command.sh" = lib.mkIf isLinux {
       executable = true;
       text = ''
         #!/usr/bin/env bash

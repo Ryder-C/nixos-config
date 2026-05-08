@@ -6,11 +6,18 @@
 
   ry.shell.homeManager = {
     pkgs,
+    lib,
     osConfig,
+    isLinux,
+    isDarwin,
     ...
-  }: {
+  }: let
+    hostname = osConfig.networking.hostName;
+    flakePath = "$HOME/nixos-config?submodules=1";
+  in {
     home.packages = [
       inputs.jj-starship.packages.${pkgs.stdenv.hostPlatform.system}.jj-starship
+      pkgs.nh
     ];
 
     programs = {
@@ -68,12 +75,21 @@
           za = "zellij attach (zellij ls | fzf --ansi | cut -d' ' -f1)";
           zj = "zellij -s (basename (pwd))";
 
-          # Nixos
+          # Nix rebuild
           nix-shell = "nix-shell --run fish";
           nix-clean = "nh clean all";
-          ns = "nh os switch --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
-          nst = "nh os test --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
-          nsb = "nh os boot --hostname ${osConfig.networking.hostName} --impure $HOME/nixos-config?submodules=1";
+          ns =
+            if isLinux
+            then "nh os switch --hostname ${hostname} --impure ${flakePath}"
+            else "nh darwin switch --hostname ${hostname} --impure ${flakePath}";
+          nst =
+            if isLinux
+            then "nh os test --hostname ${hostname} --impure ${flakePath}"
+            else "nh darwin switch --hostname ${hostname} --impure ${flakePath}";
+          nsb =
+            if isLinux
+            then "nh os boot --hostname ${hostname} --impure ${flakePath}"
+            else "nh darwin switch --hostname ${hostname} --impure ${flakePath}";
 
           # Git
           ga = "git add";

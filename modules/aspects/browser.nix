@@ -4,17 +4,22 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  ry.browser.homeManager = {pkgs, ...}: {
+  ry.browser.homeManager = {
+    pkgs,
+    lib,
+    isLinux,
+    ...
+  }: {
     home.packages = with pkgs; [
       brave
-      inputs.helium.packages.${system}.helium
+      inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
     ];
 
     home.sessionVariables = {
       BROWSER = "helium";
     };
 
-    xdg.mimeApps = {
+    xdg.mimeApps = lib.mkIf isLinux {
       enable = true;
       defaultApplications = {
         "text/html" = "helium.desktop";

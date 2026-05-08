@@ -29,16 +29,6 @@
       ry.packages
     ];
 
-    # Darwin CLI environment (subset of base, no nixos-only aspects)
-    base-darwin.includes = [
-      ry.terminal
-      ry.shell
-      ry.editor
-      ry.development
-      ry.packages
-      ry.media-apps
-    ];
-
     # Full desktop aspects (extends wokstation-base)
     workstation.includes = [
       ry.workstation-base
