@@ -10,6 +10,7 @@
       ry.nixflix
       ry.caddy
       ry.tailscale
+      ry.uptime-kuma
       ry.vaultwarden
       ry.rgb
       ry.nvidia
