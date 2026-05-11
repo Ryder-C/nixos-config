@@ -32,6 +32,7 @@
         inputs.nixarr.nixosModules.default
         ./_qbit-manage.nix
         ./_janitorr.nix
+        ./_redirecterr.nix
       ];
 
       ry.caddy.vhosts."ryder.rs" = {
