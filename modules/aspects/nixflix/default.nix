@@ -49,21 +49,18 @@
                 widget = {
                   type = "jellyfin";
                   url = "http://localhost:8096";
-                  key = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+                  key = "{{HOMEPAGE_FILE_JELLYFIN_KEY}}";
                 };
               };
             }
-          ];
-        }
-        {
-          "Downloads" = [
             {
-              "qBittorrent" = {
-                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8080";
-                icon = "qbittorrent";
+              "Seerr" = {
+                href = "https://request.ryder.rs";
+                icon = "seerr";
                 widget = {
-                  type = "qbittorrent";
-                  url = "http://localhost:8080";
+                  type = "seerr";
+                  url = "http://localhost:5055";
+                  key = "{{HOMEPAGE_FILE_SEERR_KEY}}";
                 };
               };
             }
@@ -73,7 +70,7 @@
           "Arr" = [
             {
               "Radarr" = {
-                href = "http://${config.networking.hostName}.stork-mulley.ts.net:7878";
+                href = "http://${config.networking.hostName}:7878";
                 icon = "radarr";
                 widget = {
                   type = "radarr";
@@ -84,7 +81,7 @@
             }
             {
               "Sonarr" = {
-                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8989";
+                href = "http://${config.networking.hostName}:8989";
                 icon = "sonarr";
                 widget = {
                   type = "sonarr";
@@ -95,7 +92,7 @@
             }
             {
               "Sonarr Anime" = {
-                href = "http://${config.networking.hostName}.stork-mulley.ts.net:8990";
+                href = "http://${config.networking.hostName}:8990";
                 icon = "sonarr";
                 widget = {
                   type = "sonarr";
@@ -106,7 +103,7 @@
             }
             {
               "Prowlarr" = {
-                href = "http://${config.networking.hostName}.stork-mulley.ts.net:9696";
+                href = "http://${config.networking.hostName}:9696";
                 icon = "prowlarr";
                 widget = {
                   type = "prowlarr";
@@ -151,6 +148,11 @@
             };
           };
         prowlarr-indexers.enable = lib.mkForce false;
+
+        homepage-dashboard.environment = {
+          HOMEPAGE_FILE_JELLYFIN_KEY = config.age.secrets.jellyfin.path;
+          HOMEPAGE_FILE_SEERR_KEY = config.age.secrets.seerr.path;
+        };
       };
 
       systemd.tmpfiles.rules = [
@@ -163,8 +165,15 @@
           owner = "cross-seed";
           mode = "0400";
         };
+        jellyfin = {
+          file = ../../../secrets/jellyfin.age;
+          mode = "0444";
+        };
         jellyfin-admin.file = ../../../secrets/jellyfin-admin.age;
-        seerr.file = ../../../secrets/seerr.age;
+        seerr = {
+          file = ../../../secrets/seerr.age;
+          mode = "0444";
+        };
         sonarr.file = ../../../secrets/sonarr.age;
         sonarr-anime.file = ../../../secrets/sonarr-anime.age;
         radarr.file = ../../../secrets/radarr.age;
@@ -214,7 +223,7 @@
         jellyfin = {
           enable = true;
           openFirewall = true;
-          apiKey = "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2";
+          apiKey._secret = config.age.secrets.jellyfin.path;
           users.ryder = {
             policy.isAdministrator = true;
             password = "ryder123";

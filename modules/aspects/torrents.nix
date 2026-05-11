@@ -126,5 +126,22 @@
         };
       };
     };
+
+    services.homepage-dashboard.services = [
+      {
+        "Downloads" = [
+          {
+            "qBittorrent" = {
+              href = "http://${config.networking.hostName}:8080";
+              icon = "qbittorrent";
+              widget = {
+                type = "qbittorrent";
+                url = "http://localhost:8080";
+              };
+            };
+          }
+        ];
+      }
+    ];
   };
 }

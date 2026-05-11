@@ -12,6 +12,7 @@ in {
   "ente-hash-key.age".publicKeys = users;
   "ente-jwt-secret.age".publicKeys = users;
   "ente-ott.age".publicKeys = users;
+  "jellyfin.age".publicKeys = users;
   "jellyfin-admin.age".publicKeys = users;
   "vaultwarden.age".publicKeys = users;
   "seerr.age".publicKeys = users;
