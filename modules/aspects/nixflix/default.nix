@@ -31,6 +31,7 @@
         inputs.nixflix.nixosModules.default
         inputs.nixarr.nixosModules.default
         ./_qbit-manage.nix
+        ./_janitorr.nix
       ];
 
       ry.caddy.vhosts."ryder.rs" = {
@@ -235,43 +236,43 @@
 
         prowlarr = {
           enable = true;
+          openFirewall = true;
           config = {
             apiKey = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
             hostConfig = {
               password = "ryder123";
-              bindAddress = "127.0.0.1";
             };
           };
         };
 
         sonarr = {
           enable = true;
+          openFirewall = true;
           config = {
             apiKey._secret = config.age.secrets.sonarr.path;
             hostConfig = {
               password = "ryder123";
-              bindAddress = "127.0.0.1";
             };
           };
         };
         sonarr-anime = {
           enable = true;
+          openFirewall = true;
           config = {
             apiKey._secret = config.age.secrets.sonarr-anime.path;
             hostConfig = {
               password = "ryder123";
-              bindAddress = "127.0.0.1";
             };
           };
         };
 
         radarr = {
           enable = true;
+          openFirewall = true;
           config = {
             apiKey._secret = config.age.secrets.radarr.path;
             hostConfig = {
               password = "ryder123";
-              bindAddress = "127.0.0.1";
             };
           };
         };
