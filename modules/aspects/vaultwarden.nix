@@ -30,16 +30,12 @@
       mode = "0400";
     };
 
-    services.homepage-dashboard.services = [
+    ry.homepage.services."Security" = [
       {
-        "Security" = [
-          {
-            "Vaultwarden" = {
-              href = "https://vault.ryder.rs";
-              icon = "vaultwarden";
-            };
-          }
-        ];
+        "Vaultwarden" = {
+          href = "https://vault.ryder.rs";
+          icon = "vaultwarden";
+        };
       }
     ];
   };

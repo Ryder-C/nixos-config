@@ -65,20 +65,16 @@
       };
     };
 
-    services.homepage-dashboard.services = [
+    ry.homepage.services."Game" = [
       {
-        "Game" = [
-          {
-            "Minecraft" = {
-              href = "http://${config.networking.hostName}.stork-mulley.ts.net:8100";
-              icon = "minecraft";
-              widget = {
-                type = "minecraft";
-                url = "udp://localhost:25565";
-              };
-            };
-          }
-        ];
+        "Minecraft" = {
+          href = "http://${config.networking.hostName}:8100";
+          icon = "minecraft";
+          widget = {
+            type = "minecraft";
+            url = "udp://localhost:25565";
+          };
+        };
       }
     ];
   };

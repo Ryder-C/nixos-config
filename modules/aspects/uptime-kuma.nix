@@ -7,21 +7,17 @@
       settings.PORT = "3002";
     };
 
-    services.homepage-dashboard.services = [
+    ry.homepage.services."Monitoring" = [
       {
-        "Monitoring" = [
-          {
-            "Uptime Kuma" = {
-              href = "https://status.ryder.rs";
-              icon = "uptime-kuma";
-              widget = {
-                type = "uptimekuma";
-                url = "http://localhost:3002";
-                slug = "default";
-              };
-            };
-          }
-        ];
+        "Uptime Kuma" = {
+          href = "https://status.ryder.rs";
+          icon = "uptime-kuma";
+          widget = {
+            type = "uptimekuma";
+            url = "http://localhost:3002";
+            slug = "default";
+          };
+        };
       }
     ];
   };

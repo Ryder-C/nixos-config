@@ -39,82 +39,78 @@
         request = 5055;
       };
 
-      services.homepage-dashboard.services = [
-        {
-          "Media" = [
-            {
-              "Jellyfin" = {
-                href = "https://media.ryder.rs";
-                icon = "jellyfin";
-                widget = {
-                  type = "jellyfin";
-                  url = "http://localhost:8096";
-                  key = "{{HOMEPAGE_FILE_JELLYFIN_KEY}}";
-                };
+      ry.homepage.services = {
+        "Media" = [
+          {
+            "Jellyfin" = {
+              href = "https://media.ryder.rs";
+              icon = "jellyfin";
+              widget = {
+                type = "jellyfin";
+                url = "http://localhost:8096";
+                key = "{{HOMEPAGE_FILE_JELLYFIN_KEY}}";
               };
-            }
-            {
-              "Seerr" = {
-                href = "https://request.ryder.rs";
-                icon = "seerr";
-                widget = {
-                  type = "seerr";
-                  url = "http://localhost:5055";
-                  key = "{{HOMEPAGE_FILE_SEERR_KEY}}";
-                };
+            };
+          }
+          {
+            "Seerr" = {
+              href = "https://request.ryder.rs";
+              icon = "seerr";
+              widget = {
+                type = "seerr";
+                url = "http://localhost:5055";
+                key = "{{HOMEPAGE_FILE_SEERR_KEY}}";
               };
-            }
-          ];
-        }
-        {
-          "Arr" = [
-            {
-              "Radarr" = {
-                href = "http://${config.networking.hostName}:7878";
-                icon = "radarr";
-                widget = {
-                  type = "radarr";
-                  url = "http://localhost:7878";
-                  key = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1";
-                };
+            };
+          }
+        ];
+        "Arr" = [
+          {
+            "Radarr" = {
+              href = "http://${config.networking.hostName}:7878";
+              icon = "radarr";
+              widget = {
+                type = "radarr";
+                url = "http://localhost:7878";
+                key = "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1";
               };
-            }
-            {
-              "Sonarr" = {
-                href = "http://${config.networking.hostName}:8989";
-                icon = "sonarr";
-                widget = {
-                  type = "sonarr";
-                  url = "http://localhost:8989";
-                  key = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5";
-                };
+            };
+          }
+          {
+            "Sonarr" = {
+              href = "http://${config.networking.hostName}:8989";
+              icon = "sonarr";
+              widget = {
+                type = "sonarr";
+                url = "http://localhost:8989";
+                key = "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5";
               };
-            }
-            {
-              "Sonarr Anime" = {
-                href = "http://${config.networking.hostName}:8990";
-                icon = "sonarr";
-                widget = {
-                  type = "sonarr";
-                  url = "http://localhost:8990";
-                  key = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6";
-                };
+            };
+          }
+          {
+            "Sonarr Anime" = {
+              href = "http://${config.networking.hostName}:8990";
+              icon = "sonarr";
+              widget = {
+                type = "sonarr";
+                url = "http://localhost:8990";
+                key = "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6";
               };
-            }
-            {
-              "Prowlarr" = {
-                href = "http://${config.networking.hostName}:9696";
-                icon = "prowlarr";
-                widget = {
-                  type = "prowlarr";
-                  url = "http://localhost:9696";
-                  key = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
-                };
+            };
+          }
+          {
+            "Prowlarr" = {
+              href = "http://${config.networking.hostName}:9696";
+              icon = "prowlarr";
+              widget = {
+                type = "prowlarr";
+                url = "http://localhost:9696";
+                key = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
               };
-            }
-          ];
-        }
-      ];
+            };
+          }
+        ];
+      };
 
       # -- cross-seed (from nixarr module) --
       users.users.cross-seed = {

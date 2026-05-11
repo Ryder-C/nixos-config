@@ -127,20 +127,16 @@
       };
     };
 
-    services.homepage-dashboard.services = [
+    ry.homepage.services."Downloads" = [
       {
-        "Downloads" = [
-          {
-            "qBittorrent" = {
-              href = "http://${config.networking.hostName}:8080";
-              icon = "qbittorrent";
-              widget = {
-                type = "qbittorrent";
-                url = "http://localhost:8080";
-              };
-            };
-          }
-        ];
+        "qBittorrent" = {
+          href = "http://${config.networking.hostName}:8080";
+          icon = "qbittorrent";
+          widget = {
+            type = "qbittorrent";
+            url = "http://localhost:8080";
+          };
+        };
       }
     ];
   };

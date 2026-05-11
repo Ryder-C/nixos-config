@@ -1,9 +1,21 @@
 {
-  ry.homepage.nixos = {config, ...}: {
-    services.homepage-dashboard = {
+  ry.homepage.nixos = {
+    config,
+    lib,
+    ...
+  }: {
+    options.ry.homepage.services = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.listOf lib.types.anything);
+      default = {};
+      description = "Map of group name to list of homepage service entries";
+    };
+
+    config.services.homepage-dashboard = {
       enable = true;
       openFirewall = true;
-      allowedHosts = "${config.networking.hostName}.stork-mulley.ts.net:8082";
+      allowedHosts = "${config.networking.hostName}:8082";
+
+      services = lib.mapAttrsToList (group: entries: {"${group}" = entries;}) config.ry.homepage.services;
 
       widgets = [
         {
@@ -25,10 +37,6 @@
           };
         }
       ];
-
-      # Service entries are contributed by their owning aspects via
-      # services.homepage-dashboard.services, so each tile only appears
-      # when both ry.homepage and the source aspect are included.
     };
   };
 }

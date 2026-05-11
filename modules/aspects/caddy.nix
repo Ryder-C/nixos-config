@@ -46,6 +46,18 @@
       systemd.services.caddy.serviceConfig.EnvironmentFile = config.age.secrets.cloudflare-api-token.path;
 
       networking.firewall.allowedTCPPorts = [80 443];
+
+      ry.homepage.services."Security" = [
+        {
+          "Caddy" = {
+            icon = "caddy";
+            widget = {
+              type = "caddy";
+              url = "http://localhost:2019";
+            };
+          };
+        }
+      ];
     };
   };
 }
