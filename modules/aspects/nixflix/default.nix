@@ -33,6 +33,7 @@
         ./_qbit-manage.nix
         ./_janitorr.nix
         ./_redirecterr.nix
+        ./_autobrr.nix
       ];
 
       ry.caddy.vhosts."ryder.rs" = {
@@ -157,6 +158,10 @@
       ];
 
       age.secrets = {
+        autobrr = {
+          file = ../../../secrets/autobrr.age;
+          mode = "0400";
+        };
         cross-seed = {
           file = ../../../secrets/cross-seed.age;
           owner = "cross-seed";

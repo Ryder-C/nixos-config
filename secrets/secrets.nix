@@ -19,4 +19,5 @@ in {
   "sonarr.age".publicKeys = users;
   "sonarr-anime.age".publicKeys = users;
   "radarr.age".publicKeys = users;
+  "autobrr.age".publicKeys = users;
 }
