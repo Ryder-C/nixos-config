@@ -4,6 +4,7 @@
       includes = [
         den._.primary-user
         (den._.user-shell "fish")
+        den._.host-aspects
       ];
 
       nixos = _: {

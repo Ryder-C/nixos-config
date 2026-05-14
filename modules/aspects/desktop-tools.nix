@@ -24,6 +24,7 @@
 
     homeManager = {
       pkgs,
+      stablePkgs,
       config,
       ...
     }: {
@@ -32,7 +33,7 @@
         valgrind
         gpu-screen-recorder-gtk
         wineWow64Packages.waylandFull
-        (bottles.override {removeWarningPopup = true;})
+        (stablePkgs.bottles.override {removeWarningPopup = true;})
         inputs.vesc-tool.packages.${pkgs.stdenv.hostPlatform.system}.default
         inputs.rypkgs.packages.${pkgs.stdenv.hostPlatform.system}.blink
         tor-browser

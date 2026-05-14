@@ -9,25 +9,6 @@
       config.classes = lib.mkDefault ["homeManager"];
     };
 
-    # Forward host aspects into home-manager user environments
-    ctx.hm-user.includes = [
-      ({
-        host,
-        user,
-      }:
-        den._.forward {
-          each = lib.singleton true;
-          fromClass = _: "homeManager";
-          intoClass = _: host.class;
-          intoPath = _: [
-            "home-manager"
-            "users"
-            user.userName
-          ];
-          fromAspect = _: host.aspect;
-        })
-    ];
-
     default = {
       nixos = {pkgs, ...}: {
         system.stateVersion = "24.05";
@@ -61,8 +42,8 @@
       includes = [
         den._.define-user
 
-        (den.lib.take.exactly (
-          {host}: {
+        (
+          {host, ...}: {
             ${host.class} = {
               networking.hostName = host.hostName;
               home-manager = {
@@ -72,7 +53,7 @@
               };
             };
           }
-        ))
+        )
       ];
     };
   };

@@ -47,8 +47,6 @@
                 fastmcp = pyPrev.fastmcp.overrideAttrs (_: {doInstallCheck = false;});
               };
             };
-            # openldap test017-syncreplication-refresh is a flaky timing-sensitive test
-            openldap = prev.openldap.overrideAttrs (_: {doCheck = false;});
           })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default
