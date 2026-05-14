@@ -16,8 +16,13 @@ _: {
         focus-ring.enable = false;
       }
       {
-        matches = [{app-id = "^vesktop$";}];
-        open-on-output = "DP-2";
+        matches = [
+          {
+            app-id = "^vesktop$";
+            at-startup = true;
+          }
+        ];
+        open-on-output = "DP-1";
         open-maximized = true;
       }
       {
