@@ -1,16 +1,18 @@
-{
-  ry.homepage.nixos = {
-    config,
-    lib,
-    ...
-  }: {
+{lib, ...}: {
+  den.default.nixos = _: {
     options.ry.homepage.services = lib.mkOption {
       type = lib.types.attrsOf (lib.types.listOf lib.types.anything);
       default = {};
       description = "Map of group name to list of homepage service entries";
     };
+  };
 
-    config.services.homepage-dashboard = {
+  ry.homepage.nixos = {
+    config,
+    lib,
+    ...
+  }: {
+    services.homepage-dashboard = {
       enable = true;
       openFirewall = true;
       allowedHosts = "${config.networking.hostName}:8082";
