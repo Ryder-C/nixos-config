@@ -10,7 +10,6 @@
     includes = [
       ry.workstation
       ry.niri-sputnik
-      ry.greetd-sputnik
       ry.noctalia-sputnik
       ry.charger
       ry.tailscale

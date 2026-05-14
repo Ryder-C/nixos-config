@@ -10,7 +10,6 @@
       ry.plasma
       ry.gaming
       ry.niri-praxis
-      ry.greetd-praxis
       ry.noctalia-praxis
       ry.desktop-tools
       ry.nvidia
