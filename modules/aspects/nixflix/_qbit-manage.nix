@@ -57,7 +57,7 @@
         priority = 3;
         include_all_tags = ["SP" "noHL"];
         exclude_all_tags = ["manage-ignore"];
-        max_seeding_time = "14d";
+        max_seeding_time = "11d";
         cleanup = true;
       };
       public = {
