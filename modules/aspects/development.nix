@@ -80,33 +80,10 @@
 
         settings = lib.mkMerge [
           (lib.mkIf isLinux {
+            preferredNotifChannel = "terminal_bell";
             statusLine = {
               type = "command";
               command = "bash /home/ryder/.claude/statusline-command.sh";
-            };
-            hooks = {
-              Notification = [
-                {
-                  matcher = "";
-                  hooks = [
-                    {
-                      type = "command";
-                      command = "read data && echo \"$data\" | jq -e '.message | length > 0' > /dev/null && notify-send -u critical 'Claude Code' 'Needs your attention'";
-                    }
-                  ];
-                }
-              ];
-              Stop = [
-                {
-                  matcher = "";
-                  hooks = [
-                    {
-                      type = "command";
-                      command = "notify-send 'Claude Code' 'Task completed'";
-                    }
-                  ];
-                }
-              ];
             };
           })
         ];

@@ -1,5 +1,5 @@
 _: {
-  ry.terminal.homeManager = {
+  ry.terminal.homeManager = {pkgs, ...}: {
     programs.alacritty = {
       enable = true;
       settings = {
@@ -13,6 +13,13 @@ _: {
         font.normal = {
           family = "FiraCode Nerd Font";
           style = "Regular";
+        };
+        bell = {
+          duration = 100;
+          command = {
+            program = "${pkgs.pulseaudio}/bin/paplay";
+            args = ["${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/window-attention.oga"];
+          };
         };
       };
     };
