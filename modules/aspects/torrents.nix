@@ -61,6 +61,12 @@
     profileBase = "/var/lib/qbittorrent";
     profName = "vpn";
     piaCertPath = "/etc/pia/ca.rsa.4096.crt";
+
+    vpn-full = pkgs.writeShellApplication {
+      name = "vpn-full";
+      runtimeInputs = with pkgs; [nftables iproute2 jq wireguard-tools systemd gawk sudo];
+      text = builtins.readFile ./_scripts/vpn-full.sh;
+    };
   in {
     imports = [inputs.nix-pia-vpn.nixosModules.default];
 
@@ -75,10 +81,25 @@
 
     users.groups.media = {};
 
+    environment.systemPackages = [vpn-full];
+
     systemd = {
       tmpfiles.rules = [
         "d ${profileBase} 0755 root root - -"
       ];
+      services.vpn-full = {
+        description = "Route all traffic through PIA wg0 (kill switch)";
+        # Tie lifetime to pia-vpn so a wg0 restart re-applies routes + nft rules.
+        bindsTo = ["pia-vpn.service"];
+        after = ["pia-vpn.service"];
+        # Manually started via `vpn-full on`; never enabled by default.
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${vpn-full}/bin/vpn-full _apply";
+          ExecStop = "${vpn-full}/bin/vpn-full _revert";
+        };
+      };
       services.pia-vpn = {
         enable = true;
         wants = [
