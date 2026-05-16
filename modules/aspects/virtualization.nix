@@ -26,6 +26,8 @@ _: {
 
     programs.virt-manager.enable = true;
 
+    users.users.qemu-libvirtd.extraGroups = ["video" "render" "kvm"];
+
     virtualisation = {
       waydroid = {
         enable = true;

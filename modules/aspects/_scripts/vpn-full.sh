@@ -35,6 +35,22 @@ detect_underlay() {
   [[ -n "$underlay_subnet" ]] || die "could not determine subnet on $underlay_dev"
 }
 
+# systemd-resolved often link-scopes the underlay's DNS server. With the kill
+# switch armed, those queries leave via the underlay to an off-LAN destination
+# and get rejected. Pin DNS to wg0 with a public resolver so queries traverse
+# the tunnel (no DNS leak to the underlay).
+configure_dns() {
+  resolvectl dns wg0 1.1.1.1 1.0.0.1
+  resolvectl domain wg0 '~.'
+  resolvectl default-route wg0 yes
+  resolvectl flush-caches
+}
+
+revert_dns() {
+  resolvectl revert wg0 2>/dev/null || true
+  resolvectl flush-caches 2>/dev/null || true
+}
+
 cmd_apply() {
   require_root "$@"
   ip link show wg0 >/dev/null 2>&1 || die "wg0 not present — pia-vpn must be active first"
@@ -89,11 +105,15 @@ table inet $NFT_TABLE {
 }
 NFT
 
+  configure_dns
+
   echo "vpn-full: ON — default route via wg0, kill switch armed"
 }
 
 cmd_revert() {
   require_root "$@"
+
+  revert_dns
 
   if nft list table inet "$NFT_TABLE" >/dev/null 2>&1; then
     nft delete table inet "$NFT_TABLE"

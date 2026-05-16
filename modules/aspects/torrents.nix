@@ -142,7 +142,7 @@
             rm -f ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
             cp ${qbtConfig} ${profileBase}/qBittorrent_${profName}/qBittorrent.conf
             umask 0002
-            ${pkgs.util-linux}/bin/runuser -u root -g media -- ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
+            ${pkgs.util-linux}/bin/runuser -u root -g media -- ${pkgs.qbittorrent-nox}/bin/qbittorrent-nox -d --confirm-legal-notice --torrenting-port=$port --profile=${profileBase} --configuration=${profName} || true
           '';
         };
       };
