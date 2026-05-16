@@ -39,6 +39,11 @@ _: {
       enableQt5Integration = false;
     };
 
+    # drkonqi's coredump processor itself segfaults, creating a feedback loop
+    # via systemd-coredump@.service.wants/. Suppressing the unit is the only
+    # reliable way — plasma6.excludePackages doesn't drop the systemd unit.
+    systemd.suppressedSystemUnits = ["drkonqi-coredump-processor@.service"];
+
     programs.kdeconnect.enable = false;
 
     environment = {

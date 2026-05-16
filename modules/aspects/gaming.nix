@@ -7,6 +7,7 @@
   }: {
     home.packages = with pkgs; [
       osu-lazer
+      heroic
 
       ## Minecraft
       stablePkgs.prismlauncher
