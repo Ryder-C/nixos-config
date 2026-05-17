@@ -4,6 +4,7 @@ _: {
       networkmanager.enable = true;
       firewall = {
         enable = true;
+        trustedInterfaces = ["wg0"];
         allowedTCPPorts = [22 80 443 3000 32400 59010 59011];
         allowedUDPPorts = [32410 32412 32413 32414 59010 59011];
       };
