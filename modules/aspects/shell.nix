@@ -153,6 +153,7 @@
 
       starship = {
         enable = true;
+        presets = ["nerd-font-symbols"];
         settings = {
           directory = {
             format = "[ ](bold #89b4fa)[ $path ]($style)";
