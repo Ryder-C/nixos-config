@@ -231,6 +231,13 @@
             password = "ryder123";
           };
 
+          encoding = {
+            enableHardwareEncoding = true;
+            enableEnhancedNvdecDecoder = true;
+            enableTonemapping = true;
+            hardwareAccelerationType = "nvenc";
+          };
+
           branding.customCss = ''@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");'';
         };
 
