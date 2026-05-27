@@ -14,7 +14,7 @@
   boot = {
     initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "sd_mod"];
     initrd.kernelModules = [];
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-amd"];
     extraModulePackages = [];
   };
 
@@ -33,7 +33,7 @@
     "/storage" = {
       device = "/dev/disk/by-uuid/7ab44d81-1059-45ff-bdd5-2cf0583dae7e";
       fsType = "bcachefs";
-      options = ["compression=zstd" "noatime" "nofail" "background_compression=zstd" "discard"];
+      options = ["compression=none" "noatime" "nofail" "background_compression=none" "discard"];
     };
   };
 

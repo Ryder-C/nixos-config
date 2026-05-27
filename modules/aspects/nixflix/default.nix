@@ -256,7 +256,7 @@
           enable = true;
           openFirewall = true;
           config = {
-            apiKey = "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
+            apiKey._secret = pkgs.writeText "prowlarr-apikey" "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4";
             hostConfig = {
               password = "ryder123";
             };
