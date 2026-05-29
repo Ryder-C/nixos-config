@@ -6,6 +6,7 @@
       ry.homepage
       # ry.ente
       ry.minecraft
+      ry.guessr
       # ry.forgejo
       ry.nixflix
       ry.caddy
