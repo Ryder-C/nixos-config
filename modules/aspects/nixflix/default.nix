@@ -130,10 +130,16 @@
           after = ["pia-vpn.service"];
         };
         deps = requireStorage // afterPia;
+        # nixflix's hardening sets ProtectSystem=strict with separate
+        # ReadWritePaths= for /storage/Torrents and /storage/media/library/*,
+        # putting them on different bind mounts inside the service's namespace.
+        # link() then returns EXDEV across them and the *arrs fall back to copy.
+        # Collapse to a single covering bind mount so hardlinks work.
+        hardlinkFix.serviceConfig.ReadWritePaths = lib.mkForce ["/storage"];
       in {
-        radarr = deps;
-        sonarr = deps;
-        sonarr-anime = deps;
+        radarr = deps // hardlinkFix;
+        sonarr = deps // hardlinkFix;
+        sonarr-anime = deps // hardlinkFix;
         prowlarr = deps;
         jellyfin = requireStorage;
         recyclarr = deps;

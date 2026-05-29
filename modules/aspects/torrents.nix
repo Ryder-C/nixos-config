@@ -100,6 +100,9 @@
           ExecStop = "${vpn-full}/bin/vpn-full _revert";
         };
       };
+      services.pia-vpn-portforward = {
+        unitConfig.RequiresMountsFor = "/storage";
+      };
       services.pia-vpn = {
         enable = true;
         wants = [
