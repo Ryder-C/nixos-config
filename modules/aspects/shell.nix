@@ -1,22 +1,15 @@
-{inputs, ...}: {
-  flake-file.inputs.jj-starship = {
-    url = "github:dmmulroy/jj-starship";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
+{
   ry.shell.homeManager = {
     pkgs,
-    lib,
     osConfig,
     isLinux,
-    isDarwin,
     ...
   }: let
+    jj-starship-cmd = "${pkgs.jj-starship}/bin/jj-starship";
     hostname = osConfig.networking.hostName;
     flakePath = "$HOME/nixos-config?submodules=1";
   in {
     home.packages = [
-      inputs.jj-starship.packages.${pkgs.stdenv.hostPlatform.system}.jj-starship
       pkgs.nh
     ];
 
@@ -171,8 +164,8 @@
             min_time_to_notify = 60000;
           };
           custom.jj = {
-            when = "jj-starship detect";
-            command = "jj-starship";
+            when = "${jj-starship-cmd} detect";
+            shell = ["${jj-starship-cmd}"];
             format = "$output ";
           };
           git_branch.disabled = true;
