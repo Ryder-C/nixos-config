@@ -16,6 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.vpnconfinement.follows = "vpnconfinement";
     };
+    drainarr = {
+      url = "github:ryder-c/drainarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   ry.nixflix = {
@@ -30,10 +34,11 @@
       imports = [
         inputs.nixflix.nixosModules.default
         inputs.nixarr.nixosModules.default
+        inputs.drainarr.nixosModules.default
         ./_qbit-manage.nix
-        ./_janitorr.nix
         ./_redirecterr.nix
         ./_autobrr.nix
+        ./_drainarr.nix
       ];
 
       ry.caddy.vhosts."ryder.rs" = {
