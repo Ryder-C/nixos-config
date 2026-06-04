@@ -14,6 +14,7 @@
       enable = true;
       googleMapsApiKeyFile = config.age.secrets.google-maps.path;
       bindAddr = "127.0.0.1:3000";
+      # extraEnvironment = {RUST_LOG = "debug";};
     };
   };
 }

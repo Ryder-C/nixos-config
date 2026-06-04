@@ -2277,11 +2277,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1780554603,
-        "narHash": "sha256-2/uKucisHZC/DBnYnOUer40ovY/WI6n/WhYT6xFqK7k=",
+        "lastModified": 1780558415,
+        "narHash": "sha256-FHYQsXF/HqnAe28zYy0dyGS5tz9sxtzRRAftXM8QmI4=",
         "owner": "AdinAck",
         "repo": "ryguessr",
-        "rev": "886d8237933c660616e305f834ac6f0e58d8c225",
+        "rev": "e51a6f1285924cf1557648bdc96c7ff4afb7d99e",
         "type": "github"
       },
       "original": {
