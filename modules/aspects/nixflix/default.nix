@@ -152,8 +152,9 @@
           deps
           // {
             serviceConfig = {
-              ReadWritePaths = ["/storage/Torrents/cross-seed"];
-              ReadOnlyPaths = ["/storage/media/library" "/storage/Torrents"];
+              ReadWritePaths = lib.mkForce ["/storage"];
+              AmbientCapabilities = ["CAP_FOWNER"];
+              CapabilityBoundingSet = ["CAP_FOWNER"];
             };
           };
         prowlarr-indexers.enable = lib.mkForce false;
@@ -203,7 +204,7 @@
             delay = 30;
             linkCategory = "cross-seed";
             linkDirs = ["/storage/Torrents/cross-seed"];
-            linkType = "symlink";
+            linkType = "hardlink";
             flatLinking = false;
             matchMode = "partial";
             skipRecheck = true;

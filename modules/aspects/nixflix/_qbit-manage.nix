@@ -39,29 +39,36 @@
     };
 
     share_limits = {
-      cross-seed = {
+      cross-seed-noHL = {
         priority = 1;
-        include_all_tags = ["cross-seed"];
+        include_all_tags = ["cross-seed" "noHL"];
         exclude_all_tags = ["manage-ignore"];
+        max_seeding_time = 0;
+        cleanup = true;
+      };
+      cross-seed = {
+        priority = 2;
+        include_all_tags = ["cross-seed"];
+        exclude_all_tags = ["manage-ignore" "noHL"];
         max_ratio = -1;
         cleanup = false;
       };
       public-noHL = {
-        priority = 2;
+        priority = 3;
         include_all_tags = ["PUB" "noHL"];
         exclude_all_tags = ["manage-ignore"];
         max_seeding_time = 0;
         cleanup = true;
       };
       SP-noHL = {
-        priority = 3;
+        priority = 4;
         include_all_tags = ["SP" "noHL"];
         exclude_all_tags = ["manage-ignore"];
         max_seeding_time = "11d";
         cleanup = true;
       };
       public = {
-        priority = 4;
+        priority = 5;
         include_all_tags = ["PUB"];
         exclude_all_tags = ["manage-ignore" "noHL"];
         max_ratio = 2.0;
@@ -106,6 +113,7 @@
       radarr = {};
       tv-sonarr = {};
       tv-sonarr-anime = {};
+      cross-seed = {};
     };
   });
 in {
