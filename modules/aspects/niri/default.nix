@@ -90,7 +90,7 @@
             "Mod+Shift+Slash".action.show-hotkey-overlay = {};
             "Mod+Return".action.spawn = ["alacritty"];
             "Mod+B".action.spawn = ["helium"];
-            "Mod+D".action.spawn = ["vesktop"];
+            "Mod+D".action.spawn = ["discord"];
 
             "Mod+Q".action.close-window = {};
 
@@ -239,7 +239,7 @@
             };
           };
           spawn-at-startup = [
-            {command = ["${lib.getExe' pkgs.gtk3 "gtk-launch"}" "vesktop"];}
+            {command = ["discord"];}
           ];
         };
       };

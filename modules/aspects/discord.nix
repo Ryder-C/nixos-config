@@ -4,27 +4,33 @@
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    discord-catppuccin = {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-      flake = false;
-    };
   };
-
-  ry.discord.homeManager = _: let
-    catppuccinTheme = inputs.discord-catppuccin;
-  in {
+  ry.discord.homeManager = {pkgs, ...}: {
     imports = [inputs.nixcord.homeModules.nixcord];
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
+      config.niri = {
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
+      };
+    };
 
     programs.nixcord = {
       enable = true;
 
-      discord.enable = false;
+      discord = {
+        enable = true;
+        vencord.enable = true;
+      };
       equibop.enable = false;
-      vesktop.enable = true;
+      vesktop.enable = false;
 
       config = {
-        enabledThemes = [
-          "catppuccin-mocha.theme.css"
+        themeLinks = [
+          "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
         ];
         plugins = {
           gameActivityToggle.enable = true;
@@ -34,12 +40,6 @@
           webScreenShareFixes.enable = true;
         };
       };
-    };
-
-    xdg.configFile = {
-      "vesktop/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
-      "equibop/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
-      "dorion/themes/catppuccin-mocha.theme.css".source = catppuccinTheme;
     };
   };
 }
