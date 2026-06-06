@@ -129,7 +129,7 @@
       url = "github:Ryder-C/rycharger";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ryguessr.url = "github:AdinAck/ryguessr/nix-module-config";
+    ryguessr.url = "github:AdinAck/ryguessr";
     rypkgs.url = "github:Ryder-C/rypkgs";
     spicetify-nix = {
       url = "github:gerg-l/spicetify-nix";

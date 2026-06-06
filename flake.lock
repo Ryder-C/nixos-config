@@ -306,11 +306,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780550067,
-        "narHash": "sha256-yVIJ1zvqRLOkaprAY470sK2YOxplFk3upygvigb7jmU=",
+        "lastModified": 1781067613,
+        "narHash": "sha256-UBLGlL51YOEhmsdkTxrcosGgG68BbVdBxEGXtGZTNVo=",
         "owner": "ryder-c",
         "repo": "drainarr",
-        "rev": "5c8368d47bfde3578b7267ca16e6967bbd070612",
+        "rev": "1d555d9d7f5ac50bfe0aed41dd425e2611d43911",
         "type": "github"
       },
       "original": {
@@ -2277,16 +2277,15 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1780558415,
-        "narHash": "sha256-FHYQsXF/HqnAe28zYy0dyGS5tz9sxtzRRAftXM8QmI4=",
+        "lastModified": 1781134520,
+        "narHash": "sha256-pqN1yeX35ML9zU4/Yi3Y5241vF09eDeKUsm0ADL0u6s=",
         "owner": "AdinAck",
         "repo": "ryguessr",
-        "rev": "e51a6f1285924cf1557648bdc96c7ff4afb7d99e",
+        "rev": "14d347d3b9fe5e5f0ed51cabed576b30847de21d",
         "type": "github"
       },
       "original": {
         "owner": "AdinAck",
-        "ref": "nix-module-config",
         "repo": "ryguessr",
         "type": "github"
       }

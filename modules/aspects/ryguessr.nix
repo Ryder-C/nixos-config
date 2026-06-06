@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake-file.inputs.ryguessr.url = "github:AdinAck/ryguessr/nix-module-config";
+  flake-file.inputs.ryguessr.url = "github:AdinAck/ryguessr";
 
   ry.guessr.nixos = {config, ...}: {
     imports = [inputs.ryguessr.nixosModules.default];
