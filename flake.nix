@@ -29,10 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     den.url = "github:denful/den";
-    discord-catppuccin = {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-      flake = false;
-    };
     flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
@@ -132,5 +128,6 @@
     };
     vesc-tool.url = "github:vedderb/vesc_tool";
     vpnconfinement.url = "github:Maroka-chan/VPN-Confinement";
+    wayscriber.url = "github:devmobasa/wayscriber";
   };
 }

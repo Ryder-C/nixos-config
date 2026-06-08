@@ -18,26 +18,28 @@
       };
     };
 
-    programs.nixcord = {
-      enable = true;
-
-      discord = {
+    programs = {
+      nixcord = {
         enable = true;
-        vencord.enable = true;
-      };
-      equibop.enable = false;
-      vesktop.enable = false;
 
-      config = {
-        themeLinks = [
-          "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
-        ];
-        plugins = {
-          gameActivityToggle.enable = true;
-          silentTyping.enable = true;
-          typingIndicator.enable = true;
-          shikiCodeblocks.enable = true;
-          webScreenShareFixes.enable = true;
+        discord = {
+          enable = true;
+          vencord.enable = true;
+        };
+        equibop.enable = false;
+        vesktop.enable = false;
+
+        config = {
+          themeLinks = [
+            "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+          ];
+          plugins = {
+            gameActivityToggle.enable = true;
+            silentTyping.enable = true;
+            typingIndicator.enable = true;
+            shikiCodeblocks.enable = true;
+            webScreenShareFixes.enable = true;
+          };
         };
       };
     };

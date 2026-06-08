@@ -26,6 +26,7 @@
       ry.librepods
       ry.flatpak
       ry.tailscale
+      ry.wayscriber
     ];
 
     nixos = {
