@@ -30,138 +30,114 @@
         fastfetch
       ];
 
-      programs.noctalia-shell = {
+      programs.noctalia = {
         enable = true;
         package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-        plugins = {
-          sources = [
-            {
-              enabled = true;
-              name = "Official Noctalia Plugins";
-              url = "https://github.com/noctalia-dev/noctalia-plugins";
-            }
-          ];
-          states = {
-            polkit-agent.enabled = true;
-            weather-indicator.enabled = true;
-            github-feed.enabled = true;
-          };
-        };
-
-        pluginSettings = {
-          screen-recorder = {
-            replayEnabled = true;
-            replayDuration = "30";
-            frameRate = "30";
-            resolution = "1920x1080";
-          };
-        };
-
         settings = {
-          bar = {
-            barType = "simple";
-            position = "top";
-            density = "default";
-            showCapsule = true;
-            backgroundOpacity = 0.93;
-            widgets = {
-              left = [
-                {
-                  id = "ControlCenter";
-                  useDistroLogo = true;
-                }
-                {
-                  id = "Workspace";
-                  labelMode = "none";
-                  showBadge = true;
-                }
-                {
-                  id = "SystemMonitor";
-                }
-              ];
-              center = [
-                {
-                  id = "Clock";
-                  formatHorizontal = "ddd, MMM dd";
-                }
-                {
-                  id = "Clock";
-                  formatHorizontal = "h:mm AP";
-                }
-                {
-                  id = "plugin:weather-indicator";
-                }
-              ];
-              right = [
-                {
-                  id = "Tray";
-                  pinned = ["Battery Status"];
-                }
-                {
-                  id = "Network";
-                  displayMode = "onhover";
-                }
-                {
-                  id = "Bluetooth";
-                  displayMode = "onhover";
-                }
-                {
-                  id = "plugin:github-feed";
-                }
-                {
-                  id = "NotificationHistory";
-                  showUnreadBadge = true;
-                }
-              ];
+          shell = {
+            polkit_agent = true;
+            avatar_path = "${config.home.homeDirectory}/.face";
+            corner_radius_scale = 1.0;
+            clipboard_enabled = true;
+            niri_overview_type_to_launch_enabled = true;
+            settings_show_advanced = true;
+            screenshot = {
+              pipe_to_command = true;
+              pipe_command = "satty -f -";
             };
           };
-          general = {
-            avatarImage = "${config.home.homeDirectory}/.face";
-            clockStyle = "custom";
-            clockFormat = "hh\nmm";
-            lockOnSuspend = true;
-            radiusRatio = 1;
+
+          theme = {
+            mode = "dark";
+            source = "builtin";
+            builtin = "Catppuccin";
           };
-          location = {
-            name = "Santa Cruz, United States";
-            useFahrenheit = true;
-            use12hourFormat = true;
-          };
-          wallpaper = {
-            directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
-            viewMode = "recursive";
-            wallpaperChangeMode = "random";
-          };
-          colorSchemes = {
-            predefinedScheme = "Catppuccin";
-            darkMode = true;
-          };
-          idle = {
+
+          weather = {
             enabled = true;
-            screenOffTimeout = 330;
-            lockTimeout = 600;
-            suspendTimeout = 0;
-            customCommands = builtins.toJSON [
-              {
-                name = "Turn off rgb";
-                timeout = 330;
-                command = "openrgb -p off";
-                resumeCommand = "openrgb -p main";
-              }
-            ];
+            unit = "imperial";
           };
-          appLauncher = {
-            enableClipboardHistory = true;
-            overviewLayer = true;
-            terminalCommand = "alacritty -e";
-            screenshotAnnotationTool = "satty -f -";
+
+          location = {
+            address = "Santa Cruz, United States";
           };
-          audio = {
-            preferredPlayer = "spotify";
+
+          wallpaper = {
+            enabled = true;
+            directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
+            transition_on_startup = true;
+            automation = {
+              enabled = false;
+              order = "random";
+              recursive = true;
+            };
           };
-          systemMonitor = {
-            enableDgpuMonitoring = true;
+
+          system.monitor.enabled = true;
+
+          idle.behavior = {
+            lock = {
+              timeout = 600;
+              enabled = true;
+            };
+            "screen-off" = {
+              timeout = 330;
+              enabled = true;
+            };
+            "rgb-off" = {
+              timeout = 330;
+              command = "openrgb -p off";
+              resume_command = "openrgb -p main";
+              enabled = true;
+            };
+          };
+
+          bar.main = {
+            position = "top";
+            background_opacity = 0.93;
+            capsule = true;
+            margin_edge = 0;
+            margin_ends = 0;
+            padding = 7;
+            radius = 0;
+            start = ["control-center" "workspaces" "sysmon_cpu"];
+            center = ["clock_date" "clock_time" "weather"];
+            end = ["tray" "network" "bluetooth" "notifications"];
+          };
+
+          widget = {
+            "control-center" = {
+              glyph = "snowflake";
+            };
+            workspaces = {
+              type = "workspaces";
+              display = "none";
+            };
+            sysmon_cpu = {
+              type = "sysmon";
+              stat = "cpu_usage";
+            };
+            clock_date = {
+              type = "clock";
+              format = "{:%a, %b %d}";
+            };
+            clock_time = {
+              type = "clock";
+              format = "{:%-I:%M %p}";
+            };
+            network = {
+              type = "network";
+              show_label = false;
+            };
+            bluetooth = {
+              type = "bluetooth";
+              show_label = false;
+            };
+            tray = {
+              type = "tray";
+              pinned = ["Battery Status"];
+            };
           };
         };
       };
@@ -169,34 +145,30 @@
       # Niri-specific integration
       programs.niri.settings = lib.mkIf niriEnabled {
         spawn-at-startup = lib.mkAfter [
-          {command = ["noctalia-shell"];}
+          {command = ["noctalia"];}
         ];
 
         binds = let
-          noctalia-ipc = ["noctalia-shell" "ipc" "call"];
+          msg = ["noctalia" "msg"];
         in {
           "Mod+Space" = {
-            action.spawn = noctalia-ipc ++ ["launcher" "toggle"];
+            action.spawn = msg ++ ["panel-toggle" "launcher"];
             hotkey-overlay.title = "Toggle Application Launcher";
           };
           "Mod+Y" = {
-            action.spawn = noctalia-ipc ++ ["notifications" "toggleHistory"];
-            hotkey-overlay.title = "Toggle Notification Center";
+            action.spawn = msg ++ ["panel-toggle" "control-center" "notifications"];
+            hotkey-overlay.title = "Toggle Notifications";
           };
           "Mod+Comma" = {
-            action.spawn = noctalia-ipc ++ ["settings" "toggle"];
+            action.spawn = msg ++ ["settings-toggle"];
             hotkey-overlay.title = "Toggle Settings";
           };
-          "Mod+P" = {
-            action.spawn = noctalia-ipc ++ ["notepad" "toggle"];
-            hotkey-overlay.title = "Toggle Notepad";
-          };
           "Mod+X" = {
-            action.spawn = noctalia-ipc ++ ["sessionMenu" "toggle"];
+            action.spawn = msg ++ ["panel-toggle" "session"];
             hotkey-overlay.title = "Toggle Power Menu";
           };
           "Mod+V" = {
-            action.spawn = noctalia-ipc ++ ["launcher" "clipboard"];
+            action.spawn = msg ++ ["panel-toggle" "clipboard"];
             hotkey-overlay.title = "Toggle Clipboard Manager";
           };
         };
@@ -212,39 +184,18 @@
 
     noctalia-praxis = {
       includes = [ry.gpu-screen-recorder];
-      homeManager = {lib, ...}: {
-        programs.noctalia-shell = {
-          plugins.states.screen-recorder.enabled = true;
-          settings.bar.widgets = {
-            right = lib.mkBefore [{id = "plugin:screen-recorder";}];
-          };
-        };
-      };
     };
 
     noctalia-sputnik = {
       homeManager = {lib, ...}: {
-        programs.noctalia-shell.settings.bar.widgets = {
-          left = lib.mkAfter [
-            {
-              id = "Clock";
-              formatHorizontal = "ddd, MMM dd";
-            }
-            {
-              id = "plugin:weather-indicator";
-            }
-            {
-              id = "Clock";
-              formatHorizontal = "h:mm AP";
-            }
-          ];
+        programs.noctalia.settings.bar.main = {
+          start = lib.mkForce ["control-center" "workspaces" "clock_date" "weather" "clock_time"];
           center = lib.mkForce [];
-          right = lib.mkAfter [
-            {
-              id = "Battery";
-              displayMode = "graphic-clean";
-            }
-          ];
+          end = lib.mkForce ["tray" "network" "bluetooth" "notifications" "battery_graphic"];
+        };
+        programs.noctalia.settings.widget.battery_graphic = {
+          type = "battery";
+          display_mode = "graphic";
         };
       };
     };

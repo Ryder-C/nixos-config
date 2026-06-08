@@ -35,7 +35,6 @@
         wineWow64Packages.waylandFull
         (stablePkgs.bottles.override {removeWarningPopup = true;})
         inputs.vesc-tool.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.rypkgs.packages.${pkgs.stdenv.hostPlatform.system}.blink
         tor-browser
         zoom-us
       ];

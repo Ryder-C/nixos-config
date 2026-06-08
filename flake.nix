@@ -128,6 +128,9 @@
     };
     vesc-tool.url = "github:vedderb/vesc_tool";
     vpnconfinement.url = "github:Maroka-chan/VPN-Confinement";
-    wayscriber.url = "github:devmobasa/wayscriber";
+    wayscriber = {
+      url = "github:devmobasa/wayscriber";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

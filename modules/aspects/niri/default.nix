@@ -164,29 +164,29 @@
             # Volume Keys (via noctalia for OSD)
             "XF86AudioRaiseVolume" = {
               allow-when-locked = true;
-              action.spawn = ["noctalia-shell" "ipc" "call" "volume" "increase"];
+              action.spawn = ["noctalia" "msg" "volume-up"];
             };
             "XF86AudioLowerVolume" = {
               allow-when-locked = true;
-              action.spawn = ["noctalia-shell" "ipc" "call" "volume" "decrease"];
+              action.spawn = ["noctalia" "msg" "volume-down"];
             };
             "XF86AudioMute" = {
               allow-when-locked = true;
-              action.spawn = ["noctalia-shell" "ipc" "call" "volume" "muteOutput"];
+              action.spawn = ["noctalia" "msg" "volume-mute"];
             };
 
-            # Brightness Keys (via noctalia for OSD)
+            # Brightness Keys — brightnessctl directly; noctalia auto-shows OSD
             "XF86MonBrightnessUp" = {
               allow-when-locked = true;
-              action.spawn = ["noctalia-shell" "ipc" "call" "brightness" "increase"];
+              action.spawn = ["brightnessctl" "set" "5%+"];
             };
             "XF86MonBrightnessDown" = {
               allow-when-locked = true;
-              action.spawn = ["noctalia-shell" "ipc" "call" "brightness" "decrease"];
+              action.spawn = ["brightnessctl" "set" "5%-"];
             };
 
             # Search key (Mac F4) opens the launcher
-            "XF86Search".action.spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
+            "XF86Search".action.spawn = ["noctalia" "msg" "panel-toggle" "launcher"];
 
             # Workspace/Mission Control key (Mac F3) opens niri overview
             "XF86LaunchA".action.toggle-overview = {};

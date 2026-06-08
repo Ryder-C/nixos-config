@@ -19,7 +19,7 @@ _: {
     home.packages = with pkgs;
       [
         bandwhich
-        bitwarden-desktop
+        bitwarden-cli
         bitwise
         cbonsai
         dua
