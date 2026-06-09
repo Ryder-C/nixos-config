@@ -161,20 +161,6 @@
             "XF86AudioNext".action.spawn = ["playerctl" "next"];
             "XF86AudioPrev".action.spawn = ["playerctl" "previous"];
 
-            # Volume Keys (via noctalia for OSD)
-            "XF86AudioRaiseVolume" = {
-              allow-when-locked = true;
-              action.spawn = ["noctalia" "msg" "volume-up"];
-            };
-            "XF86AudioLowerVolume" = {
-              allow-when-locked = true;
-              action.spawn = ["noctalia" "msg" "volume-down"];
-            };
-            "XF86AudioMute" = {
-              allow-when-locked = true;
-              action.spawn = ["noctalia" "msg" "volume-mute"];
-            };
-
             # Brightness Keys — brightnessctl directly; noctalia auto-shows OSD
             "XF86MonBrightnessUp" = {
               allow-when-locked = true;
@@ -185,14 +171,8 @@
               action.spawn = ["brightnessctl" "set" "5%-"];
             };
 
-            # Search key (Mac F4) opens the launcher
-            "XF86Search".action.spawn = ["noctalia" "msg" "panel-toggle" "launcher"];
-
             # Workspace/Mission Control key (Mac F3) opens niri overview
             "XF86LaunchA".action.toggle-overview = {};
-
-            # GPU Screen Recorder replay save
-            "Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
 
             # Screenshots
             "Mod+S".action.screenshot = {};

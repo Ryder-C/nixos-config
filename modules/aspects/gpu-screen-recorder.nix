@@ -9,6 +9,9 @@ _: {
       config,
       ...
     }: {
+      # Replay buffer save
+      programs.niri.settings.binds."Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
+
       systemd.user.services.gpu-screen-recorder = {
         Unit = {
           Description = "GPU Screen Recorder - Replay Buffer";

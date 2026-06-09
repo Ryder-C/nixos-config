@@ -17,16 +17,6 @@ _: {
       }
       {
         matches = [
-          {
-            app-id = "^vesktop$";
-            at-startup = true;
-          }
-        ];
-        open-on-output = "DP-1";
-        open-maximized = true;
-      }
-      {
-        matches = [
           {app-id = "^code$";}
           {app-id = "^antigravity$";}
         ];

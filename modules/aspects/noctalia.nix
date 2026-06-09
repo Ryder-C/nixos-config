@@ -171,11 +171,28 @@
             action.spawn = msg ++ ["panel-toggle" "clipboard"];
             hotkey-overlay.title = "Toggle Clipboard Manager";
           };
+
+          # Volume Keys (via noctalia for OSD)
+          "XF86AudioRaiseVolume" = {
+            allow-when-locked = true;
+            action.spawn = msg ++ ["volume-up"];
+          };
+          "XF86AudioLowerVolume" = {
+            allow-when-locked = true;
+            action.spawn = msg ++ ["volume-down"];
+          };
+          "XF86AudioMute" = {
+            allow-when-locked = true;
+            action.spawn = msg ++ ["volume-mute"];
+          };
+
+          # Search key (Mac F4) opens the launcher
+          "XF86Search".action.spawn = msg ++ ["panel-toggle" "launcher"];
         };
 
         layer-rules = [
           {
-            matches = [{namespace = "^noctalia-notifications";}];
+            matches = [{namespace = "^noctalia-notification";}];
             block-out-from = "screencast";
           }
         ];

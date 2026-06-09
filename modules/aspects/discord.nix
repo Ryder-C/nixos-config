@@ -19,6 +19,20 @@
     };
 
     programs = {
+      # Open Discord maximized on the secondary monitor under niri
+      niri.settings.window-rules = [
+        {
+          matches = [
+            {
+              app-id = "^discord$";
+              at-startup = true;
+            }
+          ];
+          open-on-output = "DP-1";
+          open-maximized = true;
+        }
+      ];
+
       nixcord = {
         enable = true;
 
