@@ -5,6 +5,6 @@
   };
 
   ry.wayscriber.homeManager = {pkgs, ...}: {
-    programs.niri.settings.binds."Mod+D".action.spawn = ["${inputs.wayscriber.packages.${pkgs.stdenv.hostPlatform.system}.default}" "--active"];
+    programs.niri.settings.binds."Mod+D".action.spawn = ["${inputs.wayscriber.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/wayscriber" "--active"];
   };
 }

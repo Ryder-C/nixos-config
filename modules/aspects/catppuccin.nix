@@ -13,6 +13,7 @@
 
       catppuccin = {
         enable = true;
+        autoEnable = true;
         cache.enable = true;
         flavor = "mocha";
         accent = "mauve";
@@ -31,6 +32,7 @@
 
       catppuccin = {
         enable = true;
+        autoEnable = true;
         cache.enable = true;
         accent = "mauve";
         flavor = "mocha";
