@@ -4,9 +4,7 @@ _: {
       extraGroups = ["libvirtd"];
       linger = true;
     };
-    systemd.user.extraConfig = ''
-      DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${pkgs.lib.makeBinPath [pkgs.bash pkgs.shadow]}"
-    '';
+    systemd.user.settings.Manager.DefaultEnvironment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin:${pkgs.lib.makeBinPath [pkgs.bash pkgs.shadow]}";
 
     environment.systemPackages = with pkgs; [
       virt-manager
