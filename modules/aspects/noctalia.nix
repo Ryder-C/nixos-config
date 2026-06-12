@@ -80,10 +80,12 @@
             lock = {
               timeout = 600;
               enabled = true;
+              action = "lock";
             };
             "screen-off" = {
               timeout = 330;
               enabled = true;
+              action = "screen_off";
             };
             "rgb-off" = {
               timeout = 330;
