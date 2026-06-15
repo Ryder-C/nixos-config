@@ -191,7 +191,7 @@
       }: {
         programs.niri.settings = {
           outputs = {
-            "DP-2" = {
+            "DP-1" = {
               mode = {
                 width = 3840;
                 height = 2160;
@@ -204,7 +204,7 @@
                 y = 0;
               };
             };
-            "DP-1" = {
+            "DP-2" = {
               mode = {
                 width = 3840;
                 height = 2160;
@@ -212,7 +212,7 @@
               };
               scale = 1.5;
               position = {
-                x = 2560;
+                x = -2560;
                 y = 0;
               };
             };

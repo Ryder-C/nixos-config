@@ -195,7 +195,7 @@
         layer-rules = [
           {
             matches = [{namespace = "^noctalia-notification";}];
-            block-out-from = "screencast";
+            block-out-from = "screen-capture";
           }
         ];
       };
