@@ -251,6 +251,11 @@
             hardwareAccelerationType = "nvenc";
           };
 
+          system.trickplayOptions = {
+            enableHwAcceleration = true;
+            enableKeyFrameOnlyExtraction = true;
+          };
+
           branding.customCss = ''@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");'';
         };
 
