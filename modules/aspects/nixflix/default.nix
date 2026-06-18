@@ -39,6 +39,7 @@
         ./_redirecterr.nix
         ./_autobrr.nix
         ./_drainarr.nix
+        (import ./_shoko.nix {inherit inputs;})
       ];
 
       ry.caddy.vhosts."ryder.rs" = {
