@@ -26,6 +26,7 @@
         devenv
         vscode
         nil
+        kicad
 
         # Languages & toolchains
         nodejs
