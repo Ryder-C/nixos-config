@@ -306,11 +306,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781067613,
-        "narHash": "sha256-UBLGlL51YOEhmsdkTxrcosGgG68BbVdBxEGXtGZTNVo=",
+        "lastModified": 1781941744,
+        "narHash": "sha256-v+l6dmfprZe/5uliY779demV5p0jzFBBkcjcZpwBZio=",
         "owner": "ryder-c",
         "repo": "drainarr",
-        "rev": "1d555d9d7f5ac50bfe0aed41dd425e2611d43911",
+        "rev": "ce64de4026e4a91531298c6e7e4195000830d1a6",
         "type": "github"
       },
       "original": {
