@@ -20,5 +20,6 @@ in {
   "sonarr-anime.age".publicKeys = users;
   "radarr.age".publicKeys = users;
   "autobrr.age".publicKeys = users;
+  "qui.age".publicKeys = users;
   "google-maps.age".publicKeys = users;
 }

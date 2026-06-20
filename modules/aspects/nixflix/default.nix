@@ -35,6 +35,8 @@
         inputs.nixflix.nixosModules.default
         inputs.nixarr.nixosModules.default
         inputs.drainarr.nixosModules.default
+
+        ./_qui.nix
         ./_qbit-manage.nix
         ./_redirecterr.nix
         ./_autobrr.nix
@@ -192,6 +194,7 @@
         sonarr.file = ../../../secrets/sonarr.age;
         sonarr-anime.file = ../../../secrets/sonarr-anime.age;
         radarr.file = ../../../secrets/radarr.age;
+        qui.file = ../../../secrets/qui.age;
       };
 
       services = {

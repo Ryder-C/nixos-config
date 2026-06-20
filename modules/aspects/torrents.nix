@@ -154,7 +154,7 @@
     ry.homepage.services."Downloads" = [
       {
         "qBittorrent" = {
-          href = "http://${config.networking.hostName}:8080";
+          href = "http://${config.networking.hostName}:7476";
           icon = "qbittorrent";
           widget = {
             type = "qbittorrent";
