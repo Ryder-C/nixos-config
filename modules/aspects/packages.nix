@@ -109,29 +109,29 @@ _: {
         "applications/mimeapps.list".force = true;
       };
 
-      desktopEntries."OrcaSlicer" = {
-        name = "OrcaSlicer";
-        exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
-        icon = "OrcaSlicer";
-        categories = [
-          "Graphics"
-          "3DGraphics"
-          "Engineering"
-        ];
-        mimeType = [
-          "model/stl"
-          "model/3mf"
-          "application/vnd.ms-3mfdocument"
-          "application/prs.wavefront-obj"
-          "application/x-amf"
-          "x-scheme-handler/orcaslicer"
-        ];
-        terminal = false;
-        type = "Application";
-        settings = {
-          StartupWMClass = "orca-slicer";
-        };
-      };
+      # desktopEntries."OrcaSlicer" = {
+      #   name = "OrcaSlicer";
+      #   exec = "env ${lib.concatStringsSep " " zink-env} orca-slicer %U";
+      #   icon = "OrcaSlicer";
+      #   categories = [
+      #     "Graphics"
+      #     "3DGraphics"
+      #     "Engineering"
+      #   ];
+      #   mimeType = [
+      #     "model/stl"
+      #     "model/3mf"
+      #     "application/vnd.ms-3mfdocument"
+      #     "application/prs.wavefront-obj"
+      #     "application/x-amf"
+      #     "x-scheme-handler/orcaslicer"
+      #   ];
+      #   terminal = false;
+      #   type = "Application";
+      #   settings = {
+      #     StartupWMClass = "orca-slicer";
+      #   };
+      # };
     };
   };
 }
