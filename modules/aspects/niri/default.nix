@@ -217,9 +217,6 @@
               };
             };
           };
-          spawn-at-startup = [
-            {command = ["discord"];}
-          ];
         };
       };
     };

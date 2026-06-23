@@ -19,40 +19,29 @@
     };
 
     programs = {
-      # Open Discord maximized on the secondary monitor under niri
-      niri.settings.window-rules = [
-        {
-          matches = [
-            {
-              app-id = "^discord$";
-              at-startup = true;
-            }
-          ];
-          open-on-output = "DP-1";
-          open-maximized = true;
-        }
-      ];
-
       nixcord = {
         enable = true;
 
         discord = {
           enable = true;
-          vencord.enable = true;
+          vencord.enable = false;
+          equicord.enable = true;
         };
         equibop.enable = false;
         vesktop.enable = false;
 
         config = {
-          themeLinks = [
+          enabledThemeLinks = [
             "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
           ];
+          frameless = true;
           plugins = {
             gameActivityToggle.enable = true;
             silentTyping.enable = true;
             typingIndicator.enable = true;
             shikiCodeblocks.enable = true;
-            webScreenShareFixes.enable = true;
+            declutter.enable = true;
+            ghosted.enable = true;
           };
         };
       };
