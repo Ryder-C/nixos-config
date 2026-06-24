@@ -38,7 +38,7 @@
 
         ./_qui.nix
         ./_bazarr.nix
-        ./_qbit-manage.nix
+        # ./_qbit-manage.nix
         ./_redirecterr.nix
         ./_autobrr.nix
         ./_drainarr.nix
@@ -200,7 +200,7 @@
 
       services = {
         cross-seed = {
-          enable = true;
+          enable = false;
           user = "cross-seed";
           group = "media";
           settingsFile = config.age.secrets.cross-seed.path;
