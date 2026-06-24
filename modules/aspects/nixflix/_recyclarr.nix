@@ -350,9 +350,6 @@ in {
         (cf "anime" "dc262f88d74c651b12e9d90b39f6c753" 100) # Anime Web Tier 06
         (cf "anime" "9965a052eb87b0d10313b1cea89eb451" 1050) # Remux Tier 01
         (cf "anime" "8a1d0c3d7497e741736761a1da866a2e" 1000) # Remux Tier 02
-        (cf "anime" "e6258996055b9fbab7e9cb2f75819294" 350) # WEB Tier 01
-        (cf "anime" "58790d4e2fdcd9733aa7ae68ba2bb503" 150) # WEB Tier 02
-        (cf "anime" "d84935abd3f8556dcd51d4f27e22d0a6" 150) # WEB Tier 03
         (cf "anime" "d2d7b8a9d39413da5f44054080e028a3" (-51)) # v0
         (cf "anime" "273bd326df95955e1b6c26527d1df89b" 1) # v1
         (cf "anime" "228b8ee9aa0a609463efca874524a6b8" 2) # v2
@@ -362,7 +359,7 @@ in {
         (cf "anime" "9c14d194486c4014d422adc64092d794" (-10000)) # Dubs Only
         (cf "anime" "07a32f77690263bb9fda1842db7e273f" (-10000)) # VOSTFR
         (cf "anime" "15a05bc7c1a36e2b57fd628f8977e2fc" (-10000)) # AV1
-        (cf "anime" "3bc5f395426614e155e585a2f056cdf1" 0) # Season Pack
+        (cf "anime" "3bc5f395426614e155e585a2f056cdf1" 50) # Season Pack
         (cf "anime" "b2550eb333d27b75833e25b8c2557b38" 10) # 10bit
         (cf "anime" "026d5aadd1a6b4e550b134cb6c72b3ca" 10) # Uncensored
       ];
