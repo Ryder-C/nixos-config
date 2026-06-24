@@ -37,6 +37,7 @@
         inputs.drainarr.nixosModules.default
 
         ./_qui.nix
+        ./_bazarr.nix
         ./_qbit-manage.nix
         ./_redirecterr.nix
         ./_autobrr.nix
