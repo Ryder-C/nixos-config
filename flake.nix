@@ -29,10 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     den.url = "github:denful/den";
-    discord-catppuccin = {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
-      flake = false;
-    };
     drainarr = {
       url = "github:ryder-c/drainarr";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,10 +53,6 @@
       flake = false;
     };
     import-tree.url = "github:vic/import-tree";
-    jj-starship = {
-      url = "github:dmmulroy/jj-starship";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     librepods = {
       url = "github:kavishdevar/librepods/linux/rust";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -141,5 +133,9 @@
     };
     vesc-tool.url = "github:vedderb/vesc_tool";
     vpnconfinement.url = "github:Maroka-chan/VPN-Confinement";
+    wayscriber = {
+      url = "github:devmobasa/wayscriber";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
