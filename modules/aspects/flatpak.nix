@@ -32,7 +32,6 @@
           "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
           "flathub:app/org.vinegarhq.Sober/x86_64/stable"
           "flathub:app/tv.plex.PlexDesktop/x86_64/stable"
-          "flathub:app/org.jellyfin.JellyfinDesktop/x86_64/stable"
           ":${hytale-flatpak}"
         ];
         overrides = {

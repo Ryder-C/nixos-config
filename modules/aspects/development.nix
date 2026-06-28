@@ -123,7 +123,7 @@
             email = "rydercasazza@gmail.com";
           };
           ui = {
-            default-command = ["log" "-r" "main::"];
+            default-command = ["log" "-r" "trunk()::"];
             diff-formatter = ["difft" "--color=always" "$left" "$right"];
           };
           aliases = {
