@@ -32,7 +32,7 @@
             inputs.proton-cachyos-nix.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v3
           ];
           presence = {
-            enable = true;
+            enable = config.networking.hostName == "praxis";
             steamApiKeyFile = config.age.secrets.steam_key.path;
             userIds = ["76561198311078521"];
           };

@@ -38,6 +38,7 @@
 
         ./_qui.nix
         ./_bazarr.nix
+        ./_onepace.nix
         # ./_qbit-manage.nix
         ./_redirecterr.nix
         ./_autobrr.nix
@@ -245,7 +246,7 @@
           apiKey._secret = config.age.secrets.jellyfin.path;
           users.ryder = {
             policy.isAdministrator = true;
-            password = "ryder123";
+            password._secret = config.age.secrets.jellyfin-admin.path;
           };
 
           encoding = {
