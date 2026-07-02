@@ -21,6 +21,7 @@ _: {
             args = ["${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/window-attention.oga"];
           };
         };
+        terminal.osc52 = "CopyPaste";
       };
     };
 
