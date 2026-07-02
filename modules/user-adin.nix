@@ -1,6 +1,6 @@
 {
   den,
-  ry,
+  inputs,
   ...
 }: {
   den = {
@@ -8,13 +8,12 @@
       includes = [
         den._.primary-user
         (den._.user-shell "fish")
-        den._.host-aspects
-        ry.cosmic
-        ry.discord
-        ry.browser
       ];
 
       nixos = _: {
+        # Adin's system-level GNOME (xserver + gdm + gnome desktop, host-wide)
+        imports = [inputs.adin-configs.system-aspects.gnome];
+
         users.users.adin = {
           isNormalUser = true;
           description = "adin";
@@ -24,11 +23,12 @@
         nix.settings.allowed-users = ["adin"];
       };
 
-      homeManager = {pkgs, ...}: {
+      homeManager = {...}: {
         home.username = "adin";
         home.homeDirectory = "/home/adin";
 
-        # --- Adin's overrides ---
+        # Pull in all of Adin's home-manager aspects
+        imports = builtins.attrValues inputs.adin-configs.user-aspects;
       };
     };
 

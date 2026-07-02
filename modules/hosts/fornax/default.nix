@@ -35,6 +35,16 @@
         greetd.enable = false;
       };
 
+      # Never suspend/hibernate: GNOME/GDM idle would otherwise sleep the
+      # server and take down all hosted services. Masking the sleep targets
+      # blocks it regardless of GNOME power settings or the GDM greeter.
+      systemd.targets = {
+        sleep.enable = false;
+        suspend.enable = false;
+        hibernate.enable = false;
+        hybrid-sleep.enable = false;
+      };
+
       hardware.nvidia = {
         open = lib.mkForce false;
         package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
