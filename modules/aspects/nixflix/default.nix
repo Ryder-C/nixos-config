@@ -38,6 +38,7 @@
 
         ./_qui.nix
         ./_bazarr.nix
+        ./_jellyfin-system-config.nix
         ./_onepace.nix
         # ./_qbit-manage.nix
         ./_redirecterr.nix
