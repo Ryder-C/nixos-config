@@ -14,7 +14,7 @@ let
   };
 
   # Audio format CFs -- same scores across all non-anime profiles
-  audioFormats = profile: audioIds: builtins.map (a: cf profile a.id a.score) audioIds;
+  audioFormats = profile: audioIds: map (a: cf profile a.id a.score) audioIds;
 
   # Radarr audio trash IDs
   radarrAudio = [
@@ -141,7 +141,15 @@ in {
     # base_url and api_key auto-populated by nixflix
     radarr = {
       include = [];
-      delete_old_custom_formats = false;
+      delete_old_custom_formats = true;
+
+      media_naming = {
+        folder = "jellyfin-tmdb";
+        movie = {
+          rename = true;
+          standard = "jellyfin-tmdb";
+        };
+      };
 
       quality_profiles = [
         {
@@ -218,7 +226,18 @@ in {
     # Main Sonarr -- merged best available (4K preferred, 1080p fallback)
     sonarr = {
       include = [];
-      delete_old_custom_formats = false;
+      delete_old_custom_formats = true;
+
+      media_naming = {
+        series = "jellyfin-tvdb";
+        season = "default";
+        episodes = {
+          rename = true;
+          standard = "default";
+          daily = "default";
+          anime = "default";
+        };
+      };
 
       quality_profiles = [
         {
@@ -294,7 +313,18 @@ in {
     # base_url and api_key auto-populated by nixflix
     sonarr_anime = {
       include = [];
-      delete_old_custom_formats = false;
+      delete_old_custom_formats = true;
+
+      media_naming = {
+        series = "jellyfin-tvdb";
+        season = "default";
+        episodes = {
+          rename = true;
+          standard = "default";
+          daily = "default";
+          anime = "default";
+        };
+      };
 
       quality_profiles = [
         {
@@ -351,10 +381,10 @@ in {
         (cf "anime" "9965a052eb87b0d10313b1cea89eb451" 1050) # Remux Tier 01
         (cf "anime" "8a1d0c3d7497e741736761a1da866a2e" 1000) # Remux Tier 02
         (cf "anime" "d2d7b8a9d39413da5f44054080e028a3" (-51)) # v0
-        (cf "anime" "273bd326df95955e1b6c26527d1df89b" 1) # v1
-        (cf "anime" "228b8ee9aa0a609463efca874524a6b8" 2) # v2
-        (cf "anime" "0e5833d3af2cc5fa96a0c29cd4477feb" 3) # v3
-        (cf "anime" "4fc15eeb8f2f9a749f918217d4234ad8" 4) # v4
+        (cf "anime" "273bd326df95955e1b6c26527d1df89b" 2) # v1
+        (cf "anime" "228b8ee9aa0a609463efca874524a6b8" 4) # v2
+        (cf "anime" "0e5833d3af2cc5fa96a0c29cd4477feb" 6) # v3
+        (cf "anime" "4fc15eeb8f2f9a749f918217d4234ad8" 8) # v4
         (cf "anime" "e3515e519f3b1360cbfc17651944354c" (-10000)) # Anime LQ Groups
         (cf "anime" "9c14d194486c4014d422adc64092d794" (-10000)) # Dubs Only
         (cf "anime" "07a32f77690263bb9fda1842db7e273f" (-10000)) # VOSTFR
