@@ -30,7 +30,7 @@ in {
       dry_run = false;
 
       disk_path = "/storage";
-      target_usage = "80%";
+      target_usage = "90%";
       check_interval = "30m";
       min_added_age = "12d";
 
