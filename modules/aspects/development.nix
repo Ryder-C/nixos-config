@@ -93,25 +93,6 @@
         enable = true;
         enableMcpIntegration = true;
       };
-      gemini-cli = {
-        enable = true;
-        settings = {
-          mcpServers = {
-            nixos.command = "${pkgs.mcp-nixos}/bin/mcp-nixos";
-          };
-          general = {
-            sessionRetention = {
-              enabled = true;
-              maxAge = "30d";
-              warningAcknowledged = true;
-            };
-            preferredEditor = "nvim";
-            previewFeatures = true;
-          };
-          experimental.plan = true;
-          security.auth.selectedType = "oauth-personal";
-        };
-      };
       direnv.enable = true;
 
       # Git
@@ -157,26 +138,6 @@
             searchingActiveBorderColor = ["#f9e2af"];
           };
           authorColors."*" = "#b4befe";
-        };
-      };
-
-      # SSH
-      ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-        matchBlocks = {
-          "plex-server" = {
-            hostname = "64.98.193.48";
-            identityFile = "~/.ssh/plex_server";
-            identitiesOnly = true;
-            user = "evan";
-          };
-          "cutlass" = {
-            hostname = "cutlass.adinack.dev";
-            identityFile = "~/.ssh/id_ed25519";
-            identitiesOnly = true;
-            user = "ryder";
-          };
         };
       };
     };

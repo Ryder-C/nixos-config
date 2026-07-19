@@ -43,6 +43,10 @@
         };
       };
 
+      # catppuccin.cursors sets home.pointerCursor.* but not `.enable`; HM now
+      # requires the explicit toggle instead of inferring it from those attrs.
+      home.pointerCursor.enable = isLinux;
+
       # Symlink the Catppuccin Stylus JSON (patched to keep YouTube video backgrounds black)
       home.file."catppuccin_styles.json".source =
         pkgs.runCommand "catppuccin-stylus-patched.json" {

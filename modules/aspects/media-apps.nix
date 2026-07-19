@@ -21,6 +21,7 @@
     pkgs,
     lib,
     isLinux,
+    config,
     ...
   }: {
     home.packages = with pkgs;
@@ -86,6 +87,8 @@
         name = "Dracula";
         package = pkgs.dracula-theme;
       };
+      # HM changed the gtk4 theme default to null; keep theming GTK4 apps.
+      gtk4.theme = config.gtk.theme;
       font = {
         name = "FiraCode Nerd Font";
         size = 11;
