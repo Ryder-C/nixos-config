@@ -191,11 +191,11 @@
       }: {
         programs.niri.settings = {
           outputs = {
-            "DP-1" = {
+            "HDMI-A-1" = {
               mode = {
                 width = 3840;
                 height = 2160;
-                refresh = 239.996;
+                refresh = 239.995;
               };
               scale = 1.5;
               variable-refresh-rate = false;
