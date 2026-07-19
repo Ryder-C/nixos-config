@@ -27,7 +27,9 @@ in {
         powerManagement.finegrained = false;
         open = true;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.latest;
+        # `latest` floats: it moved to 610.43.03, which broke DSC modesetting
+        # (4K@120/240 on DP-1 fail the atomic commit; only non-DSC 4K@60 works).
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
 
       boot.kernelParams = [
