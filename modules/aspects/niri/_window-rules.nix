@@ -23,7 +23,7 @@ _: {
         open-maximized = true;
       }
       {
-        matches = [{app-id = "^org\\.jellyfin\\.JellyfinDesktop$";}];
+        matches = [{app-id = "^net\\.nullsum\\.JelliumDesktop$";}];
         open-on-output = "DP-3";
       }
       {

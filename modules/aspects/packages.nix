@@ -60,7 +60,6 @@ _: {
         openssl
         unzip
         xxd
-        jellyfin-desktop
 
         tinymist
         leetgo
