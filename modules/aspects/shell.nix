@@ -7,7 +7,7 @@
   }: let
     jj-starship-cmd = "${pkgs.jj-starship}/bin/jj-starship";
     hostname = osConfig.networking.hostName;
-    flakePath = "$HOME/nixos-config?submodules=1";
+    flakePath = "$HOME/nixos-config";
   in {
     home.packages = [
       pkgs.nh

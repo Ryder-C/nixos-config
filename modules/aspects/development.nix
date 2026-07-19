@@ -64,6 +64,14 @@
     programs = {
       nix-index-database.comma.enable = true;
       zed-editor.enable = true;
+      halloy = {
+        enable = true;
+        settings.servers.scratch-network = {
+          nickname = "ryder";
+          server = "irc.scratch-network.net";
+          port = 6697;
+        };
+      };
       mcp = {
         enable = true;
         servers = {
