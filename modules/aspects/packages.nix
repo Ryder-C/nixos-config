@@ -34,6 +34,7 @@ _: {
         nix-prefetch-github
         obsidian
         pipes
+        plezy
         ripgrep
         tdf
         todo
