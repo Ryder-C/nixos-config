@@ -88,6 +88,11 @@
         enableMcpIntegration = true;
         package = pkgs.claude-code;
 
+        lspServers.rust-analyzer = {
+          command = "rust-analyzer";
+          extensionToLanguage.".rs" = "rust";
+        };
+
         settings = lib.mkMerge [
           (lib.mkIf isLinux {
             preferredNotifChannel = "terminal_bell";
