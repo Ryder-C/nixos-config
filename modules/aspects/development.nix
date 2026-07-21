@@ -27,6 +27,7 @@
         vscode
         nil
         kicad
+        jjui
 
         # Languages & toolchains
         nodejs
