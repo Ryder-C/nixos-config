@@ -32,7 +32,7 @@
           '';
 
           nsu = ''
-            nh os switch --hostname ${osConfig.networking.hostName} --update --impure $HOME/nixos-config?submodules=1
+            nh os switch --hostname ${osConfig.networking.hostName} --update --impure ${flakePath}
             nix-store --optimise
           '';
 
