@@ -12,7 +12,7 @@
   ry.system.nixos = {pkgs, ...}: {
     config = {
       nix = {
-        package = pkgs.nix;
+        package = pkgs.lix;
         daemonCPUSchedPolicy = "idle";
         daemonIOSchedClass = "idle";
         settings = {

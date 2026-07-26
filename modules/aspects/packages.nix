@@ -27,6 +27,7 @@ _: {
         eza
         fd
         file
+        fladder
         fzf
         jdk25
         jq
@@ -34,7 +35,6 @@ _: {
         nix-prefetch-github
         obsidian
         pipes
-        plezy
         ripgrep
         tdf
         todo
