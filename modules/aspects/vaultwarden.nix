@@ -16,6 +16,7 @@
       enable = true;
       environmentFile = config.age.secrets.vaultwarden.path;
       config = {
+        ROCKET_ADDRESS = "0.0.0.0";
         ROCKET_PORT = 8222;
         DOMAIN = "https://vault.ryder.rs";
         SIGNUPS_ALLOWED = false;
