@@ -12,7 +12,7 @@
   ry.system.nixos = {pkgs, ...}: {
     config = {
       nix = {
-        package = pkgs.lix;
+        package = pkgs.nix;
         daemonCPUSchedPolicy = "idle";
         daemonIOSchedClass = "idle";
         settings = {
@@ -39,7 +39,7 @@
 
       nixpkgs = {
         overlays = [
-          (_final: prev: {
+          (final: prev: {
             # aioboto3 15.5.0 installCheck tests fail with "Duplicate 'Server' header" on newer aiohttp
             python313 = prev.python313.override {
               packageOverrides = _pyFinal: pyPrev: {
@@ -47,6 +47,12 @@
                 fastmcp = pyPrev.fastmcp.overrideAttrs (_: {doInstallCheck = false;});
               };
             };
+
+            # fladder's mpv-unwrapped buildInput pulls in mpv.pc, which declares
+            # `Requires: libass`; libass isn't in buildInputs so pkg-config fails.
+            fladder = prev.fladder.overrideAttrs (o: {
+              buildInputs = o.buildInputs ++ [final.libass];
+            });
           })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default

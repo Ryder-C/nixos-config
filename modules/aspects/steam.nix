@@ -48,7 +48,8 @@
       };
 
       services.ananicy = {
-        enable = true;
+        package = pkgs.ananicy-cpp;
+        enable = false;
         extraRules = [
           {
             "name" = "gamescope";
