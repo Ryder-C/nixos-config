@@ -23,7 +23,7 @@
         ln -s ${inputs.hytale-flatpak} $out
       '';
       jellium-flatpak = pkgs.runCommand "jellium-desktop.flatpak" {} ''
-        ln -s "$(echo ${inputs.jellium-flatpak}/*.flatpak)" $out
+        ln -s ${inputs.jellium-flatpak} $out
       '';
     in {
       imports = [inputs.flatpaks.homeModules.default];
