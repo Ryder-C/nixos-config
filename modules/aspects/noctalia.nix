@@ -8,10 +8,30 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
   ry = {
-    noctalia.nixos = _: {
+    noctalia.nixos = {pkgs, ...}: {
       nix.settings = {
         substituters = ["https://noctalia.cachix.org"];
         trusted-public-keys = ["noctalia.cachix.org-1:X+I9x9j4W6h6q5lG2G8uX+5f6L2yU8K5o9y9U+L6J9o="];
+      };
+
+      # Lets the drive-health plugin read SMART as the session user, instead of
+      # the plugin's own route of pkexec-installing a root collector into
+      # /usr/local (which does not exist on NixOS).
+      #
+      # Each capability is load-bearing:
+      #   dac_override  open /dev/nvme0, which is 0600 root:root
+      #   sys_admin     the NVMe admin passthrough ioctl
+      #   sys_rawio     SCSI/ATA SG_IO on /dev/sd*
+      #
+      # NOTE: dac_override + sys_admin on a binary every local user can exec is
+      # root-equivalent in practice. This is the cost of reading SMART without
+      # a privileged collector; see the drive-health notes if that trade stops
+      # being acceptable.
+      security.wrappers.smartctl = {
+        source = "${pkgs.smartmontools}/bin/smartctl";
+        owner = "root";
+        group = "root";
+        capabilities = "cap_dac_override,cap_sys_rawio,cap_sys_admin+ep";
       };
     };
 
@@ -22,9 +42,15 @@
       ...
     }: let
       niriEnabled = config.programs.niri.enable;
+      noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in {
       imports = [inputs.noctalia.homeModules.default];
 
+      # smartctl for the drive-health plugin is *not* listed here on purpose:
+      # it comes from security.wrappers above, so the only smartctl on PATH is
+      # the capability-carrying one. A plain copy here would sit in
+      # ~/.nix-profile/bin, which loses to /run/wrappers/bin, and would quietly
+      # take over as a permission-denied stub if the wrapper ever went away.
       home.packages = with pkgs; [
         satty
         fastfetch
@@ -32,7 +58,7 @@
 
       programs.noctalia = {
         enable = true;
-        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = noctaliaPkg;
 
         settings = {
           shell = {
@@ -60,7 +86,8 @@
           };
 
           location = {
-            address = "Santa Cruz, United States";
+            auto_locate = true;
+            address = "Cardiff by the Sea, United States";
           };
 
           wallpaper = {
@@ -103,9 +130,31 @@
             margin_ends = 0;
             padding = 7;
             radius = 0;
-            start = ["control-center" "workspaces" "sysmon_cpu"];
+            start = ["control-center" "workspaces" "sysmon_cpu" "nix-monitor" "summary"];
             center = ["clock_date" "clock_time" "weather"];
-            end = ["tray" "network" "bluetooth" "notifications"];
+            end = ["recorder" "tray" "network" "bluetooth" "notifications"];
+          };
+
+          # Plugin code is still cloned/updated by noctalia itself into
+          # ~/.local/state/noctalia/plugins from the default official/community
+          # git sources. Only which plugins are on, and how they are configured,
+          # is declared here.
+          plugins = {
+            enabled = [
+              "noctalia/screen_recorder"
+              "noctalia/bitwarden"
+              "avivbintangaringga/nix-monitor"
+              "gustav0ar/drive-health"
+            ];
+            auto_update = true;
+          };
+
+          plugin_settings."noctalia/screen_recorder" = {
+            replay_enabled = true;
+            replay_duration = 60;
+            # Reuse the saved xdg-desktop-portal session so the unattended
+            # replay-buffer autostart does not raise a screen picker on login.
+            restore_portal = true;
           };
 
           widget = {
@@ -114,7 +163,7 @@
             };
             workspaces = {
               type = "workspaces";
-              display = "none";
+              show_labels = false;
             };
             sysmon_cpu = {
               type = "sysmon";
@@ -139,6 +188,18 @@
             tray = {
               type = "tray";
               pinned = ["Battery Status"];
+            };
+
+            # Plugin-provided widgets.
+            nix-monitor.type = "avivbintangaringga/nix-monitor:nix-monitor";
+            summary.type = "gustav0ar/drive-health:summary";
+
+            recorder = {
+              type = "noctalia/screen_recorder:recorder";
+              # Left click normally toggles a full recording; rebind it so the
+              # only thing the bar icon does is flush the replay buffer to disk.
+              # A config `actions` table wins over the widget's own handler.
+              actions.left = "plugin noctalia/screen_recorder:service all replay-save";
             };
           };
         };
@@ -203,6 +264,47 @@
 
     noctalia-praxis = {
       includes = [ry.gpu-screen-recorder];
+
+      nixos = {
+        # Both portal units ship with an empty WantedBy, so they are purely
+        # D-Bus activated and nothing has started them yet at login. The
+        # screen_recorder plugin will not arm the replay buffer unless it can
+        # *see* both processes running (it scans /proc), and it aborts before
+        # issuing the portal request that would have activated them -- so this
+        # is a deadlock, not just a race. Pull them into the graphical session.
+        systemd.user.services.xdg-desktop-portal = {
+          overrideStrategy = "asDropin";
+          wantedBy = ["graphical-session.target"];
+        };
+        systemd.user.services.xdg-desktop-portal-gnome = {
+          overrideStrategy = "asDropin";
+          wantedBy = ["graphical-session.target"];
+        };
+      };
+
+      homeManager = {
+        config,
+        lib,
+        ...
+      }: {
+        # Arm the replay buffer for the whole session. The buffer only ever
+        # writes a file when something asks it to (the bar icon, via
+        # replay-save) -- stopping it, logging out or powering off just drops
+        # the ring buffer, so nothing is saved implicitly.
+        #
+        # Retry until the buffer is actually up, not until the message is
+        # accepted: `msg` succeeds as soon as the plugin service loads, but
+        # replay-start still fails silently afterwards if the portal is not
+        # ready yet, so keying off its exit status gives a false positive.
+        # Poll for the gpu-screen-recorder replay process instead. replay-start
+        # is a no-op unless the recorder is idle, so extra attempts are free.
+        #
+        # The pattern is spelled `...recorde[r]` so that pgrep does not match
+        # this very shell, whose own command line contains the pattern.
+        programs.noctalia.settings.hooks.started = let
+          noctalia = lib.getExe config.programs.noctalia.package;
+        in "i=0; while [ $i -lt 30 ]; do pgrep -f 'gpu-screen-recorde[r].*-r ' >/dev/null 2>&1 && break; ${noctalia} msg plugin noctalia/screen_recorder:service all replay-start >/dev/null 2>&1; i=$((i+1)); sleep 2; done";
+      };
     };
 
     noctalia-sputnik = {

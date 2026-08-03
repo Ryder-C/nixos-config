@@ -1,32 +1,11 @@
 _: {
-  ry.gpu-screen-recorder = {
-    nixos = {
-      programs.gpu-screen-recorder.enable = true;
-    };
-
-    homeManager = {
-      pkgs,
-      config,
-      ...
-    }: {
-      # Replay buffer save
-      programs.niri.settings.binds."Mod+Shift+R".action.spawn = ["sh" "-c" "killall -SIGUSR1 gpu-screen-recorder && notify-send 'Replay Saved' 'Saved to ~/Videos/'"];
-
-      systemd.user.services.gpu-screen-recorder = {
-        Unit = {
-          Description = "GPU Screen Recorder - Replay Buffer";
-          After = ["graphical-session.target"];
-          PartOf = ["graphical-session.target"];
-        };
-        Service = {
-          ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w DP-3 -c mp4 -f 60 -a default_output -r 120 -o /home/${config.home.username}/Videos";
-          Restart = "on-failure";
-          RestartSec = 5;
-        };
-        Install = {
-          WantedBy = ["graphical-session.target"];
-        };
-      };
-    };
+  # Provides the gpu-screen-recorder binary and its setuid capture helper.
+  # The replay buffer itself is owned by noctalia's screen_recorder plugin
+  # (see noctalia.nix): it arms the buffer at session start and saves it on
+  # demand. Running a second buffer here would fight it -- the plugin's
+  # save/stop is a `pkill -f 'gpu-screen-recorder.*-r '`, which matches any
+  # replay process, not just its own.
+  ry.gpu-screen-recorder.nixos = {
+    programs.gpu-screen-recorder.enable = true;
   };
 }
