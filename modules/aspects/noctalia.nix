@@ -155,6 +155,42 @@
             # Reuse the saved xdg-desktop-portal session so the unattended
             # replay-buffer autostart does not raise a screen picker on login.
             restore_portal = true;
+
+            # Separate audio tracks in the saved clip:
+            #   1 game only   2 Discord   3 Spotify   4 mic
+            # Game audio leads so that players and uploads which read just the
+            # first audio track -- Discord, browser previews -- get the game
+            # with no chat or music over it, which is what a highlight wants.
+            #
+            # There is deliberately no `default_output` mix track: these four
+            # already partition everything audible, so a mix track would only
+            # duplicate them. Restoring the combined sound therefore means
+            # unmuting the other tracks in an editor.
+            #
+            # Track 1 is what makes a highlight editable at all, and a mix track
+            # could not substitute for it: `default_output` is the device
+            # monitor, so it contains Discord and Spotify too and muting the app
+            # tracks subtracts nothing from it. Only an app-inverse source
+            # yields game-without-chat, and stacking two exclusions in one
+            # source is what excludes both apps at once -- measured faithful to
+            # within 1 dB of the device monitor's level. Its quotes are
+            # load-bearing: the value is spliced into a shell command line,
+            # where a bare `|` would be a pipe.
+            #
+            # gpu-screen-recorder makes one track per `-a`, but the plugin only
+            # ever emits one: audio_source is a 4-option select spliced into the
+            # command line *unquoted* (`-a {source}`, see buildAudioFlags in
+            # recorder_service.luau), so extra flags hidden in the value become
+            # extra tracks. Short of forking the plugin this is the only lever;
+            # if a plugin update starts validating or quoting audio_source this
+            # silently collapses back to one track -- check the running process
+            # args, not just the file, after a noctalia bump.
+            #
+            # App names are matched case-insensitively against whatever
+            # `gpu-screen-recorder --list-application-audio` prints while the
+            # app is playing. Naming an app that is not running yet is
+            # supported and is the normal case for a login-armed buffer.
+            audio_source = ''"app-inverse:Discord|app-inverse:Spotify" -a app:Discord -a app:Spotify -a default_input'';
           };
 
           widget = {
