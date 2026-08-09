@@ -67,10 +67,22 @@
       zed-editor.enable = true;
       halloy = {
         enable = true;
-        settings.servers.scratch-network = {
-          nickname = "ryder";
-          server = "irc.scratch-network.net";
-          port = 6697;
+        settings.servers = {
+          scratch-network = {
+            nickname = "ThePDB";
+            server = "irc.scratch-network.net";
+            port = 6697;
+          };
+          digitalcore = {
+            nickname = "ThePDB";
+            server = "irc.digitalcore.club";
+            port = 7000;
+          };
+          darkpeers = {
+            nickname = "ThePDB";
+            server = "irc.darkpeers.org";
+            port = 6697;
+          };
         };
       };
       mcp = {
