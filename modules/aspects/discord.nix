@@ -46,6 +46,7 @@
             shikiCodeblocks.enable = true;
             declutter.enable = true;
             ghosted.enable = true;
+            fakeNitro.enable = true;
           };
         };
       };
