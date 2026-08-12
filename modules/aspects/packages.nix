@@ -41,6 +41,7 @@ _: {
         toipe
         unrar
         websocat
+        wl-mirror
 
         # C / C++
         gcc
