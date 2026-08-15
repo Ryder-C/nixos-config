@@ -321,8 +321,60 @@
       homeManager = {
         config,
         lib,
+        pkgs,
         ...
       }: {
+        # Tear the replay buffer down ourselves at session exit, because it
+        # will not tear itself down in time.
+        #
+        # The buffer is a child of noctalia, so it lives in noctalia's
+        # transient app-niri-noctalia-*.scope. Nothing orders that scope
+        # against the compositor: at logout systemd SIGTERMs the scope and
+        # stops niri, the portals and pipewire all in the same instant
+        # (pipewire in fact SIGABRTs). gpu-screen-recorder does install a
+        # SIGTERM handler, but it only sets a flag its capture loop polls, and
+        # that loop is by then blocked on a capture source that has already
+        # gone away -- so the flag is never read. The scope then sits there
+        # until DefaultTimeoutStopSec (90s) expires and systemd SIGKILLs it,
+        # which is 90s added to every single shutdown.
+        #
+        # SIGKILL rather than SIGTERM: SIGTERM is precisely what already fails
+        # here, so sending another would just mean waiting out the same hang,
+        # and the ring buffer is RAM-only and explicitly discarded at session
+        # end (see the arming comment below) -- there is no state to flush.
+        # This is the same signal systemd sends today, only without the 90s
+        # wait first. The one thing it does cut short is an in-flight
+        # replay-save, since the save is done by this same process: shutting
+        # down within a second or so of hitting the save button can now
+        # truncate that clip.
+        #
+        # Ordered After graphical-session.target so systemd stops it (running
+        # ExecStop) before tearing that target down. The `...recorde[r]`
+        # spelling keeps pkill from matching the ExecStop script itself, whose
+        # own command line contains the pattern. `-r ` with the trailing space
+        # is what distinguishes a replay buffer from a plain recording, so the
+        # quotes around the pattern are load-bearing.
+        systemd.user.services.gpu-screen-recorder-replay-stop = {
+          Unit = {
+            Description = "Stop noctalia's gpu-screen-recorder replay buffer at session exit";
+            After = ["graphical-session.target"];
+            PartOf = ["graphical-session.target"];
+          };
+          Service = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            ExecStart = "${pkgs.coreutils}/bin/true";
+            # `|| true` because pkill exits 1 when nothing matched, which is
+            # the normal case for a session where the buffer was never armed.
+            ExecStop = pkgs.writeShellScript "stop-gpu-screen-recorder-replay" ''
+              ${pkgs.procps}/bin/pkill -KILL -f 'gpu-screen-recorde[r].*-r ' || true
+            '';
+          };
+          Install = {
+            WantedBy = ["graphical-session.target"];
+          };
+        };
+
         # Arm the replay buffer for the whole session. The buffer only ever
         # writes a file when something asks it to (the bar icon, via
         # replay-save) -- stopping it, logging out or powering off just drops
