@@ -47,12 +47,11 @@ _: {
         libva
       ];
 
-      # nix helper
+      # nix helper (flake path is set per-user in modules/user.nix)
       nh = {
         enable = true;
         clean.enable = true;
         clean.extraArgs = "--keep-since 4d --keep 3";
-        flake = "/home/ryder/nixos-config";
       };
     };
   };

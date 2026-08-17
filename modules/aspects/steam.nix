@@ -1,8 +1,4 @@
-{
-  inputs,
-  ry,
-  ...
-}: {
+{inputs, ...}: {
   flake-file.inputs = {
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
@@ -16,11 +12,7 @@
 
   # Steam, gamescope, gamemode
   ry.steam = {
-    nixos = {
-      pkgs,
-      config,
-      ...
-    }: {
+    nixos = {pkgs, ...}: {
       imports = [inputs.steam-presence.nixosModules.steam-presence];
 
       programs = {
@@ -31,11 +23,6 @@
             pkgs.proton-ge-bin
             inputs.proton-cachyos-nix.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v3
           ];
-          presence = {
-            enable = config.networking.hostName == "praxis";
-            steamApiKeyFile = config.age.secrets.steam_key.path;
-            userIds = ["76561198311078521"];
-          };
         };
         gamescope = {
           enable = true;
@@ -45,23 +32,6 @@
           enable = true;
           enableRenice = true;
         };
-      };
-
-      services.ananicy = {
-        package = pkgs.ananicy-cpp;
-        enable = false;
-        extraRules = [
-          {
-            "name" = "gamescope";
-            "nice" = -20;
-          }
-        ];
-      };
-
-      age.secrets.steam_key = {
-        file = ../../secrets/steam_key.age;
-        owner = "ryder";
-        mode = "0400";
       };
     };
 
@@ -85,25 +55,6 @@
       # is the one with `proton`, `compatibilitytool.vdf`, etc.
       home.file.".steam/root/compatibilitytools.d/proton-cachyos".source =
         inputs.proton-cachyos-nix.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v3.steamcompattool;
-    };
-  };
-
-  # Headless gamescope session (e.g. streaming server)
-  ry.gamescope-kiosk = {
-    includes = [ry.steam];
-    nixos = {
-      programs.steam.gamescopeSession = {
-        enable = true;
-        args = [
-          "-W 3840"
-          "-H 2160"
-          "-w 3840"
-          "-h 2160"
-          "-r 60"
-          "-o 60"
-          "--force-grab-cursor"
-        ];
-      };
     };
   };
 }

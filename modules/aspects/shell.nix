@@ -18,9 +18,7 @@
         enable = true;
 
         shellInit = ''
-          # Set environment variables
-          set -gx EDITOR nvim
-          set -gx VISUAL nvim
+          # EDITOR/VISUAL come from home.sessionVariables (editor aspect).
           set -gx FISH_CONFIG_FILE ~/.config/fish/config.fish
           set -gx fish_greeting ""
         '';

@@ -14,11 +14,7 @@
   ry.flatpak = {
     nixos.services.flatpak.enable = true;
 
-    homeManager = {
-      pkgs,
-      config,
-      ...
-    }: let
+    homeManager = {pkgs, ...}: let
       hytale-flatpak = pkgs.runCommand "hytale-launcher.flatpak" {} ''
         ln -s ${inputs.hytale-flatpak} $out
       '';

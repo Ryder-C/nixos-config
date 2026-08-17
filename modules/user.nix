@@ -7,13 +7,21 @@
         den._.host-aspects
       ];
 
-      nixos = _: {
+      nixos = {config, ...}: {
         users.users.ryder = {
           isNormalUser = true;
           description = "ryder";
-          extraGroups = ["networkmanager" "wheel" "dialout" "input" "uinput" "seat" "docker"];
+          extraGroups = ["networkmanager" "wheel" "dialout" "input" "uinput" "seat" "docker" "libvirtd"];
+          # Keep user services (libvirtd sessions, timers) alive across logout.
+          linger = true;
         };
         nix.settings.allowed-users = ["ryder"];
+
+        # ryder's SSH key is what agenix decrypts host secrets with.
+        age.identityPaths = ["${config.users.users.ryder.home}/.ssh/id_ed25519"];
+
+        # NH_FLAKE for bare `nh os switch`; the shell aliases pass it explicitly.
+        programs.nh.flake = "${config.users.users.ryder.home}/nixos-config";
       };
 
       homeManager = {pkgs, ...}: {

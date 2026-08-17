@@ -7,7 +7,6 @@
   ry.torrents.nixos = {
     pkgs,
     config,
-    lib,
     ...
   }: let
     hasCrossSeed = config.age.secrets ? cross-seed;
@@ -65,7 +64,7 @@
     vpn-full = pkgs.writeShellApplication {
       name = "vpn-full";
       runtimeInputs = with pkgs; [nftables iproute2 jq wireguard-tools systemd gawk sudo];
-      text = builtins.readFile ./_scripts/vpn-full.sh;
+      text = builtins.readFile ./_torrents/vpn-full.sh;
     };
   in {
     imports = [inputs.nix-pia-vpn.nixosModules.default];
@@ -87,46 +86,48 @@
       tmpfiles.rules = [
         "d ${profileBase} 0755 root root - -"
       ];
-      services.vpn-full = {
-        description = "Route all traffic through PIA wg0 (kill switch)";
-        # Tie lifetime to pia-vpn so a wg0 restart re-applies routes + nft rules.
-        bindsTo = ["pia-vpn.service"];
-        after = ["pia-vpn.service"];
-        # Manually started via `vpn-full on`; never enabled by default.
-        serviceConfig = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          ExecStart = "${vpn-full}/bin/vpn-full _apply";
-          ExecStop = "${vpn-full}/bin/vpn-full _revert";
+      services = {
+        vpn-full = {
+          description = "Route all traffic through PIA wg0 (kill switch)";
+          # Tie lifetime to pia-vpn so a wg0 restart re-applies routes + nft rules.
+          bindsTo = ["pia-vpn.service"];
+          after = ["pia-vpn.service"];
+          # Manually started via `vpn-full on`; never enabled by default.
+          serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            ExecStart = "${vpn-full}/bin/vpn-full _apply";
+            ExecStop = "${vpn-full}/bin/vpn-full _revert";
+          };
         };
-      };
-      services.pia-vpn-portforward = {
-        unitConfig.RequiresMountsFor = "/storage";
-      };
-      services.pia-vpn = {
-        enable = true;
-        wants = [
-          "network-online.target"
-          "NetworkManager-wait-online.service"
-          "systemd-resolved.service"
-        ];
-        after = [
-          "network-online.target"
-          "NetworkManager-wait-online.service"
-          "systemd-resolved.service"
-        ];
-        serviceConfig = {
-          ExecStartPre = pkgs.writeShellScript "pia-wait-dns" ''
-            #!${pkgs.runtimeShell}
-            for i in $(seq 1 15); do
-              ${pkgs.systemd}/bin/resolvectl query serverlist.piaservers.net >/dev/null 2>&1 && exit 0
-              ${pkgs.coreutils}/bin/sleep 1
-            done
-            exit 0
-          '';
-          Restart = "on-failure";
-          RestartSec = "5s";
-          StartLimitBurst = 10;
+        pia-vpn-portforward = {
+          unitConfig.RequiresMountsFor = "/storage";
+        };
+        pia-vpn = {
+          enable = true;
+          wants = [
+            "network-online.target"
+            "NetworkManager-wait-online.service"
+            "systemd-resolved.service"
+          ];
+          after = [
+            "network-online.target"
+            "NetworkManager-wait-online.service"
+            "systemd-resolved.service"
+          ];
+          serviceConfig = {
+            ExecStartPre = pkgs.writeShellScript "pia-wait-dns" ''
+              #!${pkgs.runtimeShell}
+              for i in $(seq 1 15); do
+                ${pkgs.systemd}/bin/resolvectl query serverlist.piaservers.net >/dev/null 2>&1 && exit 0
+                ${pkgs.coreutils}/bin/sleep 1
+              done
+              exit 0
+            '';
+            Restart = "on-failure";
+            RestartSec = "5s";
+            StartLimitBurst = 10;
+          };
         };
       };
     };

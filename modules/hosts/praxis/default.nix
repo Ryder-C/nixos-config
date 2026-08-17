@@ -8,17 +8,14 @@
     includes = [
       ry.workstation
       ry.plasma
+      # Discord ships no aarch64-linux build, so it can't live in `workstation`.
+      ry.discord
       ry.gaming
-      ry.niri-praxis
-      ry.noctalia-praxis
       ry.desktop-tools
       ry.nvidia
       ry.steam
       ry.torrents
-      # ry.ollama
-      # ry.openclaw
       ry.rgb
-      # ry.star-citizen
       ry.aagl
       ry.bluevein
       ry.spicetify

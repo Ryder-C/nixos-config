@@ -4,14 +4,9 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # The battery device is host-specific; hosts set services.rycharger.settings.
   ry.charger.nixos = {...}: {
     imports = [inputs.rycharger.nixosModules.default];
-
-    services.rycharger = {
-      enable = true;
-      settings = {
-        battery.device = "macsmc-battery";
-      };
-    };
+    services.rycharger.enable = true;
   };
 }

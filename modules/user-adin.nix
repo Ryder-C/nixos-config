@@ -3,6 +3,8 @@
   inputs,
   ...
 }: {
+  flake-file.inputs.adin-configs.url = "github:AdinAck/nix-configs";
+
   den = {
     aspects.adin = {
       includes = [

@@ -5,22 +5,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  ry.discord.homeManager = {pkgs, ...}: {
+  ry.discord.homeManager = _: {
     imports = [inputs.nixcord.homeModules.nixcord];
-
-    xdg.portal = {
-      enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal-gtk];
-      config.niri = {
-        default = ["gtk"];
-        # niri implements screencast via org.gnome.Mutter.ScreenCast, so it must
-        # be routed to xdp-gnome. xdp-wlr's screencopy path has no damage
-        # tracking here, which niri treats as a one-off screenshot -> the
-        # screenshare freezes on its first frame.
-        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
-        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
-      };
-    };
 
     programs = {
       nixcord = {

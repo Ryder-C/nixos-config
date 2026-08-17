@@ -3,7 +3,6 @@
 
   ry.editor.homeManager = {
     pkgs,
-    lib,
     isLinux,
     ...
   }: {
@@ -12,7 +11,10 @@
       if isLinux
       then [inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default]
       else [pkgs.neovim];
-    home.sessionVariables.EDITOR = "nvim";
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
 
     # Micro
     programs.micro = {

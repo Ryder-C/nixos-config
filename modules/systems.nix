@@ -29,17 +29,17 @@
       ry.packages
     ];
 
-    # Full desktop aspects (extends wokstation-base)
+    # Full desktop aspects (extends workstation-base)
     workstation.includes = [
       ry.workstation-base
 
       ry.niri
       ry.noctalia
       ry.browser
-      ry.discord
       ry.catppuccin
       ry.scripts
       ry.home-services
+      ry.xdg
     ];
   };
 }

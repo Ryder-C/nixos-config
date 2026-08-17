@@ -43,11 +43,22 @@ The configuration is organized into a modular tree structure under `modules/`. E
 
 ```text
 modules/
-├── hosts/        # Machine-specific configurations (Praxis, Sputnik, etc.)
-├── aspects/      # Pluggable feature modules (Gaming, Niri, Nixarr)
-├── systems.nix   # Logical layers (Base -> Workstation -> Desktop)
+├── hosts/        # One directory per machine; everything host-specific lives there
+├── aspects/      # Pluggable feature modules (Gaming, Niri, Nixflix)
+├── systems.nix   # Logical layers (Base -> Workstation-base -> Workstation)
 └── namespace.nix # Modular integration logic
 ```
+
+Two conventions keep this navigable:
+
+- **One aspect per file, named after it.** `ry.foo` is always defined in
+  `modules/aspects/foo.nix`, so any name in an include list maps straight to a file.
+- **Host-specific config lives in the host's directory.** Aspects stay generic;
+  a machine's tweaks to them go in `modules/hosts/<host>/*.nix`, which contribute
+  to that host's `den` aspect. Nothing under `aspects/` branches on hostname.
+
+Files prefixed with `_` are not auto-imported — they're data or fragments pulled
+in explicitly by a sibling.
 
 ---
 
@@ -55,9 +66,9 @@ modules/
 
 | Host        | Hardware         | Role     | Key Features                                |
 | :---------- | :--------------- | :------- | :------------------------------------------ |
-| **Praxis**  | Desktop (Nvidia) | Main Rig | Gaming, Nixarr, LLMs (Ollama), Star Citizen |
+| **Praxis**  | Desktop (Nvidia) | Main Rig | Gaming, Steam, Torrents, Plasma + Niri      |
 | **Sputnik** | MacBook Pro (M1) | Portable | Asahi, HiDPI Niri, Battery Optimization     |
-| **Fornax**  | Server           | Home Lab | Media, Nixarr, Headless                     |
+| **Fornax**  | Server           | Home Lab | Nixflix, Caddy, Vaultwarden, Headless       |
 | **Tabula**  | VM / WSL         | Minimal  | Terminal tools & Dev essentials             |
 | **Umbra**   | MacBook Pro (M1) | macOS    | Nix-darwin, Home-manager                    |
 

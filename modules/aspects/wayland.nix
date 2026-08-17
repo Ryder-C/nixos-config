@@ -12,15 +12,11 @@ _: {
       ];
     };
 
-    # xdgOpenUsePortal routes every xdg-open (and every Electron
-    # shell.openExternal) through the portal, which resolves and launches the
-    # default handler itself. GLib silently discards any desktop entry whose
-    # Exec argv[0] is not on PATH, and these units otherwise inherit only
-    # systemd's minimal DefaultEnvironment -- so entries with a bare Exec
-    # (helium, tor-browser) vanished from the portal's registry and links fell
-    # through to whichever browser ships an absolute Exec (brave). Hand the
-    # portal the session PATH so it sees the same apps the session does; these
-    # mirror the profile dirs already present in its XDG_DATA_DIRS.
+    # xdgOpenUsePortal makes the portal resolve and launch default handlers
+    # itself. GLib drops any desktop entry whose Exec argv[0] isn't on PATH, and
+    # these units only inherit systemd's minimal environment -- so apps with a
+    # bare Exec (helium, tor-browser) vanished and links fell through to brave.
+    # Give the portal the session PATH.
     systemd.user.services = let
       sessionPath = {
         overrideStrategy = "asDropin";

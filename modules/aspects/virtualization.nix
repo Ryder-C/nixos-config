@@ -1,9 +1,5 @@
 _: {
   ry.virtualization.nixos = {pkgs, ...}: {
-    users.users.ryder = {
-      extraGroups = ["libvirtd"];
-      linger = true;
-    };
     systemd.user.settings.Manager.DefaultEnvironment = "PATH=/run/current-system/sw/bin:/run/wrappers/bin:${pkgs.lib.makeBinPath [pkgs.bash pkgs.shadow]}";
 
     environment.systemPackages = with pkgs; [

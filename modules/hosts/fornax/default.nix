@@ -4,10 +4,8 @@
       ry.base
       ry.packages
       ry.homepage
-      # ry.ente
       ry.minecraft
       ry.guessr
-      # ry.forgejo
       ry.nixflix
       ry.caddy
       ry.tailscale
@@ -16,7 +14,6 @@
       ry.rgb
       ry.nvidia
       ry.audio
-      ry.gamescope-kiosk
     ];
 
     nixos = {

@@ -1,42 +1,38 @@
 {
   den,
   inputs,
-  lib,
   ...
-}: {
+}: let
+  # Extra module args every class gets: `stablePkgs` for things that lag on
+  # unstable, and platform booleans for `lib.optionals isLinux` lists.
+  commonArgs = {pkgs, ...}: {
+    _module.args = {
+      stablePkgs = import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+      inherit (pkgs.stdenv.hostPlatform) isLinux isDarwin;
+    };
+  };
+in {
   den = {
     schema.user = {lib, ...}: {
       config.classes = lib.mkDefault ["homeManager"];
     };
 
     default = {
-      nixos = {pkgs, ...}: {
+      nixos = {
+        imports = [commonArgs];
         system.stateVersion = "24.05";
-        _module.args.stablePkgs = import inputs.nixpkgs-stable {
-          inherit (pkgs.stdenv.hostPlatform) system;
-          config.allowUnfree = true;
-        };
-        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
-        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
-      darwin = {pkgs, ...}: {
+      darwin = {
+        imports = [commonArgs];
         system.stateVersion = 6;
-        _module.args.stablePkgs = import inputs.nixpkgs-stable {
-          inherit (pkgs.stdenv.hostPlatform) system;
-          config.allowUnfree = true;
-        };
-        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
-        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
-      homeManager = {pkgs, ...}: {
+      homeManager = {
+        imports = [commonArgs];
         home.stateVersion = "24.05";
         programs.home-manager.enable = true;
-        _module.args.stablePkgs = import inputs.nixpkgs-stable {
-          inherit (pkgs.stdenv.hostPlatform) system;
-          config.allowUnfree = true;
-        };
-        _module.args.isLinux = pkgs.stdenv.hostPlatform.isLinux;
-        _module.args.isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       };
 
       includes = [

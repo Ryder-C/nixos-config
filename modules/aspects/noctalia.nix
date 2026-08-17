@@ -1,32 +1,22 @@
-{
-  inputs,
-  ry,
-  ...
-}: {
+{inputs, ...}: {
   flake-file.inputs.noctalia = {
     url = "github:noctalia-dev/noctalia-shell";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  ry = {
-    noctalia.nixos = {pkgs, ...}: {
+  ry.noctalia = {
+    nixos = {pkgs, ...}: {
       nix.settings = {
         substituters = ["https://noctalia.cachix.org"];
         trusted-public-keys = ["noctalia.cachix.org-1:X+I9x9j4W6h6q5lG2G8uX+5f6L2yU8K5o9y9U+L6J9o="];
       };
 
-      # Lets the drive-health plugin read SMART as the session user, instead of
-      # the plugin's own route of pkexec-installing a root collector into
-      # /usr/local (which does not exist on NixOS).
-      #
-      # Each capability is load-bearing:
-      #   dac_override  open /dev/nvme0, which is 0600 root:root
-      #   sys_admin     the NVMe admin passthrough ioctl
-      #   sys_rawio     SCSI/ATA SG_IO on /dev/sd*
-      #
-      # NOTE: dac_override + sys_admin on a binary every local user can exec is
-      # root-equivalent in practice. This is the cost of reading SMART without
-      # a privileged collector; see the drive-health notes if that trade stops
-      # being acceptable.
+      # Lets the drive-health plugin read SMART as the session user; its own
+      # route installs a root collector into /usr/local, which NixOS lacks.
+      # dac_override opens /dev/nvme0 (0600 root), sys_admin does the NVMe
+      # admin ioctl, sys_rawio does SG_IO on /dev/sd*.
+      # NOTE: dac_override + sys_admin on a world-executable binary is
+      # root-equivalent in practice — that's the price of SMART without a
+      # privileged collector.
       security.wrappers.smartctl = {
         source = "${pkgs.smartmontools}/bin/smartctl";
         owner = "root";
@@ -35,7 +25,7 @@
       };
     };
 
-    noctalia.homeManager = {
+    homeManager = {
       config,
       lib,
       pkgs,
@@ -43,14 +33,20 @@
     }: let
       niriEnabled = config.programs.niri.enable;
       noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      wallpaperDir = "${config.home.homeDirectory}/Pictures/Wallpapers";
     in {
       imports = [inputs.noctalia.homeModules.default];
 
-      # smartctl for the drive-health plugin is *not* listed here on purpose:
-      # it comes from security.wrappers above, so the only smartctl on PATH is
-      # the capability-carrying one. A plain copy here would sit in
-      # ~/.nix-profile/bin, which loses to /run/wrappers/bin, and would quietly
-      # take over as a permission-denied stub if the wrapper ever went away.
+      # Seed the picker's directory with the repo's wallpapers. Copied rather
+      # than symlinked so they stay writable; -n means an existing file is
+      # never touched, so this only fills in what's missing.
+      home.activation.wallpapers = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        run mkdir -p "${wallpaperDir}"
+        run cp -rnT --no-preserve=mode ${../../wallpapers} "${wallpaperDir}"
+      '';
+
+      # smartctl is deliberately absent: it comes from the wrapper above, so the
+      # only one on PATH carries the capabilities.
       home.packages = with pkgs; [
         satty
         fastfetch
@@ -92,7 +88,7 @@
 
           wallpaper = {
             enabled = true;
-            directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
+            directory = wallpaperDir;
             transition_on_startup = true;
             automation = {
               enabled = false;
@@ -135,10 +131,8 @@
             end = ["recorder" "tray" "network" "bluetooth" "notifications"];
           };
 
-          # Plugin code is still cloned/updated by noctalia itself into
-          # ~/.local/state/noctalia/plugins from the default official/community
-          # git sources. Only which plugins are on, and how they are configured,
-          # is declared here.
+          # Plugin code is still cloned by noctalia itself into
+          # ~/.local/state/noctalia/plugins; only the on/off and settings live here.
           plugins = {
             enabled = [
               "noctalia/screen_recorder"
@@ -156,40 +150,22 @@
             # replay-buffer autostart does not raise a screen picker on login.
             restore_portal = true;
 
-            # Separate audio tracks in the saved clip:
-            #   1 game only   2 Discord   3 Spotify   4 mic
-            # Game audio leads so that players and uploads which read just the
-            # first audio track -- Discord, browser previews -- get the game
-            # with no chat or music over it, which is what a highlight wants.
+            # Four separate audio tracks: 1 game only, 2 Discord, 3 Spotify,
+            # 4 mic. Game leads so anything reading only track 1 (Discord,
+            # browser previews) gets the game without chat or music. No mix
+            # track: these four already cover everything audible.
             #
-            # There is deliberately no `default_output` mix track: these four
-            # already partition everything audible, so a mix track would only
-            # duplicate them. Restoring the combined sound therefore means
-            # unmuting the other tracks in an editor.
+            # The plugin only ever emits one `-a` flag, and splices audio_source
+            # into the command line unquoted (buildAudioFlags in
+            # recorder_service.luau) — so the extra `-a`s hidden in this value
+            # are what produce the extra tracks. The quotes are load-bearing
+            # (a bare `|` would be a pipe). If a plugin update starts quoting or
+            # validating audio_source this silently collapses to one track, so
+            # check the running process args after a noctalia bump.
             #
-            # Track 1 is what makes a highlight editable at all, and a mix track
-            # could not substitute for it: `default_output` is the device
-            # monitor, so it contains Discord and Spotify too and muting the app
-            # tracks subtracts nothing from it. Only an app-inverse source
-            # yields game-without-chat, and stacking two exclusions in one
-            # source is what excludes both apps at once -- measured faithful to
-            # within 1 dB of the device monitor's level. Its quotes are
-            # load-bearing: the value is spliced into a shell command line,
-            # where a bare `|` would be a pipe.
-            #
-            # gpu-screen-recorder makes one track per `-a`, but the plugin only
-            # ever emits one: audio_source is a 4-option select spliced into the
-            # command line *unquoted* (`-a {source}`, see buildAudioFlags in
-            # recorder_service.luau), so extra flags hidden in the value become
-            # extra tracks. Short of forking the plugin this is the only lever;
-            # if a plugin update starts validating or quoting audio_source this
-            # silently collapses back to one track -- check the running process
-            # args, not just the file, after a noctalia bump.
-            #
-            # App names are matched case-insensitively against whatever
-            # `gpu-screen-recorder --list-application-audio` prints while the
-            # app is playing. Naming an app that is not running yet is
-            # supported and is the normal case for a login-armed buffer.
+            # App names match case-insensitively against
+            # `gpu-screen-recorder --list-application-audio`; naming an app that
+            # isn't running yet is fine and normal for a login-armed buffer.
             audio_source = ''"app-inverse:Discord|app-inverse:Spotify" -a app:Discord -a app:Spotify -a default_input'';
           };
 
@@ -295,117 +271,6 @@
             block-out-from = "screen-capture";
           }
         ];
-      };
-    };
-
-    noctalia-praxis = {
-      includes = [ry.gpu-screen-recorder];
-
-      nixos = {
-        # Both portal units ship with an empty WantedBy, so they are purely
-        # D-Bus activated and nothing has started them yet at login. The
-        # screen_recorder plugin will not arm the replay buffer unless it can
-        # *see* both processes running (it scans /proc), and it aborts before
-        # issuing the portal request that would have activated them -- so this
-        # is a deadlock, not just a race. Pull them into the graphical session.
-        systemd.user.services.xdg-desktop-portal = {
-          overrideStrategy = "asDropin";
-          wantedBy = ["graphical-session.target"];
-        };
-        systemd.user.services.xdg-desktop-portal-gnome = {
-          overrideStrategy = "asDropin";
-          wantedBy = ["graphical-session.target"];
-        };
-      };
-
-      homeManager = {
-        config,
-        lib,
-        pkgs,
-        ...
-      }: {
-        # Tear the replay buffer down ourselves at session exit, because it
-        # will not tear itself down in time.
-        #
-        # The buffer is a child of noctalia, so it lives in noctalia's
-        # transient app-niri-noctalia-*.scope. Nothing orders that scope
-        # against the compositor: at logout systemd SIGTERMs the scope and
-        # stops niri, the portals and pipewire all in the same instant
-        # (pipewire in fact SIGABRTs). gpu-screen-recorder does install a
-        # SIGTERM handler, but it only sets a flag its capture loop polls, and
-        # that loop is by then blocked on a capture source that has already
-        # gone away -- so the flag is never read. The scope then sits there
-        # until DefaultTimeoutStopSec (90s) expires and systemd SIGKILLs it,
-        # which is 90s added to every single shutdown.
-        #
-        # SIGKILL rather than SIGTERM: SIGTERM is precisely what already fails
-        # here, so sending another would just mean waiting out the same hang,
-        # and the ring buffer is RAM-only and explicitly discarded at session
-        # end (see the arming comment below) -- there is no state to flush.
-        # This is the same signal systemd sends today, only without the 90s
-        # wait first. The one thing it does cut short is an in-flight
-        # replay-save, since the save is done by this same process: shutting
-        # down within a second or so of hitting the save button can now
-        # truncate that clip.
-        #
-        # Ordered After graphical-session.target so systemd stops it (running
-        # ExecStop) before tearing that target down. The `...recorde[r]`
-        # spelling keeps pkill from matching the ExecStop script itself, whose
-        # own command line contains the pattern. `-r ` with the trailing space
-        # is what distinguishes a replay buffer from a plain recording, so the
-        # quotes around the pattern are load-bearing.
-        systemd.user.services.gpu-screen-recorder-replay-stop = {
-          Unit = {
-            Description = "Stop noctalia's gpu-screen-recorder replay buffer at session exit";
-            After = ["graphical-session.target"];
-            PartOf = ["graphical-session.target"];
-          };
-          Service = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            ExecStart = "${pkgs.coreutils}/bin/true";
-            # `|| true` because pkill exits 1 when nothing matched, which is
-            # the normal case for a session where the buffer was never armed.
-            ExecStop = pkgs.writeShellScript "stop-gpu-screen-recorder-replay" ''
-              ${pkgs.procps}/bin/pkill -KILL -f 'gpu-screen-recorde[r].*-r ' || true
-            '';
-          };
-          Install = {
-            WantedBy = ["graphical-session.target"];
-          };
-        };
-
-        # Arm the replay buffer for the whole session. The buffer only ever
-        # writes a file when something asks it to (the bar icon, via
-        # replay-save) -- stopping it, logging out or powering off just drops
-        # the ring buffer, so nothing is saved implicitly.
-        #
-        # Retry until the buffer is actually up, not until the message is
-        # accepted: `msg` succeeds as soon as the plugin service loads, but
-        # replay-start still fails silently afterwards if the portal is not
-        # ready yet, so keying off its exit status gives a false positive.
-        # Poll for the gpu-screen-recorder replay process instead. replay-start
-        # is a no-op unless the recorder is idle, so extra attempts are free.
-        #
-        # The pattern is spelled `...recorde[r]` so that pgrep does not match
-        # this very shell, whose own command line contains the pattern.
-        programs.noctalia.settings.hooks.started = let
-          noctalia = lib.getExe config.programs.noctalia.package;
-        in "i=0; while [ $i -lt 30 ]; do pgrep -f 'gpu-screen-recorde[r].*-r ' >/dev/null 2>&1 && break; ${noctalia} msg plugin noctalia/screen_recorder:service all replay-start >/dev/null 2>&1; i=$((i+1)); sleep 2; done";
-      };
-    };
-
-    noctalia-sputnik = {
-      homeManager = {lib, ...}: {
-        programs.noctalia.settings.bar.main = {
-          start = lib.mkForce ["control-center" "workspaces" "clock_date" "weather" "clock_time"];
-          center = lib.mkForce [];
-          end = lib.mkForce ["tray" "network" "bluetooth" "notifications" "battery_graphic"];
-        };
-        programs.noctalia.settings.widget.battery_graphic = {
-          type = "battery";
-          display_mode = "graphic";
-        };
       };
     };
   };

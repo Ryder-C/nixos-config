@@ -1,21 +1,11 @@
 {config, ...}: {
-  # OnePacerr (https://github.com/eltharynd/OnePacerr) -- automates One Pace, the
-  # fan re-edit of One Piece. It polls One Pace's RSS/metadata feed, grabs new or
-  # missing arcs through qBittorrent, and organizes them into the Jellyfin
-  # "One Pace" library.
+  # OnePacerr automates One Pace (the fan re-edit of One Piece): polls its feed,
+  # grabs missing arcs via qBittorrent, files them into the Jellyfin library.
   #
-  # Adopting the existing library WITHOUT re-downloading:
-  #   - The hand-built library lives at /storage/media/library/one-pace/One Pace/
-  #     and already uses OnePacerr's default layout + filename format
-  #     ("One Pace - SxxEyy - Title.mkv").
-  #   - The Jellyfin "One Pace" library's virtual folder points at
-  #     /storage/media/library/one-pace. In jellyfin mode OnePacerr asks Jellyfin
-  #     for that path, then appends LIBRARY_SERIES_FOLDER_NAME ("One Pace"),
-  #     resolving to exactly /storage/media/library/one-pace/One Pace.
-  #   - Because we bind-mount that path 1:1 into the container, the path Jellyfin
-  #     reports is valid inside the container too, so no MOUNT_* translation is
-  #     needed. OnePacerr sees the present episodes, marks them satisfied, and
-  #     only downloads genuinely missing/new releases.
+  # It adopts the existing hand-built library instead of re-downloading: that
+  # library already uses OnePacerr's default layout and filenames, and the path
+  # Jellyfin reports is bind-mounted 1:1 into the container, so no MOUNT_*
+  # translation is needed. Present episodes are seen as satisfied.
   virtualisation.oci-containers.containers.onepacerr = {
     image = "ghcr.io/eltharynd/onepacerr:latest";
     # Host networking so it can reach Jellyfin (localhost:8096) and qBittorrent
@@ -67,12 +57,10 @@
       TORRENT_CATEGORY = "onepacerr";
 
       # -- Pipeline --
-      # Steady state: the existing library has been adopted, verified, organized,
-      # and had its metadata/posters written. Leave present files alone now (these
-      # passes also re-hash the whole library and re-write .nfo/posters every cycle,
-      # and the organize pass is what created the padded "Season 0N" folders). New
-      # One Pace releases are still downloaded and imported. To re-run a full
-      # adoption pass (e.g. after manual library edits), flip these back to "false".
+      # The library is adopted and organized, so skip the present-file passes:
+      # they re-hash everything and rewrite .nfo/posters every cycle. New
+      # releases are still downloaded. Flip back to "false" to re-run adoption
+      # after manual library edits.
       PIPELINE_SKIP_VERIFY_PRESENT_FILES = "true";
       PIPELINE_SKIP_ORGANIZE_PRESENT_FILES = "true";
       PIPELINE_SKIP_UPDATE_METADATA_PRESENT_FILES = "true";

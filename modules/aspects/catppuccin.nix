@@ -60,12 +60,6 @@
             )
           ' ${inputs.catppuccin-stylus-json} > $out
         '';
-
-      # Ensure terminal applications use Neovim by default
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-      };
     };
   };
 }

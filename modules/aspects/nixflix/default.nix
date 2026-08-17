@@ -125,7 +125,8 @@
         ];
       };
 
-      # -- cross-seed (from nixarr module) --
+      # The cross-seed service itself is gone; this user still owns the
+      # cross-seed.age secret that feeds qBittorrent's OnFinish webhook.
       users.users.cross-seed = {
         isSystemUser = true;
         group = "media";
@@ -200,41 +201,6 @@
         qui.file = ../../../secrets/qui.age;
       };
 
-      services = {
-        cross-seed = {
-          enable = false;
-          user = "cross-seed";
-          group = "media";
-          settingsFile = config.age.secrets.cross-seed.path;
-          settings = {
-            useClientTorrents = true;
-            delay = 30;
-            linkCategory = "cross-seed";
-            linkDirs = ["/storage/Torrents/cross-seed"];
-            linkType = "hardlink";
-            flatLinking = false;
-            matchMode = "partial";
-            skipRecheck = true;
-            autoResumeMaxDownload = 52428800;
-            maxDataDepth = 3;
-            includeSingleEpisodes = false;
-            includeNonVideos = false;
-            seasonFromEpisodes = 0.8;
-            fuzzySizeThreshold = 0.02;
-            excludeOlder = "365 days";
-            excludeRecentSearch = "73 days";
-            action = "inject";
-            duplicateCategories = false;
-            rssCadence = "10 minutes";
-            searchCadence = "1 day";
-            snatchTimeout = "30 seconds";
-            searchTimeout = "2 minutes";
-            searchLimit = 400;
-            port = 2468;
-          };
-        };
-      };
-
       nixflix = {
         enable = true;
         mediaDir = "/storage/media/library";
@@ -271,8 +237,6 @@
           apiKey._secret = config.age.secrets.seerr.path;
           jellyfin = {
             adminPassword._secret = config.age.secrets.jellyfin-admin.path;
-            # enableAllLibraries = false;
-            # libraryFilter.names = ["Anime" "Movies" "Shows"];
           };
         };
 

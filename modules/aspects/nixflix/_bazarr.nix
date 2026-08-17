@@ -14,12 +14,8 @@ in {
   hardware.nvidia-container-toolkit.enable = true;
 
   # Whisper ASR webservice -- backs Bazarr's Whisper provider for AI-generated
-  # subtitles when none are available from other providers. Configure it in the
-  # Bazarr UI: Providers -> Whisper, endpoint "http://127.0.0.1:9000".
-  #
-  # GPU image (faster_whisper / CTranslate2 on the 1070 Ti). Note: Pascal lacks
-  # tensor cores and has poor FP16, so CTranslate2 runs float32 here -- accurate
-  # but heavier on VRAM and slower than newer cards.
+  # subtitles. Set it up in Bazarr: Providers -> Whisper, http://127.0.0.1:9000.
+  # Pascal has no tensor cores and poor FP16, so CTranslate2 runs float32 here.
   virtualisation.oci-containers.containers.whisper-asr = {
     image = "onerahmet/openai-whisper-asr-webservice:latest-gpu";
     ports = ["127.0.0.1:${toString whisperPort}:9000"];

@@ -21,10 +21,6 @@
       flake = false;
     };
     claude-code.url = "github:sadjow/claude-code-nix";
-    dank-calculator = {
-      url = "github:rochacbruno/DankCalculator";
-      flake = false;
-    };
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,21 +60,11 @@
     };
     niri.url = "github:sodiboo/niri-flake";
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    nix-citizen = {
-      url = "github:LovingMelody/nix-citizen";
-      inputs.nix-gaming.follows = "nix-gaming";
-    };
-    nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    nix-monitor.url = "github:antonjah/nix-monitor";
-    nix-openclaw = {
-      url = "github:openclaw/nix-openclaw";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-pia-vpn = {
       url = "github:rcambrj/nix-pia-vpn";
       inputs.nixpkgs.follows = "nixpkgs";

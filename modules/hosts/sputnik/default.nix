@@ -9,8 +9,6 @@
   den.aspects.sputnik = {
     includes = [
       ry.workstation
-      ry.niri-sputnik
-      ry.noctalia-sputnik
       ry.charger
       ry.tailscale
     ];
@@ -20,15 +18,15 @@
       config,
       ...
     }: let
+      # Inhibit the internal Apple keyboard whenever a bluetooth keyboard is
+      # connected. Bluetooth is bustype 0005; keyboards are told apart from mice
+      # by their much longer key capability bitmask.
       toggleInternalKb = pkgs.writeShellScript "toggle-internal-kb" ''
-        # Check if any bluetooth keyboard is currently connected
         bt_kb_connected=false
         for dev in /sys/class/input/input*/; do
           [ -d "$dev" ] || continue
           bustype=$(cat "$dev/id/bustype" 2>/dev/null) || continue
-          # bustype 0005 = bluetooth
           [ "$bustype" = "0005" ] || continue
-          # Keyboards have long key capability bitmasks vs mice/other HID
           keys=$(cat "$dev/capabilities/key" 2>/dev/null) || continue
           if [ "''${#keys}" -gt 20 ]; then
             bt_kb_connected=true
@@ -36,7 +34,6 @@
           fi
         done
 
-        # Inhibit or uninhibit the internal Apple keyboard
         for dev in /sys/class/input/input*/; do
           [ -d "$dev" ] || continue
           name=$(cat "$dev/name" 2>/dev/null) || continue
@@ -68,6 +65,9 @@
         extraModprobeConfig = "options appledrm show_notch=1";
         binfmt.emulatedSystems = ["x86_64-linux"];
         loader.efi.canTouchEfiVariables = lib.mkForce false;
+        kernelModules = ["acpi_call"];
+        extraModulePackages = with config.boot.kernelPackages;
+          [acpi_call cpupower] ++ [pkgs.cpupower-gui];
       };
 
       services = {
@@ -80,33 +80,21 @@
           percentageAction = 3;
           criticalPowerAction = "PowerOff";
         };
+
+        udev.extraRules = ''
+          ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="${toggleInternalKb}"
+          ACTION=="remove", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="${toggleInternalKb}"
+        '';
+
+        # Laptop lid should actually suspend, unlike the desktop default.
+        logind.settings.Login = {
+          HandleLidSwitch = lib.mkForce "suspend";
+          HandleLidSwitchExternalPower = lib.mkForce "suspend";
+        };
       };
 
       powerManagement.cpuFreqGovernor = "performance";
 
-      boot = {
-        kernelModules = ["acpi_call"];
-        extraModulePackages = with config.boot.kernelPackages;
-          [
-            acpi_call
-            cpupower
-          ]
-          ++ [pkgs.cpupower-gui];
-      };
-
-      # Disable internal keyboard when a bluetooth keyboard is connected
-      services.udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="${toggleInternalKb}"
-        ACTION=="remove", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_KEYBOARD}=="1", RUN+="${toggleInternalKb}"
-      '';
-
-      # Laptop-specific lid switch behavior
-      services.logind.settings.Login = {
-        HandleLidSwitch = lib.mkForce "suspend";
-        HandleLidSwitchExternalPower = lib.mkForce "suspend";
-      };
-
-      # Apple Silicon cache
       nix.settings = {
         substituters = ["https://nixos-apple-silicon.cachix.org"];
         trusted-public-keys = [

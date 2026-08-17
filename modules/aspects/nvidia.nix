@@ -11,6 +11,11 @@ in {
       pkgs,
       ...
     }: {
+      nix.settings = {
+        substituters = ["https://cuda-maintainers.cachix.org"];
+        trusted-public-keys = ["cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="];
+      };
+
       services.xserver.videoDrivers = ["nvidia"];
 
       environment.sessionVariables = {
@@ -55,16 +60,6 @@ in {
         overlays = [cudaOverlay];
       });
       home.packages = [pkgs.nvtopPackages.nvidia];
-
-      xdg.desktopEntries.vesktop = {
-        name = "Vesktop";
-        genericName = "Internet Messenger";
-        exec = "vesktop --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs --ignore-gpu-blocklist --enable-zero-copy %U";
-        icon = "vesktop";
-        categories = ["Network" "InstantMessaging" "Chat"];
-        mimeType = ["x-scheme-handler/discord"];
-        settings.StartupWMClass = "Vesktop";
-      };
     };
   };
 }
