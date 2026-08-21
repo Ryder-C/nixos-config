@@ -119,6 +119,7 @@
         enable = true;
         enableMcpIntegration = true;
       };
+      pi-coding-agent.enable = true;
       direnv.enable = true;
 
       # Git

@@ -15,6 +15,7 @@
       ry.nvidia
       ry.steam
       ry.torrents
+      ry.ollama
       ry.rgb
       ry.aagl
       ry.bluevein

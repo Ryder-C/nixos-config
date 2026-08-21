@@ -64,13 +64,13 @@ in explicitly by a sibling.
 
 ## The Fleet
 
-| Host        | Hardware         | Role     | Key Features                                |
-| :---------- | :--------------- | :------- | :------------------------------------------ |
-| **Praxis**  | Desktop (Nvidia) | Main Rig | Gaming, Steam, Torrents, Plasma + Niri      |
-| **Sputnik** | MacBook Pro (M1) | Portable | Asahi, HiDPI Niri, Battery Optimization     |
-| **Fornax**  | Server           | Home Lab | Nixflix, Caddy, Vaultwarden, Headless       |
-| **Tabula**  | VM / WSL         | Minimal  | Terminal tools & Dev essentials             |
-| **Umbra**   | MacBook Pro (M1) | macOS    | Nix-darwin, Home-manager                    |
+| Host        | Hardware         | Role     | Key Features                                   |
+| :---------- | :--------------- | :------- | :--------------------------------------------- |
+| **Praxis**  | Desktop (Nvidia) | Main Rig | Gaming, Steam, Torrents, Ollama, Plasma + Niri |
+| **Sputnik** | MacBook Pro (M1) | Portable | Asahi, HiDPI Niri, Battery Optimization        |
+| **Fornax**  | Server           | Home Lab | Nixflix, Caddy, Vaultwarden, Headless          |
+| **Tabula**  | VM / WSL         | Minimal  | Terminal tools & Dev essentials                |
+| **Umbra**   | MacBook Pro (M1) | macOS    | Nix-darwin, Home-manager                       |
 
 ---
 
