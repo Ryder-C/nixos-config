@@ -12,7 +12,7 @@ _: {
         clip-to-geometry = true;
       }
       {
-        matches = [{app-id = "^alacritty$";}];
+        matches = [{app-id = "^com\\.mitchellh\\.ghostty$";}];
         focus-ring.enable = false;
       }
       {
