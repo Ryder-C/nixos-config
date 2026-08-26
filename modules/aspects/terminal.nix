@@ -33,6 +33,13 @@ _: {
           # Equivalent of Alacritty's `terminal.osc52 = "CopyPaste"`.
           clipboard-read = "allow";
           clipboard-write = "allow";
+
+          # ssh forwards TERM but not terminfo, so remote hosts without a
+          # `xterm-ghostty` entry break ncurses programs. `ssh-terminfo` tics
+          # the entry over on first connect (cached after that); `ssh-env`
+          # falls back to xterm-256color if that fails. Omitted features keep
+          # their defaults, so cursor/sudo/title stay on.
+          shell-integration-features = "ssh-env,ssh-terminfo";
         }
         // lib.optionalAttrs isLinux {
           bell-features = "audio";
