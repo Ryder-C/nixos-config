@@ -107,6 +107,7 @@
           jjd = "jj diff";
           jjds = "jj desc";
           jjl = "jj log";
+          jjlb = "jj log -r 'fork_point(bookmarks())::'";
           jjn = "jj new";
           jjgf = "jj git fetch";
           jjgp = "jj git push";
