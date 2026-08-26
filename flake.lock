@@ -842,6 +842,22 @@
         "type": "github"
       }
     },
+    "humanizer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787119133,
+        "narHash": "sha256-n08pud3m9ka1Ymqv6qinSCUku975FM2LJRboi9ur5D4=",
+        "owner": "blader",
+        "repo": "humanizer",
+        "rev": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "blader",
+        "repo": "humanizer",
+        "type": "github"
+      }
+    },
     "hytale-flatpak": {
       "flake": false,
       "locked": {
@@ -1713,6 +1729,7 @@
         "flatpaks": "flatpaks",
         "helium": "helium",
         "home-manager": "home-manager_3",
+        "humanizer": "humanizer",
         "hytale-flatpak": "hytale-flatpak",
         "import-tree": "import-tree",
         "jellium-flatpak": "jellium-flatpak",

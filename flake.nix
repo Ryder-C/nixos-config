@@ -45,6 +45,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    humanizer = {
+      url = "github:blader/humanizer";
+      flake = false;
+    };
     hytale-flatpak = {
       url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
       flake = false;

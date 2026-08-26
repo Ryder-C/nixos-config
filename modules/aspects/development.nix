@@ -1,6 +1,10 @@
 {inputs, ...}: {
   flake-file.inputs = {
     alejandra.url = "github:kamadorueda/alejandra";
+    humanizer = {
+      url = "github:blader/humanizer";
+      flake = false;
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -99,6 +103,8 @@
         enable = true;
         enableMcpIntegration = true;
         package = pkgs.claude-code;
+
+        skills.humanizer = inputs.humanizer.outPath;
 
         lspServers.rust-analyzer = {
           command = "rust-analyzer";
