@@ -40,6 +40,7 @@
       ry.scripts
       ry.home-services
       ry.xdg
+      ry.claude-desktop
     ];
   };
 }
