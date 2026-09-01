@@ -4,7 +4,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
+    # Pinned: newer NUR revisions pull AtaraxiaSjel/nur commits where
+    # pkgs/default.nix still passes `pkgs` to pkgs/python3Packages/default.nix
+    # after that argument was removed, which breaks nur.repos.ataraxiasjel.*
+    # (we use waydroid-script). Unpin once upstream fixes it.
+    nur.url = "github:nix-community/NUR/7b386c5c7fe4fde8cd4322ba2a85df7a5c3afcbf";
     rypkgs.url = "github:Ryder-C/rypkgs";
     claude-code.url = "github:sadjow/claude-code-nix";
   };
@@ -53,6 +57,20 @@
             fladder = prev.fladder.overrideAttrs (o: {
               buildInputs = o.buildInputs ++ [final.libass];
             });
+
+            # nixpkgs' flutter wrapper now bakes in NIX_AAPT2_BINARY_PATH from
+            # `aapt`, whose Google prebuilt Linux jar is x86_64-only. That makes
+            # every flutter app (fladder) refuse to evaluate on aarch64-linux.
+            # aapt2 is only used for Android builds, which we never do, so stub
+            # it out there.
+            aapt =
+              if prev.stdenv.hostPlatform.system == "aarch64-linux"
+              then
+                final.writeShellScriptBin "aapt2" ''
+                  echo "aapt2 is not available on aarch64-linux" >&2
+                  exit 1
+                ''
+              else prev.aapt;
           })
           inputs.rust-overlay.overlays.default
           inputs.nur.overlays.default

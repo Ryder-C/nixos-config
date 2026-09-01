@@ -107,7 +107,7 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR/7b386c5c7fe4fde8cd4322ba2a85df7a5c3afcbf";
     proton-cachyos-nix = {
       url = "github:powerofthe69/proton-cachyos-nix";
       inputs.nixpkgs.follows = "nixpkgs";
