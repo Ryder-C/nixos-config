@@ -1,4 +1,14 @@
 _: {
+  # ssh forwards $TERM but not terminfo. Ghostty's `ssh-terminfo` tics the
+  # entry into the *login user's* ~/.terminfo on the remote, but sudo resets
+  # HOME, so root's ncurses never finds it and anything with a pager
+  # (`sudo journalctl`) dies with "'xterm-ghostty': unknown terminal type".
+  # Installing the terminfo output system-wide puts it on TERMINFO_DIRS, which
+  # NixOS' sudoers keeps for wheel, so it resolves for every user.
+  ry.terminal.nixos = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.ghostty.terminfo];
+  };
+
   ry.terminal.homeManager = {
     config,
     pkgs,
